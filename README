@@ -1,0 +1,1 @@
+Spot Color is simple mac app to turn the built-in color picker into a stand alone app. Just loads the color panel and configures the window. Other approaches involve creating an AppleScript to open the color picker, but they all seemed really slow.
