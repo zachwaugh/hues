@@ -12,10 +12,12 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		92224CD60FF5786F00B1A16F /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92224CD50FF5786F00B1A16F /* hues_app_icon.icns */; };
-		92CD3B1212C1A05D0079E334 /* HUPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD3B1112C1A05D0079E334 /* HUPreferences.m */; };
+		92CD3B1212C1A05D0079E334 /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD3B1112C1A05D0079E334 /* HuesPreferences.m */; };
 		92CD3B3612C1A7BD0079E334 /* HUPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CD3B3512C1A7BD0079E334 /* HUPreferences.xib */; };
 		BF6480691011347600F0D1D2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BF6480681011347600F0D1D2 /* Credits.rtf */; };
-		BF8B135F0F4B902B00845749 /* HUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8B135E0F4B902B00845749 /* HUAppDelegate.m */; };
+		BF8B135F0F4B902B00845749 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8B135E0F4B902B00845749 /* HuesAppDelegate.m */; };
+		BFB4704C12C1B3A700A98F6D /* NSColor+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB4704B12C1B3A700A98F6D /* NSColor+Extras.m */; };
+		BFB4710C12C1C1BA00A98F6D /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB4710B12C1C1BA00A98F6D /* HuesColorsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,12 +44,16 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92224CD50FF5786F00B1A16F /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = hues_app_icon.icns; sourceTree = "<group>"; };
-		92CD3B1012C1A05D0079E334 /* HUPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUPreferences.h; sourceTree = "<group>"; };
-		92CD3B1112C1A05D0079E334 /* HUPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUPreferences.m; sourceTree = "<group>"; };
+		92CD3B1012C1A05D0079E334 /* HuesPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferences.h; sourceTree = "<group>"; };
+		92CD3B1112C1A05D0079E334 /* HuesPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferences.m; sourceTree = "<group>"; };
 		92CD3B3512C1A7BD0079E334 /* HUPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUPreferences.xib; sourceTree = "<group>"; };
 		BF6480681011347600F0D1D2 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		BF8B135D0F4B902B00845749 /* HUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUAppDelegate.h; sourceTree = "<group>"; };
-		BF8B135E0F4B902B00845749 /* HUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUAppDelegate.m; sourceTree = "<group>"; };
+		BF8B135D0F4B902B00845749 /* HuesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesAppDelegate.h; sourceTree = "<group>"; };
+		BF8B135E0F4B902B00845749 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
+		BFB4704A12C1B3A700A98F6D /* NSColor+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extras.h"; sourceTree = "<group>"; };
+		BFB4704B12C1B3A700A98F6D /* NSColor+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extras.m"; sourceTree = "<group>"; };
+		BFB4710A12C1C1BA00A98F6D /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
+		BFB4710B12C1C1BA00A98F6D /* HuesColorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +71,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BF8B135D0F4B902B00845749 /* HUAppDelegate.h */,
-				BF8B135E0F4B902B00845749 /* HUAppDelegate.m */,
-				92CD3B1012C1A05D0079E334 /* HUPreferences.h */,
-				92CD3B1112C1A05D0079E334 /* HUPreferences.m */,
+				BFB4711112C1C1EB00A98F6D /* Categories */,
+				BF8B135D0F4B902B00845749 /* HuesAppDelegate.h */,
+				BF8B135E0F4B902B00845749 /* HuesAppDelegate.m */,
+				BFB4710A12C1C1BA00A98F6D /* HuesColorsView.h */,
+				BFB4710B12C1C1BA00A98F6D /* HuesColorsView.m */,
+				92CD3B1012C1A05D0079E334 /* HuesPreferences.h */,
+				92CD3B1112C1A05D0079E334 /* HuesPreferences.m */,
 			);
 			name = Classes;
 			path = src;
@@ -143,12 +152,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BFB4711112C1C1EB00A98F6D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				BFB4704A12C1B3A700A98F6D /* NSColor+Extras.h */,
+				BFB4704B12C1B3A700A98F6D /* NSColor+Extras.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Spot Color */ = {
+		8D1107260486CEB800E47090 /* Hues */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Spot Color" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Hues" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -159,7 +177,7 @@
 			);
 			dependencies = (
 			);
-			name = "Spot Color";
+			name = Hues;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Colors;
 			productReference = 8D1107320486CEB800E47090 /* Hues.app */;
@@ -188,7 +206,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Spot Color */,
+				8D1107260486CEB800E47090 /* Hues */,
 			);
 		};
 /* End PBXProject section */
@@ -214,8 +232,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				BF8B135F0F4B902B00845749 /* HUAppDelegate.m in Sources */,
-				92CD3B1212C1A05D0079E334 /* HUPreferences.m in Sources */,
+				BF8B135F0F4B902B00845749 /* HuesAppDelegate.m in Sources */,
+				92CD3B1212C1A05D0079E334 /* HuesPreferences.m in Sources */,
+				BFB4704C12C1B3A700A98F6D /* NSColor+Extras.m in Sources */,
+				BFB4710C12C1C1BA00A98F6D /* HuesColorsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Spot Color" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Hues" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,

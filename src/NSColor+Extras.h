@@ -1,5 +1,5 @@
 //
-//  HUPreferences.h
+//  NSColor+Extras.h
 //  Hues
 //
 //  Created by Zach Waugh on 12/21/10.
@@ -9,9 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface HUPreferences : NSObject
-{
+@interface NSColor (Extras)
 
-}
+- (NSString *)hues_hexadecimal;
+- (NSString *)hues_rgb;
 
 @end

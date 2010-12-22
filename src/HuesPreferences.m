@@ -6,9 +6,9 @@
 //  Copyright 2010 Giant Comet. All rights reserved.
 //
 
-#import "HUPreferences.h"
+#import "HuesPreferences.h"
 
 
-@implementation HUPreferences
+@implementation HuesPreferences
 
 @end
