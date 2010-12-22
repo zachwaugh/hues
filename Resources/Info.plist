@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>Spot Color.icns</string>
+	<string>hues_app_icon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.zachwaugh.${PRODUCT_NAME:identifier}</string>
+	<string>com.giantcomet.hues</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

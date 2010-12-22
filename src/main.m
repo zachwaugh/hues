@@ -1,9 +1,9 @@
 //
 //  main.m
-//  Spot Color
+//  Hues
 //
 //  Created by Zach Waugh on 2/17/09.
-//  Copyright zachwaugh.com 2009. All rights reserved.
+//  Copyright 2010 Giant Comet. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
