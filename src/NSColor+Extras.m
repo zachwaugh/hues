@@ -17,7 +17,8 @@
   NSString *redHexValue, *greenHexValue, *blueHexValue;
 	
   //Convert the NSColor to the RGB color space before we can access its components
-  NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+  //NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *convertedColor = [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 	
   if (convertedColor)
   {

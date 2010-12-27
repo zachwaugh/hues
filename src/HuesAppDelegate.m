@@ -10,6 +10,15 @@
 #import "HuesColorsView.h"
 #import "NSColor+Extras.h"
 
+
+@interface HuesAppDelegate ()
+
+- (void)copyToClipboard:(NSString *)value;
+
+@end
+
+
+
 @implementation HuesAppDelegate
 
 @synthesize colorsView, hexLabel;
@@ -43,26 +52,33 @@
 	//[[NSColorPanel sharedColorPanel] setAccessoryView:self.colorsView];
 }
 
+
 - (void)changeColor:(id)sender
 {
 	NSColor *color = [sender color];
+	[self copyToClipboard:[color hues_hexadecimal]];
 	
-	[self.hexLabel setStringValue:[color hues_hexadecimal]];
-	NSLog(@"hex: %@, rgb: %@", [color hues_hexadecimal], [color hues_rgb]);
+	//[self.hexLabel setStringValue:[color hues_hexadecimal]];
+	//NSLog(@"hex: %@, rgb: %@", [color hues_hexadecimal], [color hues_rgb]);
 }
 
 
 - (void)copyHex:(id)sender
 {
-	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-	[[NSPasteboard generalPasteboard] setString:[[[NSColorPanel sharedColorPanel] color] hues_hexadecimal] forType:NSStringPboardType];
+	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hexadecimal]];
 }
 
 
 - (void)copyRGB:(id)sender
 {
+	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_rgb]];
+}
+
+
+- (void)copyToClipboard:(NSString *)value
+{
 	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-	[[NSPasteboard generalPasteboard] setString:[[[NSColorPanel sharedColorPanel] color] hues_rgb] forType:NSStringPboardType];
+	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
 }
 
 
