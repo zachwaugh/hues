@@ -7,78 +7,39 @@
 //
 
 #import "HuesAppDelegate.h"
-#import "HuesColorsView.h"
-#import "NSColor+Extras.h"
-
-
-@interface HuesAppDelegate ()
-
-- (void)copyToClipboard:(NSString *)value;
-
-@end
-
+#import "HuesPreferences.h"
+#import "HuesPreferencesController.h"
+#import "HuesMainController.h"
 
 
 @implementation HuesAppDelegate
 
-@synthesize colorsView, hexLabel;
+@synthesize mainController, preferencesController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  [NSColorPanel setPickerMask:NSColorPanelAllModesMask];
-	NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
-  [colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
-	[colorPanel setTitle:@"Hues"];  
-	[colorPanel setShowsAlpha:YES];
-	[colorPanel setDelegate:self];
-	[colorPanel setFloatingPanel:NO];
-	[colorPanel setHidesOnDeactivate:NO];
-	[colorPanel setShowsAlpha:YES];
-	[colorPanel makeKeyAndOrderFront:nil];
+  [HuesPreferences registerDefaults];
+  self.mainController = [[[HuesMainController alloc] init] autorelease];
 }
 
 
 - (void)dealloc
 {
-	self.colorsView = nil;
-	self.hexLabel = nil;
+  self.mainController = nil;
+  self.preferencesController = nil;
 	
 	[super dealloc];
 }
 
 
-- (void)awakeFromNib
+- (void)showPreferences:(id)sender
 {
-	//[[NSColorPanel sharedColorPanel] setAccessoryView:self.colorsView];
-}
-
-
-- (void)changeColor:(id)sender
-{
-	NSColor *color = [sender color];
-	[self copyToClipboard:[color hues_hexadecimal]];
-	
-	//[self.hexLabel setStringValue:[color hues_hexadecimal]];
-	//NSLog(@"hex: %@, rgb: %@", [color hues_hexadecimal], [color hues_rgb]);
-}
-
-
-- (void)copyHex:(id)sender
-{
-	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hexadecimal]];
-}
-
-
-- (void)copyRGB:(id)sender
-{
-	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_rgb]];
-}
-
-
-- (void)copyToClipboard:(NSString *)value
-{
-	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
+  if (self.preferencesController == nil)
+  {
+    self.preferencesController = [[[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"] autorelease];
+  }
+  
+  [self.preferencesController showWindow:sender];
 }
 
 

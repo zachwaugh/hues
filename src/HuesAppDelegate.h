@@ -8,18 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class HuesColorsView;
+@class HuesPreferencesController;
+@class HuesMainController;
 
-@interface HuesAppDelegate : NSObject <NSWindowDelegate>
+@interface HuesAppDelegate : NSObject
 {
-	IBOutlet HuesColorsView *colorsView;
-	IBOutlet NSTextField *hexLabel;
+  HuesMainController *mainController;
+  HuesPreferencesController *preferencesController;
 }
 
-@property (retain) NSView *colorsView;
-@property (retain) NSTextField *hexLabel;
+@property (retain) HuesMainController *mainController;
+@property (retain) HuesPreferencesController *preferencesController;
 
-- (void)copyHex:(id)sender;
-- (void)copyRGB:(id)sender;
+- (void)showPreferences:(id)sender;
 
 @end

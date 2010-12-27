@@ -10,8 +10,9 @@
 
 
 @interface HuesPreferences : NSObject
-{
 
-}
++ (void)registerDefaults;
++ (BOOL)copyToClipboard;
++ (void)setCopyToClipboard:(BOOL)copy;
 
 @end

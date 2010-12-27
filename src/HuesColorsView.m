@@ -13,8 +13,13 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[[NSColor redColor] set];
-	NSRectFill([self bounds]);
+  NSImage *background = [NSImage imageNamed:@"background.png"];
+  
+  [background drawInRect:[self bounds] fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+  
+//  [[NSColor colorWithCalibratedWhite:0.537 alpha:1.000] set];
+//  NSRectFill(NSMakeRect(0, 0, [self bounds].size.width, 1));
 }
+
 
 @end

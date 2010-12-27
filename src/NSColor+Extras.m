@@ -28,9 +28,9 @@
     blueIntValue = [convertedColor blueComponent] * 255.99999f;
 		
     // Convert the numbers to hex strings
-    redHexValue = [NSString stringWithFormat:@"%02x", redIntValue];
-    greenHexValue = [NSString stringWithFormat:@"%02x", greenIntValue];
-    blueHexValue = [NSString stringWithFormat:@"%02x", blueIntValue];
+    redHexValue = [[NSString stringWithFormat:@"%02x", redIntValue] uppercaseString];
+    greenHexValue = [[NSString stringWithFormat:@"%02x", greenIntValue] uppercaseString];
+    blueHexValue = [[NSString stringWithFormat:@"%02x", blueIntValue] uppercaseString];
 		
     // Concatenate the red, green, and blue components' hex strings together with a "#"
     return [NSString stringWithFormat:@"#%@%@%@", redHexValue, greenHexValue, blueHexValue];
@@ -50,9 +50,6 @@
 	
   if (convertedColor)
   {
-    // Get the red, green, and blue components of the color
-    //[convertedColor getRed:&redFloatValue green:&greenFloatValue blue:&blueFloatValue alpha:NULL];
-		
     // Convert the components to numbers (unsigned decimal integer) between 0 and 255
     red = [convertedColor redComponent] * 255.99999f;
     green = [convertedColor greenComponent] * 255.99999f;
