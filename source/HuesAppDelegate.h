@@ -15,10 +15,12 @@
 {
   HuesMainController *mainController;
   HuesPreferencesController *preferencesController;
+  IBOutlet NSMenu *historyMenu;
 }
 
 @property (retain) HuesMainController *mainController;
 @property (retain) HuesPreferencesController *preferencesController;
+@property (retain) NSMenu *historyMenu;
 
 - (void)showPreferences:(id)sender;
 

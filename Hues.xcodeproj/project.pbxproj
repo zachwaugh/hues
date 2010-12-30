@@ -12,6 +12,8 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		92224CD60FF5786F00B1A16F /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92224CD50FF5786F00B1A16F /* hues_app_icon.icns */; };
+		922CB66A12CBE2CC00DDC397 /* HuesHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922CB66912CBE2CC00DDC397 /* HuesHistoryManager.m */; };
+		922CB6B112CC0A9700DDC397 /* HuesColorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 922CB6B012CC0A9700DDC397 /* HuesColorImage.m */; };
 		925B8E3A12C91EED007CE377 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B8E3912C91EED007CE377 /* HuesPreferencesController.m */; };
 		925B8E5612C920EF007CE377 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */; };
 		925B8E8712C9210E007CE377 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */; };
@@ -52,6 +54,10 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92224CD50FF5786F00B1A16F /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = hues_app_icon.icns; sourceTree = "<group>"; };
+		922CB66812CBE2CC00DDC397 /* HuesHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHistoryManager.h; sourceTree = "<group>"; };
+		922CB66912CBE2CC00DDC397 /* HuesHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHistoryManager.m; sourceTree = "<group>"; };
+		922CB6AF12CC0A9700DDC397 /* HuesColorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorImage.h; sourceTree = "<group>"; };
+		922CB6B012CC0A9700DDC397 /* HuesColorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorImage.m; sourceTree = "<group>"; };
 		925B8E3812C91EED007CE377 /* HuesPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferencesController.h; sourceTree = "<group>"; };
 		925B8E3912C91EED007CE377 /* HuesPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferencesController.m; sourceTree = "<group>"; };
 		925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
@@ -86,7 +92,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* source */ = {
 			isa = PBXGroup;
 			children = (
 				925B8ECC12C92A0A007CE377 /* Models */,
@@ -99,8 +105,7 @@
 				925B8E3812C91EED007CE377 /* HuesPreferencesController.h */,
 				925B8E3912C91EED007CE377 /* HuesPreferencesController.m */,
 			);
-			name = Classes;
-			path = src;
+			path = source;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -133,7 +138,7 @@
 		29B97314FDCFA39411CA2CEA /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* source */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -163,7 +168,8 @@
 				92CD3B3512C1A7BD0079E334 /* HuesPreferences.xib */,
 				925B8EE412C92E29007CE377 /* HuesColorsView.xib */,
 			);
-			path = Resources;
+			name = Resources;
+			path = resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -180,6 +186,8 @@
 			children = (
 				BFB4710A12C1C1BA00A98F6D /* HuesColorsView.h */,
 				BFB4710B12C1C1BA00A98F6D /* HuesColorsView.m */,
+				922CB6AF12CC0A9700DDC397 /* HuesColorImage.h */,
+				922CB6B012CC0A9700DDC397 /* HuesColorImage.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -187,10 +195,12 @@
 		925B8ECC12C92A0A007CE377 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				92CD3B1012C1A05D0079E334 /* HuesPreferences.h */,
-				92CD3B1112C1A05D0079E334 /* HuesPreferences.m */,
 				925B8EA912C92530007CE377 /* HuesGlobal.h */,
 				925B8EAA12C92530007CE377 /* HuesGlobal.m */,
+				92CD3B1012C1A05D0079E334 /* HuesPreferences.h */,
+				92CD3B1112C1A05D0079E334 /* HuesPreferences.m */,
+				922CB66812CBE2CC00DDC397 /* HuesHistoryManager.h */,
+				922CB66912CBE2CC00DDC397 /* HuesHistoryManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -284,6 +294,8 @@
 				925B8E3A12C91EED007CE377 /* HuesPreferencesController.m in Sources */,
 				925B8EAB12C92530007CE377 /* HuesGlobal.m in Sources */,
 				925B8EAE12C9273B007CE377 /* HuesMainController.m in Sources */,
+				922CB66A12CBE2CC00DDC397 /* HuesHistoryManager.m in Sources */,
+				922CB6B112CC0A9700DDC397 /* HuesColorImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

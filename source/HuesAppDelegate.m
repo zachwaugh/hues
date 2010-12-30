@@ -10,11 +10,12 @@
 #import "HuesPreferences.h"
 #import "HuesPreferencesController.h"
 #import "HuesMainController.h"
+#import "HuesHistoryManager.h"
 
 
 @implementation HuesAppDelegate
 
-@synthesize mainController, preferencesController;
+@synthesize mainController, preferencesController, historyMenu;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -23,11 +24,18 @@
 }
 
 
+- (void)awakeFromNib
+{
+  [HuesHistoryManager sharedManager].menu = self.historyMenu;
+}
+
+
 - (void)dealloc
 {
   self.mainController = nil;
   self.preferencesController = nil;
-	
+	self.historyMenu = nil;
+  
 	[super dealloc];
 }
 

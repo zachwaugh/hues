@@ -8,4 +8,8 @@
 
 #import "HuesGlobal.h"
 
+// Preferences
 NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
+
+// Notifications
+NSString * const HuesUpdateColorNotification = @"HuesUpdateColorNotification";

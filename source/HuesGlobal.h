@@ -7,3 +7,5 @@
 //
 
 extern NSString * const HuesCopyToClipboardKey;
+
+extern NSString * const HuesUpdateColorNotification;

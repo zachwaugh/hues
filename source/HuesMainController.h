@@ -27,5 +27,6 @@
 
 - (void)copyHex:(id)sender;
 - (void)copyRGB:(id)sender;
+- (void)updateColor:(NSNotification *)notification;
 
 @end

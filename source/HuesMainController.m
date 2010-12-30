@@ -19,6 +19,8 @@
 #import "HuesMainController.h"
 #import "HuesColorsView.h"
 #import "HuesPreferences.h"
+#import "HuesHistoryManager.h"
+#import "HuesGlobal.h"
 #import "NSColor+Extras.h"
 
 
@@ -38,8 +40,8 @@
 {
   if (self = [super init])
   {
-    [NSColorPanel setPickerMask:NSColorPanelWheelModeMask | NSColorPanelGrayModeMask | NSColorPanelRGBModeMask | NSColorPanelHSBModeMask];
-    //[NSColorPanel setPickerMask:NSColorPanelAllModesMask];
+    //[NSColorPanel setPickerMask:NSColorPanelWheelModeMask | NSColorPanelGrayModeMask | NSColorPanelRGBModeMask | NSColorPanelHSBModeMask];
+    [NSColorPanel setPickerMask:NSColorPanelAllModesMask];
     self.colorPanel = [NSColorPanel sharedColorPanel];
     [self.colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
     [self.colorPanel setTitle:@"Hues"];
@@ -59,6 +61,8 @@
     
     [self.colorPanel setAccessoryView:self.colorsView];
     [self.colorsView setFrame:NSMakeRect(0, [self.colorsView frame].origin.y + 6, [self.colorPanel frame].size.width, [self.colorsView bounds].size.height)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
   
   return self;
@@ -67,6 +71,7 @@
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   self.colorPanel = nil;
   self.colorsView = nil;
   self.hexLabel = nil;
@@ -78,13 +83,23 @@
 
 - (void)colorChanged:(id)sender
 {
+  NSLog(@"colorChanged");
 	NSColor *color = [sender color];
+  [[HuesHistoryManager sharedManager] addColor:color];
  
   if ([HuesPreferences copyToClipboard])
   {
     [self copyToClipboard:[color hues_hexadecimal]];
   }
   
+  [self updateLabelsWithColor:color];
+}
+
+
+- (void)updateColor:(NSNotification *)notification
+{
+  NSColor *color = [notification object];
+  [self.colorPanel setColor:color];
   [self updateLabelsWithColor:color];
 }
 
