@@ -6,6 +6,43 @@
 //  Copyright 2010 Giant Comet. All rights reserved.
 //
 
-extern NSString * const HuesCopyToClipboardKey;
 
+// Preferences keys
+extern NSString * const HuesCopyToClipboardKey;
+extern NSString * const HuesDefaultColorRepresentationKey;
+extern NSString * const HuesHexFormatKey;
+extern NSString * const HuesRGBFormatKey;
+extern NSString * const HuesRGBAFormatKey;
+extern NSString * const HuesHSBFormatKey;
+
+
+// NSColorPanelWheelModeMask            - Color Wheel
+// NSColorPanelGrayModeMask             - Color Sliders
+// NSColorPanelRGBModeMask              - Color Sliders
+// NSColorPanelCMYKModeMask             - Color Sliders
+// NSColorPanelHSBModeMask              - Color Sliders
+// NSColorPanelColorListModeMask        - Color Palettes
+// NSColorPanelCustomPaletteModeMask    - Image Palettes
+// NSColorPanelCrayonModeMask           - Crayons
+// NSColorPanelAllModesMask             - All
+extern NSString * const HuesShowColorWheelPickerKey;
+extern NSString * const HuesShowColorSlidersGrayPickerKey;
+extern NSString * const HuesShowColorSlidersRGBPickerKey;
+extern NSString * const HuesShowColorSlidersCMYKPickerKey;
+extern NSString * const HuesShowColorSlidersHSBPickerKey;
+extern NSString * const HuesShowColorPalettesPickerKey;
+extern NSString * const HuesShowImagePalettesPickerKey;
+extern NSString * const HuesShowCrayonsPickerKey;
+
+
+enum
+{
+  HuesHexRepresentation,
+  HuesRGBRepresentation,
+  HuesHSBRepresentation
+};
+
+typedef NSInteger HuesColorRepresentation;
+
+// Notifications
 extern NSString * const HuesUpdateColorNotification;

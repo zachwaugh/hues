@@ -7,12 +7,24 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "HuesGlobal.h"
 
 @interface HuesPreferences : NSObject
 
 + (void)registerDefaults;
+
 + (BOOL)copyToClipboard;
 + (void)setCopyToClipboard:(BOOL)copy;
+
+
++ (HuesColorRepresentation)defaultRepresentation;
++ (NSString *)hexFormat;
++ (NSString *)rgbFormat;
++ (NSString *)rgbaFormat;
++ (NSString *)hsbFormat;
++ (NSInteger)pickerMask;
+
+//+ (BOOL)useCalibratedColors;
+//+ (void)setCalibratedColors:(BOOL)calibrated;
 
 @end

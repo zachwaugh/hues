@@ -13,5 +13,7 @@
 
 - (NSString *)hues_hexadecimal;
 - (NSString *)hues_rgb;
+- (NSString *)hues_hsb;
+- (NSColor *)hues_convertedColor;
 
 @end

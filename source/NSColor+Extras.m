@@ -7,33 +7,35 @@
 //
 
 #import "NSColor+Extras.h"
-
+#import "HuesPreferences.h"
 
 @implementation NSColor (Extras)
 
 - (NSString *)hues_hexadecimal
 {
-  int redIntValue, greenIntValue, blueIntValue;
+  int red, green, blue;
   NSString *redHexValue, *greenHexValue, *blueHexValue;
 	
-  //Convert the NSColor to the RGB color space before we can access its components
-  //NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	NSColor *convertedColor = [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
-	
-  if (convertedColor)
+  NSColor *color = [self hues_convertedColor];
+
+  if (color)
   {
-    // Convert the components to numbers (unsigned decimal integer) between 0 and 255
-    redIntValue = [convertedColor redComponent] * 255.99999f;
-    greenIntValue = [convertedColor greenComponent] * 255.99999f;
-    blueIntValue = [convertedColor blueComponent] * 255.99999f;
+    red = roundf([color redComponent] * 255.0f);
+    green = roundf([color greenComponent] * 255.0f);
+    blue = roundf([color blueComponent] * 255.0f);
 		
-    // Convert the numbers to hex strings
-    redHexValue = [[NSString stringWithFormat:@"%02x", redIntValue] uppercaseString];
-    greenHexValue = [[NSString stringWithFormat:@"%02x", greenIntValue] uppercaseString];
-    blueHexValue = [[NSString stringWithFormat:@"%02x", blueIntValue] uppercaseString];
+    redHexValue = [[NSString stringWithFormat:@"%02x", red] uppercaseString];
+    greenHexValue = [[NSString stringWithFormat:@"%02x", green] uppercaseString];
+    blueHexValue = [[NSString stringWithFormat:@"%02x", blue] uppercaseString];
 		
-    // Concatenate the red, green, and blue components' hex strings together with a "#"
-    return [NSString stringWithFormat:@"#%@%@%@", redHexValue, greenHexValue, blueHexValue];
+
+    NSString *format = [HuesPreferences hexFormat];
+		
+    NSString *output = [format stringByReplacingOccurrencesOfString:@"{r}" withString:redHexValue];
+    output = [output stringByReplacingOccurrencesOfString:@"{g}" withString:greenHexValue];
+    output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:blueHexValue];
+    
+    return output;
   }
 	
   return nil;
@@ -42,39 +44,77 @@
 
 - (NSString *)hues_rgb
 {
-	CGFloat alpha; //red, green, blue, alpha;
+	CGFloat alpha;
   int red, green, blue;
-	
-  //Convert the NSColor to the RGB color space before we can access its components
-  NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	
-  if (convertedColor)
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color)
   {
-    // Convert the components to numbers (unsigned decimal integer) between 0 and 255
-    red = [convertedColor redComponent] * 255.99999f;
-    green = [convertedColor greenComponent] * 255.99999f;
-    blue = [convertedColor blueComponent] * 255.99999f;
-		alpha = [convertedColor alphaComponent];
-		
-		
-		NSString *value;
-		
-		if (alpha >= 1)
+    red = roundf([color redComponent] * 255.0f);
+    green = roundf([color greenComponent] * 255.0f);
+    blue = roundf([color blueComponent] * 255.0f);
+		alpha = [color alphaComponent];
+    
+		NSString *output;
+    NSString *format = (alpha < 1) ? [HuesPreferences rgbaFormat] : [HuesPreferences rgbFormat];
+    
+    output = [format stringByReplacingOccurrencesOfString:@"{r}" withString:[NSString stringWithFormat:@"%d", red]];
+    output = [output stringByReplacingOccurrencesOfString:@"{g}" withString:[NSString stringWithFormat:@"%d", green]];
+    output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", blue]];
+    
+		if (alpha < 1)
 		{
-			value = [NSString stringWithFormat:@"rgb(%d, %d, %d)", red, green, blue];
-		}
-		else
-		{
-			value = [NSString stringWithFormat:@"rgba(%d, %d, %d, %0.2f)", red, green, blue, alpha];
+      output = [output stringByReplacingOccurrencesOfString:@"{a}" withString:[NSString stringWithFormat:@"%.2f", alpha]];
 		}
 
-		
-    // Concatenate the red, green, and blue components' hex strings together with a "#"
-    return value;
+    return output;
   }
 	
   return nil;
 }
 
+
+- (NSString *)hues_hsb
+{
+  int hue, saturation, brightness;
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color)
+  {
+    hue = roundf([color hueComponent] * 360.0f);
+    brightness = roundf([color brightnessComponent] * 100.0f);
+    saturation = roundf([color saturationComponent] * 100.0f);
+    
+    NSString *output;
+    NSString *format = [HuesPreferences hsbFormat];
+    
+    output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", hue]];
+    output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", saturation]];
+    output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", brightness]];
+    
+    return output;
+  }
+  
+  return nil;
+}
+
+
+- (NSColor *)hues_convertedColor
+{
+  NSColor *color;
+  
+  if ([self colorSpaceName] != NSCalibratedRGBColorSpace && [self colorSpaceName] != NSDeviceRGBColorSpace)
+  {
+    color = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+  }
+  else
+  {
+    color = self;
+  }
+  
+  return color;
+}
 
 @end

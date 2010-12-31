@@ -8,6 +8,7 @@
 
 #import "HuesHistoryManager.h"
 #import "NSColor+Extras.h"
+#import "NSImage+Hues.h"
 #import "HuesGlobal.h"
 
 #define HUES_MAX_HISTORY_SIZE 25
@@ -46,23 +47,18 @@ static HuesHistoryManager *sharedHistoryManager = nil;
 
 - (void)addColor:(NSColor *)color
 {
+  // Don't add if same as last color
+  if ([self.history count] > 0 && [[color hues_hexadecimal] isEqualToString:[[self.history objectAtIndex:0] hues_hexadecimal]]) return;
+ 
+  // Ensure doesn't go past max history size
   if ([self.history count] == HUES_MAX_HISTORY_SIZE)
   {
     [self.history removeLastObject];
   }
   
+  
   [self.history insertObject:color atIndex:0];
- 
-  NSLog(@"history size: %d", [self.history count]);
-  
-  NSImage *swatch = [[[NSImage alloc] initWithSize:NSMakeSize(10, 10)] autorelease];
-  [swatch lockFocus];
-  [color set];
-  NSRectFill(NSMakeRect(0, 0, 10, 10));
-  [[NSColor grayColor] set];
-  [[NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, 10, 10)] stroke];
-  [swatch unlockFocus];
-  
+   
   
   if ([self.menu numberOfItems] == HUES_MAX_HISTORY_SIZE)
   {
@@ -70,7 +66,7 @@ static HuesHistoryManager *sharedHistoryManager = nil;
   }
   
   NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[color hues_hexadecimal] action:@selector(colorChosen:) keyEquivalent:@""] autorelease];
-  [item setImage:swatch];
+  [item setImage:[NSImage imageWithColor:color]];
   [item setTarget:self];
   [self.menu insertItem:item atIndex:0];
 }

@@ -34,23 +34,20 @@
 
 @implementation HuesMainController
 
-@synthesize colorPanel, colorsView, hexLabel, rgbLabel;
+@synthesize colorPanel, colorsView, hexLabel, rgbLabel, hsbLabel;
 
 - (id)init
 {
   if (self = [super init])
   {
-    //[NSColorPanel setPickerMask:NSColorPanelWheelModeMask | NSColorPanelGrayModeMask | NSColorPanelRGBModeMask | NSColorPanelHSBModeMask];
-    [NSColorPanel setPickerMask:NSColorPanelAllModesMask];
+    [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
     self.colorPanel = [NSColorPanel sharedColorPanel];
     [self.colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
     [self.colorPanel setTitle:@"Hues"];
     [self.colorPanel setShowsAlpha:YES];
-    //[self.colorPanel setDelegate:self];
     [self.colorPanel setFloatingPanel:NO];
     [self.colorPanel setHidesOnDeactivate:NO];
     [self.colorPanel setShowsAlpha:YES];
-    //[self.colorPanel setContinuous:YES];
     [self.colorPanel setTarget:self];
     [self.colorPanel setAction:@selector(colorChanged:)];
     [self.colorPanel makeKeyAndOrderFront:nil];
@@ -83,13 +80,24 @@
 
 - (void)colorChanged:(id)sender
 {
-  NSLog(@"colorChanged");
 	NSColor *color = [sender color];
+  //NSLog(@"colorChanged: %@", [color hues_hsb]);
   [[HuesHistoryManager sharedManager] addColor:color];
  
   if ([HuesPreferences copyToClipboard])
   {
-    [self copyToClipboard:[color hues_hexadecimal]];
+    if ([HuesPreferences defaultRepresentation] == HuesHexRepresentation)
+    {
+      [self copyToClipboard:[color hues_hexadecimal]];
+    }
+    else if ([HuesPreferences defaultRepresentation] == HuesRGBRepresentation)
+    {
+      [self copyToClipboard:[color hues_rgb]];
+    }
+    else if ([HuesPreferences defaultRepresentation] == HuesHSBRepresentation)
+    {
+      [self copyToClipboard:[color hues_hsb]];
+    }
   }
   
   [self updateLabelsWithColor:color];
@@ -114,9 +122,11 @@
   
   NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hexadecimal] attributes:attributes] autorelease];
   NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:attributes] autorelease];
+  NSAttributedString *hsbString = [[[NSAttributedString alloc] initWithString:[color hues_hsb] attributes:attributes] autorelease];
   
 	[self.hexLabel setAttributedStringValue:hexString];
   [self.rgbLabel setAttributedStringValue:rgbString];
+  [self.hsbLabel setAttributedStringValue:hsbString];
 }
 
 
@@ -129,6 +139,12 @@
 - (void)copyRGB:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_rgb]];
+}
+
+
+- (void)copyHSB:(id)sender
+{
+	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsb]];
 }
 
 
