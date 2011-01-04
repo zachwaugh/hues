@@ -10,7 +10,7 @@
 
 @class HuesColorsView;
 
-@interface HuesMainController : NSObject
+@interface HuesMainController : NSObject <NSWindowDelegate>
 {
   IBOutlet HuesColorsView *colorsView;
 	IBOutlet NSTextField *hexLabel;

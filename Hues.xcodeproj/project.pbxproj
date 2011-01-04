@@ -93,7 +93,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* source */ = {
+		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				925B8ECC12C92A0A007CE377 /* Models */,
@@ -106,6 +106,7 @@
 				925B8E3812C91EED007CE377 /* HuesPreferencesController.h */,
 				925B8E3912C91EED007CE377 /* HuesPreferencesController.m */,
 			);
+			name = Classes;
 			path = source;
 			sourceTree = "<group>";
 		};
@@ -139,7 +140,7 @@
 		29B97314FDCFA39411CA2CEA /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* source */,
+				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -353,6 +354,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Hues;
+				SDKROOT = macosx;
 			};
 			name = "App Store";
 		};
@@ -374,6 +376,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Hues;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -392,6 +395,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Hues;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

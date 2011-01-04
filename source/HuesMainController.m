@@ -44,6 +44,7 @@
     self.colorPanel = [NSColorPanel sharedColorPanel];
     [self.colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
     [self.colorPanel setTitle:@"Hues"];
+		[self.colorPanel setDelegate:self];
     [self.colorPanel setShowsAlpha:YES];
     [self.colorPanel setFloatingPanel:NO];
     [self.colorPanel setHidesOnDeactivate:NO];
@@ -81,7 +82,7 @@
 - (void)colorChanged:(id)sender
 {
 	NSColor *color = [sender color];
-  //NSLog(@"colorChanged: %@", [color hues_hsb]);
+  //NSLog(@"colorChanged: %@", color);
   [[HuesHistoryManager sharedManager] addColor:color];
  
   if ([HuesPreferences copyToClipboard])
@@ -152,6 +153,13 @@
 {
 	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
 	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
+}
+
+
+// Make sure app quits after panel is closed
+- (void)windowWillClose:(NSNotification *)notification
+{
+	[[NSApplication sharedApplication] terminate:nil];
 }
 
 

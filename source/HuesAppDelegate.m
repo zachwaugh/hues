@@ -50,11 +50,4 @@
   [self.preferencesController showWindow:sender];
 }
 
-
-// Make sure app quits after panel is closed
-- (void)windowWillClose:(NSNotification *)notification
-{
-	[[NSApplication sharedApplication] terminate:nil];
-}
-
 @end
