@@ -14,7 +14,8 @@ extern NSString * const HuesHexFormatKey;
 extern NSString * const HuesRGBFormatKey;
 extern NSString * const HuesRGBAFormatKey;
 extern NSString * const HuesHSBFormatKey;
-
+extern NSString * const HuesHSLFormatKey;
+extern NSString * const HuesHSLAFormatKey;
 
 // NSColorPanelWheelModeMask            - Color Wheel
 // NSColorPanelGrayModeMask             - Color Sliders
@@ -39,7 +40,7 @@ enum
 {
   HuesHexRepresentation,
   HuesRGBRepresentation,
-  HuesHSBRepresentation
+  HuesHSLRepresentation
 };
 
 typedef NSInteger HuesColorRepresentation;

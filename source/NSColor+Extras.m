@@ -11,7 +11,7 @@
 
 @implementation NSColor (Extras)
 
-- (NSString *)hues_hexadecimal
+- (NSString *)hues_hex
 {
   int red, green, blue;
   NSString *redHexValue, *greenHexValue, *blueHexValue;
@@ -94,11 +94,64 @@
     output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", saturation]];
     output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", brightness]];
     
+    
     return output;
   }
   
   return nil;
 }
+
+
+- (NSString *)hues_hsl
+{
+  int hue;
+  float red, green, blue, alpha, saturation, lightness, max, min, delta;
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color)
+  {
+    red = [color redComponent];
+    green = [color greenComponent];
+    blue = [color blueComponent];
+    alpha = [color alphaComponent];
+    
+    max = MAX(red, MAX(green, blue));
+    min = MIN(red, MIN(green, blue));
+    
+    hue = roundf([color hueComponent] * 360.0f);
+    lightness = (max + min) / 2;
+    
+    if (max == min)
+    {
+      hue = 0;
+      saturation = 0;
+    }
+    else
+    {
+      delta = max - min;
+      saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
+    }
+
+    
+    NSString *output;
+    NSString *format = (alpha < 1) ? [HuesPreferences hslaFormat] : [HuesPreferences hslFormat];
+    
+    output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", hue]];
+    output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", (int)roundf(saturation * 100.0f)]];
+    output = [output stringByReplacingOccurrencesOfString:@"{l}" withString:[NSString stringWithFormat:@"%d", (int)roundf(lightness * 100.0f)]];
+    
+    if (alpha < 1)
+		{
+      output = [output stringByReplacingOccurrencesOfString:@"{a}" withString:[NSString stringWithFormat:@"%.2f", alpha]];
+		}
+    
+    return output;
+  }
+  
+  return nil;
+}
+
 
 
 - (NSColor *)hues_convertedColor

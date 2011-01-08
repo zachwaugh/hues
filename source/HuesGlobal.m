@@ -15,6 +15,8 @@ NSString * const HuesHexFormatKey = @"HuesHexFormat";
 NSString * const HuesRGBFormatKey = @"HuesRGBFormat";
 NSString * const HuesRGBAFormatKey = @"HuesRGBAFormat";
 NSString * const HuesHSBFormatKey = @"HuesHSBFormat";
+NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
+NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
 
 NSString * const HuesShowColorWheelPickerKey = @"HuesShowColorWheelPicker";
 NSString * const HuesShowColorSlidersGrayPickerKey = @"HuesShowColorSlidersGrayPicker";

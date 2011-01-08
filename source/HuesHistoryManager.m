@@ -48,7 +48,7 @@ static HuesHistoryManager *sharedHistoryManager = nil;
 - (void)addColor:(NSColor *)color
 {
   // Don't add if same as last color
-  if ([self.history count] > 0 && [[color hues_hexadecimal] isEqualToString:[[self.history objectAtIndex:0] hues_hexadecimal]]) return;
+  if ([self.history count] > 0 && [[color hues_hex] isEqualToString:[[self.history objectAtIndex:0] hues_hex]]) return;
  
   // Ensure doesn't go past max history size
   if ([self.history count] == HUES_MAX_HISTORY_SIZE)
@@ -65,7 +65,7 @@ static HuesHistoryManager *sharedHistoryManager = nil;
     [self.menu removeItemAtIndex:HUES_MAX_HISTORY_SIZE - 1];
   }
   
-  NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[color hues_hexadecimal] action:@selector(colorChosen:) keyEquivalent:@""] autorelease];
+  NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[color hues_hex] action:@selector(colorChosen:) keyEquivalent:@""] autorelease];
   [item setImage:[NSImage imageWithColor:color]];
   [item setTarget:self];
   [self.menu insertItem:item atIndex:0];

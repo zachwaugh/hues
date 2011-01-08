@@ -14,8 +14,6 @@
 		92224CD60FF5786F00B1A16F /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92224CD50FF5786F00B1A16F /* hues_app_icon.icns */; };
 		922CB66A12CBE2CC00DDC397 /* HuesHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922CB66912CBE2CC00DDC397 /* HuesHistoryManager.m */; };
 		925B8E3A12C91EED007CE377 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B8E3912C91EED007CE377 /* HuesPreferencesController.m */; };
-		925B8E5612C920EF007CE377 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */; };
-		925B8E8712C9210E007CE377 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */; };
 		925B8EAB12C92530007CE377 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B8EAA12C92530007CE377 /* HuesGlobal.m */; };
 		925B8EAE12C9273B007CE377 /* HuesMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B8EAD12C9273B007CE377 /* HuesMainController.m */; };
 		925B8EE512C92E29007CE377 /* HuesColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925B8EE412C92E29007CE377 /* HuesColorsView.xib */; };
@@ -28,19 +26,6 @@
 		BFB4704C12C1B3A700A98F6D /* NSColor+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB4704B12C1B3A700A98F6D /* NSColor+Extras.m */; };
 		BFB4710C12C1C1BA00A98F6D /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB4710B12C1C1BA00A98F6D /* HuesColorsView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		BF08C6240F9D7C42000D98E8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				925B8E8712C9210E007CE377 /* BWToolkitFramework.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -58,7 +43,6 @@
 		922CB66912CBE2CC00DDC397 /* HuesHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHistoryManager.m; sourceTree = "<group>"; };
 		925B8E3812C91EED007CE377 /* HuesPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferencesController.h; sourceTree = "<group>"; };
 		925B8E3912C91EED007CE377 /* HuesPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferencesController.m; sourceTree = "<group>"; };
-		925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
 		925B8EA912C92530007CE377 /* HuesGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGlobal.h; sourceTree = "<group>"; };
 		925B8EAA12C92530007CE377 /* HuesGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGlobal.m; sourceTree = "<group>"; };
 		925B8EAC12C9273B007CE377 /* HuesMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMainController.h; sourceTree = "<group>"; };
@@ -86,7 +70,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				925B8E5612C920EF007CE377 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +96,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				925B8E5512C920EF007CE377 /* BWToolkitFramework.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -227,7 +209,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				BF08C6240F9D7C42000D98E8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -353,6 +334,7 @@
 				GCC_PREFIX_HEADER = source/Hues_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Hues;
 				SDKROOT = macosx;
 			};
@@ -373,8 +355,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = source/Hues_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = USE_SAMPLE_RECEIPT;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Hues;
 				SDKROOT = macosx;
 			};
@@ -394,6 +379,7 @@
 				GCC_PREFIX_HEADER = source/Hues_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Hues;
 				SDKROOT = macosx;
 			};

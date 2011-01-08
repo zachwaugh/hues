@@ -34,7 +34,7 @@
 
 @implementation HuesMainController
 
-@synthesize colorPanel, colorsView, hexLabel, rgbLabel, hsbLabel;
+@synthesize colorPanel, colorsView, hexLabel, rgbLabel, hslLabel;
 
 - (id)init
 {
@@ -89,13 +89,13 @@
   {
     if ([HuesPreferences defaultRepresentation] == HuesHexRepresentation)
     {
-      [self copyToClipboard:[color hues_hexadecimal]];
+      [self copyToClipboard:[color hues_hex]];
     }
     else if ([HuesPreferences defaultRepresentation] == HuesRGBRepresentation)
     {
       [self copyToClipboard:[color hues_rgb]];
     }
-    else if ([HuesPreferences defaultRepresentation] == HuesHSBRepresentation)
+    else if ([HuesPreferences defaultRepresentation] == HuesHSLRepresentation)
     {
       [self copyToClipboard:[color hues_hsb]];
     }
@@ -121,19 +121,19 @@
   [shadow setShadowOffset:NSMakeSize(0, -1)];
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:shadow, NSShadowAttributeName, [NSFont fontWithName:@"Lucida Grande" size:14.0], NSFontAttributeName, nil];
   
-  NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hexadecimal] attributes:attributes] autorelease];
+  NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hex] attributes:attributes] autorelease];
   NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:attributes] autorelease];
-  NSAttributedString *hsbString = [[[NSAttributedString alloc] initWithString:[color hues_hsb] attributes:attributes] autorelease];
+  NSAttributedString *hslString = [[[NSAttributedString alloc] initWithString:[color hues_hsl] attributes:attributes] autorelease];
   
 	[self.hexLabel setAttributedStringValue:hexString];
   [self.rgbLabel setAttributedStringValue:rgbString];
-  [self.hsbLabel setAttributedStringValue:hsbString];
+  [self.hslLabel setAttributedStringValue:hslString];
 }
 
 
 - (void)copyHex:(id)sender
 {
-	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hexadecimal]];
+	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hex]];
 }
 
 
@@ -143,9 +143,9 @@
 }
 
 
-- (void)copyHSB:(id)sender
+- (void)copyHSL:(id)sender
 {
-	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsb]];
+	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsl]];
 }
 
 

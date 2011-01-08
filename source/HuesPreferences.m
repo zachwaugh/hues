@@ -26,6 +26,8 @@
   [defaults setObject:@"rgb({r}, {g}, {b})" forKey:HuesRGBFormatKey];
   [defaults setObject:@"rgba({r}, {g}, {b}, {a})" forKey:HuesRGBAFormatKey];
   [defaults setObject:@"hsb({h}, {s}%, {b}%)" forKey:HuesHSBFormatKey];
+  [defaults setObject:@"hsl({h}, {s}%, {l}%)" forKey:HuesHSLFormatKey];
+  [defaults setObject:@"hsla({h}, {s}%, {l}%, {a})" forKey:HuesHSLAFormatKey];
   
   // Color Pickers
   [defaults setObject:[NSNumber numberWithBool:YES] forKey:HuesShowColorWheelPickerKey];
@@ -68,6 +70,18 @@
 + (NSString *)hsbFormat
 {
   return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSBFormatKey];
+}
+
+
++ (NSString *)hslFormat
+{
+  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSLFormatKey];
+}
+
+
++ (NSString *)hslaFormat
+{
+  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSLAFormatKey];
 }
 
 

@@ -11,9 +11,10 @@
 
 @interface NSColor (Extras)
 
-- (NSString *)hues_hexadecimal;
+- (NSString *)hues_hex;
 - (NSString *)hues_rgb;
 - (NSString *)hues_hsb;
+- (NSString *)hues_hsl;
 - (NSColor *)hues_convertedColor;
 
 @end

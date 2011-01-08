@@ -9,20 +9,26 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface HuesPreferencesController : NSWindowController
+@interface HuesPreferencesController : NSWindowController <NSToolbarDelegate>
 {
-//  IBOutlet NSButton *grayscaleSlider;
-//  IBOutlet NSButton *rgbSlider;
-//  IBOutlet NSButton *cmykSlider;
-//  IBOutlet NSButton *hsbSlider;
+  IBOutlet NSToolbar *toolbar;
+  IBOutlet NSView *view;
+  IBOutlet NSView *generalView;
+  IBOutlet NSView *colorPickersView;
+  IBOutlet NSView *advancedView;
+  
+  NSView *currentView;
+  NSString *currentToolbarIdentifier;
 }
 
-//@property (retain) NSButton *grayscaleSlider;
-//@property (retain) NSButton *rgbSlider;
-//@property (retain) NSButton *cmykSlider;
-//@property (retain) NSButton *hsbSlider;
-//
-//
-//- (void)toggleSliders:(id)sender;
+@property (retain) NSString *currentToolbarIdentifier;
+@property (assign) NSView *currentView;
+@property (retain) NSToolbar *toolbar;
+@property (retain) NSView *view;
+@property (retain) NSView *generalView;
+@property (retain) NSView *colorPickersView;
+@property (retain) NSView *advancedView;
+
+- (void)toolbarItemSelected:(id)sender;
 
 @end

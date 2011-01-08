@@ -15,7 +15,7 @@
   IBOutlet HuesColorsView *colorsView;
 	IBOutlet NSTextField *hexLabel;
   IBOutlet NSTextField *rgbLabel;
-  IBOutlet NSTextField *hsbLabel;
+  IBOutlet NSTextField *hslLabel;
   
   NSColorPanel *colorPanel;
 }
@@ -25,11 +25,11 @@
 @property (retain) NSView *colorsView;
 @property (retain) NSTextField *hexLabel;
 @property (retain) NSTextField *rgbLabel;
-@property (retain) NSTextField *hsbLabel;
+@property (retain) NSTextField *hslLabel;
 
 - (void)copyHex:(id)sender;
 - (void)copyRGB:(id)sender;
-- (void)copyHSB:(id)sender;
+- (void)copyHSL:(id)sender;
 - (void)updateColor:(NSNotification *)notification;
 
 @end

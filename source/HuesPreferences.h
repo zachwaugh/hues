@@ -22,6 +22,8 @@
 + (NSString *)rgbFormat;
 + (NSString *)rgbaFormat;
 + (NSString *)hsbFormat;
++ (NSString *)hslFormat;
++ (NSString *)hslaFormat;
 + (NSInteger)pickerMask;
 
 //+ (BOOL)useCalibratedColors;
