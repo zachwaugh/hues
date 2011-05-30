@@ -13,7 +13,7 @@
 @interface HuesMainController : NSObject <NSWindowDelegate>
 {
   IBOutlet HuesColorsView *colorsView;
-	IBOutlet NSTextField *hexLabel;
+	IBOutlet NSTextField *hexField;
   IBOutlet NSTextField *rgbLabel;
   IBOutlet NSTextField *hslLabel;
   
@@ -23,13 +23,13 @@
 
 @property (retain) NSColorPanel *colorPanel;
 @property (retain) NSView *colorsView;
-@property (retain) NSTextField *hexLabel;
+@property (retain) NSTextField *hexField;
 @property (retain) NSTextField *rgbLabel;
 @property (retain) NSTextField *hslLabel;
 
-- (void)copyHex:(id)sender;
-- (void)copyRGB:(id)sender;
-- (void)copyHSL:(id)sender;
+- (IBAction)copyHex:(id)sender;
+- (IBAction)copyRGB:(id)sender;
+- (IBAction)copyHSL:(id)sender;
 - (void)updateColor:(NSNotification *)notification;
 
 @end

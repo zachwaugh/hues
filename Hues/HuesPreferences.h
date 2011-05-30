@@ -26,6 +26,8 @@
 + (NSString *)hslaFormat;
 + (NSInteger)pickerMask;
 
++ (BOOL)useLowercase;
+
 //+ (BOOL)useCalibratedColors;
 //+ (void)setCalibratedColors:(BOOL)calibrated;
 

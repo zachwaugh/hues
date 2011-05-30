@@ -9,6 +9,7 @@
 
 // Preferences keys
 extern NSString * const HuesCopyToClipboardKey;
+extern NSString * const HuesUseLowercaseKey;
 extern NSString * const HuesDefaultColorRepresentationKey;
 extern NSString * const HuesHexFormatKey;
 extern NSString * const HuesRGBFormatKey;

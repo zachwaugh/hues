@@ -21,6 +21,9 @@
   // Hex is default
   [defaults setObject:[NSNumber numberWithInt:HuesHexRepresentation] forKey:HuesDefaultColorRepresentationKey];
   
+  // Don't default to lowercase
+  [defaults setObject:[NSNumber numberWithBool:NO] forKey:HuesUseLowercaseKey];
+  
   // Color formats
   [defaults setObject:@"#{r}{g}{b}" forKey:HuesHexFormatKey];
   [defaults setObject:@"rgb({r}, {g}, {b})" forKey:HuesRGBFormatKey];
@@ -46,6 +49,12 @@
 + (HuesColorRepresentation)defaultRepresentation
 {
   return [[NSUserDefaults standardUserDefaults] integerForKey:HuesDefaultColorRepresentationKey];
+}
+
+
++ (BOOL)useLowercase
+{
+  return [[NSUserDefaults standardUserDefaults] boolForKey:HuesUseLowercaseKey];
 }
 
 

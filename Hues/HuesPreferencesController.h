@@ -22,7 +22,7 @@
 }
 
 @property (retain) NSString *currentToolbarIdentifier;
-@property (assign) NSView *currentView;
+@property (nonatomic, assign) NSView *currentView;
 @property (retain) NSToolbar *toolbar;
 @property (retain) NSView *view;
 @property (retain) NSView *generalView;

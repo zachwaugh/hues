@@ -29,7 +29,7 @@ static HuesHistoryManager *sharedHistoryManager = nil;
 
 - (id)init
 {
-  if (self = [super init])
+  if ((self = [super init]))
   {
     self.history = [NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE];
   }

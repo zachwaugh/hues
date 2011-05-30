@@ -1,4 +1,9 @@
 ## 1.1
+- Input hex value
+- Option for lowercase hex value
+- Fixed some window resizing issues
+
+## 1.0
 - View hex, rgb, and hsb value for any color
 - Can select text or click button to copy values
 - Auto copy default value to clipboard after selecting

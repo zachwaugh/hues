@@ -34,11 +34,11 @@
 
 @implementation HuesMainController
 
-@synthesize colorPanel, colorsView, hexLabel, rgbLabel, hslLabel;
+@synthesize colorPanel, colorsView, hexField, rgbLabel, hslLabel;
 
 - (id)init
 {
-  if (self = [super init])
+  if ((self = [super init]))
   {
     [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
     self.colorPanel = [NSColorPanel sharedColorPanel];
@@ -52,6 +52,7 @@
     [self.colorPanel setTarget:self];
     [self.colorPanel setAction:@selector(colorChanged:)];
     [self.colorPanel makeKeyAndOrderFront:nil];
+    [self.colorPanel setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     
     [NSBundle loadNibNamed:@"HuesColorsView" owner:self];
     
@@ -72,7 +73,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   self.colorPanel = nil;
   self.colorsView = nil;
-  self.hexLabel = nil;
+  self.hexField = nil;
   self.rgbLabel = nil;
   
   [super dealloc];
@@ -125,7 +126,7 @@
   NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:attributes] autorelease];
   NSAttributedString *hslString = [[[NSAttributedString alloc] initWithString:[color hues_hsl] attributes:attributes] autorelease];
   
-	[self.hexLabel setAttributedStringValue:hexString];
+	[self.hexField setAttributedStringValue:hexString];
   [self.rgbLabel setAttributedStringValue:rgbString];
   [self.hslLabel setAttributedStringValue:hslString];
 }
@@ -156,12 +157,28 @@
 }
 
 
+#pragma mark - Color input
+
+- (void)controlTextDidChange:(NSNotification *)notification
+{
+  if ([notification object] == self.hexField)
+  {
+    NSString *value = [self.hexField stringValue];
+    NSColor *newColor = [NSColor hues_colorFromHex:value];
+    
+    if (newColor != nil)
+    {
+      [self updateLabelsWithColor:newColor];
+      [self.colorPanel setColor:newColor];
+    }
+  }
+}
+
+
 // Make sure app quits after panel is closed
 - (void)windowWillClose:(NSNotification *)notification
 {
 	[[NSApplication sharedApplication] terminate:nil];
 }
-
-
 
 @end

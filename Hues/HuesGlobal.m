@@ -10,6 +10,7 @@
 
 // Preferences
 NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
+NSString * const HuesUseLowercaseKey = @"HuesUseLowercase";
 NSString * const HuesDefaultColorRepresentationKey = @"HuesDefaultColorRepresentation";
 NSString * const HuesHexFormatKey = @"HuesHexFormat";
 NSString * const HuesRGBFormatKey = @"HuesRGBFormat";
