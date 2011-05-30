@@ -177,6 +177,8 @@
     min = MIN(red, MIN(green, blue));
     
     hue = roundf([color hueComponent] * 360.0f);
+    hue = (hue >= 360) ? 0 : hue;
+    
     lightness = (max + min) / 2;
     
     if (max == min)

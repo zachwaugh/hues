@@ -98,18 +98,20 @@
   STAssertEqualObjects([[NSColor blackColor] hues_hslWithDefaultFormat], @"hsl(0, 0%, 0%)", @"");
   
   // test various colors
-  STAssertEqualObjects([[NSColor colorWithCalibratedRed:0 green:255 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(120, 100%, 50%)", @"");
-  STAssertEqualObjects([[NSColor colorWithDeviceRed:0 green:255 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(120, 100%, 50%)", @"");
-  STAssertEqualObjects([[NSColor colorWithCalibratedRed:255 green:255 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(60, 100%, 50%)", @"");
-  STAssertEqualObjects([[NSColor colorWithDeviceRed:255 green:255 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(60, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:0 green:1 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(120, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithDeviceRed:0 green:1 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(120, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:1 green:1 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(60, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithDeviceRed:1 green:1 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(60, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:1 green:0 blue:0 alpha:1] hues_hslWithDefaultFormat], @"hsl(0, 100%, 50%)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:1 green:0 blue:1 alpha:1] hues_hslWithDefaultFormat], @"hsl(300, 100%, 50%)", @"");
   
-  // test rba is returned
+  // test hsla is returned
   STAssertEqualObjects([[NSColor colorWithCalibratedWhite:1 alpha:0.5] hues_hslWithDefaultFormat], @"hsla(0, 0%, 100%, 0.50)", @"");
   STAssertEqualObjects([[NSColor colorWithCalibratedWhite:0 alpha:0.5] hues_hslWithDefaultFormat], @"hsla(0, 0%, 0%, 0.50)", @"");
-  STAssertEqualObjects([[NSColor colorWithCalibratedRed:0 green:255 blue:0 alpha:0.75] hues_hslWithDefaultFormat], @"hsla(120, 100%, 50%, 0.75)", @"");
-  STAssertEqualObjects([[NSColor colorWithDeviceRed:0 green:255 blue:0 alpha:0.5] hues_hslWithDefaultFormat], @"hsla(120, 100%, 50%, 0.50)", @"");
-  STAssertEqualObjects([[NSColor colorWithCalibratedRed:255 green:255 blue:0 alpha:0.25] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.25)", @"");
-  STAssertEqualObjects([[NSColor colorWithDeviceRed:255 green:255 blue:0 alpha:0.1] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.10)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:0 green:1 blue:0 alpha:0.75] hues_hslWithDefaultFormat], @"hsla(120, 100%, 50%, 0.75)", @"");
+  STAssertEqualObjects([[NSColor colorWithDeviceRed:0 green:1 blue:0 alpha:0.5] hues_hslWithDefaultFormat], @"hsla(120, 100%, 50%, 0.50)", @"");
+  STAssertEqualObjects([[NSColor colorWithCalibratedRed:1 green:1 blue:0 alpha:0.25] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.25)", @"");
+  STAssertEqualObjects([[NSColor colorWithDeviceRed:1 green:1 blue:0 alpha:0.1] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.10)", @"");
 }
 
 
