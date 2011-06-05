@@ -27,7 +27,7 @@
 + (NSInteger)pickerMask;
 
 + (BOOL)useLowercase;
-
++ (void)setUseLowercase:(BOOL)lowercase;
 //+ (BOOL)useCalibratedColors;
 //+ (void)setCalibratedColors:(BOOL)calibrated;
 

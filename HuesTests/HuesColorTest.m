@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NSColor+Extras.h"
+#import "HuesPreferences.h"
 
 @interface HuesColorTest : SenTestCase
 {
@@ -19,6 +20,7 @@
 
 - (void)testRGBFromColor;
 - (void)testHSLFromColor;
+- (void)testLowerCasePreference;
 
 @end
 
@@ -27,7 +29,7 @@
 - (void)setUp
 {
   [super setUp];
-  // Set-up code here.
+  [HuesPreferences registerDefaults];
 }
 
 
@@ -35,6 +37,21 @@
 {
   // Tear-down code here.
   [super tearDown];
+}
+
+
+- (void)testLowerCasePreference
+{
+  BOOL useLowercase = [HuesPreferences useLowercase];
+  
+  STAssertFalse(useLowercase, @"Not lowercase by default");
+  STAssertEqualObjects([[NSColor whiteColor] hues_hex], @"#FFFFFF", @"default should be uppercase");
+  
+  [HuesPreferences setUseLowercase:YES];
+  useLowercase = [HuesPreferences useLowercase];
+  
+  STAssertTrue(useLowercase, @"Not lowercase by default");
+  STAssertEqualObjects([[NSColor whiteColor] hues_hex], @"#ffffff", @"default should be uppercase");
 }
 
 

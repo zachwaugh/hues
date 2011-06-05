@@ -58,6 +58,12 @@
 }
 
 
++ (void)setUseLowercase:(BOOL)lowercase
+{
+  [[NSUserDefaults standardUserDefaults] setBool:lowercase forKey:HuesUseLowercaseKey];
+}
+
+
 + (NSString *)hexFormat
 {
   return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHexFormatKey];
