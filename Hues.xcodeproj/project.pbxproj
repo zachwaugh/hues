@@ -10,7 +10,6 @@
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE6A1393EC9F00935FAC /* InfoPlist.strings */; };
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
-		9264FE721393EC9F00935FAC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE701393EC9F00935FAC /* Credits.rtf */; };
 		9264FE7F1393ECA000935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE871393ECA000935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE851393ECA000935FAC /* InfoPlist.strings */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
@@ -52,7 +51,6 @@
 		9264FE6B1393EC9F00935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hues-Prefix.pch"; sourceTree = "<group>"; };
 		9264FE6E1393EC9F00935FAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9264FE711393EC9F00935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		9264FE7E1393ECA000935FAC /* HuesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE841393ECA000935FAC /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		9264FE861393ECA000935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				9264FE6A1393EC9F00935FAC /* InfoPlist.strings */,
 				9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */,
 				9264FE6E1393EC9F00935FAC /* main.m */,
-				9264FE701393EC9F00935FAC /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -328,7 +325,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
-				9264FE721393EC9F00935FAC /* Credits.rtf in Resources */,
 				92E7D6961393ED1B0072C412 /* background_left.png in Resources */,
 				92E7D6971393ED1B0072C412 /* background_middle.png in Resources */,
 				92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */,
@@ -421,14 +417,6 @@
 				9264FE6B1393EC9F00935FAC /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9264FE701393EC9F00935FAC /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9264FE711393EC9F00935FAC /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		9264FE851393ECA000935FAC /* InfoPlist.strings */ = {
