@@ -279,7 +279,7 @@
 				9264FE791393ECA000935FAC /* Sources */,
 				9264FE7A1393ECA000935FAC /* Frameworks */,
 				9264FE7B1393ECA000935FAC /* Resources */,
-				92751EBF139BE72C0029B659 /* ShellScript */,
+				92751ED9139BF0A30029B659 /* Remove Preferences */,
 				9264FE7C1393ECA000935FAC /* ShellScript */,
 			);
 			buildRules = (
@@ -359,18 +359,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		92751EBF139BE72C0029B659 /* ShellScript */ = {
+		92751ED9139BF0A30029B659 /* Remove Preferences */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Remove Preferences";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [-f ~/Library/Preferences/com.giantcomet.hues.plist]\nthen\nrm ~/Library/Preferences/com.giantcomet.hues.plist\nfi";
+			shellPath = /usr/bin/ruby;
+			shellScript = "require 'FileUtils'\n\nfile = \"/Users/zach/Library/Preferences/com.giantcomet.hues.plist\"\n\nif File.exists? file\n  FileUtils.rm(file)\nend";
 		};
 /* End PBXShellScriptBuildPhase section */
 
