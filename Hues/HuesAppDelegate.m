@@ -17,9 +17,15 @@
 
 @synthesize mainController, preferencesController, historyMenu;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
   [HuesPreferences registerDefaults];
+  [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
+}
+
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
   self.mainController = [[[HuesMainController alloc] init] autorelease];
 }
 

@@ -40,7 +40,6 @@
 {
   if ((self = [super init]))
   {
-    [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
     self.colorPanel = [NSColorPanel sharedColorPanel];
     [self.colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
     [self.colorPanel setTitle:@"Hues"];

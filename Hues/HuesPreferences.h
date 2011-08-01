@@ -24,7 +24,7 @@
 + (NSString *)hsbFormat;
 + (NSString *)hslFormat;
 + (NSString *)hslaFormat;
-+ (NSInteger)pickerMask;
++ (NSUInteger)pickerMask;
 
 + (BOOL)useLowercase;
 + (void)setUseLowercase:(BOOL)lowercase;
