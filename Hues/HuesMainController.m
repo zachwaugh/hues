@@ -22,7 +22,8 @@
 #import "HuesHistoryManager.h"
 #import "HuesGlobal.h"
 #import "NSColor+Extras.h"
-
+#import "HuesLoupeView.h"
+#import "HuesLoupeWindow.h"
 
 @interface HuesMainController ()
 
@@ -59,6 +60,10 @@
     
     [self.colorPanel setAccessoryView:self.colorsView];
     [self.colorsView setFrame:NSMakeRect(0, [self.colorsView frame].origin.y + 6, [self.colorPanel frame].size.width, [self.colorsView bounds].size.height)];
+    
+    NSButton *button = (NSButton *)[self.colorPanel firstResponder];
+    [button setTarget:self];
+    [button setAction:@selector(showPicker:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
@@ -153,6 +158,14 @@
 {
 	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
 	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
+}
+
+
+- (void)showPicker:(id)sender
+{
+  HuesLoupeWindow *loupe = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(0, 0, 201, 201) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
+  [loupe setContentView:[[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, 201, 201)] autorelease]];
+  [loupe makeKeyAndOrderFront:nil];
 }
 
 

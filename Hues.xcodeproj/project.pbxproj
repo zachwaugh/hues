@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
+		923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1521467394E003CC8BB /* HuesLoupeWindow.m */; };
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE6A1393EC9F00935FAC /* InfoPlist.strings */; };
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
@@ -42,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		923CA14F1467394E003CC8BB /* HuesLoupeView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HuesLoupeView.h; sourceTree = "<group>"; };
+		923CA1501467394E003CC8BB /* HuesLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeView.m; sourceTree = "<group>"; };
+		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
+		923CA1521467394E003CC8BB /* HuesLoupeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeWindow.m; sourceTree = "<group>"; };
 		9264FE5D1393EC9F00935FAC /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE611393EC9F00935FAC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9264FE641393EC9F00935FAC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -235,6 +241,10 @@
 			children = (
 				92E7D67A1393ED080072C412 /* HuesColorsView.h */,
 				92E7D67B1393ED080072C412 /* HuesColorsView.m */,
+				923CA14F1467394E003CC8BB /* HuesLoupeView.h */,
+				923CA1501467394E003CC8BB /* HuesLoupeView.m */,
+				923CA1511467394E003CC8BB /* HuesLoupeWindow.h */,
+				923CA1521467394E003CC8BB /* HuesLoupeWindow.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 		9264FE541393EC9F00935FAC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Giant Comet";
 			};
 			buildConfigurationList = 9264FE571393EC9F00935FAC /* Build configuration list for PBXProject "Hues" */;
@@ -390,6 +401,8 @@
 				92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */,
 				92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */,
 				92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */,
+				923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */,
+				923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
