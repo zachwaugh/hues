@@ -8,6 +8,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface HuesLoupeWindow : NSWindow
+@interface HuesLoupeWindow : NSPanel
 
 @end

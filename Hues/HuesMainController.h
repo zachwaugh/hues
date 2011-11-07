@@ -32,6 +32,6 @@
 - (IBAction)copyHSL:(id)sender;
 - (void)updateColor:(NSNotification *)notification;
 
-- (void)showPicker:(id)sender;
+- (IBAction)showPicker:(id)sender;
 
 @end

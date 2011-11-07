@@ -9,7 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface HuesLoupeView : NSView
+{
+  CGImageRef _image;
+}
 
-- (NSColor *)colorOfImage:(CGImageRef)image atPixel:(CGPoint)point;
+- (NSColor *)colorAtPoint:(CGPoint)point;
 
 @end

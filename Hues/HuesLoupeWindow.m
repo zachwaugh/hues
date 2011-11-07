@@ -17,23 +17,24 @@
 	[window setBackgroundColor:[NSColor clearColor]];
 	[window setLevel:NSStatusWindowLevel];
 	[window setOpaque:NO];
-	//[window setHasShadow:YES];
+	[window setHasShadow:YES];
 	[window setMovableByWindowBackground:NO];
 	[window setIgnoresMouseEvents:NO];
 	[window setAcceptsMouseMovedEvents:YES];
 	
+  [self disableCursorRects];
+  [NSCursor hide];
+  
 	return window;
 }
 
 
-- (void)awakeFromNib
+- (void)becomeMainWindow
 {
+  [super becomeMainWindow];
+  
   [self disableCursorRects];
   [NSCursor hide];
-  
-//  NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:[self frame] options:(NSTrackingMouseMoved | NSTrackingActiveAlways) owner:self userInfo:nil];
-//  [self.contentView addTrackingArea:area];
-//  [area release];
 }
 
 
