@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define LOUPE_SIZE 251
+
 @interface HuesLoupeView : NSView
 {
   CGImageRef _image;

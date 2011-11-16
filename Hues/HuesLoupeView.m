@@ -10,10 +10,17 @@
 #import "HuesGlobal.h"
 #import "NSColor+Extras.h"
 
-#define ZOOM_LEVEL 12.0
-#define LOUPE_SIZE 201
+#define ZOOM_LEVEL 13.0
+
+static NSImage *_loupe = nil;
 
 @implementation HuesLoupeView
+
++ (void)initialize
+{
+  _loupe = [[NSImage imageNamed:@"loupe.png"] retain];
+}
+
 
 - (void)dealloc
 {
@@ -25,8 +32,10 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-  NSRect b = [self bounds];  
+  NSRect b = [self bounds];
+
   NSWindow *window = [self window];
+  CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
   
   // Convert rect to screen coordinates
   NSRect rect = [window frame];
@@ -34,47 +43,51 @@
   
   //NSLog(@"rect: %@", NSStringFromRect(rect));
   
-  NSBezierPath *loupe = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], 2, 2) xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
+  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(b, 5, 5) xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
 
   CGImageRelease(_image);
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
-	CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-  
+	
   float offset = ((ZOOM_LEVEL * LOUPE_SIZE) - LOUPE_SIZE) / 2;
   
   CGContextSaveGState(ctx);
-  [loupe addClip];
+  [loupePath addClip];
   CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
-  CGContextSetRGBFillColor(ctx, 255, 0, 0, 1);
-  CGContextFillRect(ctx, [self bounds]);
+  //CGContextSetRGBFillColor(ctx, 255, 0, 0, 1);
+  //CGContextFillRect(ctx, [self bounds]);
   CGContextTranslateCTM(ctx, -offset, -offset);
   CGContextScaleCTM(ctx, ZOOM_LEVEL, ZOOM_LEVEL);
   //CGContextSetAlpha(ctx, 0.75);
   //CGContextDrawImage(ctx, CGRectMake(0, 0, LOUPE_SIZE * ZOOM_LEVEL, LOUPE_SIZE * ZOOM_LEVEL), screenShot);
-  CGContextDrawImage(ctx, [self bounds], _image);
+  CGContextDrawImage(ctx, b, _image);
   CGContextRestoreGState(ctx);
   
-  [[NSColor blackColor] set];
-  
-  float radius = LOUPE_SIZE / 2.0;
-  
-  // horizontal - beginning to middle
-  NSRectFill(NSMakeRect(0, NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-  
-  // horizontal - middle to end
-  NSRectFill(NSMakeRect(round(radius + (ZOOM_LEVEL / 2)), NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-  
-  // Vertical - bottom to middle
-  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, 0, 1.0, floor(radius - (ZOOM_LEVEL / 2))));
-  
-  // Vertical - middle to end
-  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, radius + (ZOOM_LEVEL / 2), 1.0, ceil(radius - (ZOOM_LEVEL / 2))));
+  // Loop image
+  [_loupe drawInRect:b fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+
+  // Draw crosshair lines
+//  [[NSColor blackColor] set];
+//
+//  // Need to clip to inside of loupe
+//  [loupePath addClip];
+//  //CGContextSetAllowsAntialiasing(ctx, NO);
+//  
+//  float radius = LOUPE_SIZE / 2.0;
+//  
+//  // horizontal - beginning to middle
+//  NSRectFill(NSMakeRect(0, NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
+//  
+//  // horizontal - middle to end
+//  NSRectFill(NSMakeRect(round(radius + (ZOOM_LEVEL / 2)), NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
+//  
+//  // Vertical - bottom to middle
+//  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, 0, 1.0, floor(radius - (ZOOM_LEVEL / 2))));
+//  
+//  // Vertical - middle to end
+//  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, radius + (ZOOM_LEVEL / 2), 1.0, ceil(radius - (ZOOM_LEVEL / 2))));
   
   //[NSBezierPath setDefaultLineWidth:1.0];
   //[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b) - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL)] stroke];
-  
-  [loupe setLineWidth:4];
-  [loupe stroke];
 }
 
 

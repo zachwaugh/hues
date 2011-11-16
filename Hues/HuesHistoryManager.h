@@ -11,8 +11,8 @@
 
 @interface HuesHistoryManager : NSObject
 {
-  NSMutableArray *history;
-  NSMenu *menu;
+  NSMutableArray *_history;
+  NSMenu *_menu;
 }
 
 @property (retain) NSMutableArray *history;

@@ -13,8 +13,6 @@
 
 #define HUES_MAX_HISTORY_SIZE 25
 
-static HuesHistoryManager *sharedHistoryManager = nil;
-
 // Private methods
 @interface HuesHistoryManager ()
 
@@ -25,13 +23,27 @@ static HuesHistoryManager *sharedHistoryManager = nil;
 
 @implementation HuesHistoryManager
 
-@synthesize history, menu;
+@synthesize history = _history;
+@synthesize menu = _menu;
+
++ (HuesHistoryManager *)sharedManager
+{
+  static HuesHistoryManager *_sharedHistoryManager = nil;
+  static dispatch_once_t oncePredicate;
+  dispatch_once(&oncePredicate, ^{
+    NSLog(@"creating history manager");
+    _sharedHistoryManager = [[self alloc] init];
+  });
+  
+  return _sharedHistoryManager;
+}
+
 
 - (id)init
 {
   if ((self = [super init]))
   {
-    self.history = [NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE];
+    _history = [[NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE] retain];
   }
   
   return self;
@@ -40,7 +52,8 @@ static HuesHistoryManager *sharedHistoryManager = nil;
 
 - (void)dealloc
 {
-  self.history = nil;
+  [_history release];
+  _history = nil;
   [super dealloc];
 }
 
@@ -77,51 +90,6 @@ static HuesHistoryManager *sharedHistoryManager = nil;
   NSInteger index = [self.menu indexOfItem:sender];
   NSColor *color = [self.history objectAtIndex:index];
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HuesUpdateColorNotification object:color]];
-}
-
-
-#pragma mark -
-#pragma mark Singleton methods
-
-+ (HuesHistoryManager *)sharedManager
-{
-  if (sharedHistoryManager == nil)
-  {
-    sharedHistoryManager = [[super allocWithZone:NULL] init];
-    
-  }
-  
-  return sharedHistoryManager;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-  return [[self sharedManager] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-  return self;
-}
-
-- (id)retain
-{
-  return self;
-}
-
-- (NSUInteger)retainCount
-{
-  return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release
-{
-  //do nothing
-}
-
-- (id)autorelease
-{
-  return self;
 }
 
 @end

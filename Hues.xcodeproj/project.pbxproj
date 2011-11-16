@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
+		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
+		9202B08E14744D3C001201EA /* loupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08D14744D3C001201EA /* loupe.png */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
 		923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1521467394E003CC8BB /* HuesLoupeWindow.m */; };
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
@@ -44,9 +47,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		923CA14F1467394E003CC8BB /* HuesLoupeView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HuesLoupeView.h; sourceTree = "<group>"; };
+		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
+		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
+		9202B08D14744D3C001201EA /* loupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loupe.png; sourceTree = "<group>"; };
+		923CA14F1467394E003CC8BB /* HuesLoupeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeView.h; sourceTree = "<group>"; };
 		923CA1501467394E003CC8BB /* HuesLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeView.m; sourceTree = "<group>"; };
-		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
+		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
 		923CA1521467394E003CC8BB /* HuesLoupeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeWindow.m; sourceTree = "<group>"; };
 		9264FE5D1393EC9F00935FAC /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE611393EC9F00935FAC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -204,6 +210,9 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9202B08D14744D3C001201EA /* loupe.png */,
+				9202B089147448C5001201EA /* hues_menubar_highlight.png */,
+				9202B08A147448C5001201EA /* hues_menubar_normal.png */,
 				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
 				92E7D6931393ED1B0072C412 /* background_left.png */,
 				92E7D6941393ED1B0072C412 /* background_middle.png */,
@@ -343,6 +352,9 @@
 				92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
+				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
+				9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */,
+				9202B08E14744D3C001201EA /* loupe.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -496,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -570,7 +584,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Giant Comet";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

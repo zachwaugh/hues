@@ -165,8 +165,8 @@
 {
   NSPoint point = [NSEvent mouseLocation];
   
-  HuesLoupeWindow *loupe = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - 100, point.y - 100, 201, 201) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
-  [loupe setContentView:[[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, 201, 201)] autorelease]];
+  HuesLoupeWindow *loupe = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
+  [[loupe contentView] addSubview:[[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease]];
   [loupe makeKeyAndOrderFront:nil];
 }
 
