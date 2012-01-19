@@ -43,7 +43,7 @@ static NSImage *_loupe = nil;
   
   //NSLog(@"rect: %@", NSStringFromRect(rect));
   
-  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(b, 5, 5) xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
+  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:b xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
 
   CGImageRelease(_image);
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
@@ -63,28 +63,31 @@ static NSImage *_loupe = nil;
   CGContextRestoreGState(ctx);
   
   // Loop image
-  [_loupe drawInRect:b fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-
+  //[_loupe drawInRect:b fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+//  [[NSColor colorWithDeviceWhite:1.0 alpha:0.1] set];
+//  [NSBezierPath setDefaultLineWidth:5];
+//  [[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 2.5, 2.5)] stroke];
+  
   // Draw crosshair lines
-//  [[NSColor blackColor] set];
-//
-//  // Need to clip to inside of loupe
-//  [loupePath addClip];
-//  //CGContextSetAllowsAntialiasing(ctx, NO);
-//  
-//  float radius = LOUPE_SIZE / 2.0;
-//  
-//  // horizontal - beginning to middle
-//  NSRectFill(NSMakeRect(0, NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-//  
-//  // horizontal - middle to end
-//  NSRectFill(NSMakeRect(round(radius + (ZOOM_LEVEL / 2)), NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-//  
-//  // Vertical - bottom to middle
-//  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, 0, 1.0, floor(radius - (ZOOM_LEVEL / 2))));
-//  
-//  // Vertical - middle to end
-//  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, radius + (ZOOM_LEVEL / 2), 1.0, ceil(radius - (ZOOM_LEVEL / 2))));
+  [[NSColor colorWithDeviceWhite:0.0 alpha:0.75] set];
+
+  // Need to clip to inside of loupe
+  //[loupePath addClip];
+  //CGContextSetAllowsAntialiasing(ctx, NO);
+  
+  float radius = LOUPE_SIZE / 2.0;
+  
+  // horizontal - beginning to middle
+  NSRectFill(NSMakeRect(0, NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
+  
+  // horizontal - middle to end
+  NSRectFill(NSMakeRect(round(radius + (ZOOM_LEVEL / 2)), NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
+  
+  // Vertical - bottom to middle
+  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, 0, 1.0, floor(radius - (ZOOM_LEVEL / 2))));
+  
+  // Vertical - middle to end
+  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, radius + (ZOOM_LEVEL / 2), 1.0, ceil(radius - (ZOOM_LEVEL / 2))));
   
   //[NSBezierPath setDefaultLineWidth:1.0];
   //[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b) - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL)] stroke];

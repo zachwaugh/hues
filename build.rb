@@ -27,8 +27,14 @@ puts "** Building: #{version} (#{new_build}) **\n"
 
 # Perform actual build
 print "Starting build..."
-# system("xcodebuild -target #{app} -configuration Release")
-`xcodebuild -target #{app} -configuration Release`
+result = system("xcodebuild -target #{app} -configuration Release")
+# `xcodebuild -target #{app} -configuration Release`
+
+if !result
+  puts "** Build failed!!! **"
+  exit()
+end
+
 puts "done"
 
 # Create zip file
