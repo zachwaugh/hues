@@ -16,6 +16,7 @@
 @property (retain) HuesMainController *mainController;
 @property (retain) HuesPreferencesController *preferencesController;
 @property (retain) NSMenu *historyMenu;
+@property (retain) NSStatusItem *statusItem;
 
 - (void)showPreferences:(id)sender;
 

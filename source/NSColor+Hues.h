@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NSColor (Extras)
+@interface NSColor (Hues)
 
 - (NSString *)hues_hex;
 - (NSString *)hues_hexWithLowercase:(BOOL)lowercase;
@@ -24,6 +24,12 @@
 - (NSString *)hues_hslWithDefaultFormat;
 - (NSString *)hues_hslWithFormat:(NSString *)format;
 - (NSString *)hues_hslaWithFormat:(NSString *)format;
+- (NSString *)hues_NSColorCalibratedRGB;
+- (NSString *)hues_NSColorCalibratedHSB;
+- (NSString *)hues_NSColorDeviceRGB;
+- (NSString *)hues_NSColorDeviceHSB;
+- (NSString *)hues_UIColorRGB;
+- (NSString *)hues_UIColorHSB;
 - (NSColor *)hues_convertedColor;
 + (NSColor *)hues_colorFromHex:(NSString *)hex;
 

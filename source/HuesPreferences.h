@@ -20,6 +20,7 @@ extern NSString * const HuesHSBFormatKey;
 extern NSString * const HuesHSLFormatKey;
 extern NSString * const HuesHSLAFormatKey;
 extern NSString * const HuesKeepOnTopKey;
+extern NSString * const HuesApplicationModeKey;
 
 // NSColorPanelWheelModeMask            - Color Wheel
 // NSColorPanelGrayModeMask             - Color Sliders
@@ -61,6 +62,8 @@ extern NSString * const HuesShowCrayonsPickerKey;
 //+ (BOOL)useCalibratedColors;
 //+ (void)setCalibratedColors:(BOOL)calibrated;
 
++ (HuesApplicationMode)applicationMode;
++ (void)setApplicationMode:(HuesApplicationMode)mode;
 + (BOOL)keepOnTop;
 + (void)setKeepOnTop:(BOOL)keepOnTop;
 

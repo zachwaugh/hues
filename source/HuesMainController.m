@@ -21,7 +21,7 @@
 #import "HuesPreferences.h"
 #import "HuesHistoryManager.h"
 #import "HuesGlobal.h"
-#import "NSColor+Extras.h"
+#import "NSColor+Hues.h"
 #import "HuesLoupeView.h"
 #import "HuesLoupeWindow.h"
 
@@ -48,18 +48,24 @@
     [self.colorPanel setTarget:self];
     [self.colorPanel setAction:@selector(colorChanged:)];
     [self.colorPanel makeKeyAndOrderFront:nil];
-    [self.colorPanel setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+		[self.colorPanel setReleasedWhenClosed:NO];
+    [self.colorPanel setMaxSize:NSMakeSize(800, FLT_MAX)];
+		[self.colorPanel setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+		
+		if ([HuesPreferences keepOnTop]) {
+			[self.colorPanel setLevel:NSFloatingWindowLevel];
+		}
     
     [NSBundle loadNibNamed:@"HuesColorsView" owner:self];
     
     [self updateLabelsWithColor:[self.colorPanel color]];
     
     [self.colorPanel setAccessoryView:self.colorsView];
-    [self.colorsView setFrame:NSMakeRect(0, [self.colorsView frame].origin.y + 6, [self.colorPanel frame].size.width, [self.colorsView bounds].size.height)];
+    [self.colorsView setFrame:NSMakeRect(0, self.colorsView.frame.origin.y + 6, self.colorPanel.frame.size.width, self.colorsView.bounds.size.height)];
     
-//    NSButton *button = (NSButton *)[self.colorPanel firstResponder];
-//    [button setTarget:self];
-//    [button setAction:@selector(showPicker:)];
+    //NSButton *button = (NSButton *)[self.colorPanel firstResponder];
+    //[button setTarget:self];
+    //[button setAction:@selector(showPicker:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
@@ -72,9 +78,9 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   self.colorPanel = nil;
   self.colorsView = nil;
-  self.hexField = nil;
-  self.rgbLabel = nil;
-  
+  self.primaryFormat = nil;
+  self.secondaryFormat = nil;
+
   [super dealloc];
 }
 
@@ -110,40 +116,36 @@
   NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
   [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
   [shadow setShadowOffset:NSMakeSize(0, -1)];
-  NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:shadow, NSShadowAttributeName, [NSFont fontWithName:@"Lucida Grande" size:14.0], NSFontAttributeName, nil];
   
-  NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hex] attributes:attributes] autorelease];
-  NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:attributes] autorelease];
-  NSAttributedString *hslString = [[[NSAttributedString alloc] initWithString:[color hues_hsl] attributes:attributes] autorelease];
+  NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hex] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:16.0], NSShadowAttributeName: shadow}] autorelease];
+  NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:14.0], NSShadowAttributeName: shadow}] autorelease];
   
-	[self.hexField setAttributedStringValue:hexString];
-  [self.rgbLabel setAttributedStringValue:rgbString];
-  [self.hslLabel setAttributedStringValue:hslString];
+	[self.primaryFormat setAttributedStringValue:hexString];
+  [self.secondaryFormat setAttributedStringValue:rgbString];
 }
 
 #pragma mark - Clipboard
 
-- (void)copyHex:(id)sender
+- (void)copyPrimary:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hex]];
 }
 
-- (void)copyRGB:(id)sender
+- (void)copySecondary:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_rgb]];
 }
 
-- (void)copyHSL:(id)sender
+- (void)copyAlternate:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsl]];
 }
 
-- (void)copyToClipboard:(NSString *)value
+- (void)copyToClipboard:(NSString *)string
 {
-	[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
+	[[NSPasteboard generalPasteboard] clearContents];
+	[[NSPasteboard generalPasteboard] writeObjects:@[string]];
 }
-
 
 #pragma mark - Loupe
 
@@ -160,8 +162,8 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-  if ([notification object] == self.hexField) {
-    NSString *value = [self.hexField stringValue];
+  if ([notification object] == self.primaryFormat) {
+    NSString *value = [self.primaryFormat stringValue];
     NSColor *newColor = [NSColor hues_colorFromHex:value];
     
     if (newColor != nil) {
@@ -184,18 +186,28 @@
 
 #pragma mark - Window
 
+- (void)showWindow:(id)sender
+{
+	[self.colorPanel makeKeyAndOrderFront:sender];
+}
+
 - (IBAction)toggleKeepOnTop:(id)sender
 {
 	BOOL keepOnTop = ![HuesPreferences keepOnTop];
 	
-	[self.colorPanel setLevel:(keepOnTop) ? NSFloatingWindowLevel : NSNormalWindowLevel ];
+	[self.colorPanel setLevel:(keepOnTop) ? NSFloatingWindowLevel : NSNormalWindowLevel];
 	[HuesPreferences setKeepOnTop:keepOnTop];
+}
+
+- (void)toggleWindow
+{
+
 }
 
 // Make sure app quits after panel is closed
 - (void)windowWillClose:(NSNotification *)notification
 {
-	[[NSApplication sharedApplication] terminate:nil];
+	//[[NSApplication sharedApplication] terminate:nil];
 }
 
 @end

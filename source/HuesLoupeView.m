@@ -8,7 +8,7 @@
 
 #import "HuesLoupeView.h"
 #import "HuesGlobal.h"
-#import "NSColor+Extras.h"
+#import "NSColor+Hues.h"
 
 #define ZOOM_LEVEL 13.0
 

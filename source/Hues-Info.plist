@@ -12,8 +12,6 @@
 	<string>com.giantcomet.hues</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -27,7 +25,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.7.3</string>
 	<key>LSUIElement</key>
-	<false/>
+	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

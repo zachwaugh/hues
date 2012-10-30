@@ -13,17 +13,19 @@
 @interface HuesMainController : NSObject <NSWindowDelegate>
 
 @property (retain) NSColorPanel *colorPanel;
-@property (retain) NSView *colorsView;
-@property (retain) NSTextField *hexField;
-@property (retain) NSTextField *rgbLabel;
-@property (retain) NSTextField *hslLabel;
+@property (retain) IBOutlet NSView *colorsView;
+@property (retain) IBOutlet NSTextField *primaryFormat;
+@property (retain) IBOutlet NSTextField *secondaryFormat;
+@property (retain) IBOutlet NSPopUpButton *alternateFormats;
 
-- (IBAction)copyHex:(id)sender;
-- (IBAction)copyRGB:(id)sender;
-- (IBAction)copyHSL:(id)sender;
+- (IBAction)copyPrimary:(id)sender;
+- (IBAction)copySecondary:(id)sender;
+- (IBAction)copyAlternate:(id)sender;
 - (IBAction)toggleKeepOnTop:(id)sender;
+- (void)toggleWindow;
 - (void)updateColor:(NSNotification *)notification;
 
+- (void)showWindow:(id)sender;
 - (IBAction)showPicker:(id)sender;
 
 @end

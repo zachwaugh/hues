@@ -11,6 +11,7 @@
 #import "HuesPreferencesController.h"
 #import "HuesMainController.h"
 #import "HuesHistoryManager.h"
+#import "HuesStatusItemView.h"
 
 @implementation HuesAppDelegate
 
@@ -23,6 +24,16 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	HuesApplicationMode mode = HuesDockAndMenuBarMode; // [HuesPreferences applicationMode];
+	
+	if (mode == HuesDockAndMenuBarMode || mode == HuesMenuBarOnlyMode) {
+		[self addStatusItem];
+	}
+	
+	if (mode == HuesDockAndMenuBarMode || mode == HuesDockOnlyMode) {
+		[self addDockIcon];
+	}
+	
   self.mainController = [[[HuesMainController alloc] init] autorelease];
 }
 
@@ -31,13 +42,39 @@
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
 
-- (void)dealloc
+
+#pragma mark - Status Item
+
+- (void)addStatusItem
 {
-  self.mainController = nil;
-  self.preferencesController = nil;
-	self.historyMenu = nil;
-  
-	[super dealloc];
+	self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:30];
+	self.statusItem.target = self;
+	self.statusItem.action = @selector(toggleWindow:);
+	self.statusItem.image = [NSImage imageNamed:@"hues_menubar_normal"];
+	self.statusItem.alternateImage = [NSImage imageNamed:@"hues_menubar_highlight"];
+	self.statusItem.highlightMode = YES;
+	
+//	HuesStatusItemView *view = [[HuesStatusItemView alloc] initWithFrame:NSZeroRect];
+//	view.target = self;
+//	view.action = @selector(toggleWindow:);
+//	view.menu = self.optionsMenu;
+//	view.statusItem = self.statusItem;
+//	self.statusItem.view = view;
+}
+
+- (void)toggleWindow:(id)sender
+{
+	if ([NSApp isActive]) {
+		[NSApp hide:nil];
+	} else {
+		[NSApp activateIgnoringOtherApps:YES];
+		[self.mainController showWindow:nil];
+	}
+}
+
+- (void)addDockIcon
+{
+	[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 }
 
 - (void)showPreferences:(id)sender

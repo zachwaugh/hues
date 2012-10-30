@@ -13,6 +13,12 @@ typedef enum {
   HuesHSLRepresentation
 } HuesColorRepresentation;
 
+typedef enum {
+	HuesDockAndMenuBarMode,
+	HuesDockOnlyMode,
+	HuesMenuBarOnlyMode
+} HuesApplicationMode;
+
 //typedef NSInteger HuesColorRepresentation;
 
 // Notifications

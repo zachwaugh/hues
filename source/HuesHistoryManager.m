@@ -7,7 +7,7 @@
 //
 
 #import "HuesHistoryManager.h"
-#import "NSColor+Extras.h"
+#import "NSColor+Hues.h"
 #import "NSImage+Hues.h"
 #import "HuesGlobal.h"
 

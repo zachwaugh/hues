@@ -6,28 +6,32 @@
 //  Copyright 2010 Giant Comet. All rights reserved.
 //
 
-#import "NSColor+Extras.h"
+#import "NSColor+Hues.h"
 #import "HuesPreferences.h"
 
-@implementation NSColor (Extras)
+static NSString * const HuesNSColorCalibratedRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
+static NSString * const HuesNSColorCalibratedHSBFormat = @"[NSColor colorWithCalibratedHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
+static NSString * const HuesNSColorDeviceRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
+static NSString * const HuesNSColorDeviceHSBFormat = @"[NSColor colorWithDeviceHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
+static NSString * const HuesUIColorRGBFormat = @"[UIColor colorWithRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
+static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
+
+@implementation NSColor (Hues)
 
 - (NSString *)hues_hex
 {
   return [self hues_hexWithFormat:[HuesPreferences hexFormat] useLowercase:[HuesPreferences useLowercase]];
 }
 
-
 - (NSString *)hues_hexWithLowercase:(BOOL)lowercase
 {
   return [self hues_hexWithFormat:@"#{r}{g}{b}" useLowercase:lowercase];
 }
 
-
 - (NSString *)hues_hexWithFormat:(NSString *)format
 {
   return [self hues_hexWithFormat:format useLowercase:NO];
 }
-
 
 - (NSString *)hues_hexWithFormat:(NSString *)format useLowercase:(BOOL)lowercase
 {
@@ -36,8 +40,7 @@
   
   NSColor *color = [self hues_convertedColor];
   
-  if (color)
-  {
+  if (color) {
     red = roundf([color redComponent] * 255.0f);
     green = roundf([color greenComponent] * 255.0f);
     blue = roundf([color blueComponent] * 255.0f);
@@ -56,18 +59,15 @@
   return nil;
 }
 
-
 - (NSString *)hues_rgb
 {
   return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:[HuesPreferences rgbaFormat]] : [self hues_rgbWithFormat:[HuesPreferences rgbFormat]];
 }
 
-
 - (NSString *)hues_rgbWithDefaultFormat
 {
   return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:@"rgba({r}, {g}, {b}, {a})"] : [self hues_rgbWithFormat:@"rgb({r}, {g}, {b})"];
 }
-
 
 - (NSString *)hues_rgbWithFormat:(NSString *)format
 {
@@ -92,7 +92,6 @@
   return nil;
 }
 
-
 - (NSString *)hues_rgbaWithFormat:(NSString *)format
 {
 	CGFloat alpha;
@@ -100,8 +99,7 @@
   
   NSColor *color = [self hues_convertedColor];
   
-  if (color)
-  {
+  if (color) {
     red = roundf([color redComponent] * 255.0f);
     green = roundf([color greenComponent] * 255.0f);
     blue = roundf([color blueComponent] * 255.0f);
@@ -119,15 +117,13 @@
   return nil;
 }
 
-
 - (NSString *)hues_hsb
 {
   int hue, saturation, brightness;
   
   NSColor *color = [self hues_convertedColor];
   
-  if (color)
-  {
+  if (color) {
     hue = roundf([color hueComponent] * 360.0f);
     brightness = roundf([color brightnessComponent] * 100.0f);
     saturation = roundf([color saturationComponent] * 100.0f);
@@ -139,25 +135,21 @@
     output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", saturation]];
     output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", brightness]];
     
-    
     return output;
   }
   
   return nil;
 }
 
-
 - (NSString *)hues_hsl
 {
   return ([self alphaComponent] < 1) ? [self hues_hslaWithFormat:[HuesPreferences hslaFormat]] : [self hues_hslWithFormat:[HuesPreferences hslFormat]];
 }
 
-
 - (NSString *)hues_hslWithDefaultFormat
 {
   return ([self alphaComponent] < 1) ? [self hues_hslaWithFormat:@"hsla({h}, {s}%, {l}%, {a})"] : [self hues_hslWithFormat:@"hsl({h}, {s}%, {l}%)"];
 }
-
 
 - (NSString *)hues_hslWithFormat:(NSString *)format
 {
@@ -181,13 +173,10 @@
     
     lightness = (max + min) / 2;
     
-    if (max == min)
-    {
+    if (max == min) {
       hue = 0;
       saturation = 0;
-    }
-    else
-    {
+    } else {
       delta = max - min;
       saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
     }
@@ -203,7 +192,6 @@
   return nil;
 }
 
-
 - (NSString *)hues_hslaWithFormat:(NSString *)format
 {
   int hue;
@@ -211,8 +199,7 @@
   
   NSColor *color = [self hues_convertedColor];
   
-  if (color)
-  {
+  if (color) {
     red = [color redComponent];
     green = [color greenComponent];
     blue = [color blueComponent];
@@ -224,13 +211,10 @@
     hue = roundf([color hueComponent] * 360.0f);
     lightness = (max + min) / 2;
     
-    if (max == min)
-    {
+    if (max == min) {
       hue = 0;
       saturation = 0;
-    }
-    else
-    {
+    } else {
       delta = max - min;
       saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
     }
@@ -247,24 +231,122 @@
   return nil;
 }
 
+#pragma mark - NSColor
 
+- (NSString *)hues_NSColorCalibratedRGB
+{
+	CGFloat red, green, blue, alpha;
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+    red = [color redComponent];
+    green = [color greenComponent];
+    blue = [color blueComponent];
+		alpha = [color alphaComponent];
+    
+		NSString *output = [NSString stringWithFormat:HuesNSColorCalibratedRGBFormat, red, green, blue, alpha];
+
+    return output;
+  }
+	
+  return nil;
+}
+
+- (NSString *)hues_NSColorCalibratedHSB
+{
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+		NSString *output = [NSString stringWithFormat:HuesNSColorCalibratedHSBFormat, [color hueComponent], [color saturationComponent], [color brightnessComponent], [color alphaComponent]];
+		
+    return output;
+  }
+	
+  return nil;
+}
+
+- (NSString *)hues_NSColorDeviceRGB
+{
+	CGFloat red, green, blue, alpha;
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+    red = [color redComponent];
+    green = [color greenComponent];
+    blue = [color blueComponent];
+		alpha = [color alphaComponent];
+    
+		NSString *output = [NSString stringWithFormat:HuesNSColorDeviceRGBFormat, red, green, blue, alpha];
+		
+    return output;
+  }
+	
+  return nil;
+}
+
+- (NSString *)hues_NSColorDeviceHSB
+{
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+		NSString *output = [NSString stringWithFormat:HuesNSColorDeviceHSBFormat, [color hueComponent], [color saturationComponent], [color brightnessComponent], [color alphaComponent]];
+		
+    return output;
+  }
+	
+  return nil;
+}
+
+#pragma mark - UIColor
+
+- (NSString *)hues_UIColorRGB
+{
+	CGFloat red, green, blue, alpha;
+  
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+    red = [color redComponent];
+    green = [color greenComponent];
+    blue = [color blueComponent];
+		alpha = [color alphaComponent];
+    
+		NSString *output = [NSString stringWithFormat:HuesUIColorRGBFormat, red, green, blue, alpha];
+		
+    return output;
+  }
+	
+  return nil;
+}
+
+- (NSString *)hues_UIColorHSB
+{
+  NSColor *color = [self hues_convertedColor];
+  
+  if (color) {
+		NSString *output = [NSString stringWithFormat:HuesUIColorHSBFormat, [color hueComponent], [color saturationComponent], [color brightnessComponent], [color alphaComponent]];
+		
+    return output;
+  }
+	
+  return nil;
+}
 
 - (NSColor *)hues_convertedColor
 {
   NSColor *color;
   
-  if ([self colorSpaceName] != NSCalibratedRGBColorSpace && [self colorSpaceName] != NSDeviceRGBColorSpace)
-  {
+	// If not in calibrated or device color space, make calibrated
+  if ([self colorSpaceName] != NSCalibratedRGBColorSpace && [self colorSpaceName] != NSDeviceRGBColorSpace) {
     color = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-  }
-  else
-  {
+  } else {
     color = self;
   }
   
   return color;
 }
-
 
 + (NSColor *)hues_colorFromHex:(NSString *)hex
 {
@@ -279,20 +361,15 @@
 	unsigned int colorCode = 0;
 	unsigned char redByte, greenByte, blueByte;
 	
-	if (hex != nil)
-	{
+	if (hex != nil) {
 		NSScanner *scanner = [NSScanner scannerWithString:hex];
 		(void) [scanner scanHexInt:&colorCode];	// ignore error
 	}
   
-	redByte		= (unsigned char) (colorCode >> 16);
+	redByte = (unsigned char) (colorCode >> 16);
 	greenByte	= (unsigned char) (colorCode >> 8);
-	blueByte	= (unsigned char) (colorCode);	// masks off high bits
-	result = [NSColor
-            colorWithCalibratedRed:(float)redByte / 0xff
-            green:(float)greenByte / 0xff
-            blue:(float)blueByte / 0xff
-            alpha:1.0];
+	blueByte = (unsigned char) (colorCode);	// masks off high bits
+	result = [NSColor colorWithCalibratedRed:(float)redByte / 0xff green:(float)greenByte / 0xff blue:(float)blueByte / 0xff alpha:1.0];
 
 	return result;
 }

@@ -17,6 +17,11 @@
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
 		9264FE7F1393ECA000935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE871393ECA000935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE851393ECA000935FAC /* InfoPlist.strings */; };
+		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
+		928627031640505B00DA16BE /* hues-tray-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 928627011640505B00DA16BE /* hues-tray-background.png */; };
+		928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 928627021640505B00DA16BE /* hues-tray-background@2x.png */; };
+		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
+		928627081640693E00DA16BE /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
@@ -24,10 +29,8 @@
 		92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6811393ED080072C412 /* HuesMainController.m */; };
 		92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
-		92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Extras.m */; };
+		92E7D6911393ED080072C412 /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
 		92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6891393ED080072C412 /* NSImage+Hues.m */; };
-		92E7D6961393ED1B0072C412 /* background_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6931393ED1B0072C412 /* background_left.png */; };
-		92E7D6971393ED1B0072C412 /* background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6941393ED1B0072C412 /* background_middle.png */; };
 		92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6951393ED1B0072C412 /* CHANGELOG.md */; };
 		92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6991393ED2E0072C412 /* hues_app_icon.icns */; };
 		92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69B1393ED830072C412 /* HuesColorsView.xib */; };
@@ -68,6 +71,12 @@
 		9264FE861393ECA000935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE881393ECA000935FAC /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
+		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
+		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
+		928627011640505B00DA16BE /* hues-tray-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues-tray-background.png"; sourceTree = "<group>"; };
+		928627021640505B00DA16BE /* hues-tray-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues-tray-background@2x.png"; sourceTree = "<group>"; };
+		9286270516405BF000DA16BE /* HuesGradientLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGradientLine.h; sourceTree = "<group>"; };
+		9286270616405BF000DA16BE /* HuesGradientLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGradientLine.m; sourceTree = "<group>"; };
 		92E7D6781393ED080072C412 /* HuesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesAppDelegate.h; sourceTree = "<group>"; };
 		92E7D6791393ED080072C412 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
 		92E7D67A1393ED080072C412 /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
@@ -82,12 +91,10 @@
 		92E7D6831393ED080072C412 /* HuesPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferences.m; sourceTree = "<group>"; };
 		92E7D6841393ED080072C412 /* HuesPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferencesController.h; sourceTree = "<group>"; };
 		92E7D6851393ED080072C412 /* HuesPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferencesController.m; sourceTree = "<group>"; };
-		92E7D6861393ED080072C412 /* NSColor+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extras.h"; sourceTree = "<group>"; };
-		92E7D6871393ED080072C412 /* NSColor+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extras.m"; sourceTree = "<group>"; };
+		92E7D6861393ED080072C412 /* NSColor+Hues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hues.h"; sourceTree = "<group>"; };
+		92E7D6871393ED080072C412 /* NSColor+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hues.m"; sourceTree = "<group>"; };
 		92E7D6881393ED080072C412 /* NSImage+Hues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Hues.h"; sourceTree = "<group>"; };
 		92E7D6891393ED080072C412 /* NSImage+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Hues.m"; sourceTree = "<group>"; };
-		92E7D6931393ED1B0072C412 /* background_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_left.png; sourceTree = "<group>"; };
-		92E7D6941393ED1B0072C412 /* background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_middle.png; sourceTree = "<group>"; };
 		92E7D6951393ED1B0072C412 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		92E7D6991393ED2E0072C412 /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = hues_app_icon.icns; path = resources/hues_app_icon.icns; sourceTree = "<group>"; };
 		92E7D69B1393ED830072C412 /* HuesColorsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesColorsView.xib; sourceTree = "<group>"; };
@@ -186,8 +193,8 @@
 		9264FE821393ECA000935FAC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				9264FE831393ECA000935FAC /* Supporting Files */,
 				92E7D6B71393F1E70072C412 /* HuesColorTest.m */,
+				9264FE831393ECA000935FAC /* Supporting Files */,
 			);
 			name = Tests;
 			path = tests;
@@ -225,12 +232,12 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				928627011640505B00DA16BE /* hues-tray-background.png */,
+				928627021640505B00DA16BE /* hues-tray-background@2x.png */,
 				9202B08D14744D3C001201EA /* loupe.png */,
 				9202B089147448C5001201EA /* hues_menubar_highlight.png */,
 				9202B08A147448C5001201EA /* hues_menubar_normal.png */,
 				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
-				92E7D6931393ED1B0072C412 /* background_left.png */,
-				92E7D6941393ED1B0072C412 /* background_middle.png */,
 				92E7D6951393ED1B0072C412 /* CHANGELOG.md */,
 			);
 			name = Resources;
@@ -239,8 +246,8 @@
 		92E7D6B21393EFB70072C412 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D6861393ED080072C412 /* NSColor+Extras.h */,
-				92E7D6871393ED080072C412 /* NSColor+Extras.m */,
+				92E7D6861393ED080072C412 /* NSColor+Hues.h */,
+				92E7D6871393ED080072C412 /* NSColor+Hues.m */,
 				92E7D6881393ED080072C412 /* NSImage+Hues.h */,
 				92E7D6891393ED080072C412 /* NSImage+Hues.m */,
 			);
@@ -267,6 +274,10 @@
 				923CA1501467394E003CC8BB /* HuesLoupeView.m */,
 				923CA1511467394E003CC8BB /* HuesLoupeWindow.h */,
 				923CA1521467394E003CC8BB /* HuesLoupeWindow.m */,
+				928626FE164031B600DA16BE /* HuesStatusItemView.h */,
+				928626FF164031B600DA16BE /* HuesStatusItemView.m */,
+				9286270516405BF000DA16BE /* HuesGradientLine.h */,
+				9286270616405BF000DA16BE /* HuesGradientLine.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,7 +322,6 @@
 				9264FE791393ECA000935FAC /* Sources */,
 				9264FE7A1393ECA000935FAC /* Frameworks */,
 				9264FE7B1393ECA000935FAC /* Resources */,
-				92751ED9139BF0A30029B659 /* Remove Preferences */,
 				9264FE7C1393ECA000935FAC /* ShellScript */,
 			);
 			buildRules = (
@@ -359,8 +369,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
-				92E7D6961393ED1B0072C412 /* background_left.png in Resources */,
-				92E7D6971393ED1B0072C412 /* background_middle.png in Resources */,
 				92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */,
 				92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */,
 				92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */,
@@ -369,6 +377,8 @@
 				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
 				9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */,
 				9202B08E14744D3C001201EA /* loupe.png in Resources */,
+				928627031640505B00DA16BE /* hues-tray-background.png in Resources */,
+				928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,20 +406,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		92751ED9139BF0A30029B659 /* Remove Preferences */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Remove Preferences";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/ruby;
-			shellScript = "require 'FileUtils'\n\nfile = \"/Users/zach/Library/Preferences/com.giantcomet.hues.plist\"\n\nif File.exists? file\n  FileUtils.rm(file)\nend";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -425,10 +421,12 @@
 				92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */,
 				92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */,
 				92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */,
-				92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */,
+				92E7D6911393ED080072C412 /* NSColor+Hues.m in Sources */,
 				92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */,
 				923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */,
 				923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */,
+				92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */,
+				9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92E7D6B81393F1E70072C412 /* HuesColorTest.m in Sources */,
+				928627081640693E00DA16BE /* NSColor+Hues.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +556,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -580,6 +580,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -639,6 +640,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,

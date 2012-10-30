@@ -19,6 +19,7 @@ NSString * const HuesHSBFormatKey = @"HuesHSBFormat";
 NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
 NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
 NSString * const HuesKeepOnTopKey = @"HuesKeepOnTop";
+NSString * const HuesApplicationModeKey = @"HuesApplicationMode";
 
 NSString * const HuesShowColorWheelPickerKey = @"HuesShowColorWheelPicker";
 NSString * const HuesShowColorSlidersGrayPickerKey = @"HuesShowColorSlidersGrayPicker";
@@ -35,6 +36,9 @@ NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
 {
   NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
   
+	// Default to Menu bar only
+	defaults[HuesApplicationModeKey] = @(HuesMenuBarOnlyMode);
+	
   // Auto copy to clipboard on
   defaults[HuesCopyToClipboardKey] = @YES;
   
@@ -81,7 +85,7 @@ NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
 
 + (HuesColorRepresentation)defaultRepresentation
 {
-  return [[NSUserDefaults standardUserDefaults] integerForKey:HuesDefaultColorRepresentationKey];
+  return (HuesColorRepresentation)[[NSUserDefaults standardUserDefaults] integerForKey:HuesDefaultColorRepresentationKey];
 }
 
 + (BOOL)useLowercase
@@ -162,6 +166,16 @@ NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
 //  [[NSUserDefaults standardUserDefaults] setBool:calibrated forKey:HuesUseCalibratedColorsKey];
 //  [[NSUserDefaults standardUserDefaults] synchronize];
 //}
+
++ (HuesApplicationMode)applicationMode
+{
+	return (HuesApplicationMode)[[NSUserDefaults standardUserDefaults] integerForKey:HuesApplicationModeKey];
+}
+
++ (void)setApplicationMode:(HuesApplicationMode)mode
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:mode forKey:HuesApplicationModeKey];
+}
 
 + (BOOL)keepOnTop
 {

@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "NSColor+Extras.h"
+#import "NSColor+Hues.h"
 #import "HuesPreferences.h"
 
 @interface HuesColorTest : SenTestCase
@@ -22,6 +22,8 @@
 - (void)testHSLFromColor;
 - (void)testLowerCasePreference;
 
+- (void)testNSColorCalibratedRGB;
+
 @end
 
 @implementation HuesColorTest
@@ -32,13 +34,11 @@
   [HuesPreferences registerDefaults];
 }
 
-
 - (void)tearDown
 {
   // Tear-down code here.
   [super tearDown];
 }
-
 
 - (void)testLowerCasePreference
 {
@@ -53,7 +53,6 @@
   STAssertTrue(useLowercase, @"Not lowercase by default");
   STAssertEqualObjects([[NSColor whiteColor] hues_hex], @"#ffffff", @"default should be uppercase");
 }
-
 
 - (void)testHexFromColor
 {
@@ -200,6 +199,13 @@
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"tyuytutytuytytuyt"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
   STAssertEqualObjects([[NSColor hues_colorFromHex:@";^&><?**&&'"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"!@#$\"\"\\"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
+}
+
+- (void)testNSColorCalibratedRGB
+{
+	// Test full white and full black
+	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000", @"");
+  STAssertEqualObjects([[NSColor blackColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000", @"");
 }
 
 @end
