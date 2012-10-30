@@ -11,7 +11,7 @@
 
 static NSString * const HuesNSColorCalibratedRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
 static NSString * const HuesNSColorCalibratedHSBFormat = @"[NSColor colorWithCalibratedHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
-static NSString * const HuesNSColorDeviceRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
+static NSString * const HuesNSColorDeviceRGBFormat = @"[NSColor colorWithDeviceRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
 static NSString * const HuesNSColorDeviceHSBFormat = @"[NSColor colorWithDeviceHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
 static NSString * const HuesUIColorRGBFormat = @"[UIColor colorWithRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
 static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
@@ -237,7 +237,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 {
 	CGFloat red, green, blue, alpha;
   
-  NSColor *color = [self hues_convertedColor];
+  NSColor *color = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
   
   if (color) {
     red = [color redComponent];
@@ -255,7 +255,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 - (NSString *)hues_NSColorCalibratedHSB
 {
-  NSColor *color = [self hues_convertedColor];
+  NSColor *color = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
   
   if (color) {
 		NSString *output = [NSString stringWithFormat:HuesNSColorCalibratedHSBFormat, [color hueComponent], [color saturationComponent], [color brightnessComponent], [color alphaComponent]];
@@ -270,7 +270,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 {
 	CGFloat red, green, blue, alpha;
   
-  NSColor *color = [self hues_convertedColor];
+  NSColor *color = [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
   
   if (color) {
     red = [color redComponent];
@@ -288,7 +288,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 - (NSString *)hues_NSColorDeviceHSB
 {
-  NSColor *color = [self hues_convertedColor];
+  NSColor *color = [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
   
   if (color) {
 		NSString *output = [NSString stringWithFormat:HuesNSColorDeviceHSBFormat, [color hueComponent], [color saturationComponent], [color brightnessComponent], [color alphaComponent]];

@@ -18,7 +18,7 @@ static NSImage *_loupe = nil;
 
 + (void)initialize
 {
-  _loupe = [[NSImage imageNamed:@"loupe.png"] retain];
+  _loupe = [[NSImage imageNamed:@"loupe"] retain];
 }
 
 - (void)dealloc
@@ -92,10 +92,9 @@ static NSImage *_loupe = nil;
 - (void)mouseDown:(NSEvent *)theEvent
 {
   NSColor *color = [self colorAtPoint:NSMakePoint(LOUPE_SIZE / 2, LOUPE_SIZE / 2)];
+	NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
-  NSLog(@"color: %@", [color hues_hex]);
-  
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
   [[self window] orderOut:nil];
   [NSCursor unhide];
 }
@@ -108,7 +107,7 @@ static NSImage *_loupe = nil;
   NSInteger pointY = trunc(point.y);
   NSUInteger width = CGImageGetWidth(_image);
   NSUInteger height = CGImageGetHeight(_image);
-  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+  CGColorSpaceRef colorSpace = self.window.colorSpace.CGColorSpace;
   int bytesPerPixel = 4;
   int bytesPerRow = bytesPerPixel * 1;
   NSUInteger bitsPerComponent = 8;
@@ -123,11 +122,11 @@ static NSImage *_loupe = nil;
   CGContextRelease(context);
   
   // Convert color values [0..255] to floats [0.0..1.0]
-  CGFloat red   = (CGFloat)pixelData[0] / 255.0f;
+  CGFloat red = (CGFloat)pixelData[0] / 255.0f;
   CGFloat green = (CGFloat)pixelData[1] / 255.0f;
-  CGFloat blue  = (CGFloat)pixelData[2] / 255.0f;
+  CGFloat blue = (CGFloat)pixelData[2] / 255.0f;
   CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
-  return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
+  return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
 }
 
 @end

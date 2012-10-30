@@ -63,9 +63,9 @@
     [self.colorPanel setAccessoryView:self.colorsView];
     [self.colorsView setFrame:NSMakeRect(0, self.colorsView.frame.origin.y + 6, self.colorPanel.frame.size.width, self.colorsView.bounds.size.height)];
     
-    //NSButton *button = (NSButton *)[self.colorPanel firstResponder];
-    //[button setTarget:self];
-    //[button setAction:@selector(showPicker:)];
+    NSButton *button = (NSButton *)[self.colorPanel firstResponder];
+    [button setTarget:self];
+    [button setAction:@selector(showLoupe:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
@@ -86,8 +86,22 @@
 
 - (void)colorChanged:(id)sender
 {
-	NSColor *color = [sender color];
-  //NSLog(@"colorChanged: %@", color);
+	NSLog(@"window color space: %@", self.colorPanel.colorSpace);
+	NSColor *color = self.colorPanel.color;
+  NSLog(@"colorChanged: %@ - %@", [color hues_hex], color);
+	
+	if ([[color colorSpaceName] isEqualToString:NSCalibratedRGBColorSpace]) {
+		NSColor *converted = [color colorUsingColorSpaceName:NSDeviceRGBColorSpace];
+		NSLog(@"device converted: %@ - %@", [converted hues_hex], converted);
+	} else {
+		NSColor *converted = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+		NSLog(@"calibrated converted: %@ - %@", [converted hues_hex], converted);
+	}
+	
+	NSColor *windowColor = [color colorUsingColorSpace:self.colorPanel.colorSpace];
+	NSLog(@"window converted: %@ - %@", [windowColor hues_hex], windowColor);
+	
+	
   [[HuesHistoryManager sharedManager] addColor:color];
  
   if ([HuesPreferences copyToClipboard]) {
@@ -122,6 +136,14 @@
   
 	[self.primaryFormat setAttributedStringValue:hexString];
   [self.secondaryFormat setAttributedStringValue:rgbString];
+	
+	[self.alternateFormats removeAllItems];
+	
+	[self.alternateFormats addItemsWithTitles:@[[color hues_hsl]]];
+	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
+	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
+	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
+	[self.alternateFormats addItemsWithTitles:@[[color hues_UIColorRGB], [color hues_UIColorHSB]]];
 }
 
 #pragma mark - Clipboard
@@ -138,7 +160,8 @@
 
 - (void)copyAlternate:(id)sender
 {
-	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsl]];
+	NSMenuItem *item = [self.alternateFormats selectedItem];
+	[self copyToClipboard:item.title];
 }
 
 - (void)copyToClipboard:(NSString *)string
@@ -149,7 +172,7 @@
 
 #pragma mark - Loupe
 
-- (void)showPicker:(id)sender
+- (void)showLoupe:(id)sender
 {
   NSPoint point = [NSEvent mouseLocation];
   

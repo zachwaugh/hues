@@ -23,6 +23,9 @@
 - (void)testLowerCasePreference;
 
 - (void)testNSColorCalibratedRGB;
+- (void)testNSColorDeviceRGB;
+- (void)testUIColorRGB;
+- (void)testUIColorHSB;
 
 @end
 
@@ -204,8 +207,41 @@
 - (void)testNSColorCalibratedRGB
 {
 	// Test full white and full black
-	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000", @"");
-  STAssertEqualObjects([[NSColor blackColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000", @"");
+	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
+  STAssertEqualObjects([[NSColor blackColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor redColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor blueColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor greenColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+}
+
+- (void)testNSColorDeviceRGB
+{
+	// Test full white and full black
+	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
+  STAssertEqualObjects([[NSColor blackColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor redColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor blueColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor greenColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+}
+
+- (void)testUIColorRGB
+{
+	// Test full white/black/red/blue/green
+	STAssertEqualObjects([[NSColor whiteColor] hues_UIColorRGB], @"[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
+  STAssertEqualObjects([[NSColor blackColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor redColor] hues_UIColorRGB], @"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor blueColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor greenColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+}
+
+- (void)testUIColorHSB
+{
+	// Test full white/black/red/blue/green
+	STAssertEqualObjects([[NSColor whiteColor] hues_UIColorHSB], @"[UIColor colorWithHue:1.000 saturation:1.000 brightness:1.000 alpha:1.000]", @"");
+  STAssertEqualObjects([[NSColor blackColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor redColor] hues_UIColorHSB], @"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor blueColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
+	STAssertEqualObjects([[NSColor greenColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
 }
 
 @end

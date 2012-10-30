@@ -26,6 +26,6 @@
 - (void)updateColor:(NSNotification *)notification;
 
 - (void)showWindow:(id)sender;
-- (IBAction)showPicker:(id)sender;
+- (IBAction)showLoupe:(id)sender;
 
 @end

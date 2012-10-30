@@ -36,6 +36,11 @@
   [NSCursor hide];
 }
 
+- (void)cancel:(id)sender
+{
+	[self orderOut:nil];
+}
+
 - (void)mouseMoved:(NSEvent *)event
 {
   NSPoint point = [event locationInWindow];

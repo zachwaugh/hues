@@ -22,6 +22,7 @@
 		928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 928627021640505B00DA16BE /* hues-tray-background@2x.png */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
 		928627081640693E00DA16BE /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
+		9286270916406B5900DA16BE /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
@@ -38,16 +39,6 @@
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
 		92E7D6B81393F1E70072C412 /* HuesColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6B71393F1E70072C412 /* HuesColorTest.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9264FE801393ECA000935FAC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9264FE541393EC9F00935FAC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9264FE5C1393EC9F00935FAC;
-			remoteInfo = Hues;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
@@ -327,7 +318,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9264FE811393ECA000935FAC /* PBXTargetDependency */,
 			);
 			name = HuesTests;
 			productName = HuesTests;
@@ -436,18 +426,11 @@
 			files = (
 				92E7D6B81393F1E70072C412 /* HuesColorTest.m in Sources */,
 				928627081640693E00DA16BE /* NSColor+Hues.m in Sources */,
+				9286270916406B5900DA16BE /* HuesPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9264FE811393ECA000935FAC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9264FE5C1393EC9F00935FAC /* Hues */;
-			targetProxy = 9264FE801393ECA000935FAC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9264FE6A1393EC9F00935FAC /* InfoPlist.strings */ = {
@@ -547,7 +530,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
@@ -562,7 +544,6 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -571,7 +552,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -586,7 +566,6 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -631,7 +610,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -646,7 +624,6 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = "App Store";
