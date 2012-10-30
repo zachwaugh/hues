@@ -43,7 +43,7 @@ static NSImage *_loupe = nil;
   
   //NSLog(@"rect: %@", NSStringFromRect(rect));
   
-  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect(b, 5, 5) xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
+  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:b xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
 
   CGImageRelease(_image);
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
@@ -64,12 +64,13 @@ static NSImage *_loupe = nil;
   
   // Loop image
   //[_loupe drawInRect:b fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-
+	
   // Draw crosshair lines
   [[NSColor blackColor] set];
 
   // Need to clip to inside of loupe
   [loupePath addClip];
+
   //CGContextSetAllowsAntialiasing(ctx, NO);
   
   float radius = LOUPE_SIZE / 2.0;

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define LOUPE_SIZE 251
+#define LOUPE_SIZE 260
 
 @interface HuesLoupeView : NSView
 {
