@@ -32,15 +32,11 @@
 
 @end
 
-
 @implementation HuesMainController
-
-@synthesize colorPanel, colorsView, hexField, rgbLabel, hslLabel;
 
 - (id)init
 {
-  if ((self = [super init]))
-  {
+  if ((self = [super init])) {
     self.colorPanel = [NSColorPanel sharedColorPanel];
     [self.colorPanel setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask];
     [self.colorPanel setTitle:@"Hues"];
@@ -71,7 +67,6 @@
   return self;
 }
 
-
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -83,25 +78,18 @@
   [super dealloc];
 }
 
-
 - (void)colorChanged:(id)sender
 {
 	NSColor *color = [sender color];
   //NSLog(@"colorChanged: %@", color);
   [[HuesHistoryManager sharedManager] addColor:color];
  
-  if ([HuesPreferences copyToClipboard])
-  {
-    if ([HuesPreferences defaultRepresentation] == HuesHexRepresentation)
-    {
+  if ([HuesPreferences copyToClipboard]) {
+    if ([HuesPreferences defaultRepresentation] == HuesHexRepresentation) {
       [self copyToClipboard:[color hues_hex]];
-    }
-    else if ([HuesPreferences defaultRepresentation] == HuesRGBRepresentation)
-    {
+    } else if ([HuesPreferences defaultRepresentation] == HuesRGBRepresentation) {
       [self copyToClipboard:[color hues_rgb]];
-    }
-    else if ([HuesPreferences defaultRepresentation] == HuesHSLRepresentation)
-    {
+    } else if ([HuesPreferences defaultRepresentation] == HuesHSLRepresentation) {
       [self copyToClipboard:[color hues_hsb]];
     }
   }
@@ -109,14 +97,12 @@
   [self updateLabelsWithColor:color];
 }
 
-
 - (void)updateColor:(NSNotification *)notification
 {
   NSColor *color = [notification object];
   [self.colorPanel setColor:color];
   [self updateLabelsWithColor:color];
 }
-
 
 - (void)updateLabelsWithColor:(NSColor *)color
 {
@@ -135,24 +121,22 @@
   [self.hslLabel setAttributedStringValue:hslString];
 }
 
+#pragma mark - Clipboard
 
 - (void)copyHex:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hex]];
 }
 
-
 - (void)copyRGB:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_rgb]];
 }
 
-
 - (void)copyHSL:(id)sender
 {
 	[self copyToClipboard:[[[NSColorPanel sharedColorPanel] color] hues_hsl]];
 }
-
 
 - (void)copyToClipboard:(NSString *)value
 {
@@ -160,6 +144,8 @@
 	[[NSPasteboard generalPasteboard] setString:value forType:NSStringPboardType];
 }
 
+
+#pragma mark - Loupe
 
 - (void)showPicker:(id)sender
 {
@@ -170,24 +156,41 @@
   [loupe makeKeyAndOrderFront:nil];
 }
 
-
 #pragma mark - Color input
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-  if ([notification object] == self.hexField)
-  {
+  if ([notification object] == self.hexField) {
     NSString *value = [self.hexField stringValue];
     NSColor *newColor = [NSColor hues_colorFromHex:value];
     
-    if (newColor != nil)
-    {
+    if (newColor != nil) {
       [self updateLabelsWithColor:newColor];
       [self.colorPanel setColor:newColor];
     }
   }
 }
 
+#pragma mark - Menu Validation
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+	if (menuItem.action == @selector(toggleKeepOnTop:)) {
+		[menuItem setState:([HuesPreferences keepOnTop]) ? NSOnState : NSOffState];
+	}
+	
+	return YES;
+}
+
+#pragma mark - Window
+
+- (IBAction)toggleKeepOnTop:(id)sender
+{
+	BOOL keepOnTop = ![HuesPreferences keepOnTop];
+	
+	[self.colorPanel setLevel:(keepOnTop) ? NSFloatingWindowLevel : NSNormalWindowLevel ];
+	[HuesPreferences setKeepOnTop:keepOnTop];
+}
 
 // Make sure app quits after panel is closed
 - (void)windowWillClose:(NSNotification *)notification

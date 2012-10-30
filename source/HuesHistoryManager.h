@@ -8,12 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface HuesHistoryManager : NSObject
-{
-  NSMutableArray *_history;
-  NSMenu *_menu;
-}
 
 @property (retain) NSMutableArray *history;
 @property (assign) NSMenu *menu;

@@ -11,15 +11,6 @@
 @class HuesColorsView;
 
 @interface HuesMainController : NSObject <NSWindowDelegate>
-{
-  IBOutlet HuesColorsView *colorsView;
-	IBOutlet NSTextField *hexField;
-  IBOutlet NSTextField *rgbLabel;
-  IBOutlet NSTextField *hslLabel;
-  
-  NSColorPanel *colorPanel;
-}
-
 
 @property (retain) NSColorPanel *colorPanel;
 @property (retain) NSView *colorsView;
@@ -30,6 +21,7 @@
 - (IBAction)copyHex:(id)sender;
 - (IBAction)copyRGB:(id)sender;
 - (IBAction)copyHSL:(id)sender;
+- (IBAction)toggleKeepOnTop:(id)sender;
 - (void)updateColor:(NSNotification *)notification;
 
 - (IBAction)showPicker:(id)sender;

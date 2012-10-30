@@ -67,6 +67,7 @@
 		9264FE841393ECA000935FAC /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		9264FE861393ECA000935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE881393ECA000935FAC /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
+		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		92E7D6781393ED080072C412 /* HuesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesAppDelegate.h; sourceTree = "<group>"; };
 		92E7D6791393ED080072C412 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
 		92E7D67A1393ED080072C412 /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 				9264FE5E1393EC9F00935FAC /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		9264FE5E1393EC9F00935FAC /* Products */ = {
 			isa = PBXGroup;
@@ -156,6 +158,7 @@
 		9264FE671393EC9F00935FAC /* Hues */ = {
 			isa = PBXGroup;
 			children = (
+				928626AA1640281000DA16BE /* Application */,
 				92E7D6B21393EFB70072C412 /* Categories */,
 				92E7D6B51393EFEE0072C412 /* Models */,
 				92E7D6B41393EFDC0072C412 /* Views */,
@@ -174,6 +177,7 @@
 				9264FE691393EC9F00935FAC /* Hues-Info.plist */,
 				9264FE6A1393EC9F00935FAC /* InfoPlist.strings */,
 				9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */,
+				928626A81640262200DA16BE /* Hues.entitlements */,
 				9264FE6E1393EC9F00935FAC /* main.m */,
 			);
 			name = "Supporting Files";
@@ -197,6 +201,15 @@
 				9264FE881393ECA000935FAC /* HuesTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		928626AA1640281000DA16BE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				92E7D6781393ED080072C412 /* HuesAppDelegate.h */,
+				92E7D6791393ED080072C412 /* HuesAppDelegate.m */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 		92E7D6751393ECD10072C412 /* Interface */ = {
@@ -237,8 +250,6 @@
 		92E7D6B31393EFC60072C412 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D6781393ED080072C412 /* HuesAppDelegate.h */,
-				92E7D6791393ED080072C412 /* HuesAppDelegate.m */,
 				92E7D6801393ED080072C412 /* HuesMainController.h */,
 				92E7D6811393ED080072C412 /* HuesMainController.m */,
 				92E7D6841393ED080072C412 /* HuesPreferencesController.h */,
@@ -319,7 +330,8 @@
 		9264FE541393EC9F00935FAC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				CLASSPREFIX = Hues;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Giant Comet";
 			};
 			buildConfigurationList = 9264FE571393EC9F00935FAC /* Build configuration list for PBXProject "Hues" */;
@@ -494,7 +506,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -502,6 +517,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -511,7 +527,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -519,6 +538,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -529,13 +549,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
-				INFOPLIST_FILE = "HuesTests/HuesTests-Info.plist";
+				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -551,13 +572,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
-				INFOPLIST_FILE = "HuesTests/HuesTests-Info.plist";
+				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -586,7 +608,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -594,6 +619,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -605,13 +631,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
-				INFOPLIST_FILE = "HuesTests/HuesTests-Info.plist";
+				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,

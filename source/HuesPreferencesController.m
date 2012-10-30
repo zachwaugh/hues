@@ -14,8 +14,6 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
 
 @implementation HuesPreferencesController
 
-@synthesize currentToolbarIdentifier, currentView, toolbar, view, generalView, colorPickersView, advancedView;
-
 - (void)dealloc
 {
   self.currentToolbarIdentifier = nil;
@@ -28,7 +26,6 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
   [super dealloc];
 }
 
-
 - (void)awakeFromNib
 {
   self.currentToolbarIdentifier = HuesGeneralToolbarIdentifier;
@@ -37,33 +34,26 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
   self.currentView = self.generalView;
 }
 
-
 - (void)toolbarItemSelected:(id)sender
 {
   NSString *identifier = [sender itemIdentifier];
   
-  if ([identifier isEqualToString:currentToolbarIdentifier]) return;
+  if ([identifier isEqualToString:self.currentToolbarIdentifier]) return;
   
   self.currentToolbarIdentifier = identifier;
   [self.toolbar setSelectedItemIdentifier:identifier];
   
-  if ([identifier isEqualToString:HuesGeneralToolbarIdentifier])
-  {
+  if ([identifier isEqualToString:HuesGeneralToolbarIdentifier]) {
     [[self window] setTitle:@"General"];
     self.currentView = self.generalView;
-  }
-  else if ([identifier isEqualToString:HuesColorPickersToolbarIdentifier])
-  {
+  } else if ([identifier isEqualToString:HuesColorPickersToolbarIdentifier]) {
     [[self window] setTitle:@"Color Pickers"];
     self.currentView = self.colorPickersView;
-  }
-  else if ([identifier isEqualToString:HuesAdvancedToolbarIdentifier])
-  {
+  } else if ([identifier isEqualToString:HuesAdvancedToolbarIdentifier]) {
     [[self window] setTitle:@"Advanced"];
     self.currentView = self.advancedView;
   }
 }
-
 
 - (void)setCurrentView:(NSView *)aView
 {
@@ -71,12 +61,11 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
   newFrame.size.height = [aView frame].size.height + ([[self window] frame].size.height - [self.view frame].size.height);
   newFrame.origin.y += ([self.view frame].size.height - [aView frame].size.height);
   
-  [currentView removeFromSuperview];
+  [_currentView removeFromSuperview];
   [[self window] setFrame:newFrame display:YES animate:YES];
   [self.view addSubview:aView];
   
-  currentView = aView;
+  _currentView = aView;
 }
-
 
 @end

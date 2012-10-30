@@ -28,7 +28,6 @@
 	return window;
 }
 
-
 - (void)becomeMainWindow
 {
   [super becomeMainWindow];
@@ -36,7 +35,6 @@
   [self disableCursorRects];
   [NSCursor hide];
 }
-
 
 - (void)mouseMoved:(NSEvent *)event
 {

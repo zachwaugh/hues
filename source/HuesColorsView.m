@@ -8,7 +8,6 @@
 
 #import "HuesColorsView.h"
 
-
 @implementation HuesColorsView
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -25,6 +24,5 @@
 //  [[NSColor colorWithCalibratedWhite:0.537 alpha:1.000] set];
 //  NSRectFill(NSMakeRect(0, 0, [self bounds].size.width, 1));
 }
-
 
 @end

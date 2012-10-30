@@ -9,6 +9,36 @@
 #import <Cocoa/Cocoa.h>
 #import "HuesGlobal.h"
 
+// Preferences keys
+extern NSString * const HuesCopyToClipboardKey;
+extern NSString * const HuesUseLowercaseKey;
+extern NSString * const HuesDefaultColorRepresentationKey;
+extern NSString * const HuesHexFormatKey;
+extern NSString * const HuesRGBFormatKey;
+extern NSString * const HuesRGBAFormatKey;
+extern NSString * const HuesHSBFormatKey;
+extern NSString * const HuesHSLFormatKey;
+extern NSString * const HuesHSLAFormatKey;
+extern NSString * const HuesKeepOnTopKey;
+
+// NSColorPanelWheelModeMask            - Color Wheel
+// NSColorPanelGrayModeMask             - Color Sliders
+// NSColorPanelRGBModeMask              - Color Sliders
+// NSColorPanelCMYKModeMask             - Color Sliders
+// NSColorPanelHSBModeMask              - Color Sliders
+// NSColorPanelColorListModeMask        - Color Palettes
+// NSColorPanelCustomPaletteModeMask    - Image Palettes
+// NSColorPanelCrayonModeMask           - Crayons
+// NSColorPanelAllModesMask             - All
+extern NSString * const HuesShowColorWheelPickerKey;
+extern NSString * const HuesShowColorSlidersGrayPickerKey;
+extern NSString * const HuesShowColorSlidersRGBPickerKey;
+extern NSString * const HuesShowColorSlidersCMYKPickerKey;
+extern NSString * const HuesShowColorSlidersHSBPickerKey;
+extern NSString * const HuesShowColorPalettesPickerKey;
+extern NSString * const HuesShowImagePalettesPickerKey;
+extern NSString * const HuesShowCrayonsPickerKey;
+
 @interface HuesPreferences : NSObject
 
 + (void)registerDefaults;
@@ -30,5 +60,8 @@
 + (void)setUseLowercase:(BOOL)lowercase;
 //+ (BOOL)useCalibratedColors;
 //+ (void)setCalibratedColors:(BOOL)calibrated;
+
++ (BOOL)keepOnTop;
++ (void)setKeepOnTop:(BOOL)keepOnTop;
 
 @end

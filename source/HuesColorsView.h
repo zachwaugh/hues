@@ -8,10 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface HuesColorsView : NSView
 {
-
 }
 
 @end

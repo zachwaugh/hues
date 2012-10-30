@@ -12,29 +12,24 @@
 #import "HuesMainController.h"
 #import "HuesHistoryManager.h"
 
-
 @implementation HuesAppDelegate
-
-@synthesize mainController, preferencesController, historyMenu;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
   [HuesPreferences registerDefaults];
+	// Need to do this as early as possible
   [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
 }
-
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
   self.mainController = [[[HuesMainController alloc] init] autorelease];
 }
 
-
 - (void)awakeFromNib
 {
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
-
 
 - (void)dealloc
 {
@@ -45,11 +40,9 @@
 	[super dealloc];
 }
 
-
 - (void)showPreferences:(id)sender
 {
-  if (self.preferencesController == nil)
-  {
+  if (self.preferencesController == nil) {
     self.preferencesController = [[[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"] autorelease];
   }
   

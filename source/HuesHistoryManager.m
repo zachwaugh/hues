@@ -20,11 +20,7 @@
 
 @end
 
-
 @implementation HuesHistoryManager
-
-@synthesize history = _history;
-@synthesize menu = _menu;
 
 + (HuesHistoryManager *)sharedManager
 {
@@ -38,17 +34,14 @@
   return _sharedHistoryManager;
 }
 
-
 - (id)init
 {
-  if ((self = [super init]))
-  {
+  if ((self = [super init])) {
     _history = [[NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE] retain];
   }
   
   return self;
 }
-
 
 - (void)dealloc
 {
@@ -57,24 +50,19 @@
   [super dealloc];
 }
 
-
 - (void)addColor:(NSColor *)color
 {
   // Don't add if same as last color
-  if ([self.history count] > 0 && [[color hues_hex] isEqualToString:[[self.history objectAtIndex:0] hues_hex]]) return;
+  if (self.history.count > 0 && [[color hues_hex] isEqualToString:[self.history[0] hues_hex]]) return;
  
   // Ensure doesn't go past max history size
-  if ([self.history count] == HUES_MAX_HISTORY_SIZE)
-  {
+  if (self.history.count == HUES_MAX_HISTORY_SIZE) {
     [self.history removeLastObject];
   }
   
-  
   [self.history insertObject:color atIndex:0];
-   
   
-  if ([self.menu numberOfItems] == HUES_MAX_HISTORY_SIZE)
-  {
+  if ([self.menu numberOfItems] == HUES_MAX_HISTORY_SIZE) {
     [self.menu removeItemAtIndex:HUES_MAX_HISTORY_SIZE - 1];
   }
   
@@ -84,11 +72,10 @@
   [self.menu insertItem:item atIndex:0];
 }
 
-
 - (void)colorChosen:(id)sender
 {
   NSInteger index = [self.menu indexOfItem:sender];
-  NSColor *color = [self.history objectAtIndex:index];
+  NSColor *color = self.history[index];
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HuesUpdateColorNotification object:color]];
 }
 

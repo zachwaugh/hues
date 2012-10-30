@@ -21,14 +21,12 @@ static NSImage *_loupe = nil;
   _loupe = [[NSImage imageNamed:@"loupe.png"] retain];
 }
 
-
 - (void)dealloc
 {
   if (_image) CGImageRelease(_image);
   
   [super dealloc];
 }
-
 
 - (void)drawRect:(NSRect)dirtyRect
 {
@@ -91,7 +89,6 @@ static NSImage *_loupe = nil;
   //[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b) - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL)] stroke];
 }
 
-
 - (void)mouseDown:(NSEvent *)theEvent
 {
   NSColor *color = [self colorAtPoint:NSMakePoint(LOUPE_SIZE / 2, LOUPE_SIZE / 2)];
@@ -102,7 +99,6 @@ static NSImage *_loupe = nil;
   [[self window] orderOut:nil];
   [NSCursor unhide];
 }
-
 
 - (NSColor *)colorAtPoint:(CGPoint)point
 {  
@@ -133,6 +129,5 @@ static NSImage *_loupe = nil;
   CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
   return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 }
-
 
 @end
