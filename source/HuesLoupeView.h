@@ -11,9 +11,6 @@
 #define LOUPE_SIZE 260
 
 @interface HuesLoupeView : NSView
-{
-  CGImageRef _image;
-}
 
 - (NSColor *)colorAtPoint:(CGPoint)point;
 

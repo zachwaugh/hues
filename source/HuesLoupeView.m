@@ -14,6 +14,13 @@
 
 static NSImage *_loupe = nil;
 
+@interface HuesLoupeView ()
+{
+	CGImageRef _image;
+}
+
+@end
+
 @implementation HuesLoupeView
 
 + (void)initialize
@@ -23,21 +30,23 @@ static NSImage *_loupe = nil;
 
 - (void)dealloc
 {
-  if (_image) CGImageRelease(_image);
+  if (_image) {
+		CGImageRelease(_image);
+	}
   
   [super dealloc];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-  NSRect b = [self bounds];
+  NSRect b = self.bounds;
 
-  NSWindow *window = [self window];
+  NSWindow *window = self.window;
   CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
   
   // Convert rect to screen coordinates
   NSRect rect = [window frame];
-  rect.origin.y = NSMaxY([[[NSScreen screens] objectAtIndex:0] frame]) - NSMaxY(rect);
+  rect.origin.y = NSMaxY([[NSScreen screens][0] frame]) - NSMaxY(rect);
   
   //NSLog(@"rect: %@", NSStringFromRect(rect));
   
@@ -95,7 +104,7 @@ static NSImage *_loupe = nil;
 	NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
-  [[self window] orderOut:nil];
+  [self.window orderOut:nil];
   [NSCursor unhide];
 }
 
@@ -107,7 +116,7 @@ static NSImage *_loupe = nil;
   NSInteger pointY = trunc(point.y);
   NSUInteger width = CGImageGetWidth(_image);
   NSUInteger height = CGImageGetHeight(_image);
-  CGColorSpaceRef colorSpace = self.window.colorSpace.CGColorSpace;
+  CGColorSpaceRef colorSpace = self.window.screen.colorSpace.CGColorSpace;
   int bytesPerPixel = 4;
   int bytesPerRow = bytesPerPixel * 1;
   NSUInteger bitsPerComponent = 8;
@@ -126,6 +135,7 @@ static NSImage *_loupe = nil;
   CGFloat green = (CGFloat)pixelData[1] / 255.0f;
   CGFloat blue = (CGFloat)pixelData[2] / 255.0f;
   CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
+	
   return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
 }
 

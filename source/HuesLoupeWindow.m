@@ -24,6 +24,10 @@
 	
   [self disableCursorRects];
   [NSCursor hide];
+	
+//	NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:contentRect options:(NSTrackingActiveAlways | NSTrackingMouseMoved) owner:self userInfo:nil];
+//	
+//	[self.contentView addTrackingArea:trackingArea];
   
 	return window;
 }
@@ -50,8 +54,12 @@
   NSPoint origin = [self convertBaseToScreen:NSMakePoint(round(point.x - 100), round(point.y - 100))];
   
   [self setFrameOrigin:origin];
-  
   [[self contentView] setNeedsDisplay:YES];
+}
+
+- (void)mouseExited:(NSEvent *)theEvent
+{
+	NSLog(@"mouseExited");
 }
 
 @end

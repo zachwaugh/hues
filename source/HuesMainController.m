@@ -62,10 +62,11 @@
     
     [self.colorPanel setAccessoryView:self.colorsView];
     [self.colorsView setFrame:NSMakeRect(0, self.colorsView.frame.origin.y + 6, self.colorPanel.frame.size.width, self.colorsView.bounds.size.height)];
-    
-    NSButton *button = (NSButton *)[self.colorPanel firstResponder];
-    [button setTarget:self];
-    [button setAction:@selector(showLoupe:)];
+    		
+    //NSButton *button = (NSButton *)[self.colorPanel firstResponder];
+		//NSLog(@"button: %@, action: %@, target: %@", button, NSStringFromSelector(button.action), button.target);
+		//[button setTarget:self];
+    //[button setAction:@selector(showLoupe:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
@@ -86,7 +87,7 @@
 
 - (void)colorChanged:(id)sender
 {
-	NSLog(@"window color space: %@", self.colorPanel.colorSpace);
+	NSLog(@"---");
 	NSColor *color = self.colorPanel.color;
   NSLog(@"colorChanged: %@ - %@", [color hues_hex], color);
 	
@@ -100,7 +101,6 @@
 	
 	NSColor *windowColor = [color colorUsingColorSpace:self.colorPanel.colorSpace];
 	NSLog(@"window converted: %@ - %@", [windowColor hues_hex], windowColor);
-	
 	
   [[HuesHistoryManager sharedManager] addColor:color];
  
@@ -117,6 +117,7 @@
   [self updateLabelsWithColor:color];
 }
 
+// Called from loupe
 - (void)updateColor:(NSNotification *)notification
 {
   NSColor *color = [notification object];
@@ -208,6 +209,11 @@
 }
 
 #pragma mark - Window
+
+- (void)windowDidBecomeMain:(NSNotification *)notification
+{
+	NSLog(@"colorPanel didBecomeKey: %@", self.colorPanel.firstResponder);
+}
 
 - (void)showWindow:(id)sender
 {
