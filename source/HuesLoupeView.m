@@ -7,6 +7,7 @@
 //
 
 #import "HuesLoupeView.h"
+#import "HuesLoupeWindow.h"
 #import "HuesGlobal.h"
 #import "NSColor+Hues.h"
 
@@ -98,14 +99,30 @@ static NSImage *_loupe = nil;
   //[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b) - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL)] stroke];
 }
 
+- (void)keyDown:(NSEvent *)event
+{
+	unichar character = [[event characters] characterAtIndex:0];
+	
+	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [[event characters] isEqualToString:@" "]) {
+		[self pickColor];
+	} else {
+		[super keyDown:event];
+	}
+}
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
-  NSColor *color = [self colorAtPoint:NSMakePoint(LOUPE_SIZE / 2, LOUPE_SIZE / 2)];
+  [self pickColor];
+}
+
+- (void)pickColor
+{
+	// Always pick color from center of loupe
+	NSColor *color = [self colorAtPoint:NSMakePoint(LOUPE_SIZE / 2, LOUPE_SIZE / 2)];
 	NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
-  [self.window orderOut:nil];
-  [NSCursor unhide];
+	[(HuesLoupeWindow *)self.window hide];
 }
 
 - (NSColor *)colorAtPoint:(CGPoint)point

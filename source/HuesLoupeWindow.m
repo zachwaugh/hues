@@ -24,42 +24,80 @@
 	
   [self disableCursorRects];
   [NSCursor hide];
-	
-//	NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:contentRect options:(NSTrackingActiveAlways | NSTrackingMouseMoved) owner:self userInfo:nil];
-//	
-//	[self.contentView addTrackingArea:trackingArea];
   
 	return window;
 }
 
-- (void)becomeMainWindow
+- (BOOL)canBecomeKeyWindow
 {
-  [super becomeMainWindow];
-  
-  [self disableCursorRects];
-  [NSCursor hide];
+	return YES;
+}
+
+- (BOOL)canBecomeMainWindow
+{
+	return YES;
 }
 
 - (void)cancel:(id)sender
 {
+	[self hide];
+}
+
+- (void)moveUp:(id)sender
+{
+	NSPoint origin = self.frame.origin;
+	
+	origin.y += 1;
+	[self adjustLoupeWithOrigin:origin];
+}
+
+- (void)moveDown:(id)sender
+{
+	NSPoint origin = self.frame.origin;
+	
+	origin.y -= 1;
+	[self adjustLoupeWithOrigin:origin];
+}
+
+- (void)moveLeft:(id)sender
+{
+	NSPoint origin = self.frame.origin;
+	
+	origin.x -= 1;
+	[self adjustLoupeWithOrigin:origin];
+}
+
+- (void)moveRight:(id)sender
+{
+	NSPoint origin = self.frame.origin;
+	
+	origin.x += 1;
+	[self adjustLoupeWithOrigin:origin];
+}
+
+- (void)hide
+{
 	[self orderOut:nil];
+  [NSCursor unhide];
 }
 
 - (void)mouseMoved:(NSEvent *)event
 {
-  NSPoint point = [event locationInWindow];
+	// Get current point in screen coordinates
+  NSPoint point = [NSEvent mouseLocation]; // [event locationInWindow];
   
   //NSLog(@"screen: %@, window: %@, view: %@", NSStringFromPoint([self convertBaseToScreen:point]), NSStringFromPoint(point), NSStringFromPoint([self.contentView convertPoint:point fromView:nil]));
   
-  NSPoint origin = [self convertBaseToScreen:NSMakePoint(round(point.x - 100), round(point.y - 100))];
+	// Adjust window so it's centered on new point
+  NSPoint origin = NSMakePoint(round(point.x - round(self.frame.size.width / 2)), round(point.y - round(self.frame.size.height / 2))); //[self convertBaseToScreen:NSMakePoint(round(point.x - 100), round(point.y - 100))];
   
-  [self setFrameOrigin:origin];
-  [[self contentView] setNeedsDisplay:YES];
+  [self adjustLoupeWithOrigin:origin];
 }
 
-- (void)mouseExited:(NSEvent *)theEvent
+- (void)adjustLoupeWithOrigin:(NSPoint)origin
 {
-	NSLog(@"mouseExited");
+	[self setFrameOrigin:origin];
+  [[self contentView] setNeedsDisplay:YES];
 }
 
 @end

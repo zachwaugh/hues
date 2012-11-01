@@ -10,4 +10,6 @@
 
 @interface HuesLoupeWindow : NSPanel
 
+- (void)hide;
+
 @end

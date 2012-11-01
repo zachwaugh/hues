@@ -177,16 +177,18 @@
 {
   NSPoint point = [NSEvent mouseLocation];
   
-  HuesLoupeWindow *loupe = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
-  [[loupe contentView] addSubview:[[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease]];
-  [loupe makeKeyAndOrderFront:nil];
+  HuesLoupeWindow *loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
+	HuesLoupeView *loupeView = [[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease];
+  [loupeWindow.contentView addSubview:loupeView];
+  [loupeWindow makeKeyAndOrderFront:self];
+	[loupeWindow makeFirstResponder:loupeView];
 }
 
 #pragma mark - Color input
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-  if ([notification object] == self.primaryFormat) {
+  if (notification.object == self.primaryFormat) {
     NSString *value = [self.primaryFormat stringValue];
     NSColor *newColor = [NSColor hues_colorFromHex:value];
     
