@@ -25,6 +25,10 @@
 #import "HuesLoupeView.h"
 #import "HuesLoupeWindow.h"
 
+#define REMAP_DEFAULT_PICKER 1
+
+static NSInteger level = 0;
+
 @interface HuesMainController ()
 
 - (void)copyToClipboard:(NSString *)value;
@@ -63,15 +67,58 @@
     [self.colorPanel setAccessoryView:self.colorsView];
     [self.colorsView setFrame:NSMakeRect(0, self.colorsView.frame.origin.y + 6, self.colorPanel.frame.size.width, self.colorsView.bounds.size.height)];
     		
-    //NSButton *button = (NSButton *)[self.colorPanel firstResponder];
-		//NSLog(@"button: %@, action: %@, target: %@", button, NSStringFromSelector(button.action), button.target);
-		//[button setTarget:self];
-    //[button setAction:@selector(showLoupe:)];
+		if (REMAP_DEFAULT_PICKER) {
+			for (NSView *view in [self.colorPanel.contentView subviews]) {
+				if ([view isKindOfClass:[NSButton class]]) {
+					NSButton *button = (NSButton *)view;
+					[button setTarget:self];
+					[button setAction:@selector(showLoupe:)];
+					NSLog(@"found button via searching subviews: %@ - %@", view, NSStringFromSelector([button action]));
+				}
+			}
+			
+//			NSLog(@"colorpanel first responder: %@", [self.colorPanel firstResponder]);
+//			id responder = [self.colorPanel firstResponder];
+//			
+//			if ([responder isKindOfClass:[NSButton class]]) {
+//				[self remapButtonForResponder:responder];	
+//			} else {
+//				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+//					id responder = [self.colorPanel firstResponder];
+//					[self remapButtonForResponder:responder];					
+//				});
+//			}
+		}
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
   }
   
   return self;
+}
+
+- (void)recursiveSubviewsForView:(NSView *)view
+{
+	NSMutableString *spacer = [NSMutableString string];
+	
+	for (int i = 0; i < level; i++) {
+		[spacer appendString:@"-"];
+	}
+	
+	NSLog(@"%@", spacer);
+	NSLog(@"%@level: %ld, view: %@", spacer, level, view);
+	level++;
+	
+	for (NSView *subview in view.subviews) {
+		NSLog(@"%@subview: %@", spacer, subview);
+		
+		if ([subview isKindOfClass:[NSButton class]]) {
+			NSLog(@"%@button: %@", spacer, NSStringFromSelector([(NSControl *)subview action]));
+		}
+		
+		if (subview.subviews.count > 0) {
+			[self recursiveSubviewsForView:subview];
+		}
+	}
 }
 
 - (void)dealloc
@@ -83,6 +130,16 @@
   self.secondaryFormat = nil;
 
   [super dealloc];
+}
+
+- (void)remapButtonForResponder:(id)responder
+{	
+	if ([responder isKindOfClass:[NSButton class]]) {
+		NSButton *button = (NSButton *)responder;
+		NSLog(@"remapping button: %@, action: %@, target: %@", button, NSStringFromSelector(button.action), button.target);
+		[button setTarget:self];
+		[button setAction:@selector(showLoupe:)];
+	}
 }
 
 - (void)colorChanged:(id)sender
@@ -180,7 +237,9 @@
   HuesLoupeWindow *loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
 	HuesLoupeView *loupeView = [[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease];
   [loupeWindow.contentView addSubview:loupeView];
-  [loupeWindow makeKeyAndOrderFront:self];
+  [loupeWindow orderFront:nil];
+	[loupeWindow makeKeyWindow];
+	//[loupeWindow makeKeyAndOrderFront:self];
 	[loupeWindow makeFirstResponder:loupeView];
 }
 
@@ -211,11 +270,6 @@
 }
 
 #pragma mark - Window
-
-- (void)windowDidBecomeMain:(NSNotification *)notification
-{
-	NSLog(@"colorPanel didBecomeKey: %@", self.colorPanel.firstResponder);
-}
 
 - (void)showWindow:(id)sender
 {

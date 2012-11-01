@@ -47,7 +47,7 @@
 {
 	NSPoint origin = self.frame.origin;
 	
-	origin.y += 1;
+	origin.y += ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
 	[self adjustLoupeWithOrigin:origin];
 }
 
@@ -55,7 +55,7 @@
 {
 	NSPoint origin = self.frame.origin;
 	
-	origin.y -= 1;
+	origin.y -= ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
 	[self adjustLoupeWithOrigin:origin];
 }
 
@@ -63,7 +63,7 @@
 {
 	NSPoint origin = self.frame.origin;
 	
-	origin.x -= 1;
+	origin.x -= ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
 	[self adjustLoupeWithOrigin:origin];
 }
 
@@ -71,7 +71,7 @@
 {
 	NSPoint origin = self.frame.origin;
 	
-	origin.x += 1;
+	origin.x += ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
 	[self adjustLoupeWithOrigin:origin];
 }
 
@@ -96,6 +96,7 @@
 
 - (void)adjustLoupeWithOrigin:(NSPoint)origin
 {
+	//NSLog(@"loupe origin: %@", NSStringFromPoint(origin));
 	[self setFrameOrigin:origin];
   [[self contentView] setNeedsDisplay:YES];
 }

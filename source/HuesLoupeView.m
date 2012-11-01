@@ -11,7 +11,7 @@
 #import "HuesGlobal.h"
 #import "NSColor+Hues.h"
 
-#define ZOOM_LEVEL 13.0
+#define ZOOM_LEVEL 12.0
 
 static NSImage *_loupe = nil;
 
