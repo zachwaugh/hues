@@ -73,7 +73,7 @@ static NSInteger level = 0;
 					NSButton *button = (NSButton *)view;
 					[button setTarget:self];
 					[button setAction:@selector(showLoupe:)];
-					NSLog(@"found button via searching subviews: %@ - %@", view, NSStringFromSelector([button action]));
+					//NSLog(@"found button via searching subviews: %@ - %@", view, NSStringFromSelector([button action]));
 				}
 			}
 			
@@ -167,7 +167,7 @@ static NSInteger level = 0;
     } else if ([HuesPreferences defaultRepresentation] == HuesRGBRepresentation) {
       [self copyToClipboard:[color hues_rgb]];
     } else if ([HuesPreferences defaultRepresentation] == HuesHSLRepresentation) {
-      [self copyToClipboard:[color hues_hsb]];
+      [self copyToClipboard:[color hues_hsl]];
     }
   }
   
