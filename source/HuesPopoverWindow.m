@@ -12,17 +12,17 @@
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)styleMask backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
-	styleMask = (NSNonactivatingPanelMask | NSUtilityWindowMask);
+	//styleMask = (NSNonactivatingPanelMask | NSUtilityWindowMask);
 	
 	self = [super initWithContentRect:contentRect styleMask:styleMask backing:bufferingType defer:flag];
 	
 	if (self) {
 		[self setOpaque:NO];
 		[self setBackgroundColor:[NSColor clearColor]];
-		[self setMovableByWindowBackground:NO];
-		[self setMovable:NO];
+		[self setMovableByWindowBackground:YES];
+		//[self setMovable:NO];
 		[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
-		[self setFloatingPanel:YES];
+		//[self setFloatingPanel:YES];
 	}
 	
 	return self;

@@ -42,7 +42,7 @@
 	}
 	
 	if (mode == HuesDockAndMenuBarMode || mode == HuesDockOnlyMode) {
-		//[self addDockIcon];
+		[self addDockIcon];
 	}
 	
   //self.mainController = [[[HuesMainController alloc] init] autorelease];
@@ -78,10 +78,10 @@
 - (void)toggleWindow:(id)sender
 {
 	if ([self.windowController.window isVisible]) {
-		//[NSApp hide:nil];
+		[NSApp hide:nil];
 		[self.windowController hideWindow];
 	} else {
-		//[NSApp activateIgnoringOtherApps:YES];
+		[NSApp activateIgnoringOtherApps:YES];
 		[self.windowController showWindow:nil];
 	}
 }

@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesPopoverWindow : NSPanel
+@interface HuesPopoverWindow : NSWindow
 
 @end
