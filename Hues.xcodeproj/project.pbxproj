@@ -39,6 +39,8 @@
 		92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69C1393ED830072C412 /* HuesPreferences.xib */; };
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
 		92E7D6B81393F1E70072C412 /* HuesColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6B71393F1E70072C412 /* HuesColorTest.m */; };
+		92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */; };
+		92FBF1171666C12700BDC670 /* HuesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FBF1161666C12700BDC670 /* HuesWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,9 @@
 		92E7D69C1393ED830072C412 /* HuesPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPreferences.xib; sourceTree = "<group>"; };
 		92E7D6A81393EDFA0072C412 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		92E7D6B71393F1E70072C412 /* HuesColorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorTest.m; sourceTree = "<group>"; };
+		92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesWindowController.xib; sourceTree = "<group>"; };
+		92FBF1151666C12700BDC670 /* HuesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesWindowController.h; sourceTree = "<group>"; };
+		92FBF1161666C12700BDC670 /* HuesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +226,7 @@
 				92E7D6A81393EDFA0072C412 /* MainMenu.xib */,
 				92E7D69B1393ED830072C412 /* HuesColorsView.xib */,
 				92E7D69C1393ED830072C412 /* HuesPreferences.xib */,
+				92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -257,6 +263,8 @@
 				92E7D6811393ED080072C412 /* HuesMainController.m */,
 				92E7D6841393ED080072C412 /* HuesPreferencesController.h */,
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
+				92FBF1151666C12700BDC670 /* HuesWindowController.h */,
+				92FBF1161666C12700BDC670 /* HuesWindowController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -374,6 +382,7 @@
 				9202B08E14744D3C001201EA /* loupe.png in Resources */,
 				928627031640505B00DA16BE /* hues-tray-background.png in Resources */,
 				928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */,
+				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +432,7 @@
 				92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */,
 				9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */,
 				92AAF5B61642FEBF00DC09E8 /* HuesApplication.m in Sources */,
+				92FBF1171666C12700BDC670 /* HuesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

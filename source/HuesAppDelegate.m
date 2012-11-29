@@ -12,6 +12,17 @@
 #import "HuesMainController.h"
 #import "HuesHistoryManager.h"
 #import "HuesStatusItemView.h"
+#import "HuesWindowController.h"
+
+@interface HuesAppDelegate ()
+
+@property (retain) HuesMainController *mainController;
+@property (retain) HuesWindowController *windowController;
+@property (retain) HuesPreferencesController *preferencesController;
+@property (retain) NSMenu *historyMenu;
+@property (retain) NSStatusItem *statusItem;
+
+@end
 
 @implementation HuesAppDelegate
 
@@ -34,7 +45,8 @@
 		[self addDockIcon];
 	}
 	
-  self.mainController = [[[HuesMainController alloc] init] autorelease];
+  //self.mainController = [[[HuesMainController alloc] init] autorelease];
+	self.windowController = [[[HuesWindowController alloc] init] autorelease];
 }
 
 - (void)awakeFromNib
@@ -68,7 +80,7 @@
 		[NSApp hide:nil];
 	} else {
 		[NSApp activateIgnoringOtherApps:YES];
-		[self.mainController showWindow:nil];
+		[self.windowController showWindow:nil];
 	}
 }
 
