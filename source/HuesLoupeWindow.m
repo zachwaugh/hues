@@ -12,10 +12,10 @@
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag 
 {	
-	HuesLoupeWindow *window = [super initWithContentRect:contentRect styleMask:(NSBorderlessWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
+	HuesLoupeWindow *window = [super initWithContentRect:contentRect styleMask:(NSBorderlessWindowMask | NSUtilityWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
 	
 	[window setBackgroundColor:[NSColor clearColor]];
-	[window setLevel:NSStatusWindowLevel];
+	[window setLevel:NSStatusWindowLevel + 1];
 	[window setOpaque:NO];
 	[window setHasShadow:YES];
 	[window setMovableByWindowBackground:NO];

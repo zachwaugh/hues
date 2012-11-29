@@ -37,10 +37,25 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
 	
   if ([HuesPreferences keepOnTop]) {
-		[self.window setLevel:NSFloatingWindowLevel];
+		//[self.window setLevel:NSFloatingWindowLevel];
 	}
 	
 	[self updateLabelsWithColor:self.color];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+	[self hideWindow];
+}
+
+- (void)hideWindow
+{
+	[self.window orderOut:nil];
+}
+
+- (void)showWindow:(id)sender
+{
+	[self.window makeKeyAndOrderFront:nil];
 }
 
 // Called from loupe

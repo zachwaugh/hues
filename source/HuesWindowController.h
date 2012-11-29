@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesWindowController : NSWindowController
+@interface HuesWindowController : NSWindowController <NSWindowDelegate>
 
 @property (assign) IBOutlet NSColorWell *colorWell;
 @property (assign) IBOutlet NSTextField *primaryFormat;
@@ -29,7 +29,7 @@
 - (IBAction)toggleKeepOnTop:(id)sender;
 - (IBAction)sliderChanged:(id)sender;
 - (void)toggleWindow;
-
+- (void)hideWindow;
 - (void)showWindow:(id)sender;
 - (IBAction)showLoupe:(id)sender;
 

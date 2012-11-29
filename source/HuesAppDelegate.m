@@ -30,7 +30,7 @@
 {
   [HuesPreferences registerDefaults];
 	// Need to do this as early as possible
-  [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
+  //[NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -42,11 +42,12 @@
 	}
 	
 	if (mode == HuesDockAndMenuBarMode || mode == HuesDockOnlyMode) {
-		[self addDockIcon];
+		//[self addDockIcon];
 	}
 	
   //self.mainController = [[[HuesMainController alloc] init] autorelease];
 	self.windowController = [[[HuesWindowController alloc] init] autorelease];
+	[self.windowController showWindow:nil];
 }
 
 - (void)awakeFromNib
@@ -76,10 +77,11 @@
 
 - (void)toggleWindow:(id)sender
 {
-	if ([NSApp isActive]) {
-		[NSApp hide:nil];
+	if ([self.windowController.window isVisible]) {
+		//[NSApp hide:nil];
+		[self.windowController hideWindow];
 	} else {
-		[NSApp activateIgnoringOtherApps:YES];
+		//[NSApp activateIgnoringOtherApps:YES];
 		[self.windowController showWindow:nil];
 	}
 }
