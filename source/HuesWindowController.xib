@@ -48,12 +48,12 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="1005">
-				<int key="NSWindowStyleMask">128</int>
+				<int key="NSWindowStyleMask">143</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{821, 350}, {329, 492}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle"/>
-				<string key="NSWindowClass">HuesPopoverWindow</string>
+				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMaxSize">{329, 492}</string>
@@ -728,8 +728,8 @@
 					<reference key="NSNextKeyView" ref="195049129"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
-				<string key="NSMinSize">{329, 492}</string>
-				<string key="NSMaxSize">{329, 492}</string>
+				<string key="NSMinSize">{329, 514}</string>
+				<string key="NSMaxSize">{329, 514}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 		</array>
@@ -3123,6 +3123,7 @@
 				<string key="117.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="118.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="119.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="12.CustomClassName">HuesColorSlider</string>
 				<array class="NSMutableArray" key="12.IBNSViewMetadataConstraints">
 					<reference ref="477946116"/>
 				</array>
@@ -3136,6 +3137,7 @@
 				<string key="126.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="127.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="13.CustomClassName">HuesColorSliderCell</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="133.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3247,6 +3249,7 @@
 				<boolean value="NO" key="31.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="36.CustomClassName">HuesColorSlider</string>
 				<boolean value="NO" key="36.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="365.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3287,6 +3290,7 @@
 				<string key="424.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="427.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="428.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="43.CustomClassName">HuesColorSliderCell</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="431.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="434.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3312,6 +3316,7 @@
 				<string key="67.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="7.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="70.CustomClassName">HuesColorSlider</string>
 				<boolean value="NO" key="70.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="71.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
@@ -3324,6 +3329,7 @@
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="77.CustomClassName">HuesColorSliderCell</string>
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<integer value="0" key="8.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3339,6 +3345,22 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">HuesColorSlider</string>
+					<string key="superclassName">NSSlider</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HuesColorSlider.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HuesColorSliderCell</string>
+					<string key="superclassName">NSSliderCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HuesColorSliderCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">HuesColorsView</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -3352,14 +3374,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/HuesGradientLine.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">HuesPopoverWindow</string>
-					<string key="superclassName">NSPanel</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HuesPopoverWindow.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3378,6 +3392,7 @@
 						<string key="copyPrimary:">id</string>
 						<string key="copySecondary:">id</string>
 						<string key="showLoupe:">id</string>
+						<string key="showWindow:">id</string>
 						<string key="sliderChanged:">id</string>
 						<string key="toggleKeepOnTop:">id</string>
 					</dictionary>
@@ -3398,6 +3413,10 @@
 							<string key="name">showLoupe:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="showWindow:">
+							<string key="name">showWindow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="sliderChanged:">
 							<string key="name">sliderChanged:</string>
 							<string key="candidateClassName">id</string>
@@ -3412,13 +3431,13 @@
 						<string key="alphaSlider">NSSlider</string>
 						<string key="alternateFormats">NSPopUpButton</string>
 						<string key="blueField">NSTextField</string>
-						<string key="blueSlider">NSSlider</string>
+						<string key="blueSlider">HuesColorSlider</string>
 						<string key="colorWell">NSColorWell</string>
 						<string key="greenField">NSTextField</string>
-						<string key="greenSlider">NSSlider</string>
+						<string key="greenSlider">HuesColorSlider</string>
 						<string key="primaryFormat">NSTextField</string>
 						<string key="redField">NSTextField</string>
-						<string key="redSlider">NSSlider</string>
+						<string key="redSlider">HuesColorSlider</string>
 						<string key="secondaryFormat">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -3440,7 +3459,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="blueSlider">
 							<string key="name">blueSlider</string>
-							<string key="candidateClassName">NSSlider</string>
+							<string key="candidateClassName">HuesColorSlider</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="colorWell">
 							<string key="name">colorWell</string>
@@ -3452,7 +3471,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="greenSlider">
 							<string key="name">greenSlider</string>
-							<string key="candidateClassName">NSSlider</string>
+							<string key="candidateClassName">HuesColorSlider</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="primaryFormat">
 							<string key="name">primaryFormat</string>
@@ -3464,7 +3483,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="redSlider">
 							<string key="name">redSlider</string>
-							<string key="candidateClassName">NSSlider</string>
+							<string key="candidateClassName">HuesColorSlider</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="secondaryFormat">
 							<string key="name">secondaryFormat</string>

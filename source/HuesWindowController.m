@@ -11,6 +11,7 @@
 #import "HuesLoupeView.h"
 #import "NSColor+Hues.h"
 #import "HuesPreferences.h"
+#import "HuesColorSlider.h"
 
 @interface HuesWindowController ()
 
@@ -45,7 +46,7 @@
 
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-	[self hideWindow];
+	//[self hideWindow];
 }
 
 - (void)hideWindow
@@ -90,19 +91,30 @@
 	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
 	[self.alternateFormats addItemsWithTitles:@[[color hues_UIColorRGB], [color hues_UIColorHSB]]];
 	
-	int red = (int)([color redComponent] * 255.0);
-	int green = (int)([color greenComponent] * 255.0);
-	int blue = (int)([color blueComponent] * 255.0);
+	
+	CGFloat redComponent = [color redComponent];
+	CGFloat greenComponent = [color greenComponent];
+	CGFloat blueComponent = [color blueComponent];
+	
+	int red = (int)(redComponent * 255.0);
+	int green = (int)(greenComponent * 255.0);
+	int blue = (int)(blueComponent * 255.0);
 	int alpha = (int)([color alphaComponent] * 100.0);
 	
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
 	self.redSlider.intValue = red;
+	self.redSlider.startColor = [NSColor colorWithCalibratedRed:0 green:greenComponent blue:blueComponent alpha:1.0];
+	self.redSlider.endColor = [NSColor colorWithCalibratedRed:1 green:greenComponent blue:blueComponent alpha:1.0];
 	
 	self.greenField.stringValue = [NSString stringWithFormat:@"%d", green];
 	self.greenSlider.intValue = green;
+	self.greenSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:0 blue:blueComponent alpha:1.0];
+	self.greenSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:1 blue:blueComponent alpha:1.0];
 	
 	self.blueField.stringValue = [NSString stringWithFormat:@"%d", blue];
 	self.blueSlider.intValue = blue;
+	self.blueSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:0 alpha:1.0];
+	self.blueSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:1 alpha:1.0];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d%%", alpha];
 	self.alphaSlider.intValue = alpha;
@@ -112,7 +124,6 @@
 
 - (IBAction)sliderChanged:(id)sender
 {
-	NSLog(@"sliderChanged: %@", sender);
 	NSColor *newColor = nil;
 	
 	if (sender == self.redSlider) {

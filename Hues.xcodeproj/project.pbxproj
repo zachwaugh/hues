@@ -10,6 +10,8 @@
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
 		9202B08E14744D3C001201EA /* loupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08D14744D3C001201EA /* loupe.png */; };
+		9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51B167BDDB000A33702 /* HuesColorSlider.m */; };
+		9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
 		923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1521467394E003CC8BB /* HuesLoupeWindow.m */; };
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
@@ -53,6 +55,10 @@
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
 		9202B08D14744D3C001201EA /* loupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loupe.png; sourceTree = "<group>"; };
+		9234D51A167BDDB000A33702 /* HuesColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSlider.h; sourceTree = "<group>"; };
+		9234D51B167BDDB000A33702 /* HuesColorSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorSlider.m; sourceTree = "<group>"; };
+		9234D51E167BDE0E00A33702 /* HuesColorSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSliderCell.h; sourceTree = "<group>"; };
+		9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorSliderCell.m; sourceTree = "<group>"; };
 		923CA14F1467394E003CC8BB /* HuesLoupeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeView.h; sourceTree = "<group>"; };
 		923CA1501467394E003CC8BB /* HuesLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeView.m; sourceTree = "<group>"; };
 		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
@@ -304,6 +310,10 @@
 				92FBF1191667049400BDC670 /* HuesWindowContentView.m */,
 				92FBF12A16670AFC00BDC670 /* HuesPopoverWindow.h */,
 				92FBF12B16670AFC00BDC670 /* HuesPopoverWindow.m */,
+				9234D51A167BDDB000A33702 /* HuesColorSlider.h */,
+				9234D51B167BDDB000A33702 /* HuesColorSlider.m */,
+				9234D51E167BDE0E00A33702 /* HuesColorSliderCell.h */,
+				9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -461,6 +471,8 @@
 				92FBF1171666C12700BDC670 /* HuesWindowController.m in Sources */,
 				92FBF11A1667049400BDC670 /* HuesWindowContentView.m in Sources */,
 				92FBF12C16670AFC00BDC670 /* HuesPopoverWindow.m in Sources */,
+				9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */,
+				9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

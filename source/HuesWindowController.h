@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColorSlider;
+
 @interface HuesWindowController : NSWindowController <NSWindowDelegate>
 
 @property (assign) IBOutlet NSColorWell *colorWell;
@@ -18,9 +20,9 @@
 @property (assign) IBOutlet NSTextField *greenField;
 @property (assign) IBOutlet NSTextField *blueField;
 @property (assign) IBOutlet NSTextField *alphaField;
-@property (assign) IBOutlet NSSlider *redSlider;
-@property (assign) IBOutlet NSSlider *greenSlider;
-@property (assign) IBOutlet NSSlider *blueSlider;
+@property (assign) IBOutlet HuesColorSlider *redSlider;
+@property (assign) IBOutlet HuesColorSlider *greenSlider;
+@property (assign) IBOutlet HuesColorSlider *blueSlider;
 @property (assign) IBOutlet NSSlider *alphaSlider;
 
 - (IBAction)copyPrimary:(id)sender;
