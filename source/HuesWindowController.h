@@ -24,6 +24,12 @@
 @property (assign) IBOutlet HuesColorSlider *greenSlider;
 @property (assign) IBOutlet HuesColorSlider *blueSlider;
 @property (assign) IBOutlet HuesColorSlider *alphaSlider;
+@property (assign) IBOutlet HuesColorSlider *hueSlider;
+@property (assign) IBOutlet HuesColorSlider *saturationSlider;
+@property (assign) IBOutlet HuesColorSlider *lightnessSlider;
+@property (assign) IBOutlet NSTextField *hueField;
+@property (assign) IBOutlet NSTextField *saturationField;
+@property (assign) IBOutlet NSTextField *lightnessField;
 
 - (IBAction)copyPrimary:(id)sender;
 - (IBAction)copySecondary:(id)sender;

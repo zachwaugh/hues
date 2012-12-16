@@ -12,6 +12,7 @@
 #import "NSColor+Hues.h"
 #import "HuesPreferences.h"
 #import "HuesColorSlider.h"
+#import "INAppStoreWindow.h"
 
 @interface HuesWindowController ()
 
@@ -34,6 +35,21 @@
 - (void)windowDidLoad
 {
 	[super windowDidLoad];
+	
+	// Setup custom window titlebar
+	INAppStoreWindow *window = (INAppStoreWindow*)self.window;
+	window.titleBarHeight = 34.0;
+	
+	NSView *titleBarView = window.titleBarView;
+	NSImage *loupe = [NSImage imageNamed:@"loupe-button"];
+	NSRect buttonFrame = NSMakeRect(NSMaxX(titleBarView.bounds) - loupe.size.width - 10, NSMidY(titleBarView.bounds) - (loupe.size.height / 2.f), loupe.size.width, loupe.size.height);
+	NSButton *button = [[NSButton alloc] initWithFrame:buttonFrame];
+	[button setBordered:NO];
+	[button setImage:loupe];
+	[button setTarget:self];
+	[button setAction:@selector(showLoupe:)];
+	button.autoresizingMask = (NSViewMinXMargin | NSViewMinYMargin);
+	[titleBarView addSubview:button];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
 	
@@ -101,6 +117,8 @@
 	int blue = (int)(blueComponent * 255.0);
 	int alpha = (int)([color alphaComponent] * 100.0);
 	
+	// RGBA
+	
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
 	self.redSlider.intValue = red;
 	self.redSlider.startColor = [NSColor colorWithCalibratedRed:0 green:greenComponent blue:blueComponent alpha:1.0];
@@ -118,8 +136,15 @@
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d%%", alpha];
 	self.alphaSlider.intValue = alpha;
-	self.alphaSlider.startColor = [NSColor blackColor];
+	self.alphaSlider.startColor = [NSColor whiteColor];
 	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
+	
+	// HSL
+
+	self.saturationField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.saturationComponent * 100.0)];
+	self.saturationSlider.intValue = color.saturationComponent * 100.0;
+	self.saturationSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:0 brightness:color.brightnessComponent alpha:1.0];
+	self.saturationSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:1 brightness:color.brightnessComponent alpha:1.0];
 }
 
 #pragma mark - RGB sliders

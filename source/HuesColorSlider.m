@@ -11,6 +11,22 @@
 
 @implementation HuesColorSlider
 
+- (id)initWithFrame:(NSRect)frameRect
+{
+	if ((self = [super initWithFrame:frameRect])) {
+		_startColor = [NSColor whiteColor];
+		_endColor = [NSColor whiteColor];
+	}
+	
+	return self;
+}
+
+- (void)awakeFromNib
+{
+	self.startColor = [NSColor whiteColor];
+	self.endColor = [NSColor whiteColor];
+}
+
 - (void)setStartColor:(NSColor *)startColor
 {
 	_startColor = [startColor retain];

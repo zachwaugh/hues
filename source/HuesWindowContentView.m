@@ -14,7 +14,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	CGFloat bottomHeight = [self.window contentBorderThicknessForEdge:NSMinYEdge];
+	CGFloat bottomHeight = 0; //[self.window contentBorderThicknessForEdge:NSMinYEdge];
 	NSRect rect = NSMakeRect(0, bottomHeight, self.bounds.size.width, self.bounds.size.height - bottomHeight);
 	
 	NSBezierPath *clipPath = [NSBezierPath bezierPathWithRect:rect];
