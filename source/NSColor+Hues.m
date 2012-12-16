@@ -9,6 +9,12 @@
 #import "NSColor+Hues.h"
 #import "HuesPreferences.h"
 
+struct HuesColorHSL {
+  CGFloat hue;
+	CGFloat saturation;
+	CGFloat lightness;
+};
+
 static NSString * const HuesNSColorCalibratedRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
 static NSString * const HuesNSColorCalibratedHSBFormat = @"[NSColor colorWithCalibratedHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
 static NSString * const HuesNSColorDeviceRGBFormat = @"[NSColor colorWithDeviceRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
@@ -17,6 +23,8 @@ static NSString * const HuesUIColorRGBFormat = @"[UIColor colorWithRed:%0.3f gre
 static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
 
 @implementation NSColor (Hues)
+
+#pragma mark - Hex
 
 - (NSString *)hues_hex
 {
@@ -58,6 +66,8 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	
   return nil;
 }
+
+#pragma mark - RGB
 
 - (NSString *)hues_rgb
 {
@@ -117,6 +127,8 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
   return nil;
 }
 
+#pragma mark - HSB
+
 - (NSString *)hues_hsb
 {
   int hue, saturation, brightness;
@@ -141,6 +153,8 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
   return nil;
 }
 
+#pragma mark - HSL
+
 - (NSString *)hues_hsl
 {
   return ([self alphaComponent] < 1) ? [self hues_hslaWithFormat:[HuesPreferences hslaFormat]] : [self hues_hslWithFormat:[HuesPreferences hslFormat]];
@@ -154,12 +168,11 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 - (NSString *)hues_hslWithFormat:(NSString *)format
 {
   int hue;
-  float red, green, blue, alpha, saturation, lightness, max, min, delta;
+  CGFloat red, green, blue, alpha, saturation, lightness, max, min, delta;
   
   NSColor *color = [self hues_convertedColor];
   
-  if (color)
-  {
+  if (color) {
     red = [color redComponent];
     green = [color greenComponent];
     blue = [color blueComponent];
