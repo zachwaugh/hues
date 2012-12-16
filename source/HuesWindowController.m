@@ -102,6 +102,7 @@
 	[self.alternateFormats removeAllItems];
 	
 	[self.alternateFormats addItemsWithTitles:@[[color hues_hsl]]];
+	[self.alternateFormats addItemsWithTitles:@[[color hues_hsb]]];
 	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
 	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
 	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
@@ -140,11 +141,20 @@
 	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
 	
 	// HSL
-
+	self.hueField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.hueComponent * 360.0)];
+	self.hueSlider.intValue = color.hueComponent * 360.0f;
+	self.hueSlider.startColor = [NSColor colorWithCalibratedHue:0 saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
+	self.hueSlider.endColor = [NSColor colorWithCalibratedHue:1 saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
+	
 	self.saturationField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.saturationComponent * 100.0)];
 	self.saturationSlider.intValue = color.saturationComponent * 100.0;
 	self.saturationSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:0 brightness:color.brightnessComponent alpha:1.0];
 	self.saturationSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:1 brightness:color.brightnessComponent alpha:1.0];
+	
+	self.lightnessField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.brightnessComponent * 100.0)];
+	self.lightnessSlider.intValue = color.brightnessComponent * 100.0;
+	self.lightnessSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:0 alpha:1.0];
+	self.lightnessSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:1 alpha:1.0];
 }
 
 #pragma mark - RGB sliders
@@ -161,6 +171,12 @@
 		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueSlider.floatValue / 255.0f) alpha:[self.color alphaComponent]];
 	} else if (sender == self.alphaSlider) {
 		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaSlider.floatValue / 100.0f)];
+	} else if (sender == self.hueSlider) {
+		newColor = [NSColor colorWithCalibratedHue:(self.hueSlider.floatValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+	} else if (sender == self.saturationSlider) {
+		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationSlider.floatValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+	} else if (sender == self.lightnessSlider) {
+		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessSlider.floatValue / 100.0f) alpha:self.color.alphaComponent];
 	}
 
 	self.color = newColor;
