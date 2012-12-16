@@ -14,19 +14,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	NSBezierPath *clipPath = [NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:RADIUS yRadius:RADIUS];
+	CGFloat bottomHeight = [self.window contentBorderThicknessForEdge:NSMinYEdge];
+	NSRect rect = NSMakeRect(0, bottomHeight, self.bounds.size.width, self.bounds.size.height - bottomHeight);
 	
+	NSBezierPath *clipPath = [NSBezierPath bezierPathWithRect:rect];
 	[[NSColor colorWithCalibratedRed:0.969 green:0.969 blue:0.969 alpha:1.000] set];
 	[clipPath fill];
-	//NSRectFill(self.bounds);
-	
-//	NSImage *top = [NSImage imageNamed:@"popover-bg"];
-//	NSRect topRect = NSMakeRect(0, self.bounds.size.height - top.size.height, self.bounds.size.width, top.size.height);
-//	
-//	[NSGraphicsContext saveGraphicsState];
-//	[clipPath addClip];
-//	NSDrawThreePartImage(topRect, top, top, top, NO, NSCompositeSourceOver, 1.0, [self isFlipped]);
-//	[NSGraphicsContext restoreGraphicsState];
 }
 
 @end

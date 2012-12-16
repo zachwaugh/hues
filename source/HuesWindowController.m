@@ -118,6 +118,8 @@
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d%%", alpha];
 	self.alphaSlider.intValue = alpha;
+	self.alphaSlider.startColor = [NSColor blackColor];
+	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
 }
 
 #pragma mark - RGB sliders

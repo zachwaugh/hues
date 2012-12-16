@@ -10,6 +10,7 @@
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
 		9202B08E14744D3C001201EA /* loupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08D14744D3C001201EA /* loupe.png */; };
+		921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E50167E6276002FCC42 /* HuesScopeBarView.m */; };
 		9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51B167BDDB000A33702 /* HuesColorSlider.m */; };
 		9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
@@ -55,6 +56,8 @@
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
 		9202B08D14744D3C001201EA /* loupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loupe.png; sourceTree = "<group>"; };
+		921A8E4F167E6276002FCC42 /* HuesScopeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesScopeBarView.h; sourceTree = "<group>"; };
+		921A8E50167E6276002FCC42 /* HuesScopeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesScopeBarView.m; sourceTree = "<group>"; };
 		9234D51A167BDDB000A33702 /* HuesColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSlider.h; sourceTree = "<group>"; };
 		9234D51B167BDDB000A33702 /* HuesColorSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorSlider.m; sourceTree = "<group>"; };
 		9234D51E167BDE0E00A33702 /* HuesColorSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSliderCell.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				9234D51B167BDDB000A33702 /* HuesColorSlider.m */,
 				9234D51E167BDE0E00A33702 /* HuesColorSliderCell.h */,
 				9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */,
+				921A8E4F167E6276002FCC42 /* HuesScopeBarView.h */,
+				921A8E50167E6276002FCC42 /* HuesScopeBarView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				92FBF12C16670AFC00BDC670 /* HuesPopoverWindow.m in Sources */,
 				9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */,
 				9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */,
+				921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@
 @property (assign) IBOutlet HuesColorSlider *redSlider;
 @property (assign) IBOutlet HuesColorSlider *greenSlider;
 @property (assign) IBOutlet HuesColorSlider *blueSlider;
-@property (assign) IBOutlet NSSlider *alphaSlider;
+@property (assign) IBOutlet HuesColorSlider *alphaSlider;
 
 - (IBAction)copyPrimary:(id)sender;
 - (IBAction)copySecondary:(id)sender;
