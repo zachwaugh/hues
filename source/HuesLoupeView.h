@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define LOUPE_SIZE 260
-
 @interface HuesLoupeView : NSView
 
 - (NSColor *)colorAtPoint:(CGPoint)point;

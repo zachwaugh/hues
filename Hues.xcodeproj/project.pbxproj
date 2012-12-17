@@ -10,7 +10,6 @@
 		19C657B3150F44E685004A9E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A84020242F57497396E19593 /* libPods.a */; };
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
-		9202B08E14744D3C001201EA /* loupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08D14744D3C001201EA /* loupe.png */; };
 		921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E50167E6276002FCC42 /* HuesScopeBarView.m */; };
 		921A8E55167E6783002FCC42 /* loupe-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E53167E6783002FCC42 /* loupe-button.png */; };
 		921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E54167E6783002FCC42 /* loupe-button@2x.png */; };
@@ -24,8 +23,6 @@
 		9264FE7F1393ECA000935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE871393ECA000935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE851393ECA000935FAC /* InfoPlist.strings */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
-		928627031640505B00DA16BE /* hues-tray-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 928627011640505B00DA16BE /* hues-tray-background.png */; };
-		928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 928627021640505B00DA16BE /* hues-tray-background@2x.png */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
 		928627081640693E00DA16BE /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
 		9286270916406B5900DA16BE /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
@@ -34,7 +31,6 @@
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
 		92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67F1393ED080072C412 /* HuesHistoryManager.m */; };
-		92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6811393ED080072C412 /* HuesMainController.m */; };
 		92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
 		92E7D6911393ED080072C412 /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
@@ -47,14 +43,11 @@
 		92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */; };
 		92FBF1171666C12700BDC670 /* HuesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FBF1161666C12700BDC670 /* HuesWindowController.m */; };
 		92FBF11A1667049400BDC670 /* HuesWindowContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FBF1191667049400BDC670 /* HuesWindowContentView.m */; };
-		92FBF1211667072E00BDC670 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 92FBF11F1667072D00BDC670 /* popover-bg.png */; };
-		92FBF1221667072E00BDC670 /* popover-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92FBF1201667072D00BDC670 /* popover-bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
-		9202B08D14744D3C001201EA /* loupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loupe.png; sourceTree = "<group>"; };
 		921A8E4F167E6276002FCC42 /* HuesScopeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesScopeBarView.h; sourceTree = "<group>"; };
 		921A8E50167E6276002FCC42 /* HuesScopeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesScopeBarView.m; sourceTree = "<group>"; };
 		921A8E53167E6783002FCC42 /* loupe-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-button.png"; sourceTree = "<group>"; };
@@ -83,8 +76,6 @@
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
-		928627011640505B00DA16BE /* hues-tray-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues-tray-background.png"; sourceTree = "<group>"; };
-		928627021640505B00DA16BE /* hues-tray-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues-tray-background@2x.png"; sourceTree = "<group>"; };
 		9286270516405BF000DA16BE /* HuesGradientLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGradientLine.h; sourceTree = "<group>"; };
 		9286270616405BF000DA16BE /* HuesGradientLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGradientLine.m; sourceTree = "<group>"; };
 		92AAF5B41642FEBE00DC09E8 /* HuesApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesApplication.h; sourceTree = "<group>"; };
@@ -97,8 +88,6 @@
 		92E7D67D1393ED080072C412 /* HuesGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGlobal.m; sourceTree = "<group>"; };
 		92E7D67E1393ED080072C412 /* HuesHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHistoryManager.h; sourceTree = "<group>"; };
 		92E7D67F1393ED080072C412 /* HuesHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHistoryManager.m; sourceTree = "<group>"; };
-		92E7D6801393ED080072C412 /* HuesMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMainController.h; sourceTree = "<group>"; };
-		92E7D6811393ED080072C412 /* HuesMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesMainController.m; sourceTree = "<group>"; };
 		92E7D6821393ED080072C412 /* HuesPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferences.h; sourceTree = "<group>"; };
 		92E7D6831393ED080072C412 /* HuesPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferences.m; sourceTree = "<group>"; };
 		92E7D6841393ED080072C412 /* HuesPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferencesController.h; sourceTree = "<group>"; };
@@ -117,8 +106,6 @@
 		92FBF1161666C12700BDC670 /* HuesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesWindowController.m; sourceTree = "<group>"; };
 		92FBF1181667049400BDC670 /* HuesWindowContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesWindowContentView.h; sourceTree = "<group>"; };
 		92FBF1191667049400BDC670 /* HuesWindowContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesWindowContentView.m; sourceTree = "<group>"; };
-		92FBF11F1667072D00BDC670 /* popover-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover-bg.png"; sourceTree = "<group>"; };
-		92FBF1201667072D00BDC670 /* popover-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover-bg@2x.png"; sourceTree = "<group>"; };
 		A84020242F57497396E19593 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -194,8 +181,8 @@
 				92E7D6B41393EFDC0072C412 /* Views */,
 				92E7D6B31393EFC60072C412 /* Controllers */,
 				92E7D6751393ECD10072C412 /* Interface */,
-				92E7D6771393ECDA0072C412 /* Resources */,
 				9264FE681393EC9F00935FAC /* Supporting Files */,
+				92E7D6771393ECDA0072C412 /* Resources */,
 			);
 			name = Hues;
 			path = source;
@@ -204,11 +191,12 @@
 		9264FE681393EC9F00935FAC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9264FE6E1393EC9F00935FAC /* main.m */,
+				9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */,
 				9264FE691393EC9F00935FAC /* Hues-Info.plist */,
 				9264FE6A1393EC9F00935FAC /* InfoPlist.strings */,
-				9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */,
 				928626A81640262200DA16BE /* Hues.entitlements */,
-				9264FE6E1393EC9F00935FAC /* main.m */,
+				92E7D6951393ED1B0072C412 /* CHANGELOG.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -236,10 +224,10 @@
 		928626AA1640281000DA16BE /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D6781393ED080072C412 /* HuesAppDelegate.h */,
-				92E7D6791393ED080072C412 /* HuesAppDelegate.m */,
 				92AAF5B41642FEBE00DC09E8 /* HuesApplication.h */,
 				92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */,
+				92E7D6781393ED080072C412 /* HuesAppDelegate.h */,
+				92E7D6791393ED080072C412 /* HuesAppDelegate.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -259,15 +247,9 @@
 			children = (
 				921A8E53167E6783002FCC42 /* loupe-button.png */,
 				921A8E54167E6783002FCC42 /* loupe-button@2x.png */,
-				928627011640505B00DA16BE /* hues-tray-background.png */,
-				92FBF11F1667072D00BDC670 /* popover-bg.png */,
-				92FBF1201667072D00BDC670 /* popover-bg@2x.png */,
-				928627021640505B00DA16BE /* hues-tray-background@2x.png */,
-				9202B08D14744D3C001201EA /* loupe.png */,
 				9202B089147448C5001201EA /* hues_menubar_highlight.png */,
 				9202B08A147448C5001201EA /* hues_menubar_normal.png */,
 				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
-				92E7D6951393ED1B0072C412 /* CHANGELOG.md */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,8 +268,6 @@
 		92E7D6B31393EFC60072C412 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D6801393ED080072C412 /* HuesMainController.h */,
-				92E7D6811393ED080072C412 /* HuesMainController.m */,
 				92E7D6841393ED080072C412 /* HuesPreferencesController.h */,
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
 				92FBF1151666C12700BDC670 /* HuesWindowController.h */,
@@ -414,12 +394,7 @@
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
 				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
 				9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */,
-				9202B08E14744D3C001201EA /* loupe.png in Resources */,
-				928627031640505B00DA16BE /* hues-tray-background.png in Resources */,
-				928627041640505B00DA16BE /* hues-tray-background@2x.png in Resources */,
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
-				92FBF1211667072E00BDC670 /* popover-bg.png in Resources */,
-				92FBF1221667072E00BDC670 /* popover-bg@2x.png in Resources */,
 				921A8E55167E6783002FCC42 /* loupe-button.png in Resources */,
 				921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */,
 			);
@@ -475,7 +450,6 @@
 				92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */,
 				92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */,
 				92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */,
-				92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */,
 				92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */,
 				92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */,
 				92E7D6911393ED080072C412 /* NSColor+Hues.m in Sources */,
@@ -562,6 +536,7 @@
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -584,6 +559,7 @@
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -604,7 +580,6 @@
 		9264FE931393ECA000935FAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
@@ -612,6 +587,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Headers/MASShortcut";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
@@ -626,7 +602,6 @@
 		9264FE941393ECA000935FAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -634,6 +609,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Headers/MASShortcut";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
@@ -664,6 +640,7 @@
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -685,7 +662,6 @@
 		92E7D6D41394410C0072C412 /* App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -693,6 +669,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tests/HuesTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Headers/MASShortcut";
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (

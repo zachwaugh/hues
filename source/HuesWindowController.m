@@ -13,10 +13,11 @@
 #import "HuesPreferences.h"
 #import "HuesColorSlider.h"
 #import "INAppStoreWindow.h"
+#import "HuesAppDelegate.h"
 
 @interface HuesWindowController ()
 
-@property (retain) NSColor *color;
+@property (strong) NSColor *color;
 
 - (void)updateInterfaceWithColor:(NSColor *)color;
 
@@ -99,12 +100,12 @@
 	self.colorWell.color = color;
 	
   // Setup overlay text attributes
-  NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+  NSShadow *shadow = [[NSShadow alloc] init];
   [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
   [shadow setShadowOffset:NSMakeSize(0, -1)];
   
-  NSAttributedString *hexString = [[[NSAttributedString alloc] initWithString:[color hues_hex] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:16.0], NSShadowAttributeName: shadow}] autorelease];
-  NSAttributedString *rgbString = [[[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:14.0], NSShadowAttributeName: shadow}] autorelease];
+  NSAttributedString *hexString = [[NSAttributedString alloc] initWithString:[color hues_hex] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:16.0], NSShadowAttributeName: shadow}];
+  NSAttributedString *rgbString = [[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:14.0], NSShadowAttributeName: shadow}];
   
 	[self.primaryFormat setAttributedStringValue:hexString];
   [self.secondaryFormat setAttributedStringValue:rgbString];
@@ -245,13 +246,7 @@
 
 - (void)showLoupe:(id)sender
 {
-  NSPoint point = [NSEvent mouseLocation];
-  
-  HuesLoupeWindow *loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
-	HuesLoupeView *loupeView = [[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease];
-  [loupeWindow.contentView addSubview:loupeView];
-	[loupeWindow makeKeyAndOrderFront:self];
-	[loupeWindow makeFirstResponder:loupeView];
+	[(HuesAppDelegate *)[NSApp delegate] showLoupe:sender];
 }
 
 #pragma mark - Color input

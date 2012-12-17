@@ -7,25 +7,39 @@
 //
 
 #import "HuesLoupeWindow.h"
+#import "HuesLoupeView.h"
+
+NSInteger const HuesLoupeSize = 315;
+
+@interface HuesLoupeWindow ()
+
+@property (strong) HuesLoupeView *loupeView;
+
+@end
 
 @implementation HuesLoupeWindow
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag 
 {	
-	HuesLoupeWindow *window = [super initWithContentRect:contentRect styleMask:(NSBorderlessWindowMask | NSUtilityWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
+	self = [super initWithContentRect:contentRect styleMask:(NSBorderlessWindowMask | NSUtilityWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
 	
-	[window setBackgroundColor:[NSColor clearColor]];
-	[window setLevel:NSStatusWindowLevel + 1];
-	[window setOpaque:NO];
-	[window setHasShadow:YES];
-	[window setMovableByWindowBackground:NO];
-	[window setIgnoresMouseEvents:NO];
-	[window setAcceptsMouseMovedEvents:YES];
+	if (self) {
+		[self setBackgroundColor:[NSColor clearColor]];
+		[self setLevel:NSStatusWindowLevel + 1];
+		[self setOpaque:NO];
+		[self setHasShadow:YES];
+		[self setMovableByWindowBackground:NO];
+		[self setIgnoresMouseEvents:NO];
+		[self setAcceptsMouseMovedEvents:YES];
+		
+		[self disableCursorRects];
+		[NSCursor hide];
+		
+		self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
+		self.contentView = self.loupeView;
+	}
 	
-  [self disableCursorRects];
-  [NSCursor hide];
-  
-	return window;
+	return self;
 }
 
 - (BOOL)canBecomeKeyWindow
@@ -96,9 +110,9 @@
 
 - (void)adjustLoupeWithOrigin:(NSPoint)origin
 {
-	//NSLog(@"loupe origin: %@", NSStringFromPoint(origin));
+	NSLog(@"loupe origin: %@", NSStringFromPoint(origin));
 	[self setFrameOrigin:origin];
-  [[self contentView] setNeedsDisplay:YES];
+  [self.loupeView setNeedsDisplay:YES];
 }
 
 @end

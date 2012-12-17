@@ -7,24 +7,17 @@
 //
 
 #import "HuesPreferencesController.h"
+#import "HuesPreferences.h"
+#import "MASShortcutView.h"
+#import "MASShortcutView+UserDefaults.h"
+#import "MASShortcut+UserDefaults.h"
+#import "MASShortcut+Monitoring.h"
 
 NSString * const HuesGeneralToolbarIdentifier = @"general";
-NSString * const HuesColorPickersToolbarIdentifier = @"colorpickers";
 NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
 
 @implementation HuesPreferencesController
 
-- (void)dealloc
-{
-  self.currentToolbarIdentifier = nil;
-  self.toolbar = nil;
-  self.view = nil;
-  self.generalView = nil;
-  self.colorPickersView = nil;
-  self.advancedView = nil;
-  
-  [super dealloc];
-}
 
 - (void)awakeFromNib
 {
@@ -32,6 +25,8 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
   [self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
   [[self window] setTitle:@"General"];
   self.currentView = self.generalView;
+	
+	self.loupeShortcutView.associatedUserDefaultsKey = HuesLoupeShortcutKey;
 }
 
 - (void)toolbarItemSelected:(id)sender
@@ -46,9 +41,6 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
   if ([identifier isEqualToString:HuesGeneralToolbarIdentifier]) {
     [[self window] setTitle:@"General"];
     self.currentView = self.generalView;
-  } else if ([identifier isEqualToString:HuesColorPickersToolbarIdentifier]) {
-    [[self window] setTitle:@"Color Pickers"];
-    self.currentView = self.colorPickersView;
   } else if ([identifier isEqualToString:HuesAdvancedToolbarIdentifier]) {
     [[self window] setTitle:@"Advanced"];
     self.currentView = self.advancedView;

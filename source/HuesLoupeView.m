@@ -11,9 +11,9 @@
 #import "HuesGlobal.h"
 #import "NSColor+Hues.h"
 
-#define ZOOM_LEVEL 12.0
-
-static NSImage *_loupe = nil;
+// Zoom level is multiplier of pixel size
+#define ZOOM_LEVEL 15.0
+#define GRID_LINES NO
 
 @interface HuesLoupeView ()
 {
@@ -24,40 +24,34 @@ static NSImage *_loupe = nil;
 
 @implementation HuesLoupeView
 
-+ (void)initialize
-{
-  _loupe = [[NSImage imageNamed:@"loupe"] retain];
-}
-
 - (void)dealloc
 {
   if (_image) {
 		CGImageRelease(_image);
 	}
-  
-  [super dealloc];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
   NSRect b = self.bounds;
-
+	CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+	
+	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
-  CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
   
   // Convert rect to screen coordinates
   NSRect rect = [window frame];
   rect.origin.y = NSMaxY([[NSScreen screens][0] frame]) - NSMaxY(rect);
   
-  //NSLog(@"rect: %@", NSStringFromRect(rect));
-  
-  NSBezierPath *loupePath = [NSBezierPath bezierPathWithRoundedRect:b xRadius:(LOUPE_SIZE / 2) yRadius:(LOUPE_SIZE / 2)];
-
   CGImageRelease(_image);
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
+
+	// Main loupe path
+  NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  float offset = ((ZOOM_LEVEL * LOUPE_SIZE) - LOUPE_SIZE) / 2;
+  float offset = ((ZOOM_LEVEL * HuesLoupeSize) - HuesLoupeSize) / 2;
   
+	// Draw scaled screenshot clipped to loupe path
   CGContextSaveGState(ctx);
   [loupePath addClip];
   CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
@@ -70,33 +64,57 @@ static NSImage *_loupe = nil;
   CGContextDrawImage(ctx, b, _image);
   CGContextRestoreGState(ctx);
   
-  // Loop image
-  //[_loupe drawInRect:b fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	
-  // Draw crosshair lines
-  [[NSColor blackColor] set];
-
-  // Need to clip to inside of loupe
-  [loupePath addClip];
-
-  //CGContextSetAllowsAntialiasing(ctx, NO);
-  
-  float radius = LOUPE_SIZE / 2.0;
-  
-  // horizontal - beginning to middle
-  NSRectFill(NSMakeRect(0, NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-  
-  // horizontal - middle to end
-  NSRectFill(NSMakeRect(round(radius + (ZOOM_LEVEL / 2)), NSMidY(b) - 0.5, round(radius - (ZOOM_LEVEL / 2)), 1.0));
-  
-  // Vertical - bottom to middle
-  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, 0, 1.0, floor(radius - (ZOOM_LEVEL / 2))));
-  
-  // Vertical - middle to end
-  NSRectFill(NSMakeRect(NSMidX(b) - 0.5, radius + (ZOOM_LEVEL / 2), 1.0, ceil(radius - (ZOOM_LEVEL / 2))));
-  
-  //[NSBezierPath setDefaultLineWidth:1.0];
-  //[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b) - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL)] stroke];
+	// Draw grid on top of screenshot
+	if (GRID_LINES) {
+		[[NSColor colorWithDeviceWhite:0.0 alpha:0.25] set];
+		
+		// Clip to loupe path and disable anti-aliasing for lines
+		CGContextSaveGState(ctx);
+		
+		[loupePath addClip];
+		CGContextSetAllowsAntialiasing(ctx, NO);
+		
+		int y = 0;
+		int x = 0;
+		
+		// Draw vertical lines
+		for (x = 0; x <= NSWidth(b); x += ZOOM_LEVEL) {
+			NSRect rect = NSMakeRect(x, y, 1.0, NSHeight(b));
+			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
+		}
+		
+		x = 0;
+		
+		// Draw horizontal lines
+		for (y = 0; y <= NSHeight(b); y += ZOOM_LEVEL) {
+			NSRect rect = NSMakeRect(x, y, NSWidth(b), 1.0);
+			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
+		}
+		
+		CGContextRestoreGState(ctx);
+	}
+	
+	//NSColor *color = [self colorAtCenter];
+	//
+	//	if (YES || [color hues_isColorDark]) {
+	//		[[NSColor whiteColor] set];
+	//	} else {
+	//		[[NSColor blackColor] set];
+	//	}
+	
+	// Turn off anti-aliasing so lines are crisp
+	CGContextSetAllowsAntialiasing(ctx, NO);
+	// Square around center pixel that will be used for picking
+	[[NSColor whiteColor] set];
+	NSRect centerRect = NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b)  - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL);
+	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
+	
+	// Need to turn this back on
+	CGContextSetAllowsAntialiasing(ctx, YES);
+	// Border of loupe
+	[[NSColor blackColor] set];
+	[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 0.5, 0.5)] stroke];
 }
 
 - (void)keyDown:(NSEvent *)event
@@ -118,11 +136,16 @@ static NSImage *_loupe = nil;
 - (void)pickColor
 {
 	// Always pick color from center of loupe
-	NSColor *color = [self colorAtPoint:NSMakePoint(LOUPE_SIZE / 2, LOUPE_SIZE / 2)];
+	NSColor *color = [self colorAtCenter];
 	NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 	[(HuesLoupeWindow *)self.window hide];
+}
+
+- (NSColor *)colorAtCenter
+{
+	return [self colorAtPoint:NSMakePoint(HuesLoupeSize / 2, HuesLoupeSize / 2)];
 }
 
 - (NSColor *)colorAtPoint:(CGPoint)point

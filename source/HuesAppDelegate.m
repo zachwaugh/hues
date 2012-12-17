@@ -9,18 +9,22 @@
 #import "HuesAppDelegate.h"
 #import "HuesPreferences.h"
 #import "HuesPreferencesController.h"
-#import "HuesMainController.h"
 #import "HuesHistoryManager.h"
 #import "HuesStatusItemView.h"
 #import "HuesWindowController.h"
+#import "HuesLoupeView.h"
+#import "HuesLoupeWindow.h"
+#import "MASShortcutView+UserDefaults.h"
+#import "MASShortcut+UserDefaults.h"
+#import "MASShortcut+Monitoring.h"
 
 @interface HuesAppDelegate ()
 
-@property (retain) HuesMainController *mainController;
-@property (retain) HuesWindowController *windowController;
-@property (retain) HuesPreferencesController *preferencesController;
-@property (retain) NSMenu *historyMenu;
-@property (retain) NSStatusItem *statusItem;
+@property (strong) HuesWindowController *windowController;
+@property (strong) HuesPreferencesController *preferencesController;
+@property (strong) NSMenu *historyMenu;
+@property (strong) NSStatusItem *statusItem;
+@property (strong) HuesLoupeWindow *loupeWindow;
 
 @end
 
@@ -29,8 +33,6 @@
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
   [HuesPreferences registerDefaults];
-	// Need to do this as early as possible
-  //[NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -45,16 +47,19 @@
 		[self addDockIcon];
 	}
 	
-  //self.mainController = [[[HuesMainController alloc] init] autorelease];
-	self.windowController = [[[HuesWindowController alloc] init] autorelease];
+	self.windowController = [[HuesWindowController alloc] init];
 	[self.windowController showWindow:nil];
+	
+	// Global shortcut
+	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
+		[self showLoupe:nil];
+	}];
 }
 
 - (void)awakeFromNib
 {
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
-
 
 #pragma mark - Status Item
 
@@ -94,10 +99,24 @@
 - (void)showPreferences:(id)sender
 {
   if (self.preferencesController == nil) {
-    self.preferencesController = [[[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"] autorelease];
+    self.preferencesController = [[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"];
   }
   
   [self.preferencesController showWindow:sender];
+}
+
+#pragma mark - Loupe
+
+- (IBAction)showLoupe:(id)sender
+{
+	NSPoint point = [NSEvent mouseLocation];
+  
+	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
+	
+	NSLog(@"showLoupe: %@", NSStringFromRect(loupeRect));
+  self.loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:loupeRect styleMask:0 backing:NSBackingStoreBuffered defer:YES];
+	[self.loupeWindow makeKeyAndOrderFront:self];
+	//[self.loupeWindow makeFirstResponder:loupeView];
 }
 
 @end

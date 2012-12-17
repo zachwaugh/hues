@@ -21,24 +21,7 @@ extern NSString * const HuesHSLFormatKey;
 extern NSString * const HuesHSLAFormatKey;
 extern NSString * const HuesKeepOnTopKey;
 extern NSString * const HuesApplicationModeKey;
-
-// NSColorPanelWheelModeMask            - Color Wheel
-// NSColorPanelGrayModeMask             - Color Sliders
-// NSColorPanelRGBModeMask              - Color Sliders
-// NSColorPanelCMYKModeMask             - Color Sliders
-// NSColorPanelHSBModeMask              - Color Sliders
-// NSColorPanelColorListModeMask        - Color Palettes
-// NSColorPanelCustomPaletteModeMask    - Image Palettes
-// NSColorPanelCrayonModeMask           - Crayons
-// NSColorPanelAllModesMask             - All
-extern NSString * const HuesShowColorWheelPickerKey;
-extern NSString * const HuesShowColorSlidersGrayPickerKey;
-extern NSString * const HuesShowColorSlidersRGBPickerKey;
-extern NSString * const HuesShowColorSlidersCMYKPickerKey;
-extern NSString * const HuesShowColorSlidersHSBPickerKey;
-extern NSString * const HuesShowColorPalettesPickerKey;
-extern NSString * const HuesShowImagePalettesPickerKey;
-extern NSString * const HuesShowCrayonsPickerKey;
+extern NSString * const HuesLoupeShortcutKey;
 
 @interface HuesPreferences : NSObject
 
@@ -47,7 +30,6 @@ extern NSString * const HuesShowCrayonsPickerKey;
 + (BOOL)copyToClipboard;
 + (void)setCopyToClipboard:(BOOL)copy;
 
-
 + (HuesColorRepresentation)defaultRepresentation;
 + (NSString *)hexFormat;
 + (NSString *)rgbFormat;
@@ -55,7 +37,6 @@ extern NSString * const HuesShowCrayonsPickerKey;
 + (NSString *)hsbFormat;
 + (NSString *)hslFormat;
 + (NSString *)hslaFormat;
-+ (NSUInteger)pickerMask;
 
 + (BOOL)useLowercase;
 + (void)setUseLowercase:(BOOL)lowercase;

@@ -12,24 +12,24 @@
 
 @interface HuesWindowController : NSWindowController <NSWindowDelegate, NSTextFieldDelegate>
 
-@property (assign) IBOutlet NSColorWell *colorWell;
-@property (assign) IBOutlet NSTextField *primaryFormat;
-@property (assign) IBOutlet NSTextField *secondaryFormat;
-@property (assign) IBOutlet NSPopUpButton *alternateFormats;
-@property (assign) IBOutlet NSTextField *redField;
-@property (assign) IBOutlet NSTextField *greenField;
-@property (assign) IBOutlet NSTextField *blueField;
-@property (assign) IBOutlet NSTextField *alphaField;
-@property (assign) IBOutlet NSTextField *hueField;
-@property (assign) IBOutlet NSTextField *saturationField;
-@property (assign) IBOutlet NSTextField *lightnessField;
-@property (assign) IBOutlet HuesColorSlider *redSlider;
-@property (assign) IBOutlet HuesColorSlider *greenSlider;
-@property (assign) IBOutlet HuesColorSlider *blueSlider;
-@property (assign) IBOutlet HuesColorSlider *alphaSlider;
-@property (assign) IBOutlet HuesColorSlider *hueSlider;
-@property (assign) IBOutlet HuesColorSlider *saturationSlider;
-@property (assign) IBOutlet HuesColorSlider *lightnessSlider;
+@property (weak) IBOutlet NSColorWell *colorWell;
+@property (weak) IBOutlet NSTextField *primaryFormat;
+@property (weak) IBOutlet NSTextField *secondaryFormat;
+@property (weak) IBOutlet NSPopUpButton *alternateFormats;
+@property (weak) IBOutlet NSTextField *redField;
+@property (weak) IBOutlet NSTextField *greenField;
+@property (weak) IBOutlet NSTextField *blueField;
+@property (weak) IBOutlet NSTextField *alphaField;
+@property (weak) IBOutlet NSTextField *hueField;
+@property (weak) IBOutlet NSTextField *saturationField;
+@property (weak) IBOutlet NSTextField *lightnessField;
+@property (weak) IBOutlet HuesColorSlider *redSlider;
+@property (weak) IBOutlet HuesColorSlider *greenSlider;
+@property (weak) IBOutlet HuesColorSlider *blueSlider;
+@property (weak) IBOutlet HuesColorSlider *alphaSlider;
+@property (weak) IBOutlet HuesColorSlider *hueSlider;
+@property (weak) IBOutlet HuesColorSlider *saturationSlider;
+@property (weak) IBOutlet HuesColorSlider *lightnessSlider;
 
 - (IBAction)copyPrimary:(id)sender;
 - (IBAction)copySecondary:(id)sender;

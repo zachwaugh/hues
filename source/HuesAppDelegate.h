@@ -8,11 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class HuesPreferencesController;
-@class HuesMainController;
-
 @interface HuesAppDelegate : NSObject
 
 - (void)showPreferences:(id)sender;
+- (IBAction)showLoupe:(id)sender;
 
 @end

@@ -31,6 +31,7 @@
 - (NSString *)hues_UIColorRGB;
 - (NSString *)hues_UIColorHSB;
 - (NSColor *)hues_convertedColor;
+- (BOOL)hues_isColorDark;
 + (NSColor *)hues_colorFromHex:(NSString *)hex;
 
 @end

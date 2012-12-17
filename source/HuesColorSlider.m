@@ -29,13 +29,13 @@
 
 - (void)setStartColor:(NSColor *)startColor
 {
-	_startColor = [startColor retain];
+	_startColor = startColor;
 	[self setNeedsDisplay:YES];
 }
 
 - (void)setEndColor:(NSColor *)endColor
 {
-	_endColor = [endColor retain];
+	_endColor = endColor;
 	[self setNeedsDisplay:YES];
 }
 

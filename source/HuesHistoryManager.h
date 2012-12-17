@@ -10,8 +10,8 @@
 
 @interface HuesHistoryManager : NSObject
 
-@property (retain) NSMutableArray *history;
-@property (assign) NSMenu *menu;
+@property (strong) NSMutableArray *history;
+@property (weak) NSMenu *menu;
 
 + (HuesHistoryManager *)sharedManager;
 - (void)addColor:(NSColor *)color;

@@ -361,6 +361,17 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
   return color;
 }
 
+- (BOOL)hues_isColorDark
+{
+	return [self hues_relativeBrightness] < 128;
+}
+
+// From: http://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
+- (NSInteger)hues_relativeBrightness
+{
+	return sqrt((.241 * self.redComponent * self.redComponent) + (.691 * self.greenComponent * self.greenComponent) + (.068 * self.blueComponent * self.blueComponent));
+}
+
 + (NSColor *)hues_colorFromHex:(NSString *)hex
 {
   // remove any # signs

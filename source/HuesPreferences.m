@@ -7,6 +7,7 @@
 //
 
 #import "HuesPreferences.h"
+#import "MASShortcut.h"
 
 // Preferences
 NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
@@ -20,15 +21,7 @@ NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
 NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
 NSString * const HuesKeepOnTopKey = @"HuesKeepOnTop";
 NSString * const HuesApplicationModeKey = @"HuesApplicationMode";
-
-NSString * const HuesShowColorWheelPickerKey = @"HuesShowColorWheelPicker";
-NSString * const HuesShowColorSlidersGrayPickerKey = @"HuesShowColorSlidersGrayPicker";
-NSString * const HuesShowColorSlidersRGBPickerKey = @"HuesShowColorSlidersRGBPicker";
-NSString * const HuesShowColorSlidersCMYKPickerKey = @"HuesShowColorSlidersCMYKPicker";
-NSString * const HuesShowColorSlidersHSBPickerKey = @"HuesShowColorSlidersHSBPicker";
-NSString * const HuesShowColorPalettesPickerKey = @"HuesShowColorPalettesPicker";
-NSString * const HuesShowImagePalettesPickerKey = @"HuesShowImagePalettesPicker";
-NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
+NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 
 @implementation HuesPreferences
 
@@ -66,19 +59,12 @@ NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
   
 	defaults[HuesHSLAFormatKey] = @"hsla({h}, {s}%, {l}%, {a})";
 	//[defaults setObject:@"hsla({h}, {s}%, {l}%, {a})" forKey:HuesHSLAFormatKey];
-  
-  // Color Pickers
-	defaults[HuesShowColorWheelPickerKey] = @YES;
-	defaults[HuesShowColorSlidersGrayPickerKey] = @YES;
-	defaults[HuesShowColorSlidersRGBPickerKey] = @YES;
-	defaults[HuesShowColorSlidersCMYKPickerKey] = @YES;
-	defaults[HuesShowColorSlidersHSBPickerKey] = @YES;
-	defaults[HuesShowColorPalettesPickerKey] = @YES;
-	defaults[HuesShowImagePalettesPickerKey] = @YES;
-	defaults[HuesShowCrayonsPickerKey] = @YES;
 	
 	// Window
 	defaults[HuesKeepOnTopKey] = @NO;
+	
+	// Shortcut
+	defaults[HuesLoupeShortcutKey] = [[MASShortcut shortcutWithKeyCode:kVK_ANSI_C modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)] data];
   
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
@@ -137,22 +123,6 @@ NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
 {
   [[NSUserDefaults standardUserDefaults] setBool:copy forKey:HuesCopyToClipboardKey];
   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (NSUInteger)pickerMask
-{
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  
-  NSUInteger colorWheel = ([defaults boolForKey:HuesShowColorWheelPickerKey]) ? NSColorPanelWheelModeMask : 0;
-  NSUInteger colorSliderGrayscale = ([defaults boolForKey:HuesShowColorSlidersGrayPickerKey]) ? NSColorPanelGrayModeMask : 0;
-  NSUInteger colorSliderRGB = ([defaults boolForKey:HuesShowColorSlidersRGBPickerKey]) ? NSColorPanelRGBModeMask : 0;
-  NSUInteger colorSliderCMYK = ([defaults boolForKey:HuesShowColorSlidersCMYKPickerKey]) ? NSColorPanelCMYKModeMask : 0;
-  NSUInteger colorSliderHSB = ([defaults boolForKey:HuesShowColorSlidersHSBPickerKey]) ? NSColorPanelHSBModeMask : 0;
-  NSUInteger colorPalettes = ([defaults boolForKey:HuesShowColorPalettesPickerKey]) ? NSColorPanelColorListModeMask : 0;
-  NSUInteger imagePalettes = ([defaults boolForKey:HuesShowImagePalettesPickerKey]) ? NSColorPanelCustomPaletteModeMask : 0;
-  NSUInteger crayons = ([defaults boolForKey:HuesShowCrayonsPickerKey]) ? NSColorPanelCrayonModeMask : 0;
-  
-  return (colorWheel | colorSliderGrayscale | colorSliderRGB | colorSliderCMYK | colorSliderHSB | colorPalettes | imagePalettes | crayons);
 }
 
 //+ (BOOL)useCalibratedColors

@@ -8,6 +8,8 @@
 
 #import <AppKit/AppKit.h>
 
+extern NSInteger const HuesLoupeSize;
+
 @interface HuesLoupeWindow : NSPanel
 
 - (void)hide;
