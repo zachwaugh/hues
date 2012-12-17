@@ -157,7 +157,31 @@
 	self.lightnessSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:1 alpha:1.0];
 }
 
-#pragma mark - RGB sliders
+#pragma mark - Sliders/Fields
+
+- (IBAction)fieldChanged:(id)sender
+{
+	NSColor *newColor = nil;
+	
+	if (sender == self.redField) {
+		newColor = [NSColor colorWithCalibratedRed:(self.redField.integerValue / 255.0f) green:[self.color greenComponent] blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+	} else if (sender == self.greenField) {
+		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:(self.greenField.integerValue / 255.0f) blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+	} else if (sender == self.blueField) {
+		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueField.integerValue / 255.0f) alpha:[self.color alphaComponent]];
+	} else if (sender == self.alphaField) {
+		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaField.integerValue / 100.0f)];
+	} else if (sender == self.hueField) {
+		newColor = [NSColor colorWithCalibratedHue:(self.hueField.integerValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+	} else if (sender == self.saturationField) {
+		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationField.integerValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+	} else if (sender == self.lightnessField) {
+		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessField.integerValue / 100.0f) alpha:self.color.alphaComponent];
+	}
+	
+	self.color = newColor;
+	[self updateLabelsWithColor:newColor];
+}
 
 - (IBAction)sliderChanged:(id)sender
 {
@@ -248,5 +272,26 @@
 	return YES;
 }
 
+
+#pragma mark - NSTextFieldDelegate
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
+{	
+	NSInteger value = [textView.string integerValue];
+	
+	if (commandSelector == @selector(moveUp:)) {
+		textView.string = [NSString stringWithFormat:@"%ld", value + 1];
+		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		
+		return YES;
+	} else if (commandSelector == @selector(moveDown:)) {
+		textView.string = [NSString stringWithFormat:@"%ld", value - 1];
+		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		
+		return YES;
+	}
+	
+	return NO;
+}
 
 @end

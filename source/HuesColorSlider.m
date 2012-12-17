@@ -39,6 +39,11 @@
 	[self setNeedsDisplay:YES];
 }
 
+- (NSGradient *)gradient
+{
+	return [[NSGradient alloc] initWithStartingColor:self.startColor endingColor:self.endColor];
+}
+
 + (Class)cellClass
 {
 	return [HuesColorSliderCell class];

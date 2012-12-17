@@ -41,7 +41,6 @@
 		92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6891393ED080072C412 /* NSImage+Hues.m */; };
 		92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6951393ED1B0072C412 /* CHANGELOG.md */; };
 		92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6991393ED2E0072C412 /* hues_app_icon.icns */; };
-		92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69B1393ED830072C412 /* HuesColorsView.xib */; };
 		92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69C1393ED830072C412 /* HuesPreferences.xib */; };
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
 		92E7D6B81393F1E70072C412 /* HuesColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6B71393F1E70072C412 /* HuesColorTest.m */; };
@@ -110,7 +109,6 @@
 		92E7D6891393ED080072C412 /* NSImage+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Hues.m"; sourceTree = "<group>"; };
 		92E7D6951393ED1B0072C412 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		92E7D6991393ED2E0072C412 /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = hues_app_icon.icns; path = resources/hues_app_icon.icns; sourceTree = "<group>"; };
-		92E7D69B1393ED830072C412 /* HuesColorsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesColorsView.xib; sourceTree = "<group>"; };
 		92E7D69C1393ED830072C412 /* HuesPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPreferences.xib; sourceTree = "<group>"; };
 		92E7D6A81393EDFA0072C412 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		92E7D6B71393F1E70072C412 /* HuesColorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorTest.m; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				92E7D6A81393EDFA0072C412 /* MainMenu.xib */,
-				92E7D69B1393ED830072C412 /* HuesColorsView.xib */,
 				92E7D69C1393ED830072C412 /* HuesPreferences.xib */,
 				92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */,
 			);
@@ -413,7 +410,6 @@
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
 				92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */,
 				92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */,
-				92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
 				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
