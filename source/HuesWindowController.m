@@ -18,6 +18,8 @@
 
 @property (retain) NSColor *color;
 
+- (void)updateInterfaceWithColor:(NSColor *)color;
+
 @end
 
 @implementation HuesWindowController
@@ -54,10 +56,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
 	
   if ([HuesPreferences keepOnTop]) {
-		//[self.window setLevel:NSFloatingWindowLevel];
+		[self.window setLevel:NSFloatingWindowLevel];
 	}
 	
-	[self updateLabelsWithColor:self.color];
+	[self updateInterfaceWithColor:self.color];
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification
@@ -75,16 +77,24 @@
 	[self.window makeKeyAndOrderFront:nil];
 }
 
+- (IBAction)toggleKeepOnTop:(id)sender
+{
+	BOOL keepOnTop = ![HuesPreferences keepOnTop];
+	
+	[self.window setLevel:(keepOnTop) ? NSFloatingWindowLevel : NSNormalWindowLevel];
+	[HuesPreferences setKeepOnTop:keepOnTop];
+}
+
 // Called from loupe
 - (void)updateColor:(NSNotification *)notification
 {
 	NSLog(@"updateColor: %@", notification);
   NSColor *color = [notification object];
 	self.color = color;
-  [self updateLabelsWithColor:color];
+  [self updateInterfaceWithColor:color];
 }
 
-- (void)updateLabelsWithColor:(NSColor *)color
+- (void)updateInterfaceWithColor:(NSColor *)color
 {
 	self.colorWell.color = color;
 	
@@ -180,7 +190,7 @@
 	}
 	
 	self.color = newColor;
-	[self updateLabelsWithColor:newColor];
+	[self updateInterfaceWithColor:newColor];
 }
 
 - (IBAction)sliderChanged:(id)sender
@@ -204,7 +214,7 @@
 	}
 
 	self.color = newColor;
-	[self updateLabelsWithColor:newColor];
+	[self updateInterfaceWithColor:newColor];
 }
 
 #pragma mark - Clipboard
@@ -240,9 +250,7 @@
   HuesLoupeWindow *loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:NSMakeRect(point.x - round(LOUPE_SIZE / 2), point.y - round(LOUPE_SIZE / 2), LOUPE_SIZE, LOUPE_SIZE) styleMask:0 backing:NSBackingStoreBuffered defer:YES];
 	HuesLoupeView *loupeView = [[[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, LOUPE_SIZE, LOUPE_SIZE)] autorelease];
   [loupeWindow.contentView addSubview:loupeView];
-  [loupeWindow orderFront:nil];
-	[loupeWindow makeKeyWindow];
-	//[loupeWindow makeKeyAndOrderFront:self];
+	[loupeWindow makeKeyAndOrderFront:self];
 	[loupeWindow makeFirstResponder:loupeView];
 }
 
@@ -255,8 +263,7 @@
     NSColor *newColor = [NSColor hues_colorFromHex:value];
     
     if (newColor != nil) {
-      [self updateLabelsWithColor:newColor];
-      //[self.colorPanel setColor:newColor];
+      [self updateInterfaceWithColor:newColor];
     }
   }
 }

@@ -37,7 +37,7 @@
 - (IBAction)toggleKeepOnTop:(id)sender;
 - (IBAction)sliderChanged:(id)sender;
 - (IBAction)fieldChanged:(id)sender;
-- (void)toggleWindow;
+//- (void)toggleWindow;
 - (void)hideWindow;
 - (void)showWindow:(id)sender;
 - (IBAction)showLoupe:(id)sender;
