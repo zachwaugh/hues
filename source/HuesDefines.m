@@ -6,7 +6,7 @@
 //  Copyright 2010 Giant Comet. All rights reserved.
 //
 
-#import "HuesGlobal.h"
+#import "HuesDefines.h"
 
 // Notifications
 NSString * const HuesUpdateColorNotification = @"HuesUpdateColorNotification";

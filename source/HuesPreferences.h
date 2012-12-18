@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "HuesGlobal.h"
+#import "HuesDefines.h"
 
 // Preferences keys
 extern NSString * const HuesCopyToClipboardKey;

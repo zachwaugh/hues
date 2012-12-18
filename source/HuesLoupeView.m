@@ -8,7 +8,7 @@
 
 #import "HuesLoupeView.h"
 #import "HuesLoupeWindow.h"
-#import "HuesGlobal.h"
+#import "HuesDefines.h"
 #import "NSColor+Hues.h"
 
 // Zoom level is multiplier of pixel size

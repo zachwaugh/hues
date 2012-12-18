@@ -1,5 +1,5 @@
 //
-//  HuesGlobal.h
+//  HuesDefines.h
 //  Hues
 //
 //  Created by Zach Waugh on 12/27/10.

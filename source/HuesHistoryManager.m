@@ -9,7 +9,7 @@
 #import "HuesHistoryManager.h"
 #import "NSColor+Hues.h"
 #import "NSImage+Hues.h"
-#import "HuesGlobal.h"
+#import "HuesDefines.h"
 
 #define HUES_MAX_HISTORY_SIZE 25
 

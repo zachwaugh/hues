@@ -52,6 +52,11 @@ NSInteger const HuesLoupeSize = 315;
 	return YES;
 }
 
+- (void)becomeMainWindow
+{
+	[self makeFirstResponder:self.loupeView];
+}
+
 - (void)cancel:(id)sender
 {
 	[self hide];
@@ -110,7 +115,6 @@ NSInteger const HuesLoupeSize = 315;
 
 - (void)adjustLoupeWithOrigin:(NSPoint)origin
 {
-	NSLog(@"loupe origin: %@", NSStringFromPoint(origin));
 	[self setFrameOrigin:origin];
   [self.loupeView setNeedsDisplay:YES];
 }

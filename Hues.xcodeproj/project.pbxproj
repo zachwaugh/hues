@@ -13,6 +13,11 @@
 		921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E50167E6276002FCC42 /* HuesScopeBarView.m */; };
 		921A8E55167E6783002FCC42 /* loupe-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E53167E6783002FCC42 /* loupe-button.png */; };
 		921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E54167E6783002FCC42 /* loupe-button@2x.png */; };
+		921A8E7E167FE757002FCC42 /* HuesRGBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */; };
+		921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */; };
+		921A8E84167FE8E2002FCC42 /* HuesHSBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E82167FE8E2002FCC42 /* HuesHSBViewController.m */; };
+		921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */; };
+		923098AF167FF2E700F98571 /* HuesMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923098AE167FF2E700F98571 /* HuesMixerViewController.m */; };
 		9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51B167BDDB000A33702 /* HuesColorSlider.m */; };
 		9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
@@ -29,7 +34,7 @@
 		92AAF5B61642FEBF00DC09E8 /* HuesApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
-		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
+		92E7D68C1393ED080072C412 /* HuesDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesDefines.m */; };
 		92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67F1393ED080072C412 /* HuesHistoryManager.m */; };
 		92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
@@ -52,6 +57,14 @@
 		921A8E50167E6276002FCC42 /* HuesScopeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesScopeBarView.m; sourceTree = "<group>"; };
 		921A8E53167E6783002FCC42 /* loupe-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-button.png"; sourceTree = "<group>"; };
 		921A8E54167E6783002FCC42 /* loupe-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-button@2x.png"; sourceTree = "<group>"; };
+		921A8E7B167FE757002FCC42 /* HuesRGBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesRGBViewController.h; sourceTree = "<group>"; };
+		921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesRGBViewController.m; sourceTree = "<group>"; };
+		921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesRGBViewController.xib; sourceTree = "<group>"; };
+		921A8E81167FE8E2002FCC42 /* HuesHSBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHSBViewController.h; sourceTree = "<group>"; };
+		921A8E82167FE8E2002FCC42 /* HuesHSBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHSBViewController.m; sourceTree = "<group>"; };
+		921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesHSBViewController.xib; sourceTree = "<group>"; };
+		923098AD167FF2E700F98571 /* HuesMixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMixerViewController.h; sourceTree = "<group>"; };
+		923098AE167FF2E700F98571 /* HuesMixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesMixerViewController.m; sourceTree = "<group>"; };
 		9234D51A167BDDB000A33702 /* HuesColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSlider.h; sourceTree = "<group>"; };
 		9234D51B167BDDB000A33702 /* HuesColorSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorSlider.m; sourceTree = "<group>"; };
 		9234D51E167BDE0E00A33702 /* HuesColorSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorSliderCell.h; sourceTree = "<group>"; };
@@ -84,8 +97,8 @@
 		92E7D6791393ED080072C412 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
 		92E7D67A1393ED080072C412 /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
 		92E7D67B1393ED080072C412 /* HuesColorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorsView.m; sourceTree = "<group>"; };
-		92E7D67C1393ED080072C412 /* HuesGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGlobal.h; sourceTree = "<group>"; };
-		92E7D67D1393ED080072C412 /* HuesGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGlobal.m; sourceTree = "<group>"; };
+		92E7D67C1393ED080072C412 /* HuesDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesDefines.h; sourceTree = "<group>"; };
+		92E7D67D1393ED080072C412 /* HuesDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesDefines.m; sourceTree = "<group>"; };
 		92E7D67E1393ED080072C412 /* HuesHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHistoryManager.h; sourceTree = "<group>"; };
 		92E7D67F1393ED080072C412 /* HuesHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHistoryManager.m; sourceTree = "<group>"; };
 		92E7D6821393ED080072C412 /* HuesPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferences.h; sourceTree = "<group>"; };
@@ -238,6 +251,8 @@
 				92E7D6A81393EDFA0072C412 /* MainMenu.xib */,
 				92E7D69C1393ED830072C412 /* HuesPreferences.xib */,
 				92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */,
+				921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */,
+				921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -272,6 +287,12 @@
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
 				92FBF1151666C12700BDC670 /* HuesWindowController.h */,
 				92FBF1161666C12700BDC670 /* HuesWindowController.m */,
+				923098AD167FF2E700F98571 /* HuesMixerViewController.h */,
+				923098AE167FF2E700F98571 /* HuesMixerViewController.m */,
+				921A8E7B167FE757002FCC42 /* HuesRGBViewController.h */,
+				921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */,
+				921A8E81167FE8E2002FCC42 /* HuesHSBViewController.h */,
+				921A8E82167FE8E2002FCC42 /* HuesHSBViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -304,8 +325,8 @@
 		92E7D6B51393EFEE0072C412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D67C1393ED080072C412 /* HuesGlobal.h */,
-				92E7D67D1393ED080072C412 /* HuesGlobal.m */,
+				92E7D67C1393ED080072C412 /* HuesDefines.h */,
+				92E7D67D1393ED080072C412 /* HuesDefines.m */,
 				92E7D67E1393ED080072C412 /* HuesHistoryManager.h */,
 				92E7D67F1393ED080072C412 /* HuesHistoryManager.m */,
 				92E7D6821393ED080072C412 /* HuesPreferences.h */,
@@ -397,6 +418,8 @@
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
 				921A8E55167E6783002FCC42 /* loupe-button.png in Resources */,
 				921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */,
+				921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */,
+				921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +471,7 @@
 				9264FE6F1393EC9F00935FAC /* main.m in Sources */,
 				92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */,
 				92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */,
-				92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */,
+				92E7D68C1393ED080072C412 /* HuesDefines.m in Sources */,
 				92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */,
 				92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */,
 				92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */,
@@ -464,6 +487,9 @@
 				9234D51C167BDDB000A33702 /* HuesColorSlider.m in Sources */,
 				9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */,
 				921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */,
+				921A8E7E167FE757002FCC42 /* HuesRGBViewController.m in Sources */,
+				921A8E84167FE8E2002FCC42 /* HuesHSBViewController.m in Sources */,
+				923098AF167FF2E700F98571 /* HuesMixerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,10 +14,14 @@
 #import "HuesColorSlider.h"
 #import "INAppStoreWindow.h"
 #import "HuesAppDelegate.h"
+#import "HuesMixerViewController.h"
+#import "HuesRGBViewController.h"
+#import "HuesHSBViewController.h"
 
 @interface HuesWindowController ()
 
 @property (strong) NSColor *color;
+@property (strong) HuesMixerViewController *mixerController;
 
 - (void)updateInterfaceWithColor:(NSColor *)color;
 
@@ -60,12 +64,9 @@
 		[self.window setLevel:NSFloatingWindowLevel];
 	}
 	
+	[self loadMixerWithClass:[HuesRGBViewController class]];
+	
 	[self updateInterfaceWithColor:self.color];
-}
-
-- (void)windowDidResignKey:(NSNotification *)notification
-{
-	//[self hideWindow];
 }
 
 - (void)hideWindow
@@ -92,6 +93,7 @@
 	NSLog(@"updateColor: %@", notification);
   NSColor *color = [notification object];
 	self.color = color;
+	[self.mixerController updateInterfaceWithColor:color];
   [self updateInterfaceWithColor:color];
 }
 
@@ -118,104 +120,7 @@
 	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
 	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
 	[self.alternateFormats addItemsWithTitles:@[[color hues_UIColorRGB], [color hues_UIColorHSB]]];
-	
-	
-	CGFloat redComponent = [color redComponent];
-	CGFloat greenComponent = [color greenComponent];
-	CGFloat blueComponent = [color blueComponent];
-	
-	int red = (int)(redComponent * 255.0);
-	int green = (int)(greenComponent * 255.0);
-	int blue = (int)(blueComponent * 255.0);
-	int alpha = (int)([color alphaComponent] * 100.0);
-	
-	// RGBA
-	
-	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
-	self.redSlider.intValue = red;
-	self.redSlider.startColor = [NSColor colorWithCalibratedRed:0 green:greenComponent blue:blueComponent alpha:1.0];
-	self.redSlider.endColor = [NSColor colorWithCalibratedRed:1 green:greenComponent blue:blueComponent alpha:1.0];
-	
-	self.greenField.stringValue = [NSString stringWithFormat:@"%d", green];
-	self.greenSlider.intValue = green;
-	self.greenSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:0 blue:blueComponent alpha:1.0];
-	self.greenSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:1 blue:blueComponent alpha:1.0];
-	
-	self.blueField.stringValue = [NSString stringWithFormat:@"%d", blue];
-	self.blueSlider.intValue = blue;
-	self.blueSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:0 alpha:1.0];
-	self.blueSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:1 alpha:1.0];
-	
-	self.alphaField.stringValue = [NSString stringWithFormat:@"%d%%", alpha];
-	self.alphaSlider.intValue = alpha;
-	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
-	
-	// HSL
-	self.hueField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.hueComponent * 360.0)];
-	self.hueSlider.intValue = color.hueComponent * 360.0f;
-	self.hueSlider.startColor = [NSColor colorWithCalibratedHue:0 saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
-	self.hueSlider.endColor = [NSColor colorWithCalibratedHue:1 saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
-	
-	self.saturationField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.saturationComponent * 100.0)];
-	self.saturationSlider.intValue = color.saturationComponent * 100.0;
-	self.saturationSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:0 brightness:color.brightnessComponent alpha:1.0];
-	self.saturationSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:1 brightness:color.brightnessComponent alpha:1.0];
-	
-	self.lightnessField.stringValue = [NSString stringWithFormat:@"%d%%", (int)(color.brightnessComponent * 100.0)];
-	self.lightnessSlider.intValue = color.brightnessComponent * 100.0;
-	self.lightnessSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:0 alpha:1.0];
-	self.lightnessSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:1 alpha:1.0];
-}
 
-#pragma mark - Sliders/Fields
-
-- (IBAction)fieldChanged:(id)sender
-{
-	NSColor *newColor = nil;
-	
-	if (sender == self.redField) {
-		newColor = [NSColor colorWithCalibratedRed:(self.redField.integerValue / 255.0f) green:[self.color greenComponent] blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
-	} else if (sender == self.greenField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:(self.greenField.integerValue / 255.0f) blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
-	} else if (sender == self.blueField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueField.integerValue / 255.0f) alpha:[self.color alphaComponent]];
-	} else if (sender == self.alphaField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaField.integerValue / 100.0f)];
-	} else if (sender == self.hueField) {
-		newColor = [NSColor colorWithCalibratedHue:(self.hueField.integerValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
-	} else if (sender == self.saturationField) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationField.integerValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
-	} else if (sender == self.lightnessField) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessField.integerValue / 100.0f) alpha:self.color.alphaComponent];
-	}
-	
-	self.color = newColor;
-	[self updateInterfaceWithColor:newColor];
-}
-
-- (IBAction)sliderChanged:(id)sender
-{
-	NSColor *newColor = nil;
-	
-	if (sender == self.redSlider) {
-		newColor = [NSColor colorWithCalibratedRed:(self.redSlider.floatValue / 255.0f) green:[self.color greenComponent] blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
-	} else if (sender == self.greenSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:(self.greenSlider.floatValue / 255.0f) blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
-	} else if (sender == self.blueSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueSlider.floatValue / 255.0f) alpha:[self.color alphaComponent]];
-	} else if (sender == self.alphaSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaSlider.floatValue / 100.0f)];
-	} else if (sender == self.hueSlider) {
-		newColor = [NSColor colorWithCalibratedHue:(self.hueSlider.floatValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
-	} else if (sender == self.saturationSlider) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationSlider.floatValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
-	} else if (sender == self.lightnessSlider) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessSlider.floatValue / 100.0f) alpha:self.color.alphaComponent];
-	}
-
-	self.color = newColor;
-	[self updateInterfaceWithColor:newColor];
 }
 
 #pragma mark - Clipboard
@@ -240,6 +145,32 @@
 {
 	[[NSPasteboard generalPasteboard] clearContents];
 	[[NSPasteboard generalPasteboard] writeObjects:@[string]];
+}
+
+#pragma mark - Mixer tabs
+
+- (void)loadMixerWithClass:(Class)class
+{
+	if (self.mixerController) {
+		[self.mixerController.view removeFromSuperview];
+		self.mixerController = nil;
+	}
+	
+	self.mixerController = [[class alloc] init];
+	self.mixerController.color = self.color;
+	self.mixerController.view.frame = self.mixerContainerView.bounds;
+	[self.mixerContainerView addSubview:self.mixerController.view];
+}
+
+- (IBAction)changeMixerTab:(id)sender
+{
+	NSString *title = [sender title];
+	
+	if ([title isEqualToString:@"RGB"]) {
+		[self loadMixerWithClass:[HuesRGBViewController class]];
+	} else if ([title isEqualToString:@"HSB"]) {
+		[self loadMixerWithClass:[HuesHSBViewController class]];
+	}
 }
 
 #pragma mark - Loupe
@@ -273,7 +204,6 @@
 	
 	return YES;
 }
-
 
 #pragma mark - NSTextFieldDelegate
 
