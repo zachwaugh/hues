@@ -9,15 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "HuesMixerViewController.h"
 
-@class HuesColorSlider;
+@class HuesColorSlider, HuesHueColorSlider;
 
-@interface HuesHSBViewController : HuesMixerViewController
+@interface HuesHSBViewController : HuesMixerViewController <NSTextFieldDelegate>
 
 @property (weak) IBOutlet NSTextField *hueField;
 @property (weak) IBOutlet NSTextField *saturationField;
 @property (weak) IBOutlet NSTextField *brightnessField;
 @property (weak) IBOutlet NSTextField *alphaField;
-@property (weak) IBOutlet HuesColorSlider *hueSlider;
+@property (weak) IBOutlet HuesHueColorSlider *hueSlider;
 @property (weak) IBOutlet HuesColorSlider *saturationSlider;
 @property (weak) IBOutlet HuesColorSlider *brightnessSlider;
 @property (weak) IBOutlet HuesColorSlider *alphaSlider;

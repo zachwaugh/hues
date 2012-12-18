@@ -11,7 +11,7 @@
 
 @class HuesColorSlider;
 
-@interface HuesRGBViewController : HuesMixerViewController
+@interface HuesRGBViewController : HuesMixerViewController <NSTextFieldDelegate>
 
 @property (weak) IBOutlet HuesColorSlider *redSlider;
 @property (weak) IBOutlet HuesColorSlider *greenSlider;

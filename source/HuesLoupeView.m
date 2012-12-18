@@ -13,7 +13,7 @@
 
 // Zoom level is multiplier of pixel size
 #define ZOOM_LEVEL 15.0
-#define GRID_LINES NO
+#define GRID_LINES YES
 
 @interface HuesLoupeView ()
 {
@@ -67,7 +67,7 @@
 	
 	// Draw grid on top of screenshot
 	if (GRID_LINES) {
-		[[NSColor colorWithDeviceWhite:0.0 alpha:0.25] set];
+		[[NSColor colorWithDeviceWhite:0.0 alpha:0.15] set];
 		
 		// Clip to loupe path and disable anti-aliasing for lines
 		CGContextSaveGState(ctx);

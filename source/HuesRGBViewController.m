@@ -48,7 +48,7 @@
 	self.blueSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:0 alpha:1.0];
 	self.blueSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:1 alpha:1.0];
 	
-	self.alphaField.stringValue = [NSString stringWithFormat:@"%d%%", alpha];
+	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", alpha];
 	self.alphaSlider.intValue = alpha;
 	self.alphaSlider.startColor = [NSColor whiteColor];
 	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
@@ -88,6 +88,27 @@
 	}
 	
 	[self updateColor:newColor];
+}
+
+#pragma mark - NSTextFieldDelegate
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
+{
+	NSInteger value = [textView.string integerValue];
+	
+	if (commandSelector == @selector(moveUp:) || commandSelector == @selector(moveRight:)) {
+		textView.string = [NSString stringWithFormat:@"%ld", value + 1];
+		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		
+		return YES;
+	} else if (commandSelector == @selector(moveDown:) || commandSelector == @selector(moveLeft:)) {
+		textView.string = [NSString stringWithFormat:@"%ld", value - 1];
+		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		
+		return YES;
+	}
+	
+	return NO;
 }
 
 @end

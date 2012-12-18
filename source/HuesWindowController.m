@@ -17,6 +17,7 @@
 #import "HuesMixerViewController.h"
 #import "HuesRGBViewController.h"
 #import "HuesHSBViewController.h"
+#import "HuesColorWheelViewController.h"
 
 @interface HuesWindowController ()
 
@@ -170,6 +171,8 @@
 		[self loadMixerWithClass:[HuesRGBViewController class]];
 	} else if ([title isEqualToString:@"HSB"]) {
 		[self loadMixerWithClass:[HuesHSBViewController class]];
+	} else if ([title isEqualToString:@"Color Wheel"]) {
+		[self loadMixerWithClass:[HuesColorWheelViewController class]];
 	}
 }
 
@@ -203,27 +206,6 @@
 	}
 	
 	return YES;
-}
-
-#pragma mark - NSTextFieldDelegate
-
-- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
-{	
-	NSInteger value = [textView.string integerValue];
-	
-	if (commandSelector == @selector(moveUp:)) {
-		textView.string = [NSString stringWithFormat:@"%ld", value + 1];
-		textView.selectedRange = NSMakeRange(0, textView.string.length);
-		
-		return YES;
-	} else if (commandSelector == @selector(moveDown:)) {
-		textView.string = [NSString stringWithFormat:@"%ld", value - 1];
-		textView.selectedRange = NSMakeRange(0, textView.string.length);
-		
-		return YES;
-	}
-	
-	return NO;
 }
 
 @end

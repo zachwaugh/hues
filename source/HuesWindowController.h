@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesWindowController : NSWindowController <NSWindowDelegate, NSTextFieldDelegate>
+@interface HuesWindowController : NSWindowController <NSWindowDelegate>
 
 @property (weak) IBOutlet NSColorWell *colorWell;
 @property (weak) IBOutlet NSTextField *primaryFormat;
