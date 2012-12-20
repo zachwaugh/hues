@@ -11,6 +11,8 @@
 #import <ApplicationServices/ApplicationServices.h>
 
 NSInteger const HuesLoupeSize = 315;
+NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidCloseNotification";
+
 #define USE_UNDOCUMENTED_HIDE 1
 
 @interface HuesLoupeWindow ()
@@ -33,6 +35,7 @@ NSInteger const HuesLoupeSize = 315;
 		[self setMovableByWindowBackground:NO];
 		[self setIgnoresMouseEvents:NO];
 		[self setAcceptsMouseMovedEvents:YES];
+		[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 		[self hideCursor];
 		self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
 		self.contentView = self.loupeView;
@@ -53,9 +56,17 @@ NSInteger const HuesLoupeSize = 315;
 
 - (void)becomeMainWindow
 {
+	[super becomeMainWindow];
 	[self makeFirstResponder:self.loupeView];
 }
 
+- (void)becomeKeyWindow
+{
+	[super becomeKeyWindow];
+	[self makeFirstResponder:self.loupeView];
+}
+
+// Escape key
 - (void)cancel:(id)sender
 {
 	[self hide];
@@ -93,23 +104,21 @@ NSInteger const HuesLoupeSize = 315;
 	[self adjustLoupeWithOrigin:origin];
 }
 
-- (void)hide
-{
-	[self showCursor];
-	[self orderOut:nil];
-}
-
 - (void)mouseMoved:(NSEvent *)event
 {
 	// Get current point in screen coordinates
   NSPoint point = [NSEvent mouseLocation]; // [event locationInWindow];
   
-  //NSLog(@"screen: %@, window: %@, view: %@", NSStringFromPoint([self convertBaseToScreen:point]), NSStringFromPoint(point), NSStringFromPoint([self.contentView convertPoint:point fromView:nil]));
-  
 	// Adjust window so it's centered on new point
-  NSPoint origin = NSMakePoint(round(point.x - round(self.frame.size.width / 2)), round(point.y - round(self.frame.size.height / 2))); //[self convertBaseToScreen:NSMakePoint(round(point.x - 100), round(point.y - 100))];
-  
+  NSPoint origin = NSMakePoint(round(point.x - round(self.frame.size.width / 2)), round(point.y - round(self.frame.size.height / 2)));
   [self adjustLoupeWithOrigin:origin];
+}
+
+- (void)hide
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesLoupeWindowDidCloseNotification object:self];
+	[self showCursor];
+	[self orderOut:nil];
 }
 
 - (void)adjustLoupeWithOrigin:(NSPoint)origin
@@ -122,34 +131,30 @@ NSInteger const HuesLoupeSize = 315;
 
 - (void)hideCursor
 {
-	// Standard way - doesn't work if app isn't active
-	[self disableCursorRects];
-	[NSCursor hide];
-	
 #if USE_UNDOCUMENTED_HIDE
-	
+	// Hack to make background cursor setting work
 	// Private API from - http://stackoverflow.com/questions/3885896/globally-hiding-cursor-from-background-app
 	void CGSSetConnectionProperty(int, int, CFStringRef, CFBooleanRef);
 	int _CGSDefaultConnection();
-	CFStringRef propertyString;
 	
-	// Hack to make background cursor setting work
-	propertyString = CFStringCreateWithCString(NULL, "SetsCursorInBackground", kCFStringEncodingUTF8);
+	CFStringRef propertyString = CFStringCreateWithCString(NULL, "SetsCursorInBackground", kCFStringEncodingUTF8);
 	CGSSetConnectionProperty(_CGSDefaultConnection(), _CGSDefaultConnection(), propertyString, kCFBooleanTrue);
 	CFRelease(propertyString);
 	
-	// Hide the cursor and wait
 	CGDisplayHideCursor(kCGDirectMainDisplay);
-	
+#else 
+	// Standard way - doesn't work if app isn't active
+	[self disableCursorRects];
+	[NSCursor hide];
 #endif
 }
 
 - (void)showCursor
 {
-	[NSCursor unhide];
-	
 #if USE_UNDOCUMENTED_HIDE
 	CGDisplayShowCursor(kCGDirectMainDisplay);
+#else
+	[NSCursor unhide];
 #endif
 }
 

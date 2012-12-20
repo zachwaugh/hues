@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesAppDelegate : NSObject
+@interface HuesAppDelegate : NSObject <NSWindowDelegate>
 
 - (void)showPreferences:(id)sender;
 - (IBAction)showLoupe:(id)sender;

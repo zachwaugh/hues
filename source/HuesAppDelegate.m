@@ -25,6 +25,13 @@
 @property (strong) NSMenu *historyMenu;
 @property (strong) NSStatusItem *statusItem;
 @property (strong) HuesLoupeWindow *loupeWindow;
+@property (assign) id monitor;
+
+- (void)configureApplicationPresentation;
+- (void)registerShortcuts;
+- (void)startEventMonitor;
+- (void)stopEventMonitor;
+- (void)observeNotifications;
 
 @end
 
@@ -37,7 +44,40 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	HuesApplicationMode mode = HuesDockAndMenuBarMode; // [HuesPreferences applicationMode];
+	self.windowController = [[HuesWindowController alloc] init];
+	[self.windowController showWindow:nil];
+	
+	[self configureApplicationPresentation];
+	[self registerShortcuts];
+	[self startEventMonitor];
+	[self observeNotifications];
+}
+
+- (void)awakeFromNib
+{
+  [HuesHistoryManager sharedManager].menu = self.historyMenu;
+}
+
+- (void)observeNotifications
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loupeWindowDidClose:) name:HuesLoupeWindowDidCloseNotification object:nil];
+}
+
+#pragma mark - Shortcuts
+
+- (void)registerShortcuts
+{
+	// Global shortcut
+	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
+		[self showLoupe:nil];
+	}];
+}
+
+#pragma mark - Presentation
+
+- (void)configureApplicationPresentation
+{
+	HuesApplicationMode mode = [HuesPreferences applicationMode];
 	
 	if (mode == HuesDockAndMenuBarMode || mode == HuesMenuBarOnlyMode) {
 		[self addStatusItem];
@@ -46,25 +86,11 @@
 	if (mode == HuesDockAndMenuBarMode || mode == HuesDockOnlyMode) {
 		[self addDockIcon];
 	}
-	
-	self.windowController = [[HuesWindowController alloc] init];
-	[self.windowController showWindow:nil];
-	
-	// Global shortcut
-	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
-		[self showLoupe:nil];
-	}];
-	
-	[NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event ){
-		if (self.loupeWindow) {
-			[self.loupeWindow mouseMoved:event];
-		}
-	}];
 }
 
-- (void)awakeFromNib
+- (void)addDockIcon
 {
-  [HuesHistoryManager sharedManager].menu = self.historyMenu;
+	[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 }
 
 #pragma mark - Status Item
@@ -97,11 +123,6 @@
 	}
 }
 
-- (void)addDockIcon
-{
-	[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
-}
-
 - (void)showPreferences:(id)sender
 {
   if (self.preferencesController == nil) {
@@ -116,12 +137,50 @@
 - (IBAction)showLoupe:(id)sender
 {
 	NSPoint point = [NSEvent mouseLocation];
-  
 	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
 	
-	NSLog(@"showLoupe: %@", NSStringFromRect(loupeRect));
+	NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
   self.loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:loupeRect styleMask:0 backing:NSBackingStoreBuffered defer:YES];
+	self.loupeWindow.delegate = self;
 	[self.loupeWindow makeKeyAndOrderFront:self];
+}
+
+- (void)loupeWindowDidClose:(NSNotification *)notification
+{
+	self.loupeWindow = nil;
+}
+
+- (void)startEventMonitor
+{
+	self.monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event ){
+		if (self.loupeWindow) {
+			NSLog(@"[monitor] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
+			[self.loupeWindow mouseMoved:event];
+		}
+	}];
+}
+
+- (void)stopEventMonitor
+{
+	[NSEvent removeMonitor:self.monitor];
+	self.monitor = nil;
+}
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+	NSLog(@"windowWillClose: %@", notification.object);
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+	NSLog(@"windowDidBecomeKey: %@", notification.object);
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification
+{
+	NSLog(@"windowDidBecomeMain: %@", notification.object);
 }
 
 @end

@@ -118,22 +118,6 @@
 	//[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 0.5, 0.5)] stroke];
 }
 
-- (void)keyDown:(NSEvent *)event
-{
-	unichar character = [[event characters] characterAtIndex:0];
-	
-	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [[event characters] isEqualToString:@" "]) {
-		[self pickColor];
-	} else {
-		[super keyDown:event];
-	}
-}
-
-- (void)mouseDown:(NSEvent *)theEvent
-{
-  [self pickColor];
-}
-
 - (void)pickColor
 {
 	// Always pick color from center of loupe
@@ -178,6 +162,34 @@
   CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
 	
   return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
+}
+
+#pragma mark - Key events
+
+- (void)keyDown:(NSEvent *)event
+{
+	NSLog(@"[loupe view] keyDown");
+	unichar character = [[event characters] characterAtIndex:0];
+	
+	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [[event characters] isEqualToString:@" "]) {
+		[self pickColor];
+	} else {
+		[super keyDown:event];
+	}
+}
+
+#pragma mark - Mouse Events
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+{
+	NSLog(@"[loupe view] acceptsFirstMouse");
+	return YES;
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+	NSLog(@"[loupe view] mouseDown");
+  [self pickColor];
 }
 
 @end

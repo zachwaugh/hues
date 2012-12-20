@@ -44,6 +44,11 @@
 {
 	[super windowDidLoad];
 	
+	if ([HuesPreferences keepOnTop]) {
+		[self.window setLevel:NSFloatingWindowLevel];
+	}
+	
+	// Show window on all spaces
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
 	// Setup custom window titlebar
@@ -63,12 +68,7 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
 	
-  if ([HuesPreferences keepOnTop]) {
-		[self.window setLevel:NSFloatingWindowLevel];
-	}
-	
 	[self loadMixerWithClass:[HuesRGBViewController class]];
-	
 	[self updateInterfaceWithColor:self.color];
 }
 

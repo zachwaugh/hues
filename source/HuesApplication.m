@@ -11,14 +11,14 @@
 
 @implementation HuesApplication
 
-- (void)sendEvent:(NSEvent *)theEvent
+- (void)sendEvent:(NSEvent *)event
 {
-	[super sendEvent:theEvent];
+	[super sendEvent:event];
 
-	if (theEvent.type == NSMouseMoved) {
+	if (event.type == NSMouseMoved) {
 		if ([self.mainWindow isKindOfClass:[HuesLoupeWindow class]]) {
-			//NSLog(@"sending mouseMoved: %@ - %@", NSStringFromPoint([theEvent locationInWindow]), [self mainWindow]);
-			[self.mainWindow sendEvent:theEvent];
+			NSLog(@"[application] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
+			[self.mainWindow sendEvent:event];
 		}
 	}
 }
