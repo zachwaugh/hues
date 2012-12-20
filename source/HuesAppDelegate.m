@@ -54,6 +54,12 @@
 	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
 		[self showLoupe:nil];
 	}];
+	
+	[NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event ){
+		if (self.loupeWindow) {
+			[self.loupeWindow mouseMoved:event];
+		}
+	}];
 }
 
 - (void)awakeFromNib
@@ -116,7 +122,6 @@
 	NSLog(@"showLoupe: %@", NSStringFromRect(loupeRect));
   self.loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:loupeRect styleMask:0 backing:NSBackingStoreBuffered defer:YES];
 	[self.loupeWindow makeKeyAndOrderFront:self];
-	//[self.loupeWindow makeFirstResponder:loupeView];
 }
 
 @end

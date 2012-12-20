@@ -8,8 +8,10 @@
 
 #import "HuesLoupeWindow.h"
 #import "HuesLoupeView.h"
+#import <ApplicationServices/ApplicationServices.h>
 
 NSInteger const HuesLoupeSize = 315;
+#define USE_UNDOCUMENTED_HIDE 1
 
 @interface HuesLoupeWindow ()
 
@@ -31,10 +33,7 @@ NSInteger const HuesLoupeSize = 315;
 		[self setMovableByWindowBackground:NO];
 		[self setIgnoresMouseEvents:NO];
 		[self setAcceptsMouseMovedEvents:YES];
-		
-		[self disableCursorRects];
-		[NSCursor hide];
-		
+		[self hideCursor];
 		self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
 		self.contentView = self.loupeView;
 	}
@@ -96,8 +95,8 @@ NSInteger const HuesLoupeSize = 315;
 
 - (void)hide
 {
+	[self showCursor];
 	[self orderOut:nil];
-  [NSCursor unhide];
 }
 
 - (void)mouseMoved:(NSEvent *)event
@@ -117,6 +116,41 @@ NSInteger const HuesLoupeSize = 315;
 {
 	[self setFrameOrigin:origin];
   [self.loupeView setNeedsDisplay:YES];
+}
+
+#pragma mark - Cursor
+
+- (void)hideCursor
+{
+	// Standard way - doesn't work if app isn't active
+	[self disableCursorRects];
+	[NSCursor hide];
+	
+#if USE_UNDOCUMENTED_HIDE
+	
+	// Private API from - http://stackoverflow.com/questions/3885896/globally-hiding-cursor-from-background-app
+	void CGSSetConnectionProperty(int, int, CFStringRef, CFBooleanRef);
+	int _CGSDefaultConnection();
+	CFStringRef propertyString;
+	
+	// Hack to make background cursor setting work
+	propertyString = CFStringCreateWithCString(NULL, "SetsCursorInBackground", kCFStringEncodingUTF8);
+	CGSSetConnectionProperty(_CGSDefaultConnection(), _CGSDefaultConnection(), propertyString, kCFBooleanTrue);
+	CFRelease(propertyString);
+	
+	// Hide the cursor and wait
+	CGDisplayHideCursor(kCGDirectMainDisplay);
+	
+#endif
+}
+
+- (void)showCursor
+{
+	[NSCursor unhide];
+	
+#if USE_UNDOCUMENTED_HIDE
+	CGDisplayShowCursor(kCGDirectMainDisplay);
+#endif
 }
 
 @end

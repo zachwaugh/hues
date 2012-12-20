@@ -44,6 +44,8 @@
 {
 	[super windowDidLoad];
 	
+	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+	
 	// Setup custom window titlebar
 	INAppStoreWindow *window = (INAppStoreWindow*)self.window;
 	window.titleBarHeight = 34.0;

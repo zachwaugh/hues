@@ -112,9 +112,10 @@
 	
 	// Need to turn this back on
 	CGContextSetAllowsAntialiasing(ctx, YES);
+	
 	// Border of loupe
-	[[NSColor blackColor] set];
-	[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 0.5, 0.5)] stroke];
+	//[[NSColor darkGrayColor] set];
+	//[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 0.5, 0.5)] stroke];
 }
 
 - (void)keyDown:(NSEvent *)event
