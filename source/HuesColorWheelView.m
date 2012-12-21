@@ -85,8 +85,9 @@
 //	NSLog(@"draw time: %f", elapsed);
 	
 	[[NSColor whiteColor] set];
-	[[NSBezierPath bezierPathWithRect:self.dragRect] stroke];
+	[[NSBezierPath bezierPathWithOvalInRect:self.dragRect] stroke];
 	
+	// Border
 	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
 	[[NSBezierPath bezierPathWithRect:NSInsetRect(rect, 0.5, 0.5)] stroke];
 }
@@ -111,7 +112,7 @@
 	CGFloat saturation = point.x / self.bounds.size.width;
 	CGFloat brightness = point.y / self.bounds.size.height;
 	
-	self.dragRect = NSMakeRect(point.x - 1, point.y - 1, 3, 3);
+	self.dragRect = NSMakeRect(point.x - 2, point.y - 2, 4, 4);
 	[self setNeedsDisplay:YES];
 	
 	if (self.delegate) {

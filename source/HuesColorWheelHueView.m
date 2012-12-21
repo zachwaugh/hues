@@ -33,8 +33,9 @@
 		NSRectFill(pixel);
 	}
 	
+	// Current hue
 	[[NSColor whiteColor] set];
-	[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMinX(rect), self.lastDrag.y - 1, NSWidth(rect), 1)] fill];
+	[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMinX(rect), round(self.lastDrag.y) - 1.5, NSWidth(rect), 2)] stroke];
 	
 	// Stroke border
 	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];

@@ -8,6 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol HuesScopeBarViewDelegate <NSObject>
+
+- (void)scopeBarDidSelectTabWithTitle:(NSString *)title;
+
+@end
+
 @interface HuesScopeBarView : NSView
+
+@property (strong, nonatomic) NSArray *titles;
+@property (unsafe_unretained) id<HuesScopeBarViewDelegate> delegate;
 
 @end

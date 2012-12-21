@@ -7,20 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HuesScopeBarView.h"
 
-@interface HuesWindowController : NSWindowController <NSWindowDelegate>
+@interface HuesWindowController : NSWindowController <NSWindowDelegate, HuesScopeBarViewDelegate>
 
 @property (weak) IBOutlet NSColorWell *colorWell;
 @property (weak) IBOutlet NSTextField *primaryFormat;
 @property (weak) IBOutlet NSTextField *secondaryFormat;
 @property (weak) IBOutlet NSPopUpButton *alternateFormats;
 @property (weak) IBOutlet NSView *mixerContainerView;
+@property (weak) IBOutlet HuesScopeBarView *scopeBar;
 
 - (IBAction)copyPrimary:(id)sender;
 - (IBAction)copySecondary:(id)sender;
 - (IBAction)copyAlternate:(id)sender;
 - (IBAction)toggleKeepOnTop:(id)sender;
-- (IBAction)changeMixerTab:(id)sender;
 
 //- (void)toggleWindow;
 - (void)hideWindow;

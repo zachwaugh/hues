@@ -18,6 +18,7 @@
 #import "HuesRGBViewController.h"
 #import "HuesHSBViewController.h"
 #import "HuesColorWheelViewController.h"
+#import "HuesScopeBarView.h"
 
 @interface HuesWindowController ()
 
@@ -67,6 +68,9 @@
 	[titleBarView addSubview:button];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
+	
+	self.scopeBar.delegate = self;
+	self.scopeBar.titles = @[@"RGB", @"HSB", @"Color Wheel"];
 	
 	[self loadMixerWithClass:[HuesRGBViewController class]];
 	[self updateInterfaceWithColor:self.color];
@@ -161,21 +165,9 @@
 	
 	self.mixerController = [[class alloc] init];
 	self.mixerController.color = self.color;
-	self.mixerController.view.frame = self.mixerContainerView.bounds;
-	[self.mixerContainerView addSubview:self.mixerController.view];
-}
-
-- (IBAction)changeMixerTab:(id)sender
-{
-	NSString *title = [sender title];
-	
-	if ([title isEqualToString:@"RGB"]) {
-		[self loadMixerWithClass:[HuesRGBViewController class]];
-	} else if ([title isEqualToString:@"HSB"]) {
-		[self loadMixerWithClass:[HuesHSBViewController class]];
-	} else if ([title isEqualToString:@"Color Wheel"]) {
-		[self loadMixerWithClass:[HuesColorWheelViewController class]];
-	}
+	NSView *mixerView = self.mixerController.view;
+	mixerView.frame = self.mixerContainerView.bounds;
+	[self.mixerContainerView addSubview:mixerView];	
 }
 
 #pragma mark - Loupe
@@ -208,6 +200,21 @@
 	}
 	
 	return YES;
+}
+
+#pragma mark - HuesScopeBarViewDelegate
+
+- (void)scopeBarDidSelectTabWithTitle:(NSString *)title
+{
+	NSLog(@"changeMixerTab: %@", title);
+	
+	if ([title isEqualToString:@"RGB"]) {
+		[self loadMixerWithClass:[HuesRGBViewController class]];
+	} else if ([title isEqualToString:@"HSB"]) {
+		[self loadMixerWithClass:[HuesHSBViewController class]];
+	} else if ([title isEqualToString:@"Color Wheel"]) {
+		[self loadMixerWithClass:[HuesColorWheelViewController class]];
+	}
 }
 
 @end
