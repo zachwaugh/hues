@@ -23,11 +23,14 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 
 @implementation HuesLoupeWindow
 
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag 
-{	
-	self = [super initWithContentRect:contentRect styleMask:(NSBorderlessWindowMask | NSUtilityWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
-	
-	if (self) {
+- (id)initWithFrame:(NSRect)frame
+{
+	return [self initWithContentRect:frame styleMask:(NSBorderlessWindowMask | NSUtilityWindowMask | NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:NO];
+}
+
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)styleMask backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+{
+	if ((self = [super initWithContentRect:contentRect styleMask:styleMask backing:bufferingType defer:flag])) {
 		[self setBackgroundColor:[NSColor clearColor]];
 		[self setLevel:NSStatusWindowLevel + 1];
 		[self setOpaque:NO];

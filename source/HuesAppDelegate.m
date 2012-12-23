@@ -140,21 +140,28 @@
 	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
 	
 	NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
-  self.loupeWindow = [[HuesLoupeWindow alloc] initWithContentRect:loupeRect styleMask:0 backing:NSBackingStoreBuffered defer:YES];
-	self.loupeWindow.delegate = self;
-	[self.loupeWindow makeKeyAndOrderFront:self];
+	
+	if (!self.loupeWindow) {
+		self.loupeWindow = [[HuesLoupeWindow alloc] initWithFrame:loupeRect];
+		self.loupeWindow.delegate = self;
+	} else {
+		[self.loupeWindow adjustLoupeWithOrigin:loupeRect.origin];
+	}
+		 
+  [self.loupeWindow makeKeyAndOrderFront:self];
+	
 }
 
 - (void)loupeWindowDidClose:(NSNotification *)notification
 {
-	self.loupeWindow = nil;
+
 }
 
 - (void)startEventMonitor
 {
 	self.monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event ){
-		if (self.loupeWindow) {
-			NSLog(@"[monitor] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
+		if (self.loupeWindow && [self.loupeWindow isVisible]) {
+			//NSLog(@"[monitor] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
 			[self.loupeWindow mouseMoved:event];
 		}
 	}];

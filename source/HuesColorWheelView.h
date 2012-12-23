@@ -17,6 +17,6 @@
 @interface HuesColorWheelView : NSView
 
 @property (strong, nonatomic) NSColor *color;
-@property (weak) IBOutlet id<HuesColorWheelViewDelegate> delegate;
+@property (unsafe_unretained) IBOutlet id<HuesColorWheelViewDelegate> delegate;
 
 @end

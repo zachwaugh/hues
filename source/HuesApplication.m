@@ -17,7 +17,7 @@
 
 	if (event.type == NSMouseMoved) {
 		if ([self.mainWindow isKindOfClass:[HuesLoupeWindow class]]) {
-			NSLog(@"[application] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
+			//NSLog(@"[application] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
 			[self.mainWindow sendEvent:event];
 		}
 	}
