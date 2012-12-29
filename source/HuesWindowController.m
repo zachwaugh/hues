@@ -186,7 +186,9 @@
     NSColor *newColor = [NSColor hues_colorFromHex:value];
     
     if (newColor != nil) {
-      [self updateInterfaceWithColor:newColor];
+      self.color = newColor;
+			[self updateInterfaceWithColor:newColor];
+			[self.mixerController updateInterfaceWithColor:newColor];
     }
   }
 }

@@ -18,7 +18,6 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
 
 @implementation HuesPreferencesController
 
-
 - (void)awakeFromNib
 {
   self.currentToolbarIdentifier = HuesGeneralToolbarIdentifier;
