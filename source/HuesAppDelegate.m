@@ -147,9 +147,8 @@
 	} else {
 		[self.loupeWindow adjustLoupeWithOrigin:loupeRect.origin];
 	}
-		 
-  [self.loupeWindow makeKeyAndOrderFront:self];
 	
+  [self.loupeWindow show];
 }
 
 - (void)loupeWindowDidClose:(NSNotification *)notification

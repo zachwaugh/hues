@@ -16,5 +16,6 @@ extern NSString * const HuesLoupeWindowDidCloseNotification;
 - (id)initWithFrame:(NSRect)frame;
 - (void)adjustLoupeWithOrigin:(NSPoint)origin;
 - (void)hide;
+- (void)show;
 
 @end

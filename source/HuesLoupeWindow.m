@@ -39,7 +39,7 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 		[self setIgnoresMouseEvents:NO];
 		[self setAcceptsMouseMovedEvents:YES];
 		[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
-		[self hideCursor];
+		[self disableCursorRects];
 		self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
 		self.contentView = self.loupeView;
 	}
@@ -67,6 +67,12 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 {
 	[super becomeKeyWindow];
 	[self makeFirstResponder:self.loupeView];
+}
+
+- (void)show
+{
+	[self hideCursor];
+	[self makeKeyAndOrderFront:nil];
 }
 
 // Escape key
@@ -147,7 +153,6 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 	CGDisplayHideCursor(kCGDirectMainDisplay);
 #else 
 	// Standard way - doesn't work if app isn't active
-	[self disableCursorRects];
 	[NSCursor hide];
 #endif
 }
