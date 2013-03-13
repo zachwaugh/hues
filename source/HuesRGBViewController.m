@@ -16,14 +16,14 @@
 - (id)init
 {
 	self = [super initWithNibName:@"HuesRGBViewController" bundle:nil];
-	if (self) {
-	}
+	if (!self) return nil;
 	
 	return self;
 }
 
 - (void)updateInterfaceWithColor:(NSColor *)color
 {
+	self.color = color;
 	CGFloat redComponent = [color redComponent];
 	CGFloat greenComponent = [color greenComponent];
 	CGFloat blueComponent = [color blueComponent];

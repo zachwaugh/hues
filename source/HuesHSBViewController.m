@@ -25,6 +25,8 @@
 
 - (void)updateInterfaceWithColor:(NSColor *)color
 {
+	self.color = color;
+	
 	self.hueField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.hueComponent * 360.0)];
 	self.hueSlider.intValue = color.hueComponent * 360.0f;
 	self.hueSlider.color = color;

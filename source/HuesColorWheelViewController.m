@@ -27,6 +27,7 @@
 
 - (void)updateInterfaceWithColor:(NSColor *)color
 {
+	self.color = color;
 	self.colorWheelView.color = color;
 }
 

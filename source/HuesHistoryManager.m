@@ -27,7 +27,6 @@
   static HuesHistoryManager *_sharedHistoryManager = nil;
   static dispatch_once_t oncePredicate;
   dispatch_once(&oncePredicate, ^{
-    NSLog(@"creating history manager");
     _sharedHistoryManager = [[self alloc] init];
   });
   
@@ -42,7 +41,6 @@
   
   return self;
 }
-
 
 - (void)addColor:(NSColor *)color
 {
@@ -70,7 +68,7 @@
 {
   NSInteger index = [self.menu indexOfItem:sender];
   NSColor *color = self.history[index];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:HuesUpdateColorNotification object:color]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 }
 
 @end

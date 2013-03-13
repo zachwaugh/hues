@@ -19,4 +19,6 @@
 @property (strong, nonatomic) NSArray *titles;
 @property (unsafe_unretained) id<HuesScopeBarViewDelegate> delegate;
 
+- (void)selectTabAtIndex:(NSInteger)index;
+
 @end

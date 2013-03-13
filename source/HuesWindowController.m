@@ -53,7 +53,7 @@
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
 	// Setup custom window titlebar
-	INAppStoreWindow *window = (INAppStoreWindow*)self.window;
+	INAppStoreWindow *window = (INAppStoreWindow *)self.window;
 	window.titleBarHeight = 34.0;
 	
 	NSView *titleBarView = window.titleBarView;
@@ -63,6 +63,7 @@
 	[button setBordered:NO];
 	[button setImage:loupe];
 	[button setTarget:self];
+	[button setButtonType:NSMomentaryChangeButton];
 	[button setAction:@selector(showLoupe:)];
 	button.autoresizingMask = (NSViewMinXMargin | NSViewMinYMargin);
 	[titleBarView addSubview:button];
@@ -97,8 +98,7 @@
 // Called from loupe
 - (void)updateColor:(NSNotification *)notification
 {
-	NSLog(@"updateColor: %@", notification);
-  NSColor *color = [notification object];
+  NSColor *color = notification.object;
 	self.color = color;
 	[self.mixerController updateInterfaceWithColor:color];
   [self updateInterfaceWithColor:color];
@@ -120,14 +120,12 @@
   [self.secondaryFormat setAttributedStringValue:rgbString];
 	
 	[self.alternateFormats removeAllItems];
-	
 	[self.alternateFormats addItemsWithTitles:@[[color hues_hsl]]];
 	[self.alternateFormats addItemsWithTitles:@[[color hues_hsb]]];
 	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
-	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
-	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
 	[self.alternateFormats addItemsWithTitles:@[[color hues_UIColorRGB], [color hues_UIColorHSB]]];
-
+	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
+	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
 }
 
 #pragma mark - Clipboard
@@ -208,8 +206,6 @@
 
 - (void)scopeBarDidSelectTabWithTitle:(NSString *)title
 {
-	NSLog(@"changeMixerTab: %@", title);
-	
 	if ([title isEqualToString:@"RGB"]) {
 		[self loadMixerWithClass:[HuesRGBViewController class]];
 	} else if ([title isEqualToString:@"HSB"]) {

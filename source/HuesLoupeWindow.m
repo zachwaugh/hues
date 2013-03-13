@@ -75,6 +75,13 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 	[self makeKeyAndOrderFront:nil];
 }
 
+- (void)hide
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesLoupeWindowDidCloseNotification object:self];
+	[self orderOut:nil];
+	[self showCursor];
+}
+
 // Escape key
 - (void)cancel:(id)sender
 {
@@ -121,13 +128,6 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 	// Adjust window so it's centered on new point
   NSPoint origin = NSMakePoint(round(point.x - round(self.frame.size.width / 2)), round(point.y - round(self.frame.size.height / 2)));
   [self adjustLoupeWithOrigin:origin];
-}
-
-- (void)hide
-{
-	[[NSNotificationCenter defaultCenter] postNotificationName:HuesLoupeWindowDidCloseNotification object:self];
-	[self showCursor];
-	[self orderOut:nil];
 }
 
 - (void)adjustLoupeWithOrigin:(NSPoint)origin
