@@ -29,20 +29,24 @@
 	
 	self.hueField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.hueComponent * 360.0)];
 	self.hueSlider.intValue = color.hueComponent * 360.0f;
+	self.hueSlider.currentColor = color;
 	self.hueSlider.color = color;
 	
 	self.saturationField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.saturationComponent * 100.0)];
 	self.saturationSlider.intValue = color.saturationComponent * 100.0;
+	self.saturationSlider.currentColor = color;
 	self.saturationSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:0 brightness:color.brightnessComponent alpha:1.0];
 	self.saturationSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:1 brightness:color.brightnessComponent alpha:1.0];
 	
 	self.brightnessField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.brightnessComponent * 100.0)];
 	self.brightnessSlider.intValue = color.brightnessComponent * 100.0;
+	self.brightnessSlider.currentColor = color;
 	self.brightnessSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:0 alpha:1.0];
 	self.brightnessSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:1 alpha:1.0];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.alphaComponent * 100.0)];
 	self.alphaSlider.intValue = (int)(color.alphaComponent * 100.0);
+	self.alphaSlider.currentColor = color;
 	self.alphaSlider.startColor = [NSColor whiteColor];
 	self.alphaSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
 }

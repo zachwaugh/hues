@@ -16,6 +16,7 @@
 	if ((self = [super initWithFrame:frameRect])) {
 		_startColor = [NSColor whiteColor];
 		_endColor = [NSColor whiteColor];
+		_currentColor = [NSColor whiteColor];
 	}
 	
 	return self;
@@ -25,6 +26,7 @@
 {
 	self.startColor = [NSColor whiteColor];
 	self.endColor = [NSColor whiteColor];
+	self.currentColor = [NSColor whiteColor];
 }
 
 - (void)setStartColor:(NSColor *)startColor
@@ -36,6 +38,12 @@
 - (void)setEndColor:(NSColor *)endColor
 {
 	_endColor = endColor;
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setCurrentColor:(NSColor *)color
+{
+	_currentColor = color;
 	[self setNeedsDisplay:YES];
 }
 

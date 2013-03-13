@@ -35,21 +35,25 @@
 	
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
 	self.redSlider.intValue = red;
+	self.redSlider.currentColor = color;
 	self.redSlider.startColor = [NSColor colorWithCalibratedRed:0 green:greenComponent blue:blueComponent alpha:1.0];
 	self.redSlider.endColor = [NSColor colorWithCalibratedRed:1 green:greenComponent blue:blueComponent alpha:1.0];
 	
 	self.greenField.stringValue = [NSString stringWithFormat:@"%d", green];
 	self.greenSlider.intValue = green;
+	self.greenSlider.currentColor = color;
 	self.greenSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:0 blue:blueComponent alpha:1.0];
 	self.greenSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:1 blue:blueComponent alpha:1.0];
 	
 	self.blueField.stringValue = [NSString stringWithFormat:@"%d", blue];
 	self.blueSlider.intValue = blue;
+	self.blueSlider.currentColor = color;
 	self.blueSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:0 alpha:1.0];
 	self.blueSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:1 alpha:1.0];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", alpha];
 	self.alphaSlider.intValue = alpha;
+	self.alphaSlider.currentColor = color;
 	self.alphaSlider.startColor = [NSColor whiteColor];
 	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
 }

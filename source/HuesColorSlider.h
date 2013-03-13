@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSColor *startColor;
 @property (strong, nonatomic) NSColor *endColor;
+@property (strong, nonatomic) NSColor *currentColor;
 
 - (NSGradient *)gradient;
 
