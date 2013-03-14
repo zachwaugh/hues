@@ -8,9 +8,9 @@
 
 #import "HuesLoupeWindow.h"
 #import "HuesLoupeView.h"
+#import "HuesDefines.h"
 #import <ApplicationServices/ApplicationServices.h>
 
-NSInteger const HuesLoupeSize = 315;
 NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidCloseNotification";
 
 #define USE_UNDOCUMENTED_HIDE 1

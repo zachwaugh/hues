@@ -23,3 +23,6 @@ typedef enum {
 
 // Notifications
 extern NSString * const HuesUpdateColorNotification;
+
+extern NSInteger const HuesLoupeSize;
+extern NSInteger const HuesLoupeZoom;

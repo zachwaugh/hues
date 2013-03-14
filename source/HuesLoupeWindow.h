@@ -8,7 +8,6 @@
 
 #import <AppKit/AppKit.h>
 
-extern NSInteger const HuesLoupeSize;
 extern NSString * const HuesLoupeWindowDidCloseNotification;
 
 @interface HuesLoupeWindow : NSPanel

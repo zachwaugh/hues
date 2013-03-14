@@ -12,7 +12,6 @@
 #import "NSColor+Hues.h"
 
 // Zoom level is multiplier of pixel size
-#define ZOOM_LEVEL 15.0
 #define GRID_LINES YES
 
 @interface HuesLoupeView ()
@@ -34,7 +33,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
   NSRect b = self.bounds;
-	CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+	CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
 	
 	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
@@ -44,12 +43,15 @@
   rect.origin.y = NSMaxY([[NSScreen screens][0] frame]) - NSMaxY(rect);
   
   CGImageRelease(_image);
+	
+	// TODO: limit to minimum area we need
+	// Actual image of screen
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
 
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  float offset = ((ZOOM_LEVEL * HuesLoupeSize) - HuesLoupeSize) / 2;
+  float offset = ((HuesLoupeZoom * HuesLoupeSize) - HuesLoupeSize) / 2;
   
 	// Draw scaled screenshot clipped to loupe path
   CGContextSaveGState(ctx);
@@ -60,7 +62,7 @@
 	
 	// Translate and scale context so image is drawn correctly
   CGContextTranslateCTM(ctx, -offset, -offset);
-  CGContextScaleCTM(ctx, ZOOM_LEVEL, ZOOM_LEVEL);
+  CGContextScaleCTM(ctx, HuesLoupeZoom, HuesLoupeZoom);
 	
 	// Draw screenshot into context
   CGContextDrawImage(ctx, b, _image);
@@ -80,7 +82,7 @@
 		int x = 0;
 		
 		// Draw vertical lines
-		for (x = 0; x <= NSWidth(b); x += ZOOM_LEVEL) {
+		for (x = 0; x <= NSWidth(b); x += HuesLoupeZoom) {
 			NSRect rect = NSMakeRect(x, y, 1.0, NSHeight(b));
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
@@ -88,14 +90,18 @@
 		x = 0;
 		
 		// Draw horizontal lines
-		for (y = 0; y <= NSHeight(b); y += ZOOM_LEVEL) {
+		for (y = 0; y <= NSHeight(b); y += HuesLoupeZoom) {
 			NSRect rect = NSMakeRect(x, y, NSWidth(b), 1.0);
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
 		
 		CGContextRestoreGState(ctx);
 	}
+		
+	// Turn off anti-aliasing so lines are crisp
+	CGContextSetAllowsAntialiasing(ctx, NO);
 	
+	// TODO: adjust color based
 	//NSColor *color = [self colorAtCenter];
 	//
 	//	if (YES || [color hues_isColorDark]) {
@@ -104,16 +110,11 @@
 	//		[[NSColor blackColor] set];
 	//	}
 	
-	// Turn off anti-aliasing so lines are crisp
-	CGContextSetAllowsAntialiasing(ctx, NO);
-	
 	// Square around center pixel that will be used for picking
 	[[NSColor whiteColor] set];
-	NSRect centerRect = NSMakeRect(NSMidX(b) - (ZOOM_LEVEL / 2), NSMidY(b)  - (ZOOM_LEVEL / 2), ZOOM_LEVEL, ZOOM_LEVEL);
+	NSRect centerRect = NSMakeRect(NSMidX(b) - (HuesLoupeZoom / 2), NSMidY(b)  - (HuesLoupeZoom / 2), HuesLoupeZoom, HuesLoupeZoom);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
-//	[[NSColor grayColor] set];
-//	[[NSBezierPath bezierPathWithRect:NSInsetRect(centerRect, 0.1, 0.1)] stroke];
-	
+
 	// Need to turn this back on
 	CGContextSetAllowsAntialiasing(ctx, YES);
 	
@@ -126,7 +127,7 @@
 {
 	// Always pick color from center of loupe
 	NSColor *color = [self colorAtCenter];
-	NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
+	//NSLog(@"loupe color: %@ - %@", [color hues_hex], color);
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 	[(HuesLoupeWindow *)self.window hide];
@@ -193,8 +194,7 @@
 
 - (void)keyDown:(NSEvent *)event
 {
-	NSLog(@"[loupe view] keyDown");
-	unichar character = [[event characters] characterAtIndex:0];
+	unichar character = [event.characters characterAtIndex:0];
 	
 	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [[event characters] isEqualToString:@" "]) {
 		[self pickColor];
@@ -207,13 +207,13 @@
 
 - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
 {
-	NSLog(@"[loupe view] acceptsFirstMouse");
+	//NSLog(@"[loupe view] acceptsFirstMouse");
 	return YES;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-	NSLog(@"[loupe view] mouseDown");
+	//NSLog(@"[loupe view] mouseDown");
   [self pickColor];
 }
 
