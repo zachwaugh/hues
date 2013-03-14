@@ -57,7 +57,7 @@
 	window.titleBarHeight = 34.0;
 	
 	NSView *titleBarView = window.titleBarView;
-	NSImage *loupe = [NSImage imageNamed:@"loupe-button"];
+	NSImage *loupe = [NSImage imageNamed:@"magnifier"];
 	NSRect buttonFrame = NSMakeRect(NSMaxX(titleBarView.bounds) - loupe.size.width - 10, NSMidY(titleBarView.bounds) - (loupe.size.height / 2.f), loupe.size.width, loupe.size.height);
 	NSButton *button = [[NSButton alloc] initWithFrame:buttonFrame];
 	[button setBordered:NO];

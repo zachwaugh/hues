@@ -11,12 +11,14 @@
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
 		921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E50167E6276002FCC42 /* HuesScopeBarView.m */; };
-		921A8E55167E6783002FCC42 /* loupe-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E53167E6783002FCC42 /* loupe-button.png */; };
-		921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E54167E6783002FCC42 /* loupe-button@2x.png */; };
 		921A8E7E167FE757002FCC42 /* HuesRGBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */; };
 		921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */; };
 		921A8E84167FE8E2002FCC42 /* HuesHSBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E82167FE8E2002FCC42 /* HuesHSBViewController.m */; };
 		921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */; };
+		9228C51816F16A7500C57A48 /* magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51416F16A7500C57A48 /* magnifier.png */; };
+		9228C51916F16A7500C57A48 /* magnifier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51516F16A7500C57A48 /* magnifier@2x.png */; };
+		9228C51A16F16A7500C57A48 /* slider-knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51616F16A7500C57A48 /* slider-knob.png */; };
+		9228C51B16F16A7500C57A48 /* slider-knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51716F16A7500C57A48 /* slider-knob@2x.png */; };
 		923098AF167FF2E700F98571 /* HuesMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923098AE167FF2E700F98571 /* HuesMixerViewController.m */; };
 		923098B31680012C00F98571 /* HuesHueColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 923098B21680012C00F98571 /* HuesHueColorSlider.m */; };
 		923098B61680016300F98571 /* HuesHueColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923098B51680016300F98571 /* HuesHueColorSliderCell.m */; };
@@ -61,14 +63,16 @@
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
 		921A8E4F167E6276002FCC42 /* HuesScopeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesScopeBarView.h; sourceTree = "<group>"; };
 		921A8E50167E6276002FCC42 /* HuesScopeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesScopeBarView.m; sourceTree = "<group>"; };
-		921A8E53167E6783002FCC42 /* loupe-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-button.png"; sourceTree = "<group>"; };
-		921A8E54167E6783002FCC42 /* loupe-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-button@2x.png"; sourceTree = "<group>"; };
 		921A8E7B167FE757002FCC42 /* HuesRGBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesRGBViewController.h; sourceTree = "<group>"; };
 		921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesRGBViewController.m; sourceTree = "<group>"; };
 		921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesRGBViewController.xib; sourceTree = "<group>"; };
 		921A8E81167FE8E2002FCC42 /* HuesHSBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHSBViewController.h; sourceTree = "<group>"; };
 		921A8E82167FE8E2002FCC42 /* HuesHSBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHSBViewController.m; sourceTree = "<group>"; };
 		921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesHSBViewController.xib; sourceTree = "<group>"; };
+		9228C51416F16A7500C57A48 /* magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifier.png; sourceTree = "<group>"; };
+		9228C51516F16A7500C57A48 /* magnifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifier@2x.png"; sourceTree = "<group>"; };
+		9228C51616F16A7500C57A48 /* slider-knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob.png"; sourceTree = "<group>"; };
+		9228C51716F16A7500C57A48 /* slider-knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob@2x.png"; sourceTree = "<group>"; };
 		923098AD167FF2E700F98571 /* HuesMixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMixerViewController.h; sourceTree = "<group>"; };
 		923098AE167FF2E700F98571 /* HuesMixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesMixerViewController.m; sourceTree = "<group>"; };
 		923098B11680012C00F98571 /* HuesHueColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHueColorSlider.h; sourceTree = "<group>"; };
@@ -278,8 +282,10 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				921A8E53167E6783002FCC42 /* loupe-button.png */,
-				921A8E54167E6783002FCC42 /* loupe-button@2x.png */,
+				9228C51416F16A7500C57A48 /* magnifier.png */,
+				9228C51516F16A7500C57A48 /* magnifier@2x.png */,
+				9228C51616F16A7500C57A48 /* slider-knob.png */,
+				9228C51716F16A7500C57A48 /* slider-knob@2x.png */,
 				9202B089147448C5001201EA /* hues_menubar_highlight.png */,
 				9202B08A147448C5001201EA /* hues_menubar_normal.png */,
 				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
@@ -444,11 +450,13 @@
 				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
 				9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */,
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
-				921A8E55167E6783002FCC42 /* loupe-button.png in Resources */,
-				921A8E56167E6783002FCC42 /* loupe-button@2x.png in Resources */,
 				921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */,
 				921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */,
 				923098BB1680058700F98571 /* HuesColorWheelViewController.xib in Resources */,
+				9228C51816F16A7500C57A48 /* magnifier.png in Resources */,
+				9228C51916F16A7500C57A48 /* magnifier@2x.png in Resources */,
+				9228C51A16F16A7500C57A48 /* slider-knob.png in Resources */,
+				9228C51B16F16A7500C57A48 /* slider-knob@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

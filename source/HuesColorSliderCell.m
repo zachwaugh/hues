@@ -27,15 +27,23 @@
 
 - (void)drawKnob:(NSRect)knobRect
 {
-	[super drawKnob:knobRect];
+	NSImage *knob = [NSImage imageNamed:@"slider-knob"];
+	NSRect rect = knobRect;
+	rect.origin.x += round((knobRect.size.width - knob.size.width) / 2);
+	rect.origin.y += round((knobRect.size.height - knob.size.height) / 2);
+	rect.size.width = knob.size.width;
+	rect.size.height = knob.size.height;
+	[knob drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
 	
-	HuesColorSlider *slider = (HuesColorSlider *)[self controlView];
-	[slider.currentColor set];
-	NSRect rect = NSInsetRect(knobRect, 8, 8);
-	[[NSBezierPath bezierPathWithOvalInRect:rect] fill];
-	
-	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
-	[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(rect, 0.5, 0.5)] stroke];
+//  [super drawKnob:knobRect];
+//	
+//	HuesColorSlider *slider = (HuesColorSlider *)[self controlView];
+//	[slider.currentColor set];
+//	NSRect innerRect = NSInsetRect(knobRect, 8, 8);
+//	[[NSBezierPath bezierPathWithOvalInRect:innerRect] fill];
+//	
+//	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
+//	[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(innerRect, 0.5, 0.5)] stroke];
 }
 
 @end
