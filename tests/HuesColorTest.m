@@ -11,8 +11,8 @@
 #import "HuesPreferences.h"
 
 @interface HuesColorTest : SenTestCase
-{
-}
+
+- (void)testConvertedColor;
 
 - (void)testHexFromColor;
 - (void)testHexFormatParsing;
@@ -26,6 +26,9 @@
 - (void)testNSColorDeviceRGB;
 - (void)testUIColorRGB;
 - (void)testUIColorHSB;
+
+- (void)testIsDark;
+- (void)testRelativeBrightness;
 
 @end
 
@@ -41,6 +44,18 @@
 {
   // Tear-down code here.
   [super tearDown];
+}
+
+- (void)testConvertedColor
+{
+	NSColor *color = [NSColor whiteColor];
+	expect([color hues_convertedColor]).toNot.equal(color);
+	
+	color = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+	expect([color hues_convertedColor]).to.equal(color);
+	
+	color = [NSColor colorWithDeviceRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+	expect([color hues_convertedColor]).to.equal(color);
 }
 
 - (void)testLowerCasePreference
@@ -79,7 +94,6 @@
   STAssertEqualObjects([[NSColor colorWithDeviceRed:0.1 green:0.1 blue:0.25 alpha:1] hues_hexWithLowercase:NO], @"#1A1A40", @"");
 }
 
-
 - (void)testRGBFromColor
 {
   // test basic black and white
@@ -109,7 +123,6 @@
   STAssertEqualObjects([[NSColor colorWithDeviceRed:0.1 green:0.1 blue:0.1 alpha:1] hues_rgbWithDefaultFormat], @"rgb(26, 26, 26)", @"");
 }
 
-
 - (void)testHSLFromColor
 {
   // test basic black and white
@@ -132,7 +145,6 @@
   STAssertEqualObjects([[NSColor colorWithCalibratedRed:1 green:1 blue:0 alpha:0.25] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.25)", @"");
   STAssertEqualObjects([[NSColor colorWithDeviceRed:1 green:1 blue:0 alpha:0.1] hues_hslWithDefaultFormat], @"hsla(60, 100%, 50%, 0.10)", @"");
 }
-
 
 - (void)testHexFormatParsing
 {
@@ -164,30 +176,28 @@
   STAssertEqualObjects([color hues_hexWithFormat:@"{{r}}{{g}}{{b}}"], @"{FF}{80}{40}", @"");
 }
 
-
 - (void)testColorFromHex
 {
   // Test correct input length
-  STAssertNil([NSColor hues_colorFromHex:@""], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"f"], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"ff"], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"fff"], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"ffff"], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"fffff"], @"Input less than 6 characters should be nil");
-  STAssertNil([NSColor hues_colorFromHex:@"#fffff"], @"Input less than 6 characters after stripping # should be nil");
+  expect([NSColor hues_colorFromHex:@""]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"f"]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"ff"]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"fff"]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"ffff"]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"fffff"]).to.beNil();
+  expect([NSColor hues_colorFromHex:@"#fffff"]).to.beNil();
   
   // test same hex is returned
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hexWithLowercase:NO], @"#FFFFFF", @"should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"000000"] hues_hexWithLowercase:NO], @"#000000", @"should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"00ff00"] hues_hexWithLowercase:NO], @"#00FF00", @"should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"CCCCCC"] hues_hexWithLowercase:NO], @"#CCCCCC", @"should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"abc369"] hues_hexWithLowercase:NO], @"#ABC369", @"should return same hex");
+  expect([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hex]).to.equal(@"#FFFFFF");
+  expect([[NSColor hues_colorFromHex:@"000000"] hues_hex]).to.equal(@"#000000");
+  expect([[NSColor hues_colorFromHex:@"00ff00"] hues_hex]).to.equal(@"#00FF00");
+  expect([[NSColor hues_colorFromHex:@"CCCCCC"] hues_hex]).to.equal(@"#CCCCCC");
+  expect([[NSColor hues_colorFromHex:@"abc369"] hues_hex]).to.equal(@"#ABC369");
   
   // test same hex with correct formatting
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:YES], @"#ffffff", @"lowercase and should return same hex, lowercase");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:NO], @"#FFFFFF", @"lowercase and should return same hex, uppercase");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hexWithLowercase:YES], @"#ffffff", @"uppercase and should return same hex, lowercase");
-  
+  expect([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
+  expect([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
+  expect([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
   
   // test extra input still works
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"#FFFFFF"] hues_hexWithLowercase:NO], @"#FFFFFF", @"hex with # should return same hex");
@@ -195,7 +205,6 @@
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCCfjfyefuf"] hues_hexWithLowercase:NO], @"#CCCCCC", @"hex with extra digits and # should return same hex");
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCCFFFFFF"] hues_hexWithLowercase:NO], @"#CCCCCC", @"hex with extra digits and # should return same hex");
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCFFFFFF"] hues_hexWithLowercase:NO], @"#CCCCCF", @"hex with extra digits and # should return same hex");
-  
   
   // test invalid input returns #000000
   STAssertEqualObjects([[NSColor hues_colorFromHex:@"ZZZZZZ"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
@@ -207,31 +216,30 @@
 - (void)testNSColorCalibratedRGB
 {
 	// Test full white and full black
-	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
-  STAssertEqualObjects([[NSColor blackColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor redColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor blueColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor greenColor] hues_NSColorCalibratedRGB], @"[NSColor colorWithCalibratedRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+	expect([[NSColor whiteColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([[NSColor blackColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor redColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor blueColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
+	expect([[NSColor greenColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
 }
 
 - (void)testNSColorDeviceRGB
 {
 	// Test full white and full black
-	STAssertEqualObjects([[NSColor whiteColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
-  STAssertEqualObjects([[NSColor blackColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor redColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor blueColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor greenColor] hues_NSColorDeviceRGB], @"[NSColor colorWithDeviceRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+	expect([[NSColor whiteColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([[NSColor blackColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor redColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor blueColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
 }
 
 - (void)testUIColorRGB
 {
 	// Test full white/black/red/blue/green
-	STAssertEqualObjects([[NSColor whiteColor] hues_UIColorRGB], @"[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000]", @"");
-  STAssertEqualObjects([[NSColor blackColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor redColor] hues_UIColorRGB], @"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor blueColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
-	STAssertEqualObjects([[NSColor greenColor] hues_UIColorRGB], @"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+	expect([[NSColor whiteColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([[NSColor blackColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor redColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([[NSColor blueColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
+	expect([[NSColor greenColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
 }
 
 - (void)testUIColorHSB
@@ -242,6 +250,22 @@
 	STAssertEqualObjects([[NSColor redColor] hues_UIColorHSB], @"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
 	STAssertEqualObjects([[NSColor blueColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
 	STAssertEqualObjects([[NSColor greenColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
+}
+
+- (void)testIsDark
+{
+	expect([[NSColor whiteColor] hues_isColorDark]).to.beFalsy();
+	expect([[NSColor blackColor] hues_isColorDark]).to.beTruthy();
+	expect([[NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.0 alpha:1.0] hues_isColorDark]).to.beTruthy();
+	expect([[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] hues_isColorDark]).to.beFalsy();
+}
+
+- (void)testRelativeBrightness
+{
+	expect([[NSColor whiteColor] hues_relativeBrightness]).to.equal(255);
+	expect([[NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.0 alpha:1.0] hues_relativeBrightness]).to.equal(125);
+	expect([[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] hues_relativeBrightness]).to.equal(128);
+	expect([[NSColor blackColor] hues_relativeBrightness]).to.equal(0);
 }
 
 @end

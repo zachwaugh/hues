@@ -11,6 +11,9 @@
 
 @interface NSColor (Hues)
 
+- (int)hues_red;
+- (int)hues_green;
+- (int)hues_blue;
 - (NSString *)hues_hex;
 - (NSString *)hues_hexWithLowercase:(BOOL)lowercase;
 - (NSString *)hues_hexWithFormat:(NSString *)format;
@@ -32,6 +35,7 @@
 - (NSString *)hues_UIColorHSB;
 - (NSColor *)hues_convertedColor;
 - (BOOL)hues_isColorDark;
+- (NSInteger)hues_relativeBrightness;
 + (NSColor *)hues_colorFromHex:(NSString *)hex;
 
 @end

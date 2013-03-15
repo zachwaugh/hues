@@ -4,4 +4,6 @@
 
 #ifdef __OBJC__
   #import <Cocoa/Cocoa.h>
+	#define EXP_SHORTHAND
+	#import "Expecta.h"
 #endif

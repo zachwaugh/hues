@@ -1,14 +1,17 @@
 
 PODS:
+- Expecta (0.2.1)
 - INAppStoreWindow (1.1)
 - MASShortcut (1.1)
 
 DEPENDENCIES:
+- Expecta
 - INAppStoreWindow
 - MASShortcut
 
 SPEC CHECKSUMS:
   INAppStoreWindow: 77f15fd07261a79ae443124927c94ad30905d900
   MASShortcut: e9da47253933a4784813d5feb5f5bc5f7da721ca
+  Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
 
-COCOAPODS: 0.15.2
+COCOAPODS: 0.16.3

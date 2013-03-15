@@ -44,6 +44,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	[self checkForBetaExpiration];
+	
 	self.windowController = [[HuesWindowController alloc] init];
 	[self.windowController showWindow:nil];
 	
@@ -139,7 +141,7 @@
 	NSPoint point = [NSEvent mouseLocation];
 	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
 	
-	NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
+	//NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
 	
 	if (!self.loupeWindow) {
 		self.loupeWindow = [[HuesLoupeWindow alloc] initWithFrame:loupeRect];
@@ -176,17 +178,42 @@
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-	NSLog(@"windowWillClose: %@", notification.object);
+	//NSLog(@"windowWillClose: %@", notification.object);
 }
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	NSLog(@"windowDidBecomeKey: %@", notification.object);
+	//NSLog(@"windowDidBecomeKey: %@", notification.object);
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification
 {
-	NSLog(@"windowDidBecomeMain: %@", notification.object);
+	//NSLog(@"windowDidBecomeMain: %@", notification.object);
+}
+
+#pragma mark - Beta
+
+- (void)checkForBetaExpiration
+{
+#ifdef DEBUG
+  NSLog(@"*** WARNING!!! Beta is enabled ***");
+#endif
+  
+  NSDate *expiration = [NSDate dateWithNaturalLanguageString:BETA_EXPIRATION];
+  
+  if ([expiration earlierDate:[NSDate date]] == expiration) {
+    NSAlert *alert = [NSAlert alertWithMessageText:@"This beta has expired. Thank you for being a tester." defaultButton:@"Cancel" alternateButton:@"Mac App Store" otherButton:@"Check for Updated Beta" informativeTextWithFormat:@"Check for an updated beta or visit the Mac App Store to download the release version."];
+    
+    NSInteger returnCode = [alert runModal];
+    
+    if (returnCode == NSAlertAlternateReturn) {
+      [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:HUES_MAS_URL]];
+    } else if (returnCode == NSAlertOtherReturn) {
+      [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://giantcomet.com/hues/beta"]];
+    }
+    
+    [NSApp terminate:self];
+  }
 }
 
 @end
