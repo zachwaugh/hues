@@ -105,10 +105,8 @@
 	NSColor *color = [self colorAtCenter];
 
 	if ([color hues_isColorDark]) {
-		NSLog(@"color is dark: %@", color);
 		[[NSColor whiteColor] set];
 	} else {
-		NSLog(@"color is light: %@", color);
 		[[NSColor blackColor] set];
 	}
 	
@@ -120,9 +118,23 @@
 	// Need to turn this back on
 	CGContextSetAllowsAntialiasing(ctx, YES);
 	
-	// Border of loupe
-	//[[NSColor darkGrayColor] set];
-	//[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(b, 0.5, 0.5)] stroke];
+	static NSDictionary *attrs = nil;
+	if (!attrs) {
+		NSShadow *shadow = [[NSShadow alloc] init];
+		shadow.shadowColor = [NSColor blackColor];
+		shadow.shadowOffset = NSMakeSize(0, -1);
+		attrs = @{ NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:12.0], NSForegroundColorAttributeName: [NSColor whiteColor], NSShadowAttributeName: shadow };
+	}
+	
+	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[color hues_hex] attributes:attrs];
+	NSSize textSize = hex.size;
+	CGFloat width = textSize.width + 10;
+	NSRect hexRect = NSMakeRect(round((self.bounds.size.width - width) / 2), 10, width, textSize.height);
+	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.8] set];
+	[[NSBezierPath bezierPathWithRoundedRect:hexRect xRadius:4 yRadius:4] fill];
+	NSRect hexTextRect = NSInsetRect(hexRect, 5, 0);
+	hexTextRect.origin.y += 3;
+	[hex drawInRect:hexTextRect];
 }
 
 - (void)pickColor
@@ -141,8 +153,6 @@
 
 - (NSColor *)colorAtPoint:(CGPoint)point
 {
-	NSColorSpace *colorSpace = [[NSColorSpace alloc] initWithCGColorSpace:CGImageGetColorSpace(_image)];
-	
   // Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
   // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
   NSInteger pointX = trunc(point.x);
@@ -154,7 +164,7 @@
   int bytesPerRow = bytesPerPixel * 1;
   NSUInteger bitsPerComponent = 8;
   unsigned char pixelData[4] = { 0, 0, 0, 0 };
-  CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, colorSpace.CGColorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+  CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, CGImageGetColorSpace(_image), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
   //CGColorSpaceRelease(colorSpace);
   CGContextSetBlendMode(context, kCGBlendModeCopy);
   
@@ -164,15 +174,10 @@
   CGContextRelease(context);
   
   // Convert color values [0..255] to floats [0.0..1.0]
-	CGFloat rawRed = pixelData[0];
-	CGFloat rawGreen = pixelData[1];
-	CGFloat rawBlue = pixelData[2];
-	CGFloat rawAlpha = pixelData[3];
-	
-  CGFloat red = rawRed / 255.0f;
-  CGFloat green = rawGreen / 255.0f;
-  CGFloat blue = rawBlue / 255.0f;
-  CGFloat alpha = rawAlpha / 255.0f;
+	CGFloat red = pixelData[0] / 255.0f;
+	CGFloat green = pixelData[1] / 255.0f;
+	CGFloat blue = pixelData[2] / 255.0f;
+	CGFloat alpha = pixelData[3] / 255.0f;
 
 	NSColor *calibrated = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
 	
