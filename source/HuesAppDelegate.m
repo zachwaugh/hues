@@ -116,13 +116,12 @@
 
 - (void)toggleWindow:(id)sender
 {
-	if ([self.windowController.window isVisible]) {
-		[NSApp hide:nil];
-		[self.windowController hideWindow];
-	} else {
-		[NSApp activateIgnoringOtherApps:YES];
-		[self.windowController showWindow:nil];
-	}
+	if (![NSApp isActive] || [NSApp isHidden] || [self.windowController.window isMiniaturized] || ![self.windowController.window isVisible]) {
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.windowController showWindow:nil];
+  } else {
+    [NSApp hide:self];
+  }
 }
 
 - (void)showPreferences:(id)sender
