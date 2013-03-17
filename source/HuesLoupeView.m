@@ -19,6 +19,9 @@
 	CGImageRef _image;
 }
 
+- (NSInteger)zoomLevel;
+- (NSInteger)loupeSize;
+
 @end
 
 @implementation HuesLoupeView
@@ -34,6 +37,11 @@
 {
   NSRect b = self.bounds;
 	CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
+	
+	NSInteger zoomLevel = self.zoomLevel;
+	NSInteger loupeSize = self.loupeSize;
+	
+	NSLog(@"global zoom: %ld, local zoom: %ld, global size: %ld, local size: %ld", HuesLoupeZoom, zoomLevel, HuesLoupeSize, loupeSize);
 	
 	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
@@ -51,7 +59,7 @@
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  float offset = ((HuesLoupeZoom * HuesLoupeSize) - HuesLoupeSize) / 2;
+  float offset = ((zoomLevel * loupeSize) - loupeSize) / 2;
   
 	// Draw scaled screenshot clipped to loupe path
   CGContextSaveGState(ctx);
@@ -62,7 +70,7 @@
 	
 	// Translate and scale context so image is drawn correctly
   CGContextTranslateCTM(ctx, -offset, -offset);
-  CGContextScaleCTM(ctx, HuesLoupeZoom, HuesLoupeZoom);
+  CGContextScaleCTM(ctx, zoomLevel, zoomLevel);
 	
 	// Draw screenshot into context
   CGContextDrawImage(ctx, b, _image);
@@ -82,7 +90,7 @@
 		int x = 0;
 		
 		// Draw vertical lines
-		for (x = 0; x <= NSWidth(b); x += HuesLoupeZoom) {
+		for (x = 0; x <= NSWidth(b); x += zoomLevel) {
 			NSRect rect = NSMakeRect(x, y, 1.0, NSHeight(b));
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
@@ -90,7 +98,7 @@
 		x = 0;
 		
 		// Draw horizontal lines
-		for (y = 0; y <= NSHeight(b); y += HuesLoupeZoom) {
+		for (y = 0; y <= NSHeight(b); y += zoomLevel) {
 			NSRect rect = NSMakeRect(x, y, NSWidth(b), 1.0);
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
@@ -112,7 +120,7 @@
 	
 	// Square around center pixel that will be used for picking
 	//[[NSColor whiteColor] set];
-	NSRect centerRect = NSMakeRect(NSMidX(b) - (HuesLoupeZoom / 2), NSMidY(b)  - (HuesLoupeZoom / 2), HuesLoupeZoom, HuesLoupeZoom);
+	NSRect centerRect = NSMakeRect(NSMidX(b) - (zoomLevel / 2), NSMidY(b)  - (zoomLevel / 2), zoomLevel, zoomLevel);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
 
 	// Need to turn this back on
@@ -146,9 +154,20 @@
 	[(HuesLoupeWindow *)self.window hide];
 }
 
+- (NSInteger)loupeSize
+{
+	return (HuesLoupeSize / self.window.backingScaleFactor);
+}
+
+- (NSInteger)zoomLevel
+{
+	return (HuesLoupeZoom / self.window.backingScaleFactor);
+}
+
 - (NSColor *)colorAtCenter
 {
-	return [self colorAtPoint:NSMakePoint(HuesLoupeSize / 2, HuesLoupeSize / 2)];
+	NSInteger loupeSize = self.loupeSize;
+	return [self colorAtPoint:NSMakePoint(loupeSize / 2, loupeSize / 2)];
 }
 
 - (NSColor *)colorAtPoint:(CGPoint)point
