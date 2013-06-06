@@ -32,6 +32,8 @@
 		9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
 		923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1521467394E003CC8BB /* HuesLoupeWindow.m */; };
+		92513EAF1760DFCD00ED644C /* HuesPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 92513EAE1760DFCC00ED644C /* HuesPalette.m */; };
+		92513EB317612BA000ED644C /* HuesPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92513EB217612B9F00ED644C /* HuesPaletteItem.m */; };
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE6A1393EC9F00935FAC /* InfoPlist.strings */; };
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
@@ -98,6 +100,10 @@
 		923CA1501467394E003CC8BB /* HuesLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeView.m; sourceTree = "<group>"; };
 		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
 		923CA1521467394E003CC8BB /* HuesLoupeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeWindow.m; sourceTree = "<group>"; };
+		92513EAD1760DFCC00ED644C /* HuesPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalette.h; sourceTree = "<group>"; };
+		92513EAE1760DFCC00ED644C /* HuesPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalette.m; sourceTree = "<group>"; };
+		92513EB117612B9F00ED644C /* HuesPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteItem.h; sourceTree = "<group>"; };
+		92513EB217612B9F00ED644C /* HuesPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteItem.m; sourceTree = "<group>"; };
 		9264FE5D1393EC9F00935FAC /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE611393EC9F00935FAC /* Cocoa.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9264FE641393EC9F00935FAC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -375,6 +381,10 @@
 				92E7D67F1393ED080072C412 /* HuesHistoryManager.m */,
 				92E7D6821393ED080072C412 /* HuesPreferences.h */,
 				92E7D6831393ED080072C412 /* HuesPreferences.m */,
+				92513EAD1760DFCC00ED644C /* HuesPalette.h */,
+				92513EAE1760DFCC00ED644C /* HuesPalette.m */,
+				92513EB117612B9F00ED644C /* HuesPaletteItem.h */,
+				92513EB217612B9F00ED644C /* HuesPaletteItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -557,6 +567,8 @@
 				923098BA1680058700F98571 /* HuesColorWheelViewController.m in Sources */,
 				923098BE1680064D00F98571 /* HuesColorWheelView.m in Sources */,
 				923098C116800EBF00F98571 /* HuesColorWheelHueView.m in Sources */,
+				92513EAF1760DFCD00ED644C /* HuesPalette.m in Sources */,
+				92513EB317612BA000ED644C /* HuesPaletteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D389B701E4D4819BA28ED8D /* Pods-test.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -697,6 +710,7 @@
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -705,6 +719,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D389B701E4D4819BA28ED8D /* Pods-test.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -718,6 +733,7 @@
 				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

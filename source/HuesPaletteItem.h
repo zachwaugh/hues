@@ -10,4 +10,9 @@
 
 @interface HuesPaletteItem : NSObject
 
+@property (strong) NSString *name;
+@property (strong) NSColor *color;
+
+- (id)initWithName:(NSString *)name color:(NSColor *)color;
+
 @end
