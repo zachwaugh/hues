@@ -16,7 +16,6 @@
 
 - (void)testHexFromColor;
 - (void)testHexFormatParsing;
-- (void)testColorFromHex;
 
 - (void)testRGBFromColor;
 - (void)testHSLFromColor;
@@ -174,43 +173,6 @@
   STAssertEqualObjects([color hues_hexWithFormat:@"{r}_{g}_{b}"], @"FF_80_40", @"");
   STAssertEqualObjects([color hues_hexWithFormat:@"0x{r}{g}{b}"], @"0xFF8040", @"");
   STAssertEqualObjects([color hues_hexWithFormat:@"{{r}}{{g}}{{b}}"], @"{FF}{80}{40}", @"");
-}
-
-- (void)testColorFromHex
-{
-  // Test correct input length
-  expect([NSColor hues_colorFromHex:@""]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"f"]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"ff"]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"fff"]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"ffff"]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"fffff"]).to.beNil();
-  expect([NSColor hues_colorFromHex:@"#fffff"]).to.beNil();
-  
-  // test same hex is returned
-  expect([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hex]).to.equal(@"#FFFFFF");
-  expect([[NSColor hues_colorFromHex:@"000000"] hues_hex]).to.equal(@"#000000");
-  expect([[NSColor hues_colorFromHex:@"00ff00"] hues_hex]).to.equal(@"#00FF00");
-  expect([[NSColor hues_colorFromHex:@"CCCCCC"] hues_hex]).to.equal(@"#CCCCCC");
-  expect([[NSColor hues_colorFromHex:@"abc369"] hues_hex]).to.equal(@"#ABC369");
-  
-  // test same hex with correct formatting
-  expect([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
-  expect([[NSColor hues_colorFromHex:@"ffffff"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
-  expect([[NSColor hues_colorFromHex:@"FFFFFF"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
-  
-  // test extra input still works
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"#FFFFFF"] hues_hexWithLowercase:NO], @"#FFFFFF", @"hex with # should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"#FFFFFFFFFFFFF"] hues_hexWithLowercase:NO], @"#FFFFFF", @"hex with extra digits and # should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCCfjfyefuf"] hues_hexWithLowercase:NO], @"#CCCCCC", @"hex with extra digits and # should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCCFFFFFF"] hues_hexWithLowercase:NO], @"#CCCCCC", @"hex with extra digits and # should return same hex");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"#CCCCCFFFFFF"] hues_hexWithLowercase:NO], @"#CCCCCF", @"hex with extra digits and # should return same hex");
-  
-  // test invalid input returns #000000
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"ZZZZZZ"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"tyuytutytuytytuyt"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@";^&><?**&&'"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
-  STAssertEqualObjects([[NSColor hues_colorFromHex:@"!@#$\"\"\\"] hues_hexWithLowercase:NO], @"#000000", @"invalid should return #000000");
 }
 
 - (void)testNSColorCalibratedRGB

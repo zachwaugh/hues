@@ -19,6 +19,7 @@
 #import "HuesHSBViewController.h"
 #import "HuesColorWheelViewController.h"
 #import "HuesScopeBarView.h"
+#import "HuesColorParser.h"
 
 @interface HuesWindowController ()
 
@@ -181,7 +182,7 @@
 {
   if (notification.object == self.primaryFormat) {
     NSString *value = [self.primaryFormat stringValue];
-    NSColor *newColor = [NSColor hues_colorFromHex:value];
+    NSColor *newColor = [HuesColorParser colorFromHex:value];
     
     if (newColor != nil) {
       self.color = newColor;

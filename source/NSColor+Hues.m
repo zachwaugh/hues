@@ -24,31 +24,6 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 @implementation NSColor (Hues)
 
-+ (NSColor *)hues_colorFromHex:(NSString *)hex
-{
-  // remove any # signs
-  hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
-  
-  if ([hex length] < 6) return nil;
-  if ([hex length] > 6) hex = [hex substringToIndex:6];
-  
-	NSColor *result = nil;
-	unsigned int colorCode = 0;
-	unsigned char redByte, greenByte, blueByte;
-	
-	if (hex != nil) {
-		NSScanner *scanner = [NSScanner scannerWithString:hex];
-		(void) [scanner scanHexInt:&colorCode];	// ignore error
-	}
-  
-	redByte = (unsigned char) (colorCode >> 16);
-	greenByte	= (unsigned char) (colorCode >> 8);
-	blueByte = (unsigned char) (colorCode);	// masks off high bits
-	result = [NSColor colorWithCalibratedRed:(float)redByte / 0xff green:(float)greenByte / 0xff blue:(float)blueByte / 0xff alpha:1.0];
-	
-	return result;
-}
-
 #pragma mark - Components
 
 - (int)hues_red
