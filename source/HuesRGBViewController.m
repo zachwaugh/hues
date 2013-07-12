@@ -24,14 +24,14 @@
 - (void)updateInterfaceWithColor:(NSColor *)color
 {
 	self.color = color;
-	CGFloat redComponent = [color redComponent];
-	CGFloat greenComponent = [color greenComponent];
-	CGFloat blueComponent = [color blueComponent];
+	CGFloat redComponent = color.redComponent;
+	CGFloat greenComponent = color.greenComponent;
+	CGFloat blueComponent = color.blueComponent;
 	
-	int red = (int)(redComponent * 255.0);
-	int green = (int)(greenComponent * 255.0);
-	int blue = (int)(blueComponent * 255.0);
-	int alpha = (int)([color alphaComponent] * 100.0);
+	int red = (int)roundf(redComponent * 255.0);
+	int green = (int)roundf(greenComponent * 255.0);
+	int blue = (int)roundf(blueComponent * 255.0);
+	int alpha = (int)roundf(color.alphaComponent * 100.0);
 	
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
 	self.redSlider.intValue = red;
@@ -65,13 +65,13 @@
 	NSColor *newColor = nil;
 	
 	if (sender == self.redField) {
-		newColor = [NSColor colorWithCalibratedRed:(self.redField.integerValue / 255.0f) green:[self.color greenComponent] blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithRed:(self.redField.integerValue / 255.0f)];
 	} else if (sender == self.greenField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:(self.greenField.integerValue / 255.0f) blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithGreen:(self.greenField.integerValue / 255.0f)];
 	} else if (sender == self.blueField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueField.integerValue / 255.0f) alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithBlue:(self.blueField.integerValue / 255.0f)];
 	} else if (sender == self.alphaField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaField.integerValue / 100.0f)];
+		newColor = [self.color hues_colorWithAlpha:(self.alphaField.integerValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];
@@ -82,13 +82,13 @@
 	NSColor *newColor = nil;
 	
 	if (sender == self.redSlider) {
-		newColor = [NSColor colorWithCalibratedRed:(self.redSlider.floatValue / 255.0f) green:[self.color greenComponent] blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithRed:(self.redSlider.floatValue / 255.0f)];
 	} else if (sender == self.greenSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:(self.greenSlider.floatValue / 255.0f) blue:[self.color blueComponent] alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithGreen:(self.greenSlider.floatValue / 255.0f)];
 	} else if (sender == self.blueSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:(self.blueSlider.floatValue / 255.0f) alpha:[self.color alphaComponent]];
+		newColor = [self.color hues_colorWithBlue:(self.blueSlider.floatValue / 255.0f)];
 	} else if (sender == self.alphaSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaSlider.floatValue / 100.0f)];
+		newColor = [self.color hues_colorWithAlpha:(self.alphaSlider.floatValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];
@@ -103,11 +103,13 @@
 	if (commandSelector == @selector(moveUp:) || commandSelector == @selector(moveRight:)) {
 		textView.string = [NSString stringWithFormat:@"%ld", value + 1];
 		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		[self fieldChanged:control];
 		
 		return YES;
 	} else if (commandSelector == @selector(moveDown:) || commandSelector == @selector(moveLeft:)) {
 		textView.string = [NSString stringWithFormat:@"%ld", value - 1];
 		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		[self fieldChanged:control];
 		
 		return YES;
 	}

@@ -41,14 +41,48 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	return roundf(self.hues_convertedColor.blueComponent * 255.0f);
 }
 
+- (int)hues_alpha
+{
+	return roundf(self.hues_convertedColor.alphaComponent * 100.0f);
+}
+
 - (int)hues_hue
 {
 	return roundf(self.hues_convertedColor.hueComponent * 360.0f);
 }
 
+- (CGFloat)hues_saturationComponent
+{
+	NSColor *color = self.hues_convertedColor;
+	int hue;
+	CGFloat red, green, blue, alpha, saturation, lightness, max, min, delta;
+	
+	red = color.redComponent;
+	green = color.greenComponent;
+	blue = color.blueComponent;
+	alpha = color.alphaComponent;
+	
+	max = MAX(red, MAX(green, blue));
+	min = MIN(red, MIN(green, blue));
+	hue = roundf(color.hueComponent * 360.0f);
+	hue = (hue >= 360) ? 0 : hue;
+	
+	lightness = (max + min) / 2.0;
+	
+	if (max == min) {
+		hue = 0;
+		saturation = 0;
+	} else {
+		delta = max - min;
+		saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
+	}
+	
+	return saturation;
+}
+
 - (int)hues_saturation
 {
-	return roundf(self.hues_convertedColor.saturationComponent * 100.0f);
+	return (int)roundf(self.hues_saturationComponent * 100.0f);
 }
 
 - (int)hues_brightness
@@ -60,7 +94,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 {
 	NSColor *color = self.hues_convertedColor;
 	int hue;
-	CGFloat red, green, blue, alpha, saturation, lightness, max, min, delta;
+	CGFloat red, green, blue, alpha, lightness, max, min;
 
 	red = color.redComponent;
 	green = color.greenComponent;
@@ -72,15 +106,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	hue = roundf(color.hueComponent * 360.0f);
 	hue = (hue >= 360) ? 0 : hue;
 	
-	lightness = (max + min) / 2;
-	
-	if (max == min) {
-		hue = 0;
-		saturation = 0;
-	} else {
-		delta = max - min;
-		saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
-	}
+	lightness = (max + min) / 2.0;
 	
 	return lightness;
 }
@@ -130,6 +156,8 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
   return nil;
 }
 
+#pragma mark - Derived Colors
+
 - (NSColor *)hues_convertedColor
 {
   NSColor *color;
@@ -143,6 +171,28 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
   
   return color;
 }
+
+- (NSColor *)hues_colorWithRed:(CGFloat)red
+{
+	return [NSColor colorWithCalibratedRed:red green:self.greenComponent blue:self.blueComponent alpha:self.alphaComponent];
+}
+
+- (NSColor *)hues_colorWithGreen:(CGFloat)green
+{
+	return [NSColor colorWithCalibratedRed:self.redComponent green:green blue:self.blueComponent alpha:self.alphaComponent];
+}
+
+- (NSColor *)hues_colorWithBlue:(CGFloat)blue
+{
+	return [NSColor colorWithCalibratedRed:self.redComponent green:self.greenComponent blue:blue alpha:self.alphaComponent];
+}
+
+- (NSColor *)hues_colorWithAlpha:(CGFloat)alpha
+{
+	return [NSColor colorWithCalibratedRed:self.redComponent green:self.greenComponent blue:self.blueComponent alpha:alpha];
+}
+
+#pragma mark - Color Comparison
 
 - (BOOL)hues_isColorDark
 {

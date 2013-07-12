@@ -15,14 +15,21 @@
 - (int)hues_green;
 - (int)hues_blue;
 - (int)hues_hue;
-- (int)hues_saturation;
-- (CGFloat)hues_lightnessComponent;
-- (int)hues_lightness;
-- (int)hues_brightness;
+- (int)hues_alpha;
+- (CGFloat)hues_saturationComponent; // HSL saturation
+- (int)hues_saturation; // HSL saturation
+- (CGFloat)hues_lightnessComponent; // HSL
+- (int)hues_lightness; // HSL
+- (int)hues_brightness; // HSB
 
 - (NSColor *)hues_convertedColor;
 - (BOOL)hues_isColorDark;
 - (NSInteger)hues_relativeBrightness;
+
+- (NSColor *)hues_colorWithRed:(CGFloat)red;
+- (NSColor *)hues_colorWithGreen:(CGFloat)green;
+- (NSColor *)hues_colorWithBlue:(CGFloat)blue;
+- (NSColor *)hues_colorWithAlpha:(CGFloat)alpha;
 
 //- (NSString *)hues_hex;
 //- (NSString *)hues_hexWithLowercase:(BOOL)lowercase;

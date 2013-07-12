@@ -16,9 +16,7 @@
 - (id)init
 {
 	self = [super initWithNibName:@"HuesHSBViewController" bundle:nil];
-	if (self) {
-		// Initialization code here.
-	}
+	if (!self) return nil;
 	
 	return self;
 }

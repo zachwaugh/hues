@@ -30,20 +30,21 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)styleMask backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
-	if ((self = [super initWithContentRect:contentRect styleMask:styleMask backing:bufferingType defer:flag])) {
-		[self setBackgroundColor:[NSColor clearColor]];
-		[self setLevel:NSStatusWindowLevel + 1];
-		[self setOpaque:NO];
-		[self setHasShadow:YES];
-		[self setMovableByWindowBackground:NO];
-		[self setIgnoresMouseEvents:NO];
-		[self setAcceptsMouseMovedEvents:YES];
-		[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
-		[self disableCursorRects];
-		self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
-		self.contentView = self.loupeView;
-	}
+	self = [super initWithContentRect:contentRect styleMask:styleMask backing:bufferingType defer:flag];
+	if (!self) return nil;
 	
+	[self setBackgroundColor:[NSColor clearColor]];
+	[self setLevel:NSStatusWindowLevel + 1];
+	[self setOpaque:NO];
+	[self setHasShadow:YES];
+	[self setMovableByWindowBackground:NO];
+	[self setIgnoresMouseEvents:NO];
+	[self setAcceptsMouseMovedEvents:YES];
+	[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+	[self disableCursorRects];
+	self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
+	self.contentView = self.loupeView;
+
 	return self;
 }
 

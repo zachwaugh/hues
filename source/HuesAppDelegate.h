@@ -11,6 +11,5 @@
 @interface HuesAppDelegate : NSObject <NSWindowDelegate>
 
 - (void)showPreferences:(id)sender;
-- (IBAction)showLoupe:(id)sender;
 
 @end

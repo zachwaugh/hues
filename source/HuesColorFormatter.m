@@ -19,7 +19,7 @@
 	static dispatch_once_t onceToken;
 	static NSArray *_tokens = nil;
 	dispatch_once(&onceToken, ^{
-		_tokens = [[NSArray alloc] initWithObjects:@"{r}", @"{g}", @"{b}", @"{R}", @"{G}", @"{B}", @"{RR}", @"{GG}", @"{BB}", @"{rr}", @"{gg}", @"{bb}", @"{h}", @"{s}", @"{l}", @"{br}", @"{H}", @"{S}", @"{L}", @"{BR}", @"{a}", nil];
+		_tokens = [[NSArray alloc] initWithObjects:@"{r}", @"{g}", @"{b}", @"{R}", @"{G}", @"{B}", @"{RR}", @"{GG}", @"{BB}", @"{rr}", @"{gg}", @"{bb}", @"{h}", @"{s}", @"{l}", @"{H}", @"{S}", @"{L}", @"{ss}", @"{br}", @"{BR}", @"{SS}", @"{a}", nil];
 	});
 	
 	return _tokens;
@@ -85,20 +85,34 @@
 	} else if ([token isEqualToString:@"{bb}"]) {
 		return [NSString stringWithFormat:@"%02x", color.hues_blue];
 	} else if ([token isEqualToString:@"{h}"]) {
+		// Hue 0-1 (HSL)
 		return [NSString stringWithFormat:@"%.3f", color.hueComponent];
 	} else if ([token isEqualToString:@"{s}"]) {
-		return [NSString stringWithFormat:@"%.3f", color.saturationComponent];
+		// Saturation 0-1 (HSL)
+		return [NSString stringWithFormat:@"%.3f", color.hues_saturationComponent];
 	} else if ([token isEqualToString:@"{l}"]) {
+		// Lightness 0-1 (HSL)
 		return [NSString stringWithFormat:@"%.3f", color.hues_lightnessComponent];
+	} else if ([token isEqualToString:@"{ss}"]) {
+		// Saturation 0-1 (HSB)
+		return [NSString stringWithFormat:@"%.3f", color.saturationComponent];
 	} else if ([token isEqualToString:@"{br}"]) {
+		// Brightness 0-1 (HSB)
 		return [NSString stringWithFormat:@"%.3f", color.brightnessComponent];
 	} else if ([token isEqualToString:@"{H}"]) {
+		// Hue 0-360 (HSL)
 		return [NSString stringWithFormat:@"%d", color.hues_hue];
 	} else if ([token isEqualToString:@"{S}"]) {
+		// Saturation 0-100 (HSL)
 		return [NSString stringWithFormat:@"%d", color.hues_saturation];
 	} else if ([token isEqualToString:@"{L}"]) {
+		// Lightness 0-100 (HSL)
 		return [NSString stringWithFormat:@"%d", color.hues_lightness];
+	} else if ([token isEqualToString:@"{SS}"]) {
+		// Saturation 0-100 (HSB)
+		return [NSString stringWithFormat:@"%d", (int)color.saturationComponent * 100];
 	} else if ([token isEqualToString:@"{BR}"]) {
+		// Brightness 0-100 (HSB)
 		return [NSString stringWithFormat:@"%d", color.hues_brightness];
 	} else if ([token isEqualToString:@"{a}"]) {
 		return [NSString stringWithFormat:@"%0.3f", color.alphaComponent];

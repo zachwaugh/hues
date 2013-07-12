@@ -14,6 +14,7 @@
 
 // Zoom level is multiplier of pixel size
 #define GRID_LINES YES
+#define USE_CALIBRATED_COLOR YES
 
 @interface HuesLoupeView ()
 {
@@ -34,6 +35,16 @@
 	}
 }
 
+- (id)initWithFrame:(NSRect)frameRect
+{
+	self = [super initWithFrame:frameRect];
+	if (!self) return nil;
+	
+	_image = NULL;
+	
+	return self;
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
   NSRect b = self.bounds;
@@ -41,21 +52,23 @@
 	
 	NSInteger zoomLevel = self.zoomLevel;
 	NSInteger loupeSize = self.loupeSize;
-	
-	NSLog(@"global zoom: %ld, local zoom: %ld, global size: %ld, local size: %ld", HuesLoupeZoom, zoomLevel, HuesLoupeSize, loupeSize);
-	
+		
 	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
+	NSScreen *screen = [NSScreen screens][0];
   
   // Convert rect to screen coordinates
-  NSRect rect = [window frame];
-  rect.origin.y = NSMaxY([[NSScreen screens][0] frame]) - NSMaxY(rect);
+  NSRect rect = window.frame;
+  rect.origin.y = NSMaxY(screen.frame) - NSMaxY(rect);
   
-  CGImageRelease(_image);
-	
+	// Release old image
+	if (_image) {
+		CGImageRelease(_image);
+	}
+  
 	// TODO: limit to minimum area we need
 	// Actual image of screen
-  _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)[window windowNumber], kCGWindowImageDefault);
+  _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
 
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
@@ -110,9 +123,9 @@
 	// Turn off anti-aliasing so lines are crisp
 	CGContextSetAllowsAntialiasing(ctx, NO);
 	
-	// TODO: adjust color based
 	NSColor *color = [self colorAtCenter];
 
+	// Figure out whether primary pixel is dark or light and change outline
 	if ([color hues_isColorDark]) {
 		[[NSColor whiteColor] set];
 	} else {
@@ -120,7 +133,6 @@
 	}
 	
 	// Square around center pixel that will be used for picking
-	//[[NSColor whiteColor] set];
 	NSRect centerRect = NSMakeRect(NSMidX(b) - (zoomLevel / 2), NSMidY(b)  - (zoomLevel / 2), zoomLevel, zoomLevel);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
 
@@ -199,9 +211,11 @@
 	CGFloat blue = pixelData[2] / 255.0f;
 	CGFloat alpha = pixelData[3] / 255.0f;
 
-	NSColor *calibrated = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
-	
-  return calibrated;
+	if (USE_CALIBRATED_COLOR) {
+		return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
+	} else {
+		return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
+	}
 }
 
 #pragma mark - Key events
@@ -210,7 +224,7 @@
 {
 	unichar character = [event.characters characterAtIndex:0];
 	
-	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [[event characters] isEqualToString:@" "]) {
+	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [event.characters isEqualToString:@" "]) {
 		[self pickColor];
 	} else {
 		[super keyDown:event];

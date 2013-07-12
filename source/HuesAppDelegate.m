@@ -12,8 +12,7 @@
 #import "HuesHistoryManager.h"
 #import "HuesStatusItemView.h"
 #import "HuesWindowController.h"
-#import "HuesLoupeView.h"
-#import "HuesLoupeWindow.h"
+#import "HuesLoupeController.h"
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
@@ -24,14 +23,9 @@
 @property (strong) HuesPreferencesController *preferencesController;
 @property (strong) NSMenu *historyMenu;
 @property (strong) NSStatusItem *statusItem;
-@property (strong) HuesLoupeWindow *loupeWindow;
-@property (assign) id monitor;
 
 - (void)configureApplicationPresentation;
 - (void)registerShortcuts;
-- (void)startEventMonitor;
-- (void)stopEventMonitor;
-- (void)observeNotifications;
 
 @end
 
@@ -51,18 +45,11 @@
 	
 	[self configureApplicationPresentation];
 	[self registerShortcuts];
-	[self startEventMonitor];
-	[self observeNotifications];
 }
 
 - (void)awakeFromNib
 {
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
-}
-
-- (void)observeNotifications
-{
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loupeWindowDidClose:) name:HuesLoupeWindowDidCloseNotification object:nil];
 }
 
 #pragma mark - Shortcuts
@@ -71,7 +58,7 @@
 {
 	// Global shortcut
 	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
-		[self showLoupe:nil];
+		[[HuesLoupeController sharedController] showLoupe];
 	}];
 }
 
@@ -131,63 +118,6 @@
   }
   
   [self.preferencesController showWindow:sender];
-}
-
-#pragma mark - Loupe
-
-- (IBAction)showLoupe:(id)sender
-{
-	NSPoint point = [NSEvent mouseLocation];
-	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
-	
-	//NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
-	
-	if (!self.loupeWindow) {
-		self.loupeWindow = [[HuesLoupeWindow alloc] initWithFrame:loupeRect];
-		self.loupeWindow.delegate = self;
-	} else {
-		[self.loupeWindow adjustLoupeWithOrigin:loupeRect.origin];
-	}
-	
-  [self.loupeWindow show];
-}
-
-- (void)loupeWindowDidClose:(NSNotification *)notification
-{
-
-}
-
-- (void)startEventMonitor
-{
-	self.monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event ){
-		if (self.loupeWindow && [self.loupeWindow isVisible]) {
-			//NSLog(@"[monitor] sending mouseMoved: %@, app active: %d", NSStringFromPoint(event.locationInWindow), [NSApp isActive]);
-			[self.loupeWindow mouseMoved:event];
-		}
-	}];
-}
-
-- (void)stopEventMonitor
-{
-	[NSEvent removeMonitor:self.monitor];
-	self.monitor = nil;
-}
-
-#pragma mark - NSWindowDelegate
-
-- (void)windowWillClose:(NSNotification *)notification
-{
-	//NSLog(@"windowWillClose: %@", notification.object);
-}
-
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{
-	//NSLog(@"windowDidBecomeKey: %@", notification.object);
-}
-
-- (void)windowDidBecomeMain:(NSNotification *)notification
-{
-	//NSLog(@"windowDidBecomeMain: %@", notification.object);
 }
 
 #pragma mark - Beta

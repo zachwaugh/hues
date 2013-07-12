@@ -7,13 +7,11 @@
 //
 
 #import "HuesWindowController.h"
-#import "HuesLoupeWindow.h"
-#import "HuesLoupeView.h"
+#import "HuesLoupeController.h"
 #import "NSColor+Hues.h"
 #import "HuesPreferences.h"
 #import "HuesColorSlider.h"
 #import "INAppStoreWindow.h"
-#import "HuesAppDelegate.h"
 #import "HuesMixerViewController.h"
 #import "HuesRGBViewController.h"
 #import "HuesHSBViewController.h"
@@ -36,9 +34,9 @@
 - (id)init
 {
 	self = [super initWithWindowNibName:@"HuesWindowController" owner:self];
-	if (self) {
-		_color = [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1];
-	}
+	if (!self) return nil;
+	
+	_color = [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1];
 	
 	return self;
 }
@@ -129,7 +127,7 @@
 	
 	for (NSDictionary *format in formats) {
 		NSString *value = [HuesColorFormatter stringForColor:self.color withFormat:format[@"format"]];
-		[self.alternateFormats addItemsWithTitles:@[value]];
+		[self.alternateFormats addItemWithTitle:value];
 	}
 }
 
@@ -177,7 +175,7 @@
 
 - (void)showLoupe:(id)sender
 {
-	[(HuesAppDelegate *)[NSApp delegate] showLoupe:sender];
+	[[HuesLoupeController sharedController] showLoupe];
 }
 
 #pragma mark - Color input
