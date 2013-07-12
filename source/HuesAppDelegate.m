@@ -113,7 +113,7 @@
 
 - (void)showPreferences:(id)sender
 {
-  if (self.preferencesController == nil) {
+  if (!self.preferencesController) {
     self.preferencesController = [[HuesPreferencesController alloc] init];
   }
   

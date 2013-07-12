@@ -360,6 +360,8 @@
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
 				92FBF1151666C12700BDC670 /* HuesWindowController.h */,
 				92FBF1161666C12700BDC670 /* HuesWindowController.m */,
+				926ACEEF1790A4DF00C8E1BE /* HuesLoupeController.h */,
+				926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */,
 				923098AD167FF2E700F98571 /* HuesMixerViewController.h */,
 				923098AE167FF2E700F98571 /* HuesMixerViewController.m */,
 				921A8E7B167FE757002FCC42 /* HuesRGBViewController.h */,
@@ -371,8 +373,6 @@
 				92F13DD0178F4D9400E699E4 /* HuesColorFormattingPreferencesController.h */,
 				92F13DD1178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m */,
 				92F13DD8178F651100E699E4 /* HuesPreferencesViewControllerProtocol.h */,
-				926ACEEF1790A4DF00C8E1BE /* HuesLoupeController.h */,
-				926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
