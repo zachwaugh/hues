@@ -127,7 +127,7 @@
 - (void)showPreferences:(id)sender
 {
   if (self.preferencesController == nil) {
-    self.preferencesController = [[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"];
+    self.preferencesController = [[HuesPreferencesController alloc] init];
   }
   
   [self.preferencesController showWindow:sender];

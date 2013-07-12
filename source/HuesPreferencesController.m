@@ -8,23 +8,39 @@
 
 #import "HuesPreferencesController.h"
 #import "HuesPreferences.h"
+#import "HuesPreferencesViewControllerProtocol.h"
+#import "HuesColorFormattingPreferencesController.h"
 #import "MASShortcutView.h"
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
 
 NSString * const HuesGeneralToolbarIdentifier = @"general";
-NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
+NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
+
+@interface HuesPreferencesController ()
+
+@property (strong) NSMutableDictionary *viewControllers;
+@property (strong) NSViewController<HuesPreferencesViewControllerProtocol> *activeViewController;
+
+@end
 
 @implementation HuesPreferencesController
 
+- (id)init
+{
+	self = [super initWithWindowNibName:@"HuesPreferencesController"];
+	if (!self) return nil;
+	
+	_viewControllers = [[NSMutableDictionary alloc] init];
+	
+	return self;
+}
+
 - (void)awakeFromNib
 {
-  self.currentToolbarIdentifier = HuesGeneralToolbarIdentifier;
   [self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
-  [[self window] setTitle:@"General"];
-  self.currentView = self.generalView;
-	
+  self.window.title = @"General";	
 	self.loupeShortcutView.associatedUserDefaultsKey = HuesLoupeShortcutKey;
 }
 
@@ -32,31 +48,37 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
 {
   NSString *identifier = [sender itemIdentifier];
   
-  if ([identifier isEqualToString:self.currentToolbarIdentifier]) return;
+  if ([self.activeViewController.identifier isEqualToString:identifier]) return;
   
-  self.currentToolbarIdentifier = identifier;
   [self.toolbar setSelectedItemIdentifier:identifier];
   
-  if ([identifier isEqualToString:HuesGeneralToolbarIdentifier]) {
-    [[self window] setTitle:@"General"];
-    self.currentView = self.generalView;
-  } else if ([identifier isEqualToString:HuesAdvancedToolbarIdentifier]) {
-    [[self window] setTitle:@"Advanced"];
-    self.currentView = self.advancedView;
-  }
+	NSViewController<HuesPreferencesViewControllerProtocol> *viewController = self.viewControllers[identifier];
+	
+	if (!viewController) {
+		if ([identifier isEqualToString:HuesGeneralToolbarIdentifier]) {
+			viewController = [[HuesColorFormattingPreferencesController alloc] init];
+		} else if ([identifier isEqualToString:HuesColorFormatsToolbarIdentifier]) {
+			viewController = [[HuesColorFormattingPreferencesController alloc] init];
+		}
+		
+		self.viewControllers[identifier] = viewController;
+	}
+  
+	self.activeViewController = viewController;
+	self.window.title = viewController.title;
+	self.currentView = viewController.view;
 }
 
-- (void)setCurrentView:(NSView *)aView
+- (void)setCurrentView:(NSView *)view
 {
-  NSRect newFrame = [[self window] frame];
-  newFrame.size.height = [aView frame].size.height + ([[self window] frame].size.height - [self.view frame].size.height);
-  newFrame.origin.y += ([self.view frame].size.height - [aView frame].size.height);
+  NSRect newFrame = self.window.frame;
+  newFrame.size.height = view.frame.size.height + (self.window.frame.size.height - self.view.frame.size.height);
+	newFrame.size.width = view.frame.size.width;
+  newFrame.origin.y += (self.view.frame.size.height - view.frame.size.height);
   
-  [_currentView removeFromSuperview];
-  [[self window] setFrame:newFrame display:YES animate:YES];
-  [self.view addSubview:aView];
-  
-  _currentView = aView;
+  [self.activeViewController.view removeFromSuperview];
+  [self.window setFrame:newFrame display:YES animate:YES];
+  [self.view addSubview:view];
 }
 
 @end

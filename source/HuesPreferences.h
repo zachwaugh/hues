@@ -13,12 +13,6 @@
 extern NSString * const HuesCopyToClipboardKey;
 extern NSString * const HuesUseLowercaseKey;
 extern NSString * const HuesDefaultColorRepresentationKey;
-extern NSString * const HuesHexFormatKey;
-extern NSString * const HuesRGBFormatKey;
-extern NSString * const HuesRGBAFormatKey;
-extern NSString * const HuesHSBFormatKey;
-extern NSString * const HuesHSLFormatKey;
-extern NSString * const HuesHSLAFormatKey;
 extern NSString * const HuesKeepOnTopKey;
 extern NSString * const HuesApplicationModeKey;
 extern NSString * const HuesLoupeShortcutKey;
@@ -31,12 +25,9 @@ extern NSString * const HuesLoupeShortcutKey;
 + (void)setCopyToClipboard:(BOOL)copy;
 
 + (HuesColorRepresentation)defaultRepresentation;
-+ (NSString *)hexFormat;
-+ (NSString *)rgbFormat;
-+ (NSString *)rgbaFormat;
-+ (NSString *)hsbFormat;
-+ (NSString *)hslFormat;
-+ (NSString *)hslaFormat;
+
++ (NSArray *)colorFormats;
++ (void)setColorFormats:(NSArray *)formats;
 
 + (BOOL)useLowercase;
 + (void)setUseLowercase:(BOOL)lowercase;

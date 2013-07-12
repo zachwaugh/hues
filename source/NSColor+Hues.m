@@ -45,7 +45,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 - (NSString *)hues_hex
 {
-  return [self hues_hexWithFormat:[HuesPreferences hexFormat] useLowercase:[HuesPreferences useLowercase]];
+  return [self hues_hexWithFormat:@"#{r}{g}{b}" useLowercase:[HuesPreferences useLowercase]];
 }
 
 - (NSString *)hues_hexWithLowercase:(BOOL)lowercase
@@ -83,7 +83,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 - (NSString *)hues_rgb
 {
-  return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:[HuesPreferences rgbaFormat]] : [self hues_rgbWithFormat:[HuesPreferences rgbFormat]];
+  return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:@""] : [self hues_rgbWithFormat:@""];
 }
 
 - (NSString *)hues_rgbWithDefaultFormat
@@ -138,7 +138,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
     saturation = roundf([color saturationComponent] * 100.0f);
     
     NSString *output;
-    NSString *format = [HuesPreferences hsbFormat];
+    NSString *format = @"";
     
     output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", hue]];
     output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", saturation]];
@@ -154,7 +154,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 
 - (NSString *)hues_hsl
 {
-  return ([self alphaComponent] < 1) ? [self hues_hslaWithFormat:[HuesPreferences hslaFormat]] : [self hues_hslWithFormat:[HuesPreferences hslFormat]];
+  return ([self alphaComponent] < 1) ? [self hues_hslaWithFormat:@""] : [self hues_hslWithFormat:@""];
 }
 
 - (NSString *)hues_hslWithDefaultFormat

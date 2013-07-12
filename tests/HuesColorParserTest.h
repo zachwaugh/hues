@@ -24,6 +24,7 @@
 - (void)testParseColorFromHSL;
 
 // NSColor
-
+- (void)testColorFromNSColor;
+- (void)testColorFromUIColor;
 
 @end

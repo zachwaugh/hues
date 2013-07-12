@@ -95,4 +95,17 @@
 	
 }
 
+- (void)testColorFromNSColor
+{
+	expect([HuesColorParser colorFromCocoaColor:@"[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]"]).to.equal([NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1.0]);
+	expect([HuesColorParser colorFromCocoaColor:@"[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:1.0]"]).to.equal([NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:1.0]);
+	
+	expect([HuesColorParser colorFromCocoaColor:@"[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:0.75]"]).to.equal([NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:0.75]);
+}
+
+- (void)testColorFromUIColor
+{
+	
+}
+
 @end

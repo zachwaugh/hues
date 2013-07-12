@@ -13,12 +13,7 @@
 NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
 NSString * const HuesUseLowercaseKey = @"HuesUseLowercase";
 NSString * const HuesDefaultColorRepresentationKey = @"HuesDefaultColorRepresentation";
-NSString * const HuesHexFormatKey = @"HuesHexFormat";
-NSString * const HuesRGBFormatKey = @"HuesRGBFormat";
-NSString * const HuesRGBAFormatKey = @"HuesRGBAFormat";
-NSString * const HuesHSBFormatKey = @"HuesHSBFormat";
-NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
-NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
+NSString * const HuesColorFormatsKey = @"HuesColorFormats";
 NSString * const HuesKeepOnTopKey = @"HuesKeepOnTop";
 NSString * const HuesApplicationModeKey = @"HuesApplicationMode";
 NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
@@ -42,23 +37,14 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 	defaults[HuesUseLowercaseKey] = @NO;
 	
   // Color formats
-	defaults[HuesHexFormatKey] = @"#{r}{g}{b}";
-  //[defaults setObject:@"#{r}{g}{b}" forKey:HuesHexFormatKey];
-  
-	defaults[HuesRGBFormatKey] = @"rgb({r}, {g}, {b})";
-	//[defaults setObject:@"rgb({r}, {g}, {b})" forKey:HuesRGBFormatKey];
-  
-	defaults[HuesRGBAFormatKey] = @"rgba({r}, {g}, {b}, {a})";
-	//[defaults setObject:@"rgba({r}, {g}, {b}, {a})" forKey:HuesRGBAFormatKey];
-  
-	defaults[HuesHSBFormatKey] = @"hsb({h}, {s}%, {b}%)";
-	//[defaults setObject:@"hsb({h}, {s}%, {b}%)" forKey:HuesHSBFormatKey];
-  
-	defaults[HuesHSLFormatKey] = @"hsl({h}, {s}%, {l}%)";
-	//[defaults setObject:@"hsl({h}, {s}%, {l}%)" forKey:HuesHSLFormatKey];
-  
-	defaults[HuesHSLAFormatKey] = @"hsla({h}, {s}%, {l}%, {a})";
-	//[defaults setObject:@"hsla({h}, {s}%, {l}%, {a})" forKey:HuesHSLAFormatKey];
+	defaults[HuesColorFormatsKey] = @[
+									@{@"name": @"Hex", @"format": @"#{r}{g}{b}"},
+									@{@"name": @"RGB", @"format": @"rgb({r}, {g}, {b})"},
+									@{@"name": @"RGBA", @"format": @"rgba({r}, {g}, {b}, {a})"},
+									@{@"name": @"HSB", @"format": @"hsb({h}, {s}%, {b}%)"},
+									@{@"name": @"HSL", @"format": @"hsl({h}, {s}%, {l}%)"},
+									@{@"name": @"HSLA", @"format": @"hsla({h}, {s}%, {l}%, {a})"}
+	];
 	
 	// Window
 	defaults[HuesKeepOnTopKey] = @NO;
@@ -66,6 +52,7 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 	// Shortcut
 	defaults[HuesLoupeShortcutKey] = [[MASShortcut shortcutWithKeyCode:kVK_ANSI_C modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)] data];
   
+	
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
@@ -84,34 +71,14 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
   [[NSUserDefaults standardUserDefaults] setBool:lowercase forKey:HuesUseLowercaseKey];
 }
 
-+ (NSString *)hexFormat
++ (NSArray *)colorFormats
 {
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHexFormatKey];
+  return [[NSUserDefaults standardUserDefaults] arrayForKey:HuesColorFormatsKey];
 }
 
-+ (NSString *)rgbFormat
++ (void)setColorFormats:(NSArray *)formats
 {
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesRGBFormatKey];
-}
-
-+ (NSString *)rgbaFormat
-{
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesRGBAFormatKey];
-}
-
-+ (NSString *)hsbFormat
-{
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSBFormatKey];
-}
-
-+ (NSString *)hslFormat
-{
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSLFormatKey];
-}
-
-+ (NSString *)hslaFormat
-{
-  return [[NSUserDefaults standardUserDefaults] stringForKey:HuesHSLAFormatKey];
+	[[NSUserDefaults standardUserDefaults] setObject:formats forKey:HuesColorFormatsKey];
 }
 
 + (BOOL)copyToClipboard

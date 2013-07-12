@@ -12,12 +12,10 @@
 
 @interface HuesPreferencesController : NSWindowController <NSToolbarDelegate>
 
-@property (strong) NSString *currentToolbarIdentifier;
-@property (nonatomic, weak) NSView *currentView;
+@property (weak, nonatomic) NSView *currentView;
 @property (strong) NSToolbar *toolbar;
 @property (strong) NSView *view;
 @property (strong) NSView *generalView;
-@property (strong) NSView *advancedView;
 @property (weak) IBOutlet MASShortcutView *loupeShortcutView;
 
 - (void)toolbarItemSelected:(id)sender;

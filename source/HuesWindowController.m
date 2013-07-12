@@ -180,16 +180,28 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-  if (notification.object == self.primaryFormat) {
-    NSString *value = [self.primaryFormat stringValue];
-    NSColor *newColor = [HuesColorParser colorFromHex:value];
-    
-    if (newColor != nil) {
-      self.color = newColor;
-			[self updateInterfaceWithColor:newColor];
-			[self.mixerController updateInterfaceWithColor:newColor];
-    }
-  }
+	NSTextField *field = notification.object;
+	NSString *value = field.stringValue;
+	NSColor *newColor = [HuesColorParser parseColorFromString:value];
+	
+	if (newColor != nil) {
+		self.color = newColor;
+		[self updateInterfaceWithColor:newColor];
+		[self.mixerController updateInterfaceWithColor:newColor];
+	}
+}
+
+- (void)didUpdateColorText:(id)sender
+{
+	NSTextField *field = sender;
+	NSString *value = field.stringValue;
+	NSColor *newColor = [HuesColorParser parseColorFromString:value];
+	
+	if (newColor != nil) {
+		self.color = newColor;
+		[self updateInterfaceWithColor:newColor];
+		[self.mixerController updateInterfaceWithColor:newColor];
+	}
 }
 
 #pragma mark - Menu Validation

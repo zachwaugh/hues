@@ -27,5 +27,6 @@
 - (void)hideWindow;
 - (void)showWindow:(id)sender;
 - (IBAction)showLoupe:(id)sender;
+- (IBAction)didUpdateColorText:(id)sender;
 
 @end

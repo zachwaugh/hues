@@ -15,11 +15,12 @@
 {
 	// Determine parser to use
 	if ([string hasPrefix:@"rgb"]) {
-		NSLog(@"parsing rgb string");
-		[self colorFromRGB:string];
+		return [self colorFromRGB:string];
+	} else if ([string hasPrefix:@"[NSColor"] || [string hasPrefix:@"[UIColor"]) {
+		return [self colorFromCocoaColor:string];
+	} else {
+		return [self colorFromHex:string];
 	}
-	
-	return nil;
 }
 
 + (NSColor *)colorFromHex:(NSString *)hex
@@ -32,17 +33,15 @@
   // remove any # signs
   hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
   
-  if (hex.length < 6) return nil;
-  if (hex.length > 6) hex = [hex substringToIndex:6];
+  if (hex == nil || hex.length < 6) return nil;
+  if (hex.length > 6) hex = [hex substringToIndex:6]; // chop off any extra characters
   
 	NSColor *result = nil;
 	unsigned int colorCode = 0;
 	unsigned char redByte, greenByte, blueByte;
 	
-	if (hex != nil) {
-		NSScanner *scanner = [NSScanner scannerWithString:hex];
-		(void) [scanner scanHexInt:&colorCode];	// ignore error
-	}
+	NSScanner *scanner = [NSScanner scannerWithString:hex];
+	[scanner scanHexInt:&colorCode];
   
 	redByte = (unsigned char) (colorCode >> 16);
 	greenByte	= (unsigned char) (colorCode >> 8);
@@ -58,9 +57,9 @@
 	// rgb(255, 255, 255)
 	// rgba(255, 255, 255, 1)
 	
-	if (![rgb hasPrefix:@"rgb"]) return nil;
+	if (![rgb hasPrefix:@"rgb"] || ![rgb hasSuffix:@")"]) return nil;
 	
-	int red = 0, green = 0, blue = 0;
+	int red = 255, green = 255, blue = 255;
 	float alpha = 1.0;
 	
 	NSScanner *scanner = [[NSScanner alloc] initWithString:rgb];
@@ -81,8 +80,49 @@
 		[scanner scanString:@"," intoString:NULL];
 		[scanner scanFloat:&alpha];
 	}
-		
-	return [NSColor colorWithCalibratedRed:red / 255.0f green:green / 255.f blue:blue / 255.f alpha:alpha];
+
+	NSColor *color = [NSColor colorWithCalibratedRed:red / 255.0f green:green / 255.f blue:blue / 255.f alpha:alpha];
+	
+	if (color) {
+		NSLog(@"rgb parser found color: %@, for string: %@", color, rgb);
+	}
+	
+	return color;
+}
+
++ (NSColor *)colorFromCocoaColor:(NSString *)string
+{
+	// Accepts:
+	// [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]
+	// [NSColor colorWithDeviceRed:1.0 green:1.0 blue:1.0 alpha:1.0]
+	// [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]
+	
+	if (!([string hasPrefix:@"[NSColor colorWith"] || [string hasPrefix:@"[UIColor colorWith"]) || ![string hasSuffix:@"]"]) return nil;
+	
+	float red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0;
+	
+	NSScanner *scanner = [[NSScanner alloc] initWithString:string];
+	
+	[scanner scanUpToString:@":" intoString:NULL];
+	[scanner scanString:@":" intoString:NULL];
+	[scanner scanFloat:&red];
+	[scanner scanUpToString:@":" intoString:NULL];
+	[scanner scanString:@":" intoString:NULL];
+	[scanner scanFloat:&green];
+	[scanner scanUpToString:@":" intoString:NULL];
+	[scanner scanString:@":" intoString:NULL];
+	[scanner scanFloat:&blue];
+	[scanner scanUpToString:@":" intoString:NULL];
+	[scanner scanString:@":" intoString:NULL];
+	[scanner scanFloat:&alpha];
+	
+	NSColor *color = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
+	
+	if (color) {
+		NSLog(@"NSColor/UIColor parser found color: %@, for string: %@", color, string);
+	}
+	
+	return color;
 }
 
 @end

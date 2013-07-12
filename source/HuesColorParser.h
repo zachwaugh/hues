@@ -13,5 +13,6 @@
 + (NSColor *)parseColorFromString:(NSString *)string;
 + (NSColor *)colorFromHex:(NSString *)hex;
 + (NSColor *)colorFromRGB:(NSString *)rgb;
++ (NSColor *)colorFromCocoaColor:(NSString *)string;
 
 @end
