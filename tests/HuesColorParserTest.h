@@ -12,8 +12,8 @@
 
 // Hex
 - (void)testParseColorFromHexWithValidInput;
+- (void)testColorFromHexWithShortInput;
 - (void)testParseColorFromHexWithInvalidInput;
-- (void)testParseColorFromHexReturnsSameHex;
 
 // RGB
 - (void)testParseColorFromRGBWithValidInput;

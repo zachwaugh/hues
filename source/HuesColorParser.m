@@ -41,7 +41,9 @@
 	unsigned char redByte, greenByte, blueByte;
 	
 	NSScanner *scanner = [NSScanner scannerWithString:hex];
-	[scanner scanHexInt:&colorCode];
+	if (![scanner scanHexInt:&colorCode]) {
+		return nil;
+	}
   
 	redByte = (unsigned char) (colorCode >> 16);
 	greenByte	= (unsigned char) (colorCode >> 8);

@@ -8,26 +8,27 @@
 
 #import "HuesColorParserTest.h"
 #import "HuesColorParser.h"
-#import "NSColor+Hues.h"
 
 @implementation HuesColorParserTest
 
-- (void)testParseColorFromHexWithInvalidInput
+- (void)testColorFromHexWithShortInput
 {
-	// Test correct input length
-  expect([HuesColorParser colorFromHex:@""]).to.beNil();
+	expect([HuesColorParser colorFromHex:@""]).to.beNil();
   expect([HuesColorParser colorFromHex:@"f"]).to.beNil();
   expect([HuesColorParser colorFromHex:@"ff"]).to.beNil();
   expect([HuesColorParser colorFromHex:@"fff"]).to.beNil();
   expect([HuesColorParser colorFromHex:@"ffff"]).to.beNil();
   expect([HuesColorParser colorFromHex:@"fffff"]).to.beNil();
   expect([HuesColorParser colorFromHex:@"#fffff"]).to.beNil();
-	
-	// test invalid input returns #000000
-  expect([[HuesColorParser colorFromHex:@"ZZZZZZ"] hues_hexWithLowercase:NO]).to.equal(@"#000000");
-  expect([[HuesColorParser colorFromHex:@"tyuytutytuytytuyt"] hues_hexWithLowercase:NO]).to.equal(@"#000000");
-  expect([[HuesColorParser colorFromHex:@";^&><?**&&'"] hues_hexWithLowercase:NO]).to.equal(@"#000000");
-  expect([[HuesColorParser colorFromHex:@"!@#$\"\"\\"] hues_hexWithLowercase:NO]).to.equal(@"#000000");
+}
+
+- (void)testParseColorFromHexWithInvalidInput
+{
+	// Invalid input should return nil
+	expect([HuesColorParser colorFromHex:@"ZZZZZZ"]).to.beNil();
+  expect([HuesColorParser colorFromHex:@"tyuytutytuytytuyt"]).to.beNil();
+  expect([HuesColorParser colorFromHex:@";^&><?**&&'"]).to.beNil();
+  expect([HuesColorParser colorFromHex:@"!@#$\"\"\\"]).to.beNil();
 }
 
 - (void)testParseColorFromHexWithValidInput
@@ -48,28 +49,14 @@
 	expect([HuesColorParser colorFromHex:@"000000"]).to.equal([NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:1]);
 }
 
-- (void)testParseColorFromHexReturnsSameHex
-{
-  expect([[HuesColorParser colorFromHex:@"FFFFFF"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
-  expect([[HuesColorParser colorFromHex:@"000000"] hues_hexWithLowercase:NO]).to.equal(@"#000000");
-  expect([[HuesColorParser colorFromHex:@"00ff00"] hues_hexWithLowercase:NO]).to.equal(@"#00FF00");
-  expect([[HuesColorParser colorFromHex:@"CCCCCC"] hues_hexWithLowercase:NO]).to.equal(@"#CCCCCC");
-  expect([[HuesColorParser colorFromHex:@"abc369"] hues_hexWithLowercase:NO]).to.equal(@"#ABC369");
-  
-  // test same hex with correct formatting
-  expect([[HuesColorParser colorFromHex:@"ffffff"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
-  expect([[HuesColorParser colorFromHex:@"ffffff"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
-  expect([[HuesColorParser colorFromHex:@"FFFFFF"] hues_hexWithLowercase:YES]).to.equal(@"#ffffff");
-}
-
 - (void)testParseColorFromHexWithExtraCharacters
 {
 	// test extra input still works
-  expect([[HuesColorParser colorFromHex:@"#FFFFFF"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
-  expect([[HuesColorParser colorFromHex:@"#FFFFFFFFFFFFF"] hues_hexWithLowercase:NO]).to.equal(@"#FFFFFF");
-  expect([[HuesColorParser colorFromHex:@"#CCCCCCfjfyefuf"] hues_hexWithLowercase:NO]).to.equal(@"#CCCCCC");
-  expect([[HuesColorParser colorFromHex:@"#CCCCCCFFFFFF"] hues_hexWithLowercase:NO]).to.equal(@"#CCCCCC");
-  expect([[HuesColorParser colorFromHex:@"#CCCCCFFFFFF"] hues_hexWithLowercase:NO]).to.equal(@"#CCCCCF");
+  expect([HuesColorParser colorFromHex:@"#FFFFFF"]).to.equal([NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1]);
+  expect([HuesColorParser colorFromHex:@"#FFFFFFFFFFFFF"]).to.equal([NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1]);
+  expect([HuesColorParser colorFromHex:@"#CCCCCCfjfyefuf"]).to.equal([NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:1]);
+  expect([HuesColorParser colorFromHex:@"#CCCCCCFFFFFF"]).to.equal([NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.8 alpha:1]);
+  expect([HuesColorParser colorFromHex:@"#CCCCCFFFFFF"]).to.equal([NSColor colorWithCalibratedRed:0.8 green:0.8 blue:0.811764706 alpha:1]);
 }
 
 - (void)testParseColorFromRGBWithValidInput
@@ -105,7 +92,7 @@
 
 - (void)testColorFromUIColor
 {
-	
+	expect([HuesColorParser colorFromCocoaColor:@"[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.75]"]).to.equal([NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:0.75]);
 }
 
 @end

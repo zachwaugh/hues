@@ -10,7 +10,15 @@
 
 @interface HuesColorFormatterTest : SenTestCase
 
-- (void)testStringFromColor;
+@property (strong) NSColor *white;
+@property (strong) NSColor *black;
+@property (strong) NSColor *gray;
+@property (strong) NSColor *green;
+
+- (void)testHexStringFromColor;
+- (void)testRGBStringFromColor;
+- (void)testHSLStringFromColor;
+- (void)testHSBStringFromColor;
 - (void)testTokensFromColorFormat;
 
 @end

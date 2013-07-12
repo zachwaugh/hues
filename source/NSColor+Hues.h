@@ -14,6 +14,12 @@
 - (int)hues_red;
 - (int)hues_green;
 - (int)hues_blue;
+- (int)hues_hue;
+- (int)hues_saturation;
+- (CGFloat)hues_lightnessComponent;
+- (int)hues_lightness;
+- (int)hues_brightness;
+
 - (NSColor *)hues_convertedColor;
 - (BOOL)hues_isColorDark;
 - (NSInteger)hues_relativeBrightness;
