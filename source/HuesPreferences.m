@@ -43,7 +43,8 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 									@{@"name": @"RGBA", @"format": @"rgba({r}, {g}, {b}, {a})"},
 									@{@"name": @"HSB", @"format": @"hsb({h}, {s}%, {b}%)"},
 									@{@"name": @"HSL", @"format": @"hsl({h}, {s}%, {l}%)"},
-									@{@"name": @"HSLA", @"format": @"hsla({h}, {s}%, {l}%, {a})"}
+									@{@"name": @"HSLA", @"format": @"hsla({h}, {s}%, {l}%, {a})"},
+									@{@"name": @"NSColor", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"}
 	];
 	
 	// Window

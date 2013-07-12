@@ -39,6 +39,9 @@
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
 		9264FE7F1393ECA000935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE871393ECA000935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE851393ECA000935FAC /* InfoPlist.strings */; };
+		926ACEEC1790523A00C8E1BE /* HuesColorFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */; };
+		926ACEED1790525F00C8E1BE /* HuesColorFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DCB178F00ED00E699E4 /* HuesColorFormatter.m */; };
+		926ACEEE1790526100C8E1BE /* HuesColorFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DCB178F00ED00E699E4 /* HuesColorFormatter.m */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
 		928627081640693E00DA16BE /* NSColor+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Hues.m */; };
@@ -60,7 +63,6 @@
 		92F13DC5178EFD0700E699E4 /* HuesColorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC4178EFD0700E699E4 /* HuesColorParser.m */; };
 		92F13DC8178EFD3400E699E4 /* HuesColorParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC7178EFD3400E699E4 /* HuesColorParserTest.m */; };
 		92F13DC9178EFE8A00E699E4 /* HuesColorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC4178EFD0700E699E4 /* HuesColorParser.m */; };
-		92F13DCC178F00ED00E699E4 /* HuesColorFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DCB178F00ED00E699E4 /* HuesColorFormatter.m */; };
 		92F13DCF178F1F6100E699E4 /* NSScanner+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DCE178F1F6100E699E4 /* NSScanner+Hues.m */; };
 		92F13DD3178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DD1178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m */; };
 		92F13DD4178F4D9400E699E4 /* HuesColorFormattingPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F13DD2178F4D9400E699E4 /* HuesColorFormattingPreferencesController.xib */; };
@@ -124,6 +126,8 @@
 		9264FE841393ECA000935FAC /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		9264FE861393ECA000935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE881393ECA000935FAC /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
+		926ACEEA1790523A00C8E1BE /* HuesColorFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorFormatterTest.h; sourceTree = "<group>"; };
+		926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorFormatterTest.m; sourceTree = "<group>"; };
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 				92E7D6B71393F1E70072C412 /* HuesColorTest.m */,
 				92F13DC6178EFD3400E699E4 /* HuesColorParserTest.h */,
 				92F13DC7178EFD3400E699E4 /* HuesColorParserTest.m */,
+				926ACEEA1790523A00C8E1BE /* HuesColorFormatterTest.h */,
+				926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */,
 				9264FE831393ECA000935FAC /* Supporting Files */,
 			);
 			name = Tests;
@@ -602,9 +608,9 @@
 				92513EAF1760DFCD00ED644C /* HuesPalette.m in Sources */,
 				92513EB317612BA000ED644C /* HuesPaletteItem.m in Sources */,
 				92F13DC5178EFD0700E699E4 /* HuesColorParser.m in Sources */,
-				92F13DCC178F00ED00E699E4 /* HuesColorFormatter.m in Sources */,
 				92F13DCF178F1F6100E699E4 /* NSScanner+Hues.m in Sources */,
 				92F13DD3178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m in Sources */,
+				926ACEEE1790526100C8E1BE /* HuesColorFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +623,8 @@
 				9286270916406B5900DA16BE /* HuesPreferences.m in Sources */,
 				92F13DC8178EFD3400E699E4 /* HuesColorParserTest.m in Sources */,
 				92F13DC9178EFE8A00E699E4 /* HuesColorParser.m in Sources */,
+				926ACEEC1790523A00C8E1BE /* HuesColorFormatterTest.m in Sources */,
+				926ACEED1790525F00C8E1BE /* HuesColorFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,4 +10,10 @@
 
 @interface HuesColorFormatter : NSObject
 
++ (NSString *)hexForColor:(NSColor *)color;
++ (NSString *)stringForColorWithDefaultFormat:(NSColor *)color;
++ (NSString *)stringForColorWithSecondaryFormat:(NSColor *)color;
++ (NSString *)stringForColor:(NSColor *)color withFormat:(NSString *)format;
++ (NSArray *)tokensForColorFormat:(NSString *)format;
+
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "HuesHistoryManager.h"
-#import "NSColor+Hues.h"
 #import "NSImage+Hues.h"
+#import "HuesColorFormatter.h"
 #import "HuesDefines.h"
 
 #define HUES_MAX_HISTORY_SIZE 25
@@ -35,9 +35,10 @@
 
 - (id)init
 {
-  if ((self = [super init])) {
-    _history = [NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE];
-  }
+  self = [super init];
+	if (!self) return nil;
+	
+	_history = [NSMutableArray arrayWithCapacity:HUES_MAX_HISTORY_SIZE];
   
   return self;
 }
@@ -45,7 +46,7 @@
 - (void)addColor:(NSColor *)color
 {
   // Don't add if same as last color
-  if (self.history.count > 0 && [[color hues_hex] isEqualToString:[self.history[0] hues_hex]]) return;
+  if (self.history.count > 0 && [color isEqualTo:self.history[0]]) return;
  
   // Ensure doesn't go past max history size
   if (self.history.count == HUES_MAX_HISTORY_SIZE) {
@@ -58,7 +59,8 @@
     [self.menu removeItemAtIndex:HUES_MAX_HISTORY_SIZE - 1];
   }
   
-  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[color hues_hex] action:@selector(colorChosen:) keyEquivalent:@""];
+	NSString *value = [HuesColorFormatter stringForColorWithDefaultFormat:color];
+  NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:value action:@selector(colorChosen:) keyEquivalent:@""];
   [item setImage:[NSImage imageWithColor:color]];
   [item setTarget:self];
   [self.menu insertItem:item atIndex:0];

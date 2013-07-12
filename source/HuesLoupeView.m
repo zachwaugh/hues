@@ -10,6 +10,7 @@
 #import "HuesLoupeWindow.h"
 #import "HuesDefines.h"
 #import "NSColor+Hues.h"
+#import "HuesColorFormatter.h"
 
 // Zoom level is multiplier of pixel size
 #define GRID_LINES YES
@@ -133,8 +134,8 @@
 		shadow.shadowOffset = NSMakeSize(0, -1);
 		attrs = @{ NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:12.0], NSForegroundColorAttributeName: [NSColor whiteColor], NSShadowAttributeName: shadow };
 	}
-	
-	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[color hues_hex] attributes:attrs];
+
+	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[HuesColorFormatter hexForColor:color] attributes:attrs];
 	NSSize textSize = hex.size;
 	CGFloat width = textSize.width + 10;
 	NSRect hexRect = NSMakeRect(round((self.bounds.size.width - width) / 2), 10, width, textSize.height);

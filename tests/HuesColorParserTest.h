@@ -11,8 +11,8 @@
 @interface HuesColorParserTest : SenTestCase
 
 // Hex
-- (void)testParseColorFromHexWithInvalidInput;
 - (void)testParseColorFromHexWithValidInput;
+- (void)testParseColorFromHexWithInvalidInput;
 - (void)testParseColorFromHexReturnsSameHex;
 
 // RGB

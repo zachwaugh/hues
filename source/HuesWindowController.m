@@ -20,6 +20,7 @@
 #import "HuesColorWheelViewController.h"
 #import "HuesScopeBarView.h"
 #import "HuesColorParser.h"
+#import "HuesColorFormatter.h"
 
 @interface HuesWindowController ()
 
@@ -114,31 +115,34 @@
   [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
   [shadow setShadowOffset:NSMakeSize(0, -1)];
   
-  NSAttributedString *hexString = [[NSAttributedString alloc] initWithString:[color hues_hex] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:16.0], NSShadowAttributeName: shadow}];
-  NSAttributedString *rgbString = [[NSAttributedString alloc] initWithString:[color hues_rgb] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Lucida Grande" size:14.0], NSShadowAttributeName: shadow}];
+	NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue" size:13.0], NSShadowAttributeName: shadow};
+	
+  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithDefaultFormat:self.color] attributes:attributes];
+  NSAttributedString *secondary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithSecondaryFormat:self.color] attributes:attributes];
   
-	[self.primaryFormat setAttributedStringValue:hexString];
-  [self.secondaryFormat setAttributedStringValue:rgbString];
+	self.primaryFormat.attributedStringValue = primary;
+	self.secondaryFormat.attributedStringValue = secondary;
 	
 	[self.alternateFormats removeAllItems];
-	[self.alternateFormats addItemsWithTitles:@[[color hues_hsl]]];
-	[self.alternateFormats addItemsWithTitles:@[[color hues_hsb]]];
-	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
-	[self.alternateFormats addItemsWithTitles:@[[color hues_UIColorRGB], [color hues_UIColorHSB]]];
-	[self.alternateFormats.menu addItem:[NSMenuItem separatorItem]];
-	[self.alternateFormats addItemsWithTitles:@[[color hues_NSColorCalibratedRGB], [color hues_NSColorCalibratedHSB], [color hues_NSColorDeviceRGB], [color hues_NSColorDeviceHSB]]];
+	
+	NSArray *formats = [HuesPreferences colorFormats];
+	
+	for (NSDictionary *format in formats) {
+		NSString *value = [HuesColorFormatter stringForColor:self.color withFormat:format[@"format"]];
+		[self.alternateFormats addItemsWithTitles:@[value]];
+	}
 }
 
 #pragma mark - Clipboard
 
 - (void)copyPrimary:(id)sender
 {
-	[self copyToClipboard:[self.color hues_hex]];
+	[self copyToClipboard:[HuesColorFormatter stringForColorWithDefaultFormat:self.color]];
 }
 
 - (void)copySecondary:(id)sender
 {
-	[self copyToClipboard:[self.color hues_rgb]];
+	[self copyToClipboard:[HuesColorFormatter stringForColorWithSecondaryFormat:self.color]];
 }
 
 - (void)copyAlternate:(id)sender
