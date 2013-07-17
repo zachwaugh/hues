@@ -30,7 +30,7 @@
 	return [self stringForColor:color withFormat:HEX_FORMAT];
 }
 
-+ (NSString *)stringForColorWithDefaultFormat:(NSColor *)color
++ (NSString *)stringForColorWithPrimaryFormat:(NSColor *)color
 {
 	NSString *format = [HuesPreferences colorFormats][0][@"format"];
 	return [self stringForColor:color withFormat:format];

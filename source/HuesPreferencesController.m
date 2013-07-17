@@ -9,11 +9,8 @@
 #import "HuesPreferencesController.h"
 #import "HuesPreferences.h"
 #import "HuesPreferencesViewControllerProtocol.h"
+#import "HuesGeneralPreferencesController.h"
 #import "HuesColorFormattingPreferencesController.h"
-#import "MASShortcutView.h"
-#import "MASShortcutView+UserDefaults.h"
-#import "MASShortcut+UserDefaults.h"
-#import "MASShortcut+Monitoring.h"
 
 NSString * const HuesGeneralToolbarIdentifier = @"general";
 NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
@@ -39,9 +36,13 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 
 - (void)awakeFromNib
 {
+	self.window.title = @"General";
+	
+	HuesGeneralPreferencesController *generalController = [[HuesGeneralPreferencesController alloc] init];
+	self.viewControllers[HuesGeneralToolbarIdentifier] = generalController;
+	self.activeViewController = generalController;
+	self.currentView = generalController.view;
   [self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
-  self.window.title = @"General";	
-	self.loupeShortcutView.associatedUserDefaultsKey = HuesLoupeShortcutKey;
 }
 
 - (void)toolbarItemSelected:(id)sender
@@ -56,7 +57,7 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 	
 	if (!viewController) {
 		if ([identifier isEqualToString:HuesGeneralToolbarIdentifier]) {
-			viewController = [[HuesColorFormattingPreferencesController alloc] init];
+			viewController = [[HuesGeneralPreferencesController alloc] init];
 		} else if ([identifier isEqualToString:HuesColorFormatsToolbarIdentifier]) {
 			viewController = [[HuesColorFormattingPreferencesController alloc] init];
 		}
@@ -64,9 +65,9 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 		self.viewControllers[identifier] = viewController;
 	}
   
+	self.currentView = viewController.view;
 	self.activeViewController = viewController;
 	self.window.title = viewController.title;
-	self.currentView = viewController.view;
 }
 
 - (void)setCurrentView:(NSView *)view

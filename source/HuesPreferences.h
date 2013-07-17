@@ -12,7 +12,7 @@
 // Preferences keys
 extern NSString * const HuesCopyToClipboardKey;
 extern NSString * const HuesUseLowercaseKey;
-extern NSString * const HuesDefaultColorRepresentationKey;
+extern NSString * const HuesDefaultColorFormatKey;
 extern NSString * const HuesKeepOnTopKey;
 extern NSString * const HuesApplicationModeKey;
 extern NSString * const HuesLoupeShortcutKey;
@@ -24,13 +24,12 @@ extern NSString * const HuesLoupeShortcutKey;
 + (BOOL)copyToClipboard;
 + (void)setCopyToClipboard:(BOOL)copy;
 
-+ (HuesColorRepresentation)defaultRepresentation;
++ (NSString *)defaultColorFormat;
++ (void)setDefaultColorFormat:(NSString *)format;
 
 + (NSArray *)colorFormats;
 + (void)setColorFormats:(NSArray *)formats;
 
-+ (BOOL)useLowercase;
-+ (void)setUseLowercase:(BOOL)lowercase;
 //+ (BOOL)useCalibratedColors;
 //+ (void)setCalibratedColors:(BOOL)calibrated;
 

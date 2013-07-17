@@ -33,7 +33,7 @@
 
 - (id)init
 {
-	self = [super initWithWindowNibName:@"HuesWindowController" owner:self];
+	self = [super initWithWindowNibName:@"HuesWindowController"];
 	if (!self) return nil;
 	
 	_color = [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1];
@@ -69,9 +69,12 @@
 	[titleBarView addSubview:button];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorFormatsUpdated:) name:HuesColorFormatsUpdatedNotification object:nil];
 	
 	self.scopeBar.delegate = self;
 	self.scopeBar.titles = @[@"RGB", @"HSB", @"Color Wheel"];
+	
+	[self updateFormatLabels];
 	
 	[self loadMixerWithClass:[HuesRGBViewController class]];
 	[self updateInterfaceWithColor:self.color];
@@ -82,10 +85,10 @@
 	[self.window orderOut:nil];
 }
 
-- (void)showWindow:(id)sender
-{
-	[self.window makeKeyAndOrderFront:nil];
-}
+//- (void)showWindow:(id)sender
+//{
+//	[self.window makeKeyAndOrderFront:nil];
+//}
 
 - (IBAction)toggleKeepOnTop:(id)sender
 {
@@ -115,7 +118,7 @@
   
 	NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue" size:13.0], NSShadowAttributeName: shadow};
 	
-  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithDefaultFormat:self.color] attributes:attributes];
+  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithPrimaryFormat:self.color] attributes:attributes];
   NSAttributedString *secondary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithSecondaryFormat:self.color] attributes:attributes];
   
 	self.primaryFormat.attributedStringValue = primary;
@@ -131,11 +134,33 @@
 	}
 }
 
+- (void)colorFormatsUpdated:(NSNotification *)notification
+{
+	[self updateFormatLabels];
+}
+
+- (void)updateFormatLabels
+{
+	NSArray *formats = [HuesPreferences colorFormats];
+	self.primaryFormatLabel.stringValue = formats[0][@"name"];
+	self.primaryFormat.stringValue = [HuesColorFormatter stringForColorWithPrimaryFormat:self.color];
+	
+	self.secondaryFormatLabel.stringValue = formats[1][@"name"];
+	self.secondaryFormat.stringValue = [HuesColorFormatter stringForColorWithSecondaryFormat:self.color];
+	
+	[self.alternateFormats removeAllItems];
+	
+	for (NSDictionary *format in formats) {
+		NSString *value = [HuesColorFormatter stringForColor:self.color withFormat:format[@"format"]];
+		[self.alternateFormats addItemWithTitle:value];
+	}
+}
+
 #pragma mark - Clipboard
 
 - (void)copyPrimary:(id)sender
 {
-	[self copyToClipboard:[HuesColorFormatter stringForColorWithDefaultFormat:self.color]];
+	[self copyToClipboard:[HuesColorFormatter stringForColorWithPrimaryFormat:self.color]];
 }
 
 - (void)copySecondary:(id)sender

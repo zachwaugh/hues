@@ -59,7 +59,7 @@
     [self.menu removeItemAtIndex:HUES_MAX_HISTORY_SIZE - 1];
   }
   
-	NSString *value = [HuesColorFormatter stringForColorWithDefaultFormat:color];
+	NSString *value = [HuesColorFormatter stringForColorWithPrimaryFormat:color];
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:value action:@selector(colorChosen:) keyEquivalent:@""];
   [item setImage:[NSImage imageWithColor:color]];
   [item setTarget:self];

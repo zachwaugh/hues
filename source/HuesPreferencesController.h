@@ -8,15 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MASShortcutView;
-
 @interface HuesPreferencesController : NSWindowController <NSToolbarDelegate>
 
 @property (weak, nonatomic) NSView *currentView;
 @property (strong) NSToolbar *toolbar;
 @property (strong) NSView *view;
-@property (strong) NSView *generalView;
-@property (weak) IBOutlet MASShortcutView *loupeShortcutView;
 
 - (void)toolbarItemSelected:(id)sender;
 

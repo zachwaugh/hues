@@ -10,12 +10,11 @@
 #import "MASShortcut.h"
 
 // Preferences
-NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
-NSString * const HuesUseLowercaseKey = @"HuesUseLowercase";
-NSString * const HuesDefaultColorRepresentationKey = @"HuesDefaultColorRepresentation";
-NSString * const HuesColorFormatsKey = @"HuesColorFormats";
-NSString * const HuesKeepOnTopKey = @"HuesKeepOnTop";
-NSString * const HuesApplicationModeKey = @"HuesApplicationMode";
+NSString * const HuesCopyToClipboardKey = @"copyToClipboard";
+NSString * const HuesDefaultColorFormatKey = @"defaultColorFormat";
+NSString * const HuesColorFormatsKey = @"colorFormats";
+NSString * const HuesKeepOnTopKey = @"keepOnTop";
+NSString * const HuesApplicationModeKey = @"applicationMode";
 NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 
 @implementation HuesPreferences
@@ -31,16 +30,13 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
   defaults[HuesCopyToClipboardKey] = @YES;
   
   // Hex is default
-	defaults[HuesDefaultColorRepresentationKey] = @(HuesHexRepresentation);
+	defaults[HuesDefaultColorFormatKey] = @"Hex";
   
-  // Don't default to lowercase
-	defaults[HuesUseLowercaseKey] = @NO;
-	
   // Color formats
 	defaults[HuesColorFormatsKey] = @[
-									@{@"name": @"Hex", @"format": @"#{r}{g}{b}"},
-									@{@"name": @"RGB", @"format": @"rgb({r}, {g}, {b})"},
-									@{@"name": @"RGBA", @"format": @"rgba({r}, {g}, {b}, {a})"},
+									@{@"name": @"Hex", @"format": @"#{RR}{GG}{BB}"},
+									@{@"name": @"RGB", @"format": @"rgb({R}, {G}, {B})"},
+									@{@"name": @"RGBA", @"format": @"rgba({R}, {G}, {B}, {a})"},
 									@{@"name": @"HSB", @"format": @"hsb({H}, {SS}%, {BR}%)"},
 									@{@"name": @"HSL", @"format": @"hsl({H}, {S}%, {L}%)"},
 									@{@"name": @"NSColor", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"}
@@ -56,19 +52,14 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
-+ (HuesColorRepresentation)defaultRepresentation
++ (NSString *)defaultColorFormat
 {
-  return (HuesColorRepresentation)[[NSUserDefaults standardUserDefaults] integerForKey:HuesDefaultColorRepresentationKey];
+	return [[NSUserDefaults standardUserDefaults] stringForKey:HuesDefaultColorFormatKey];
 }
 
-+ (BOOL)useLowercase
++ (void)setDefaultColorFormat:(NSString *)format
 {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:HuesUseLowercaseKey];
-}
-
-+ (void)setUseLowercase:(BOOL)lowercase
-{
-  [[NSUserDefaults standardUserDefaults] setBool:lowercase forKey:HuesUseLowercaseKey];
+	[[NSUserDefaults standardUserDefaults] setObject:format forKey:HuesDefaultColorFormatKey];
 }
 
 + (NSArray *)colorFormats
@@ -79,6 +70,7 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 + (void)setColorFormats:(NSArray *)formats
 {
 	[[NSUserDefaults standardUserDefaults] setObject:formats forKey:HuesColorFormatsKey];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesColorFormatsUpdatedNotification object:nil];
 }
 
 + (BOOL)copyToClipboard

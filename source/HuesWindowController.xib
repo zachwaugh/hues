@@ -225,7 +225,7 @@
 								<object class="NSTextField" id="576215253">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{16, 105}, {31, 19}}</string>
+									<string key="NSFrame">{{16, 105}, {302, 19}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="930101479"/>
@@ -233,7 +233,7 @@
 									<object class="NSTextFieldCell" key="NSCell" id="939812058">
 										<int key="NSCellFlags">68157504</int>
 										<int key="NSCellFlags2">272892928</int>
-										<string key="NSContents">RGB</string>
+										<string key="NSContents">Color Format</string>
 										<object class="NSFont" key="NSSupport" id="482424912">
 											<string key="NSName">HelveticaNeue-Bold</string>
 											<double key="NSSize">12</double>
@@ -251,7 +251,7 @@
 								<object class="NSTextField" id="609289744">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{16, 162}, {29, 19}}</string>
+									<string key="NSFrame">{{16, 162}, {303, 19}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="877854488"/>
@@ -259,7 +259,7 @@
 									<object class="NSTextFieldCell" key="NSCell" id="686799814">
 										<int key="NSCellFlags">68157504</int>
 										<int key="NSCellFlags2">272892928</int>
-										<string key="NSContents">Hex</string>
+										<string key="NSContents">Color Format</string>
 										<reference key="NSSupport" ref="482424912"/>
 										<reference key="NSControlView" ref="609289744"/>
 										<reference key="NSBackgroundColor" ref="163631683"/>
@@ -433,6 +433,22 @@
 						<reference key="destination" ref="930101479"/>
 					</object>
 					<int key="connectionID">1087</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">primaryFormatLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="609289744"/>
+					</object>
+					<int key="connectionID">1088</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">secondaryFormatLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="576215253"/>
+					</object>
+					<int key="connectionID">1089</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -677,7 +693,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1087</int>
+			<int key="maxID">1089</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -747,8 +763,10 @@
 						<string key="colorWell">NSColorWell</string>
 						<string key="mixerContainerView">NSView</string>
 						<string key="primaryFormat">NSTextField</string>
+						<string key="primaryFormatLabel">NSTextField</string>
 						<string key="scopeBar">HuesScopeBarView</string>
 						<string key="secondaryFormat">NSTextField</string>
+						<string key="secondaryFormatLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="alternateFormats">
@@ -767,12 +785,20 @@
 							<string key="name">primaryFormat</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="primaryFormatLabel">
+							<string key="name">primaryFormatLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="scopeBar">
 							<string key="name">scopeBar</string>
 							<string key="candidateClassName">HuesScopeBarView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="secondaryFormat">
 							<string key="name">secondaryFormat</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secondaryFormatLabel">
+							<string key="name">secondaryFormatLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 					</dictionary>

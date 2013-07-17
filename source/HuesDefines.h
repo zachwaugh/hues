@@ -11,12 +11,6 @@
 #define HUES_MAS_URL @"https://itunes.apple.com/us/app/hues/id411811718?mt=12"
 
 typedef enum {
-  HuesHexRepresentation,
-  HuesRGBRepresentation,
-  HuesHSLRepresentation
-} HuesColorRepresentation;
-
-typedef enum {
 	HuesDockAndMenuBarMode,
 	HuesDockOnlyMode,
 	HuesMenuBarOnlyMode
@@ -26,6 +20,7 @@ typedef enum {
 
 // Notifications
 extern NSString * const HuesUpdateColorNotification;
+extern NSString * const HuesColorFormatsUpdatedNotification;
 
 extern NSInteger const HuesLoupeSize;
 extern NSInteger const HuesLoupeZoom;

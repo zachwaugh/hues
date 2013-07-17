@@ -12,7 +12,9 @@
 @interface HuesWindowController : NSWindowController <NSWindowDelegate, HuesScopeBarViewDelegate>
 
 @property (weak) IBOutlet NSColorWell *colorWell;
+@property (weak) IBOutlet NSTextField *primaryFormatLabel;
 @property (weak) IBOutlet NSTextField *primaryFormat;
+@property (weak) IBOutlet NSTextField *secondaryFormatLabel;
 @property (weak) IBOutlet NSTextField *secondaryFormat;
 @property (weak) IBOutlet NSPopUpButton *alternateFormats;
 @property (weak) IBOutlet NSView *mixerContainerView;
@@ -25,7 +27,7 @@
 
 //- (void)toggleWindow;
 - (void)hideWindow;
-- (void)showWindow:(id)sender;
+//- (void)showWindow:(id)sender;
 - (IBAction)showLoupe:(id)sender;
 - (IBAction)didUpdateColorText:(id)sender;
 
