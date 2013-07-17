@@ -1,7 +1,8 @@
 ALWAYS_SEARCH_USER_PATHS = YES
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
 OTHER_LDFLAGS = -ObjC -framework Carbon
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/INAppStoreWindow" "${PODS_ROOT}/BuildHeaders/MASShortcut" "${PODS_ROOT}/BuildHeaders/Expecta"
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/Expecta" "${PODS_ROOT}/BuildHeaders/INAppStoreWindow" "${PODS_ROOT}/BuildHeaders/MASShortcut" "${PODS_ROOT}/BuildHeaders/Specta"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/INAppStoreWindow" "${PODS_ROOT}/Headers/MASShortcut" "${PODS_ROOT}/Headers/Expecta"
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Expecta" "${PODS_ROOT}/Headers/INAppStoreWindow" "${PODS_ROOT}/Headers/MASShortcut" "${PODS_ROOT}/Headers/Specta"
 PODS_ROOT = ${SRCROOT}/Pods

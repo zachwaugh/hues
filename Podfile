@@ -5,4 +5,5 @@ pod 'MASShortcut'
 target :test do
   link_with 'HuesTests'
   pod 'Expecta'
+  pod 'Specta'
 end

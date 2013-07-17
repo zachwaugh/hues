@@ -16,18 +16,6 @@
 - (void)testIsDark;
 - (void)testRelativeBrightness;
 
-//- (void)testHexFromColor;
-//- (void)testHexFormatParsing;
-//
-//- (void)testRGBFromColor;
-//- (void)testHSLFromColor;
-//- (void)testLowerCasePreference;
-//
-//- (void)testNSColorCalibratedRGB;
-//- (void)testNSColorDeviceRGB;
-//- (void)testUIColorRGB;
-//- (void)testUIColorHSB;
-
 @end
 
 @implementation HuesColorTest
@@ -72,19 +60,6 @@
 	expect([[NSColor blackColor] hues_relativeBrightness]).to.equal(0);
 }
 
-//- (void)testLowerCasePreference
-//{
-//  BOOL useLowercase = [HuesPreferences useLowercase];
-//  
-//  STAssertFalse(useLowercase, @"Not lowercase by default");
-//  STAssertEqualObjects([[NSColor whiteColor] hues_hex], @"#FFFFFF", @"default should be uppercase");
-//  
-//  [HuesPreferences setUseLowercase:YES];
-//  useLowercase = [HuesPreferences useLowercase];
-//  
-//  STAssertTrue(useLowercase, @"Not lowercase by default");
-//  STAssertEqualObjects([[NSColor whiteColor] hues_hex], @"#ffffff", @"default should be uppercase");
-//}
 //
 //- (void)testHexFromColor
 //{
@@ -190,43 +165,5 @@
 //  STAssertEqualObjects([color hues_hexWithFormat:@"{{r}}{{g}}{{b}}"], @"{FF}{80}{40}", @"");
 //}
 //
-//- (void)testNSColorCalibratedRGB
-//{
-//	// Test full white and full black
-//	expect([[NSColor whiteColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
-//  expect([[NSColor blackColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor redColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor blueColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
-//	expect([[NSColor greenColor] hues_NSColorCalibratedRGB]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
-//}
-//
-//- (void)testNSColorDeviceRGB
-//{
-//	// Test full white and full black
-//	expect([[NSColor whiteColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
-//  expect([[NSColor blackColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor redColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor blueColor] hues_NSColorDeviceRGB]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
-//}
-//
-//- (void)testUIColorRGB
-//{
-//	// Test full white/black/red/blue/green
-//	expect([[NSColor whiteColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
-//  expect([[NSColor blackColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor redColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]");
-//	expect([[NSColor blueColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]");
-//	expect([[NSColor greenColor] hues_UIColorRGB]).to.equal(@"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
-//}
-//
-//- (void)testUIColorHSB
-//{
-//	// Test full white/black/red/blue/green
-//	STAssertEqualObjects([[NSColor whiteColor] hues_UIColorHSB], @"[UIColor colorWithHue:1.000 saturation:1.000 brightness:1.000 alpha:1.000]", @"");
-//  STAssertEqualObjects([[NSColor blackColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-//	STAssertEqualObjects([[NSColor redColor] hues_UIColorHSB], @"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]", @"");
-//	STAssertEqualObjects([[NSColor blueColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:0.000 blue:1.000 alpha:1.000]", @"");
-//	STAssertEqualObjects([[NSColor greenColor] hues_UIColorHSB], @"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]", @"");
-//}
 
 @end

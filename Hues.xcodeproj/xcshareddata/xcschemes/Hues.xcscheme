@@ -26,13 +26,13 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Test">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9264FE7D1393ECA000935FAC"
+               BlueprintIdentifier = "921DB1E117971C9E00ADDB2D"
                BuildableName = "HuesTests.octest"
                BlueprintName = "HuesTests"
                ReferencedContainer = "container:Hues.xcodeproj">

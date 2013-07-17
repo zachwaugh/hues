@@ -72,6 +72,37 @@
 	expect([HuesColorFormatter stringForColor:self.green withFormat:@"{H}-{S}-{L}"]).to.equal(@"120-100-50");
 }
 
+- (void)testNSColorCalibratedRGB
+{
+	NSString *format = @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]";
+	
+	// Test full white and full black
+	expect([HuesColorFormatter stringForColor:self.white withFormat:format]).to.equal(@"[NSColor colorWithCalibratedRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([HuesColorFormatter stringForColor:self.black withFormat:format]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.gray withFormat:format]).to.equal(@"[NSColor colorWithCalibratedRed:0.500 green:0.500 blue:0.500 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.green withFormat:format]).to.equal(@"[NSColor colorWithCalibratedRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
+}
+
+- (void)testNSColorDeviceRGB
+{
+	NSString *format = @"[NSColor colorWithDeviceRed:{r} green:{g} blue:{b} alpha:{a}]";
+	
+	expect([HuesColorFormatter stringForColor:self.white withFormat:format]).to.equal(@"[NSColor colorWithDeviceRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([HuesColorFormatter stringForColor:self.black withFormat:format]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.gray withFormat:format]).to.equal(@"[NSColor colorWithDeviceRed:0.500 green:0.500 blue:0.500 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.green withFormat:format]).to.equal(@"[NSColor colorWithDeviceRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
+}
+
+- (void)testUIColorRGB
+{
+	NSString *format = @"[UIColor colorWithRed:{r} green:{g} blue:{b} alpha:{a}]";
+	
+	expect([HuesColorFormatter stringForColor:self.white withFormat:format]).to.equal(@"[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000]");
+  expect([HuesColorFormatter stringForColor:self.black withFormat:format]).to.equal(@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.gray withFormat:format]).to.equal(@"[UIColor colorWithRed:0.500 green:0.500 blue:0.500 alpha:1.000]");
+	expect([HuesColorFormatter stringForColor:self.green withFormat:format]).to.equal(@"[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000]");
+}
+
 - (void)testTokensFromColorFormat
 {
 	expect([HuesColorFormatter tokensForColorFormat:@""]).to.equal(@[]);
