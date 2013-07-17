@@ -14,7 +14,7 @@
 #import "INAppStoreWindow.h"
 #import "HuesMixerViewController.h"
 #import "HuesRGBViewController.h"
-#import "HuesHSBViewController.h"
+#import "HuesHSLMixerController.h"
 #import "HuesColorWheelViewController.h"
 #import "HuesScopeBarView.h"
 #import "HuesColorParser.h"
@@ -72,7 +72,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorFormatsUpdated:) name:HuesColorFormatsUpdatedNotification object:nil];
 	
 	self.scopeBar.delegate = self;
-	self.scopeBar.titles = @[@"RGB", @"HSB", @"Color Wheel"];
+	self.scopeBar.titles = @[@"RGB", @"HSL", @"Color Wheel"];
 	
 	[self updateFormatLabels];
 	
@@ -248,8 +248,8 @@
 {
 	if ([title isEqualToString:@"RGB"]) {
 		[self loadMixerWithClass:[HuesRGBViewController class]];
-	} else if ([title isEqualToString:@"HSB"]) {
-		[self loadMixerWithClass:[HuesHSBViewController class]];
+	} else if ([title isEqualToString:@"HSL"]) {
+		[self loadMixerWithClass:[HuesHSLMixerController class]];
 	} else if ([title isEqualToString:@"Color Wheel"]) {
 		[self loadMixerWithClass:[HuesColorWheelViewController class]];
 	}

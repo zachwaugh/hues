@@ -30,6 +30,11 @@
 - (NSColor *)hues_colorWithGreen:(CGFloat)green;
 - (NSColor *)hues_colorWithBlue:(CGFloat)blue;
 - (NSColor *)hues_colorWithAlpha:(CGFloat)alpha;
+- (NSColor *)hues_colorWithHue:(CGFloat)hue;
+- (NSColor *)hues_colorWithSaturation:(CGFloat)saturation; // HSL
+- (NSColor *)hues_colorWithLightness:(CGFloat)lightness;  // HSL
+
++ (NSColor *)hues_colorWithCalibratedHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
 //- (NSString *)hues_hex;
 //- (NSString *)hues_hexWithLowercase:(BOOL)lowercase;

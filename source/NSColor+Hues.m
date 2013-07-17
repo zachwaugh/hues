@@ -7,20 +7,6 @@
 //
 
 #import "NSColor+Hues.h"
-#import "HuesPreferences.h"
-
-struct HuesColorHSL {
-  CGFloat hue;
-	CGFloat saturation;
-	CGFloat lightness;
-};
-
-static NSString * const HuesNSColorCalibratedRGBFormat = @"[NSColor colorWithCalibratedRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
-static NSString * const HuesNSColorCalibratedHSBFormat = @"[NSColor colorWithCalibratedHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
-static NSString * const HuesNSColorDeviceRGBFormat = @"[NSColor colorWithDeviceRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
-static NSString * const HuesNSColorDeviceHSBFormat = @"[NSColor colorWithDeviceHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
-static NSString * const HuesUIColorRGBFormat = @"[UIColor colorWithRed:%0.3f green:%0.3f blue:%0.3f alpha:%0.3f]";
-static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f saturation:%0.3f brightness:%0.3f alpha:%0.3f]";
 
 @implementation NSColor (Hues)
 
@@ -51,6 +37,7 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	return roundf(self.hues_convertedColor.hueComponent * 360.0f);
 }
 
+// HSL saturation
 - (CGFloat)hues_saturationComponent
 {
 	NSColor *color = self.hues_convertedColor;
@@ -80,11 +67,13 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	return saturation;
 }
 
+// HSL
 - (int)hues_saturation
 {
 	return (int)roundf(self.hues_saturationComponent * 100.0f);
 }
 
+// HSB
 - (int)hues_brightness
 {
 	return roundf(self.hues_convertedColor.brightnessComponent * 100.0f);
@@ -114,46 +103,6 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 - (int)hues_lightness
 {
 	return (int)roundf(self.hues_lightnessComponent * 100.0f);
-}
-
-- (NSString *)hues_hslWithFormat:(NSString *)format
-{
-  int hue;
-  CGFloat red, green, blue, alpha, saturation, lightness, max, min, delta;
-  
-  NSColor *color = [self hues_convertedColor];
-  
-  if (color) {
-		red = color.redComponent;
-    green = color.greenComponent;
-    blue = color.blueComponent;
-    alpha = color.alphaComponent;
-		
-    max = MAX(red, MAX(green, blue));
-    min = MIN(red, MIN(green, blue));
-    
-    hue = roundf(color.hueComponent * 360.0f);
-    hue = (hue >= 360) ? 0 : hue;
-    
-    lightness = (max + min) / 2;
-    
-    if (max == min) {
-      hue = 0;
-      saturation = 0;
-    } else {
-      delta = max - min;
-      saturation = (lightness > 0.5) ? delta / (2 - max - min) : delta / (max + min);
-    }
-    
-    NSString *output;
-    output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", hue]];
-    output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", (int)roundf(saturation * 100.0f)]];
-    output = [output stringByReplacingOccurrencesOfString:@"{l}" withString:[NSString stringWithFormat:@"%d", (int)roundf(lightness * 100.0f)]];
-    
-    return output;
-  }
-  
-  return nil;
 }
 
 #pragma mark - Derived Colors
@@ -192,6 +141,21 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	return [NSColor colorWithCalibratedRed:self.redComponent green:self.greenComponent blue:self.blueComponent alpha:alpha];
 }
 
+- (NSColor *)hues_colorWithHue:(CGFloat)hue
+{
+	return [NSColor hues_colorWithCalibratedHue:hue saturation:self.hues_saturationComponent lightness:self.hues_lightnessComponent alpha:self.alphaComponent];
+}
+
+- (NSColor *)hues_colorWithSaturation:(CGFloat)saturation
+{
+	return [NSColor hues_colorWithCalibratedHue:self.hueComponent saturation:saturation lightness:self.hues_lightnessComponent alpha:self.alphaComponent];
+}
+
+- (NSColor *)hues_colorWithLightness:(CGFloat)lightness
+{
+	return [NSColor hues_colorWithCalibratedHue:self.hueComponent saturation:self.hues_saturationComponent lightness:lightness alpha:self.alphaComponent];
+}
+
 #pragma mark - Color Comparison
 
 - (BOOL)hues_isColorDark
@@ -205,6 +169,13 @@ static NSString * const HuesUIColorHSBFormat = @"[UIColor colorWithHue:%0.3f sat
 	NSColor *color = [self hues_convertedColor];
 	
 	return sqrt((.241 * pow(color.hues_red, 2)) + (.691 * pow(color.hues_green, 2)) + (.068 * pow(color.hues_blue, 2)));
+}
+
+#pragma mark - Color creation
+
++ (NSColor *)hues_colorWithCalibratedHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
+{
+	CGFloat red, green, blue;
 }
 
 @end
