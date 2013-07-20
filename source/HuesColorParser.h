@@ -7,6 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HuesColor.h"
+
+HuesHSB HuesRGBToHSB(HuesRGB rgb);
+HuesHSL HuesRGBToHSL(HuesRGB rgb);
+HuesRGB HuesHSLToRGB(HuesHSL hsl);
+HuesHSB HuesHSLToHSB(HuesHSL hsl);
+HuesHSL HuesHSBToHSL(HuesHSB hsb);
+CGFloat HuesHueToRGB(CGFloat p, CGFloat q, CGFloat t);
 
 @interface HuesColorParser : NSObject
 

@@ -37,7 +37,7 @@
 	return roundf(self.hues_convertedColor.hueComponent * 360.0f);
 }
 
-// HSL saturation
+// HSL saturation: 0 - 1
 - (CGFloat)hues_saturationComponent
 {
 	NSColor *color = self.hues_convertedColor;
@@ -93,7 +93,7 @@
 	max = MAX(red, MAX(green, blue));
 	min = MIN(red, MIN(green, blue));
 	hue = roundf(color.hueComponent * 360.0f);
-	hue = (hue >= 360) ? 0 : hue;
+	hue = (hue > 360) ? 0 : hue;
 	
 	lightness = (max + min) / 2.0;
 	
@@ -176,6 +176,8 @@
 + (NSColor *)hues_colorWithCalibratedHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
 {
 	CGFloat red, green, blue;
+	
+	
 }
 
 @end

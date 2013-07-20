@@ -15,6 +15,7 @@
 
 @property (weak) IBOutlet MASShortcutView *shortcutView;
 @property (weak) IBOutlet NSPopUpButton *defaultFormat;
+@property (weak) IBOutlet NSPopUpButton *applicationMode;
 @property (strong) NSString *identifier;
 
 - (IBAction)updateDefaultFormat:(id)sender;

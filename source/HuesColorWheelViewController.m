@@ -18,9 +18,7 @@
 - (id)init
 {
 	self = [super initWithNibName:@"HuesColorWheelViewController" bundle:nil];
-	if (self) {
-		// Initialization code here.
-	}
+	if (!self) return nil;
 	
 	return self;
 }
@@ -43,7 +41,6 @@
 
 - (void)hueChanged:(CGFloat)hue
 {
-	NSLog(@"hue changed: %f", hue);
 	NSColor *color = [NSColor colorWithCalibratedHue:hue saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
 	[self updateColor:color];
 }

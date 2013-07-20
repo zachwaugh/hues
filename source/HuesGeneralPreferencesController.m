@@ -47,12 +47,20 @@
 	
 	[self.defaultFormat selectItemAtIndex:selected];
 	
+	[self.applicationMode selectItemAtIndex:[HuesPreferences applicationMode]];
+	
 	self.shortcutView.associatedUserDefaultsKey = HuesLoupeShortcutKey;
 }
 
 - (IBAction)updateDefaultFormat:(id)sender
 {
 	[HuesPreferences setDefaultColorFormat:[sender title]];
+}
+
+- (IBAction)updateApplicationMode:(id)sender
+{
+	HuesApplicationMode mode = (HuesApplicationMode)[self.applicationMode indexOfSelectedItem];
+	[HuesPreferences setApplicationMode:mode];
 }
 
 @end

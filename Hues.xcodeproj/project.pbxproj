@@ -14,6 +14,7 @@
 		9218A5721796305800AEF7DE /* HuesGeneralPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */; };
 		9218A5731796305800AEF7DE /* HuesGeneralPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */; };
 		9218A57617963FAC00AEF7DE /* NSMutableArray+Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A57517963FAC00AEF7DE /* NSMutableArray+Move.m */; };
+		9218A5B9179AE31800AEF7DE /* HuesColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5B8179AE31700AEF7DE /* HuesColor.m */; };
 		921A8E51167E6276002FCC42 /* HuesScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E50167E6276002FCC42 /* HuesScopeBarView.m */; };
 		921A8E7E167FE757002FCC42 /* HuesRGBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921A8E7C167FE757002FCC42 /* HuesRGBViewController.m */; };
 		921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */; };
@@ -99,6 +100,8 @@
 		9218A57517963FAC00AEF7DE /* NSMutableArray+Move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Move.m"; sourceTree = "<group>"; };
 		9218A5771796406A00AEF7DE /* HuesNSMutableArray+MoveTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HuesNSMutableArray+MoveTest.h"; sourceTree = "<group>"; };
 		9218A5781796406A00AEF7DE /* HuesNSMutableArray+MoveTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HuesNSMutableArray+MoveTest.m"; sourceTree = "<group>"; };
+		9218A5B7179AE31700AEF7DE /* HuesColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColor.h; sourceTree = "<group>"; };
+		9218A5B8179AE31700AEF7DE /* HuesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColor.m; sourceTree = "<group>"; };
 		921A8E4F167E6276002FCC42 /* HuesScopeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesScopeBarView.h; sourceTree = "<group>"; };
 		921A8E50167E6276002FCC42 /* HuesScopeBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesScopeBarView.m; sourceTree = "<group>"; };
 		921A8E7B167FE757002FCC42 /* HuesRGBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesRGBViewController.h; sourceTree = "<group>"; };
@@ -489,6 +492,8 @@
 				92F13DC4178EFD0700E699E4 /* HuesColorParser.m */,
 				92F13DCA178F00ED00E699E4 /* HuesColorFormatter.h */,
 				92F13DCB178F00ED00E699E4 /* HuesColorFormatter.m */,
+				9218A5B7179AE31700AEF7DE /* HuesColor.h */,
+				9218A5B8179AE31700AEF7DE /* HuesColor.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				9218A57617963FAC00AEF7DE /* NSMutableArray+Move.m in Sources */,
 				921DB1C81796E7C300ADDB2D /* HuesHSLMixerController.m in Sources */,
 				92314E551797422B0044158A /* HuesTextFieldCell.m in Sources */,
+				9218A5B9179AE31800AEF7DE /* HuesColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

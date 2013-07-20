@@ -7,6 +7,11 @@
 //
 
 #import "HuesColorWheelView.h"
+#import "HuesColorParser.h"
+#import "NSColor+Hues.h"
+
+#define COMPONENTS_PER_PIXEL 4
+#define BITS_PER_COMPONENT 8
 
 @interface HuesColorWheelView ()
 
@@ -20,10 +25,10 @@
 - (id)initWithFrame:(NSRect)frame
 {
 	self = [super initWithFrame:frame];
-	if (self) {
-		_color = [NSColor colorWithCalibratedHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
-		_dragRect = NSZeroRect;
-	}
+	if (!self) return nil;
+	
+	_color = [NSColor colorWithCalibratedHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
+	_dragRect = NSZeroRect;
 	
 	return self;
 }
@@ -38,52 +43,56 @@
 }
 
 - (void)cacheBitmap
-{
-	CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-	
+{	
 	CGFloat width = self.bounds.size.width;
 	CGFloat height = self.bounds.size.height;
-	NSBitmapImageRep *bitRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL pixelsWide:width pixelsHigh:height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:0 bitsPerPixel:32];
-		
-	NSInteger x, y;
-	for (x = 0; x < width; x++) {
-		for (y = 0; y < height; y++) {
-			NSColor *color = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(x / width) brightness:(y / height) alpha:1.0];
-			[bitRep setColor:color atX:x y:y];
+	CGFloat hue = self.color.hueComponent;
+	
+	unsigned char *buffer = calloc(height * width * 4, 4);
+	
+	if (buffer == NULL) {
+		NSLog(@"error creating buffer");
+	}
+	
+	NSInteger x, y, pixel = 0, byte = 0;
+	
+	for (y = 0; y < height; y++) {
+		for (x = 0; x < width; x++) {
+			HuesHSB hsb = HuesHSBMake(hue, x / width, y / height);
+			HuesRGB rgb = HuesHSLToRGB(HuesHSBToHSL(hsb));
+			
+			pixel = (width * y) + x;
+			byte = pixel * 4;
+			
+			buffer[byte] = rgb.red * 255;
+			buffer[byte + 1] = rgb.green * 255;
+			buffer[byte + 2] = rgb.blue * 255;
+			buffer[byte + 3] = 255;
+
+			pixel += 4;
 		}
 	}
-  
+	
+	// Create bitmap context
+	CGContextRef context = CGBitmapContextCreate(buffer, width, height, BITS_PER_COMPONENT, width * COMPONENTS_PER_PIXEL, [NSColorSpace genericRGBColorSpace].CGColorSpace, kCGImageAlphaPremultipliedLast);
+	
+	// Create and cache image
+	CGImageRef image = CGBitmapContextCreateImage(context);
+  NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage:image];
 	self.image = [[NSImage alloc] initWithSize:self.bounds.size];
 	[self.image setFlipped:YES];
-	[self.image addRepresentation:bitRep];
-	
-	CFAbsoluteTime elapsed = CFAbsoluteTimeGetCurrent() - start;
-	NSLog(@"cache time: %f", elapsed);
+	[self.image addRepresentation:imageRep];
+
+	free(buffer);
+	CGImageRelease(image);
+	CGContextRelease(context);
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
 	NSRect rect = self.bounds;
 	[self.image drawInRect:self.bounds fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
-	
-//	CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-//	
-//	//CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
-//	
-//	// Loop through each pixel, figure out color, and draw vertical line
-//	for (int x = 0; x < NSWidth(rect); x++) {
-//		for (int y = 0; y < NSHeight(rect); y++) {
-//			NSColor *color = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(x / NSWidth(rect)) brightness:(y / NSHeight(rect)) alpha:1.0];
-//			
-//			NSRect rect = NSMakeRect(x, y, 1.0, 1.0);
-//			[color set];
-//			NSRectFill(rect);
-//		}
-//	}
-//
-//	CFAbsoluteTime elapsed = CFAbsoluteTimeGetCurrent() - start;
-//	NSLog(@"draw time: %f", elapsed);
-	
+
 	[[NSColor whiteColor] set];
 	[[NSBezierPath bezierPathWithOvalInRect:self.dragRect] stroke];
 	

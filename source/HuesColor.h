@@ -1,0 +1,44 @@
+//
+//  HuesColor.h
+//  Hues
+//
+//  Created by Zach Waugh on 7/20/13.
+//  Copyright (c) 2013 Giant Comet. All rights reserved.
+//
+
+
+// RGB
+
+typedef struct {
+  CGFloat red;
+	CGFloat green;
+	CGFloat blue;
+} HuesRGB;
+
+HuesRGB HuesRGBMake(CGFloat red, CGFloat green, CGFloat blue);
+BOOL HuesRGBEqualToRGB(HuesRGB rgb, HuesRGB rgb2);
+NSString * NSStringFromRGB(HuesRGB rgb);
+
+// HSL
+
+typedef struct {
+  CGFloat hue;
+	CGFloat saturation;
+	CGFloat lightness;
+} HuesHSL;
+
+HuesHSL HuesHSLMake(CGFloat hue, CGFloat saturation, CGFloat lightness);
+BOOL HuesHSLEqualToHSL(HuesHSL hsl, HuesHSL hsl2);
+NSString * NSStringFromHSL(HuesHSL hsl);
+
+// HSB
+
+typedef struct {
+  CGFloat hue;
+	CGFloat saturation;
+	CGFloat brightness;
+} HuesHSB;
+
+HuesHSB HuesHSBMake(CGFloat hue, CGFloat saturation, CGFloat brightness);
+BOOL HuesHSBEqualToHSB(HuesHSB hsb, HuesHSB hsb2);
+NSString * NSStringFromHSB(HuesHSB hsb);

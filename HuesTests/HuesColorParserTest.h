@@ -27,4 +27,9 @@
 - (void)testColorFromNSColor;
 - (void)testColorFromUIColor;
 
+// Conversion
+- (void)testRGBFromHSL;
+- (void)testHSBFromRGB;
+- (void)testHSLFromRGB;
+
 @end

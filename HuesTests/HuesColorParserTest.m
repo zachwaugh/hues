@@ -95,4 +95,76 @@
 	expect([HuesColorParser colorFromCocoaColor:@"[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.75]"]).to.equal([NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:0.75]);
 }
 
+- (void)testHuesRGBEqualToRGB
+{
+	HuesRGB rgb = HuesRGBMake(0, 0, 0);
+	HuesRGB rgb2 = HuesRGBMake(0, 0, 0);
+	
+	expect(HuesRGBEqualToRGB(rgb, rgb2)).to.beTruthy();
+	
+	rgb = HuesRGBMake(1, 1, 1);
+	expect(HuesRGBEqualToRGB(rgb, rgb2)).to.beFalsy();
+	
+	rgb2 = HuesRGBMake(1, 1, 0.9);
+	expect(HuesRGBEqualToRGB(rgb, rgb2)).to.beFalsy();
+	
+	rgb = HuesRGBMake(0.2, 0.4, 0.6);
+	rgb2 = HuesRGBMake(0.2, 0.4, 0.6);
+	expect(HuesRGBEqualToRGB(rgb, rgb2)).to.beTruthy();
+}
+
+- (void)testRGBFromHSL
+{
+	HuesHSL hsl = HuesHSLMake(0, 1, 0.5);
+	HuesRGB rgb = HuesHSLToRGB(hsl);
+	HuesRGB expected = HuesRGBMake(1, 0, 0);
+	
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+	
+	hsl = HuesHSLMake(.5833333, 0.5, 0.4);
+	rgb = HuesHSLToRGB(hsl);
+	expected = HuesRGBMake(0.2, 0.4, 0.6);
+	
+	NSLog(@"hsl: %@ -> rgb: %@ (expected: %@)", NSStringFromHSL(hsl), NSStringFromRGB(rgb), NSStringFromRGB(expected));
+	
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+}
+
+- (void)testHSBFromRGB
+{
+	HuesRGB rgb = HuesRGBMake(1, 1, 1);
+	HuesHSB hsb = HuesRGBToHSB(rgb);
+	HuesHSB expected = HuesHSBMake(0, 0, 1);
+	
+	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
+	
+	rgb = HuesRGBMake(1, 0, 0);
+	hsb = HuesRGBToHSB(rgb);
+	expected = HuesHSBMake(0, 1, 1);
+	
+	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
+	
+	rgb = HuesRGBMake(0, 0.5, 0);
+	hsb = HuesRGBToHSB(rgb);
+	expected = HuesHSBMake(120 / 360.0f, 1.0, 0.5);
+	
+	//NSLog(@"rgb: %@ -> hsb: %@ (expected: %@)", NSStringFromRGB(rgb), NSStringFromHSB(hsb), NSStringFromHSB(expected));
+	
+	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
+	
+	rgb = HuesRGBMake(0.704f, 0.187f, 0.897f);
+	hsb = HuesRGBToHSB(rgb);
+	expected = HuesHSBMake(283.7 / 360.0f, 0.792f, 0.897f);
+	
+	NSLog(@"rgb: %@ -> hsb: %@ (expected: %@)", NSStringFromRGB(rgb), NSStringFromHSB(hsb), NSStringFromHSB(expected));
+	
+	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
+}
+
+
+- (void)testHSLFromRGB
+{
+	
+}
+
 @end
