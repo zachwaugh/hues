@@ -8,6 +8,7 @@
 
 #import "HuesColorWheelView.h"
 #import "HuesColorParser.h"
+#import "HuesColorConversion.h"
 #import "NSColor+Hues.h"
 
 #define COMPONENTS_PER_PIXEL 4
@@ -59,7 +60,7 @@
 	for (y = 0; y < height; y++) {
 		for (x = 0; x < width; x++) {
 			HuesHSB hsb = HuesHSBMake(hue, x / width, y / height);
-			HuesRGB rgb = HuesHSLToRGB(HuesHSBToHSL(hsb));
+			HuesRGB rgb = HuesHSBToRGB(hsb);
 			
 			pixel = (width * y) + x;
 			byte = pixel * 4;

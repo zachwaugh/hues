@@ -36,24 +36,4 @@
 
 + (NSColor *)hues_colorWithCalibratedHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
-//- (NSString *)hues_hex;
-//- (NSString *)hues_hexWithLowercase:(BOOL)lowercase;
-//- (NSString *)hues_hexWithFormat:(NSString *)format;
-//- (NSString *)hues_hexWithFormat:(NSString *)format useLowercase:(BOOL)lowercase;
-//- (NSString *)hues_rgb;
-//- (NSString *)hues_rgbWithDefaultFormat;
-//- (NSString *)hues_rgbWithFormat:(NSString *)format;
-//- (NSString *)hues_rgbaWithFormat:(NSString *)format;
-//- (NSString *)hues_hsb;
-//- (NSString *)hues_hsl;
-//- (NSString *)hues_hslWithDefaultFormat;
-//- (NSString *)hues_hslWithFormat:(NSString *)format;
-//- (NSString *)hues_hslaWithFormat:(NSString *)format;
-//- (NSString *)hues_NSColorCalibratedRGB;
-//- (NSString *)hues_NSColorCalibratedHSB;
-//- (NSString *)hues_NSColorDeviceRGB;
-//- (NSString *)hues_NSColorDeviceHSB;
-//- (NSString *)hues_UIColorRGB;
-//- (NSString *)hues_UIColorHSB;
-
 @end

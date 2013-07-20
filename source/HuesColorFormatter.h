@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// Color -> string representation
 @interface HuesColorFormatter : NSObject
 
 + (NSString *)hexForColor:(NSColor *)color;
