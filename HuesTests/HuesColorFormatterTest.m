@@ -70,6 +70,14 @@
 	
 	expect([HuesColorFormatter stringForColor:self.green withFormat:@"{h}-{s}-{l}"]).to.equal(@"0.333-1.000-0.500");
 	expect([HuesColorFormatter stringForColor:self.green withFormat:@"{H}-{S}-{L}"]).to.equal(@"120-100-50");
+	
+	NSColor *red = [NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+	expect([HuesColorFormatter stringForColor:red withFormat:@"{h}-{s}-{l}"]).to.equal(@"0.0-1.000-0.500");
+	expect([HuesColorFormatter stringForColor:red withFormat:@"{H}-{S}-{L}"]).to.equal(@"0-100-50");
+	
+	red = [NSColor colorWithCalibratedHue:359 / 360.f saturation:1 brightness:1 alpha:1];
+	expect([HuesColorFormatter stringForColor:red withFormat:@"{h}-{s}-{l}"]).to.equal(@"0.997-1.000-0.500");
+	expect([HuesColorFormatter stringForColor:red withFormat:@"{H}-{S}-{L}"]).to.equal(@"359-100-50");
 }
 
 - (void)testNSColorCalibratedRGB

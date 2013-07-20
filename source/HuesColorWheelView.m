@@ -11,6 +11,8 @@
 #import "HuesColorConversion.h"
 #import "NSColor+Hues.h"
 
+#define CIRCLE_RADIUS 2
+
 #define COMPONENTS_PER_PIXEL 4
 #define BITS_PER_COMPONENT 8
 
@@ -32,6 +34,11 @@
 	_dragRect = NSZeroRect;
 	
 	return self;
+}
+
+- (BOOL)acceptsFirstResponder
+{
+	return YES;
 }
 
 - (void)setColor:(NSColor *)color
@@ -105,34 +112,57 @@
 - (void)mouseDown:(NSEvent *)event
 {
 	NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
-	CGFloat saturation = point.x / self.bounds.size.width;
-	CGFloat brightness = point.y / self.bounds.size.height;
-	
-	self.dragRect = NSMakeRect(point.x - 1, point.y - 1, 2, 2);
-	[self setNeedsDisplay:YES];
-	
-	if (self.delegate) {
-		[self.delegate colorWheelDidChangeSaturation:saturation brightness:brightness];
-	}
+	[self updateColorWithPoint:point];
 }
 
 - (void)mouseDragged:(NSEvent *)event
 {
 	NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
-	CGFloat saturation = point.x / self.bounds.size.width;
-	CGFloat brightness = point.y / self.bounds.size.height;
-	
-	self.dragRect = NSMakeRect(point.x - 2, point.y - 2, 4, 4);
-	[self setNeedsDisplay:YES];
-	
-	if (self.delegate) {
-		[self.delegate colorWheelDidChangeSaturation:saturation brightness:brightness];
-	}
+	[self updateColorWithPoint:point];
 }
 
 - (BOOL)mouseDownCanMoveWindow
 {
 	return NO;
+}
+
+- (void)moveDown:(id)sender
+{
+	// current point
+	CGPoint point = self.dragRect.origin;
+	point.x += CIRCLE_RADIUS;
+	point.y += CIRCLE_RADIUS;
+	
+	// Adjust point
+	point.y -= 1;
+	
+	[self updateColorWithPoint:point];
+}
+
+- (void)updateColorWithPoint:(NSPoint)point
+{
+	// Make sure point is constrained
+	if (point.x < NSMinX(self.bounds)) {
+		point.x = NSMinX(self.bounds);
+	} else if (point.x > NSMaxX(self.bounds)) {
+		point.x = NSMaxX(self.bounds);
+	}
+	
+	if (point.y < NSMinY(self.bounds)) {
+		point.y = NSMinY(self.bounds);
+	} else if (point.y > NSMaxY(self.bounds)) {
+		point.y = NSMaxY(self.bounds);
+	}
+	
+	self.dragRect = NSMakeRect(point.x - CIRCLE_RADIUS, point.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
+	[self setNeedsDisplay:YES];
+
+	CGFloat saturation = point.x / self.bounds.size.width;
+	CGFloat brightness = point.y / self.bounds.size.height;
+	
+	if (self.delegate) {
+		[self.delegate colorWheelDidChangeSaturation:saturation brightness:brightness];
+	}
 }
 
 @end

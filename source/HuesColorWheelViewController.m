@@ -33,7 +33,15 @@
 
 - (void)colorWheelDidChangeSaturation:(CGFloat)saturation brightness:(CGFloat)brightness
 {
+	if (brightness <= 0) brightness = 0.00001;
+	if (brightness > 1) brightness = 1;
+	if (saturation <= 0) saturation = 0.00001;
+	if (saturation > 1) saturation = 1;
+	
+	//NSLog(@"colorWheelDidChangeSaturation: %f brightness: %f, hue: %f", saturation, brightness, self.color.hueComponent);
 	NSColor *color = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:saturation brightness:brightness alpha:self.color.alphaComponent];
+	//NSLog(@"(after) colorWheelDidChangeSaturation: %f brightness: %f, hue: %f", self.color.saturationComponent, self.color.brightnessComponent, self.color.hueComponent);
+
 	[self updateColor:color];
 }
 

@@ -76,8 +76,14 @@
 	hsl = HuesRGBToHSL(rgb);
 	expected = HuesHSLMake(248.3f / 360.0f, 0.601f, 0.373f);
 	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
+	
+	rgb = HuesRGBMake(255 / 255.0f, 0.0f, 4 / 255.0f);
+	hsl = HuesRGBToHSL(rgb);
+	expected = HuesHSLMake(359 / 360.0f, 1.0f, 0.5f);
+	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
+	
+	NSLog(@"\nhsl:%@\n---:%@", NSStringFromHSL(hsl), NSStringFromHSL(expected));
 }
-
 
 - (void)testRGBToHSB
 {
