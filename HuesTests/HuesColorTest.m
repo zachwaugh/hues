@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NSColor+Hues.h"
-#import "HuesPreferences.h"
+#import "HuesColor.h"
 
 @interface HuesColorTest : SenTestCase
 
@@ -20,16 +20,24 @@
 
 @implementation HuesColorTest
 
-- (void)setUp
+- (void)testCreateColorWithRGB
 {
-  [super setUp];
-  [HuesPreferences registerDefaults];
+	HuesColor *color = [HuesColor colorWithRed:1.0f green:1.0f blue:1.0f];
+	expect(color).toNot.beNil();
+	expect(color.red).to.equal(1.0f);
+	expect(color.green).to.equal(1.0f);
+	expect(color.blue).to.equal(1.0f);
+	expect(color.alpha).to.equal(1.0f);
 }
 
-- (void)tearDown
+- (void)testCreateColorWithHSL
 {
-  // Tear-down code here.
-  [super tearDown];
+	HuesColor *color = [HuesColor colorWithHue:1.0f saturation:1.0f lightness:1.0f];
+	expect(color).toNot.beNil();
+	expect(color.hue).to.equal(1.0f);
+	expect(color.saturation).to.equal(1.0f);
+	expect(color.lightness).to.equal(1.0f);
+	expect(color.alpha).to.equal(1.0f);
 }
 
 - (void)testConvertedColor

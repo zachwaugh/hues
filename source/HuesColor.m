@@ -7,6 +7,7 @@
 //
 
 #import "HuesColor.h"
+#import "HuesColorConversion.h"
 
 #pragma mark - RGB
 
@@ -81,7 +82,195 @@ BOOL HuesHSBEqualToHSB(HuesHSB hsb, HuesHSB hsb2)
 	return (h && s && b);
 }
 
+CGFloat HuesClampedValueForValue(CGFloat value)
+{
+	if (value > 1) {
+		return 1;
+	} else if (value < 0) {
+		return 0;
+	} else {
+		return value;
+	}
+}
+
 NSString * NSStringFromHSB(HuesHSB hsb)
 {
 	return [NSString stringWithFormat:@"{h: %.10f, s: %.10f, l: %.10f}", hsb.hue, hsb.saturation, hsb.brightness];
 }
+
+@interface HuesColor ()
+
+- (void)updateHSL;
+- (void)updateRGB;
+
+@end
+
+@implementation HuesColor
+
+- (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
+{
+	self = [super init];
+	if (!self) return nil;
+	
+	_red = HuesClampedValueForValue(red);
+	_green = HuesClampedValueForValue(green);
+	_blue = HuesClampedValueForValue(blue);
+	_alpha = HuesClampedValueForValue(alpha);
+	
+	[self updateHSL];
+	
+	return self;
+}
+
+- (id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
+{
+	self = [super init];
+	if (!self) return nil;
+	
+	_hue = HuesClampedValueForValue(hue);
+	_saturation = HuesClampedValueForValue(saturation);
+	_lightness = HuesClampedValueForValue(lightness);
+	_alpha = HuesClampedValueForValue(alpha);
+	
+	[self updateRGB];
+	
+	return self;
+}
+
++ (HuesColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
+{
+	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
+}
+
++ (HuesColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
+{
+	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
+}
+
++ (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness
+{
+	return [[HuesColor alloc] initWithHue:hue saturation:saturation lightness:lightness alpha:1.0];
+}
+
++ (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
+{
+	return [[HuesColor alloc] initWithHue:hue saturation:saturation lightness:lightness alpha:alpha];
+}
+
+- (void)updateRGB
+{
+	HuesRGB rgb = HuesHSLToRGB(HuesHSLMake(self.hue, self.saturation, self.lightness));
+	
+	self.red = rgb.red;
+	self.green = rgb.green;
+	self.blue = rgb.blue;
+}
+
+- (void)updateHSL
+{
+	HuesHSL hsl = HuesRGBToHSL(HuesRGBMake(self.red, self.green, self.blue));
+	
+	self.hue = hsl.hue;
+	self.saturation = hsl.saturation;
+	self.lightness = hsl.lightness;
+}
+
+#pragma mark - Structs
+
+- (HuesRGB)RGB
+{
+	return HuesRGBMake(self.red, self.green, self.blue);
+}
+
+- (HuesHSL)HSL
+{
+	return HuesHSLMake(self.hue, self.saturation, self.lightness);
+}
+
+#pragma mark - Components
+
+// RGB
+- (int)hues_red
+{
+	return roundf(self.red * 255.0f);
+}
+
+- (int)hues_green
+{
+	return roundf(self.green * 255.0f);
+}
+
+- (int)hues_blue
+{
+	return roundf(self.blue * 255.0f);
+}
+
+- (int)hues_alpha
+{
+	return roundf(self.alpha * 100.0f);
+}
+
+// HSL
+- (int)hues_hue
+{
+	return roundf(self.hue * 360.0f);
+}
+
+- (int)hues_saturation
+{
+	return (int)roundf(self.saturation * 100.0f);
+}
+
+- (int)hues_lightness
+{
+	return (int)roundf(self.lightness * 100.0f);
+}
+
+// HSB
+
+- (CGFloat)HSBSaturation
+{
+	HuesHSB hsb = HuesHSLToHSB(self.HSL);
+	return hsb.saturation;
+}
+
+- (int)hues_HSBSaturation
+{
+	return (int)roundf(self.HSBSaturation * 100.0f);
+}
+
+- (CGFloat)brightness
+{
+	HuesHSB hsb = HuesHSLToHSB(self.HSL);
+	return hsb.brightness;
+}
+
+- (int)hues_brightness
+{
+	return (int)roundf(self.brightness * 100.0f);
+}
+
+#pragma mark - Cocoa colors
+
+#if TARGET_OS_IPHONE
+
+- (UIColor *)color
+{
+	return [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+}
+
+#else
+
+- (NSColor *)calibratedColor
+{
+	return [NSColor colorWithCalibratedRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+}
+
+- (NSColor *)deviceColor
+{
+	return [NSColor colorWithDeviceRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+}
+
+#endif
+
+@end

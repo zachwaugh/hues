@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -115,23 +115,27 @@
 								<object class="NSButton" id="537103511">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{272, 79}, {39, 18}}</string>
+									<string key="NSFrame">{{284, 76}, {32, 26}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1034211914"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="508276029">
 										<int key="NSCellFlags">-2080374784</int>
-										<int key="NSCellFlags2">134348800</int>
-										<string key="NSContents">Copy</string>
-										<object class="NSFont" key="NSSupport" id="26">
-											<string key="NSName">LucidaGrande</string>
-											<double key="NSSize">11</double>
-											<int key="NSfFlags">3100</int>
-										</object>
+										<int key="NSCellFlags2">134217728</int>
+										<string key="NSContents"/>
+										<reference key="NSSupport" ref="686451391"/>
 										<reference key="NSControlView" ref="537103511"/>
-										<int key="NSButtonFlags">-2038153216</int>
-										<int key="NSButtonFlags2">163</int>
+										<int key="NSButtonFlags">139214848</int>
+										<int key="NSButtonFlags2">134</int>
+										<object class="NSCustomResource" key="NSNormalImage" id="466941466">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">copy-button</string>
+										</object>
+										<object class="NSCustomResource" key="NSAlternateImage" id="651942346">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">copy-button-down</string>
+										</object>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
 										<int key="NSPeriodicDelay">400</int>
@@ -142,19 +146,21 @@
 								<object class="NSButton" id="90715434">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{272, 136}, {39, 18}}</string>
+									<string key="NSFrame">{{284, 133}, {32, 26}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="576215253"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="753607705">
 										<int key="NSCellFlags">-2080374784</int>
-										<int key="NSCellFlags2">134348800</int>
-										<string key="NSContents">Copy</string>
-										<reference key="NSSupport" ref="26"/>
+										<int key="NSCellFlags2">134217728</int>
+										<string key="NSContents"/>
+										<reference key="NSSupport" ref="686451391"/>
 										<reference key="NSControlView" ref="90715434"/>
-										<int key="NSButtonFlags">-2038153216</int>
-										<int key="NSButtonFlags2">163</int>
+										<int key="NSButtonFlags">138690560</int>
+										<int key="NSButtonFlags2">134</int>
+										<reference key="NSNormalImage" ref="466941466"/>
+										<reference key="NSAlternateImage" ref="651942346"/>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
 										<int key="NSPeriodicDelay">400</int>
@@ -165,7 +171,7 @@
 								<object class="NSTextField" id="877854488">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{17, 132}, {299, 27}}</string>
+									<string key="NSFrame">{{17, 132}, {272, 27}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="90715434"/>
@@ -194,7 +200,7 @@
 								<object class="NSTextField" id="930101479">
 									<reference key="NSNextResponder" ref="913039775"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{17, 75}, {299, 27}}</string>
+									<string key="NSFrame">{{17, 75}, {272, 27}}</string>
 									<reference key="NSSuperview" ref="913039775"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="537103511"/>
@@ -310,7 +316,7 @@
 					<reference key="NSNextKeyView" ref="358736336"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{300, 522}</string>
 				<string key="NSMaxSize">{600, 822}</string>
 				<string key="NSFrameAutosaveName">Hues Main Window</string>
@@ -834,6 +840,8 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>
+			<string key="copy-button">{32, 26}</string>
+			<string key="copy-button-down">{32, 26}</string>
 		</dictionary>
 	</data>
 </archive>

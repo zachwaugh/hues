@@ -7,6 +7,7 @@
 //
 
 #import "HuesScopeBarView.h"
+#import "HuesScopeBarButton.h"
 
 #define PADDING 2
 
@@ -22,11 +23,12 @@
 
 - (id)initWithFrame:(NSRect)frameRect
 {
-	if ((self = [super initWithFrame:frameRect])) {
-		_titles = @[];
-		_tabs = [[NSMutableArray alloc] init];
-	}
+	self = [super initWithFrame:frameRect];
+	if (!self) return nil;
 	
+	_titles = @[];
+	_tabs = [[NSMutableArray alloc] init];
+
 	return self;
 }
 
@@ -38,25 +40,19 @@
 
 - (void)updateButtons
 {
-	for (NSButton *button in self.tabs) {
+	for (HuesScopeBarButton *button in self.tabs) {
 		[button removeFromSuperview];
 	}
 	
 	[self.tabs removeAllObjects];
-	
+
 	for (NSString *title in self.titles) {
-		NSButton *button = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 100, 20)];
-		button.bezelStyle = NSRecessedBezelStyle;
-		[button setButtonType:NSOnOffButton];
-		[button setBordered:YES];
-		[button setAllowsMixedState:NO];
-		[button setShowsBorderOnlyWhileMouseInside:YES];
+		HuesScopeBarButton *button = [[HuesScopeBarButton alloc] initWithFrame:NSMakeRect(0, 0, 50, 20)];
 		button.title = title;
-		button.state = NSOffState;
-		
 		button.target = self;
 		button.action = @selector(buttonClicked:);
 		[button sizeToFit];
+		
 		[self.tabs addObject:button];
 		[self addSubview:button];
 	}
@@ -69,15 +65,14 @@
 {
 	CGFloat width = 0;
 	
-	for (NSButton *button in self.tabs) {
+	for (HuesScopeBarButton *button in self.tabs) {
 		width += NSWidth(button.frame);
 	}
 	
 	width += (PADDING * (self.tabs.count - 1));
+	CGFloat x = round((self.bounds.size.width - width) / 2);
 	
-	float x = round((self.bounds.size.width - width) / 2);
-	
-	for (NSButton *button in self.tabs) {
+	for (HuesScopeBarButton *button in self.tabs) {
 		NSRect frame = button.frame;
 		frame.origin.x = x;
 		frame.origin.y = round((NSHeight(self.bounds) - NSHeight(button.frame)) / 2);
@@ -90,27 +85,27 @@
 {
 	for (int i = 0; i < self.tabs.count; i++) {
 		if (i == index) {
-			[self.tabs[i] setState:NSOnState];
+			[(HuesScopeBarButton *)self.tabs[i] setSelected:YES];
 		} else {
-			[self.tabs[i] setState:NSOffState];
+			[(HuesScopeBarButton *)self.tabs[i] setSelected:NO];
 		}
 	}
 }
 
-- (void)selectTab:(NSButton *)button
+- (void)selectTab:(HuesScopeBarButton *)button
 {
-	for (NSButton *tab in self.tabs) {
+	for (HuesScopeBarButton *tab in self.tabs) {
 		if (tab == button) {
-			[tab setState:NSOnState];
+			tab.selected = YES;
 		} else {
-			[tab setState:NSOffState];
+			tab.selected = NO;
 		}
 	}
 }
 
 - (void)buttonClicked:(id)sender
 {
-	NSButton *button = sender;
+	HuesScopeBarButton *button = sender;
 	[self selectTab:button];
 	
 	if (self.delegate) {
