@@ -61,7 +61,7 @@
 							<reference key="NSNextResponder" ref="380044551"/>
 							<int key="NSvFlags">266</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{0, 464}, {328, 25}}</string>
+							<string key="NSFrame">{{0, 459}, {328, 30}}</string>
 							<reference key="NSSuperview" ref="380044551"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="572701529"/>
@@ -128,11 +128,11 @@
 										<reference key="NSControlView" ref="537103511"/>
 										<int key="NSButtonFlags">139214848</int>
 										<int key="NSButtonFlags2">134</int>
-										<object class="NSCustomResource" key="NSNormalImage" id="466941466">
+										<object class="NSCustomResource" key="NSNormalImage" id="133332659">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">copy-button</string>
 										</object>
-										<object class="NSCustomResource" key="NSAlternateImage" id="651942346">
+										<object class="NSCustomResource" key="NSAlternateImage" id="609254859">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">copy-button-down</string>
 										</object>
@@ -159,8 +159,8 @@
 										<reference key="NSControlView" ref="90715434"/>
 										<int key="NSButtonFlags">138690560</int>
 										<int key="NSButtonFlags2">134</int>
-										<reference key="NSNormalImage" ref="466941466"/>
-										<reference key="NSAlternateImage" ref="651942346"/>
+										<reference key="NSNormalImage" ref="133332659"/>
+										<reference key="NSAlternateImage" ref="609254859"/>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
 										<int key="NSPeriodicDelay">400</int>
@@ -302,7 +302,7 @@
 						<object class="NSCustomView" id="572701529">
 							<reference key="NSNextResponder" ref="380044551"/>
 							<int key="NSvFlags">274</int>
-							<string key="NSFrame">{{0, 255}, {328, 209}}</string>
+							<string key="NSFrame">{{0, 255}, {328, 205}}</string>
 							<reference key="NSSuperview" ref="380044551"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="31863510"/>

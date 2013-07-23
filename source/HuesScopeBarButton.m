@@ -8,12 +8,16 @@
 
 #import "HuesScopeBarButton.h"
 
-#define TEXT_PADDING 10
+#define TEXT_PADDING 9
 
 static NSImage *_scopeBackgroundLeft = nil, *_scopeBackgroundFill = nil, *_scopeBackgroundRight = nil;
 static NSDictionary *_attributes = nil;
 
 @interface HuesScopeBarButton ()
+{
+	id _target;
+	SEL _action;
+}
 
 @property (strong) NSAttributedString *attributedTitle;
 
@@ -40,7 +44,7 @@ static NSDictionary *_attributes = nil;
 {
 	self = [super initWithFrame:frame];
 	if (!self) return nil;
-	
+		
 	return self;
 }
 
@@ -72,8 +76,39 @@ static NSDictionary *_attributes = nil;
 	}
 
 	NSRect textBounds = NSInsetRect(self.bounds, TEXT_PADDING, 0);
-	textBounds.origin.y += 1; // offset origin for HelveticaNeue issue
+	textBounds.origin.y += 2; // offset origin for HelveticaNeue issue
+
 	[self.attributedTitle drawInRect:textBounds];
 }
+
+#pragma mark - Mouse
+
+- (void)mouseDown:(NSEvent *)event
+{
+	[self sendAction:self.action to:self.target];
+}
+
+#pragma mark - Target/Action
+
+- (void)setTarget:(id)anObject
+{
+	_target = anObject;
+}
+
+- (void)setAction:(SEL)aSelector
+{
+	_action = aSelector;
+}
+
+- (id)target
+{
+	return _target;
+}
+
+- (SEL)action
+{
+	return _action;
+}
+
 
 @end

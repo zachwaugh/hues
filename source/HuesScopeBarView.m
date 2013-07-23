@@ -15,7 +15,7 @@
 
 @property (strong) NSMutableArray *tabs;
 
-- (void)selectTab:(NSButton *)button;
+- (void)selectTab:(HuesScopeBarButton *)button;
 
 @end
 
@@ -63,7 +63,7 @@
 
 - (void)layoutButtons
 {
-	CGFloat width = 0;
+	CGFloat width = 0.0f;
 	
 	for (HuesScopeBarButton *button in self.tabs) {
 		width += NSWidth(button.frame);
