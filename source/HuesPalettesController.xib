@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -17,6 +17,7 @@
 			<string>NSCustomObject</string>
 			<string>NSCustomView</string>
 			<string>NSMenu</string>
+			<string>NSMenuItem</string>
 			<string>NSPopUpButton</string>
 			<string>NSPopUpButtonCell</string>
 			<string>NSScrollView</string>
@@ -396,6 +397,77 @@
 				<reference key="NSNextKeyView" ref="308919103"/>
 				<string key="NSClassName">NSView</string>
 			</object>
+			<object class="NSMenu" id="531817701">
+				<string key="NSTitle"/>
+				<array class="NSMutableArray" key="NSMenuItems">
+					<object class="NSMenuItem" id="725689137">
+						<reference key="NSMenu" ref="531817701"/>
+						<string key="NSTitle">New</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSOnImage" id="218123726">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuCheckmark</string>
+						</object>
+						<object class="NSCustomResource" key="NSMixedImage" id="661505566">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuMixedState</string>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="917062013">
+						<reference key="NSMenu" ref="531817701"/>
+						<string key="NSTitle">Rename</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+					<object class="NSMenuItem" id="1036693455">
+						<reference key="NSMenu" ref="531817701"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+					<object class="NSMenuItem" id="479086108">
+						<reference key="NSMenu" ref="531817701"/>
+						<string key="NSTitle">Share</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+					<object class="NSMenuItem" id="446783786">
+						<reference key="NSMenu" ref="531817701"/>
+						<string key="NSTitle">Export</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+					<object class="NSMenuItem" id="1041338357">
+						<reference key="NSMenu" ref="531817701"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+					<object class="NSMenuItem" id="830473629">
+						<reference key="NSMenu" ref="531817701"/>
+						<string key="NSTitle">Delete</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="218123726"/>
+						<reference key="NSMixedImage" ref="661505566"/>
+					</object>
+				</array>
+			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -500,14 +572,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">removePalette:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="477766548"/>
-					</object>
-					<int key="connectionID">64</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">updateItemColor:</string>
 						<reference key="source" ref="1001"/>
 						<object class="NSColorWell" key="destination" id="883715719">
@@ -516,7 +580,7 @@
 							<set class="NSMutableSet" key="NSDragTypes">
 								<string>NSColor pasteboard type</string>
 							</set>
-							<string key="NSFrame">{{219, 3}, {71, 31}}</string>
+							<string key="NSFrame">{{226, 3}, {71, 31}}</string>
 							<reference key="NSSuperview" ref="1029006499"/>
 							<reference key="NSNextKeyView" ref="782857528"/>
 							<string key="NSReuseIdentifierKey">_NS:1116</string>
@@ -529,6 +593,14 @@
 						</object>
 					</object>
 					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">exportPalette:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="477766548"/>
+					</object>
+					<int key="connectionID">74</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -768,6 +840,55 @@
 						<reference key="object" ref="769126708"/>
 						<reference key="parent" ref="477766548"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">66</int>
+						<reference key="object" ref="531817701"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="725689137"/>
+							<reference ref="830473629"/>
+							<reference ref="446783786"/>
+							<reference ref="479086108"/>
+							<reference ref="1041338357"/>
+							<reference ref="917062013"/>
+							<reference ref="1036693455"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">67</int>
+						<reference key="object" ref="725689137"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="830473629"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">69</int>
+						<reference key="object" ref="446783786"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">70</int>
+						<reference key="object" ref="479086108"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">71</int>
+						<reference key="object" ref="1041338357"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">72</int>
+						<reference key="object" ref="917062013"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">73</int>
+						<reference key="object" ref="1036693455"/>
+						<reference key="parent" ref="531817701"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -800,7 +921,15 @@
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="67.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="71.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="8.isInViewBasedMode"/>
 				<array key="8.prototypeCellViews">
@@ -811,7 +940,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">65</int>
+			<int key="maxID">74</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -835,13 +964,13 @@
 					<string key="className">HuesPaletteItemCellView</string>
 					<string key="superclassName">NSTableCellView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="colorWell">NSColorWell</string>
+						<string key="colorWell">HuesColorWell</string>
 						<string key="name">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="colorWell">
 							<string key="name">colorWell</string>
-							<string key="candidateClassName">NSColorWell</string>
+							<string key="candidateClassName">HuesColorWell</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="name">
 							<string key="name">name</string>
@@ -859,6 +988,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="addItem:">id</string>
 						<string key="addPalette:">id</string>
+						<string key="exportPalette:">id</string>
 						<string key="paletteDidChange:">id</string>
 						<string key="removeItem:">id</string>
 						<string key="removePalette:">id</string>
@@ -872,6 +1002,10 @@
 						</object>
 						<object class="IBActionInfo" key="addPalette:">
 							<string key="name">addPalette:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="exportPalette:">
+							<string key="name">exportPalette:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="paletteDidChange:">
@@ -926,6 +1060,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSAddTemplate">{8, 8}</string>
+			<string key="NSMenuCheckmark">{11, 11}</string>
+			<string key="NSMenuMixedState">{10, 3}</string>
 			<string key="NSRemoveTemplate">{8, 8}</string>
 			<string key="NSRightFacingTriangleTemplate">{9, 9}</string>
 		</dictionary>

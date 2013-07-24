@@ -21,5 +21,6 @@
 - (IBAction)removeItem:(id)sender;
 - (IBAction)updateItemName:(id)sender;
 - (IBAction)updateItemColor:(id)sender;
+- (IBAction)exportPalette:(id)sender;
 
 @end

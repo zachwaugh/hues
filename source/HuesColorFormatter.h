@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const HuesHexFormat;
+
 // Color -> string representation
 @interface HuesColorFormatter : NSObject
 

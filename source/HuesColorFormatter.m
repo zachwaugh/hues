@@ -10,7 +10,7 @@
 #import "HuesPreferences.h"
 #import "NSColor+Hues.h"
 
-#define HEX_FORMAT @"#{RR}{GG}{BB}"
+NSString * const HuesHexFormat = @"#{RR}{GG}{BB}";
 
 @implementation HuesColorFormatter
 
@@ -27,7 +27,7 @@
 
 + (NSString *)hexForColor:(NSColor *)color
 {
-	return [self stringForColor:color withFormat:HEX_FORMAT];
+	return [self stringForColor:color withFormat:HuesHexFormat];
 }
 
 + (NSString *)stringForColorWithPrimaryFormat:(NSColor *)color

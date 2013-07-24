@@ -11,6 +11,7 @@
 #import "HuesPalette.h"
 #import "HuesPaletteItem.h"
 #import "HuesPalettesManager.h"
+#import "HuesPaletteExporter.h"
 
 @interface HuesPalettesController ()
 
@@ -38,6 +39,8 @@
 	
 	[self refreshPalettes];
 }
+
+#pragma mark - Palettes
 
 - (void)refreshPalettes
 {
@@ -72,6 +75,33 @@
 - (IBAction)removePalette:(id)sender
 {
 	
+}
+
+- (IBAction)exportPalette:(id)sender
+{
+	NSString *json = [HuesPaletteExporter exportPaletteToJSON:self.currentPalette];
+	NSString *filename = [NSString stringWithFormat:@"%@.json", self.currentPalette.name];
+	
+	NSLog(@"saving json: %@", json);
+	
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+	savePanel.nameFieldStringValue = filename;
+	
+	[savePanel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {
+		if (result == NSFileHandlingPanelOKButton) {
+			NSLog(@"saving file to %@", savePanel.URL);
+			NSError *error = nil;
+			[json writeToURL:savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+			
+			if (!error) {
+				NSLog(@"json file saved!");
+			} else {
+				NSLog(@"error saving palette as json: %@", error);
+			}
+		} else {
+			NSLog(@"not saving json file, chose: %ld", result);
+		}
+	}];
 }
 
 #pragma mark - Items
