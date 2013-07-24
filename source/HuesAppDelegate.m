@@ -11,6 +11,7 @@
 #import "HuesPreferencesController.h"
 #import "HuesHistoryManager.h"
 #import "HuesStatusItemView.h"
+#import "HuesPalettesManager.h"
 #import "HuesWindowController.h"
 #import "HuesLoupeController.h"
 #import "MASShortcutView+UserDefaults.h"
@@ -45,6 +46,13 @@
 	
 	[self configureApplicationPresentation];
 	[self registerShortcuts];
+	
+	[[HuesPalettesManager sharedManager] palettes];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+	[[HuesPalettesManager sharedManager] save];
 }
 
 - (void)awakeFromNib

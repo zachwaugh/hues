@@ -11,7 +11,7 @@
 
 @interface HuesPalette ()
 
-@property (strong) NSMutableArray *colors;
+@property (strong, readwrite) NSMutableArray *colors;
 
 @end
 
@@ -19,13 +19,53 @@
 
 - (id)init
 {
+	return [self initWithName:@""];
+}
+
+- (id)initWithName:(NSString *)name
+{
 	self = [super init];
 	if (!self) return nil;
 	
-	_name = @"";
+	_name = name;
 	_colors = [[NSMutableArray alloc] init];
 	
 	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+	self = [super init];
+	if (!self) return nil;
+	
+	_name = [decoder decodeObjectForKey:@"name"];
+	_colors = [decoder decodeObjectForKey:@"colors"];
+	
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:self.name forKey:@"name"];
+	[coder encodeObject:self.colors forKey:@"colors"];
+}
+
++ (HuesPalette *)paletteWithName:(NSString *)name
+{
+	return [[HuesPalette alloc] initWithName:name];
+}
+
++ (HuesPalette *)paletteWithDictionary:(NSDictionary *)dict
+{
+	HuesPalette *palette = [[HuesPalette alloc] initWithName:dict[@"name"]];
+	palette.colors = [dict[@"colors"] mutableCopy];
+	
+	return palette;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Palette: %@ - %d colors", self.name, self.colors.count];
 }
 
 - (void)addItem:(HuesPaletteItem *)item

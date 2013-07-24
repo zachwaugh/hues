@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HuesPaletteItem : NSObject
+@interface HuesPaletteItem : NSObject <NSCoding>
 
 @property (strong) NSString *name;
 @property (strong) NSColor *color;

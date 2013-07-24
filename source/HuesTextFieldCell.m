@@ -19,7 +19,6 @@ static NSImage *_textFieldLeft = nil, *_textFieldFill = nil, *_textFieldRight = 
 	_textFieldRight = [NSImage imageNamed:@"text-field-right"];
 }
 
-
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
 	NSDrawThreePartImage(cellFrame, _textFieldLeft, _textFieldFill, _textFieldRight, NO, NSCompositeSourceOver, 1.0, YES);

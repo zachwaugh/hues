@@ -10,9 +10,14 @@
 
 @class HuesPaletteItem;
 
-@interface HuesPalette : NSObject
+@interface HuesPalette : NSObject <NSCoding>
 
 @property (strong) NSString *name;
+@property (strong, readonly) NSMutableArray *colors;
+
+- (id)initWithName:(NSString *)name;
++ (HuesPalette *)paletteWithName:(NSString *)name;
++ (HuesPalette *)paletteWithDictionary:(NSDictionary *)dict;
 
 - (void)addItem:(HuesPaletteItem *)item;
 - (void)removeItem:(HuesPaletteItem *)item;

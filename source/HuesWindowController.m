@@ -16,6 +16,7 @@
 #import "HuesRGBViewController.h"
 #import "HuesHSLMixerController.h"
 #import "HuesColorWheelViewController.h"
+#import "HuesPalettesController.h"
 #import "HuesScopeBarView.h"
 #import "HuesColorParser.h"
 #import "HuesColorFormatter.h"
@@ -72,11 +73,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorFormatsUpdated:) name:HuesColorFormatsUpdatedNotification object:nil];
 	
 	self.scopeBar.delegate = self;
-	self.scopeBar.titles = @[@"RGB", @"HSL", @"Color Wheel"];
+	self.scopeBar.titles = @[@"RGB", @"HSL", @"Color Wheel", @"Palettes"];
 	
 	[self updateFormatLabels];
 	
-	[self loadMixerWithClass:[HuesRGBViewController class]];
+	[self scopeBarDidSelectTabWithTitle:self.scopeBar.titles[[HuesPreferences lastSelectedTabIndex]]];
 	[self updateInterfaceWithColor:self.color];
 }
 
@@ -84,11 +85,6 @@
 {
 	[self.window orderOut:nil];
 }
-
-//- (void)showWindow:(id)sender
-//{
-//	[self.window makeKeyAndOrderFront:nil];
-//}
 
 - (IBAction)toggleKeepOnTop:(id)sender
 {
@@ -252,6 +248,8 @@
 		[self loadMixerWithClass:[HuesHSLMixerController class]];
 	} else if ([title isEqualToString:@"Color Wheel"]) {
 		[self loadMixerWithClass:[HuesColorWheelViewController class]];
+	} else if ([title isEqualToString:@"Palettes"]) {
+		[self loadMixerWithClass:[HuesPalettesController class]];
 	}
 }
 

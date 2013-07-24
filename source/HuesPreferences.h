@@ -16,6 +16,7 @@ extern NSString * const HuesDefaultColorFormatKey;
 extern NSString * const HuesKeepOnTopKey;
 extern NSString * const HuesApplicationModeKey;
 extern NSString * const HuesLoupeShortcutKey;
+extern NSString * const HuesLastSelectedTabIndexKey;
 
 @interface HuesPreferences : NSObject
 
@@ -37,5 +38,8 @@ extern NSString * const HuesLoupeShortcutKey;
 + (void)setApplicationMode:(HuesApplicationMode)mode;
 + (BOOL)keepOnTop;
 + (void)setKeepOnTop:(BOOL)keepOnTop;
+
++ (NSInteger)lastSelectedTabIndex;
++ (void)setLastSelectedTabIndex:(NSInteger)index;
 
 @end

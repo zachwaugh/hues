@@ -16,6 +16,7 @@ NSString * const HuesColorFormatsKey = @"colorFormats";
 NSString * const HuesKeepOnTopKey = @"keepOnTop";
 NSString * const HuesApplicationModeKey = @"applicationMode";
 NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
+NSString * const HuesLastSelectedTabIndexKey = @"lastSelectedTabIndex";
 
 @implementation HuesPreferences
 
@@ -48,6 +49,8 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 	// Shortcut
 	defaults[HuesLoupeShortcutKey] = [[MASShortcut shortcutWithKeyCode:kVK_ANSI_C modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)] data];
   
+	// Tab
+	defaults[HuesLastSelectedTabIndexKey] = @0;
 	
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
@@ -114,6 +117,16 @@ NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 + (void)setKeepOnTop:(BOOL)keepOnTop
 {
 	[[NSUserDefaults standardUserDefaults] setBool:keepOnTop forKey:HuesKeepOnTopKey];
+}
+
++ (NSInteger)lastSelectedTabIndex
+{
+	return [[NSUserDefaults standardUserDefaults] integerForKey:HuesLastSelectedTabIndexKey];
+}
+
++ (void)setLastSelectedTabIndex:(NSInteger)index
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:index forKey:HuesLastSelectedTabIndexKey];
 }
 
 @end
