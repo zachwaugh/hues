@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HuesColorWell.h"
 
 @interface HuesPaletteItemCellView : NSTableCellView
 
 @property (weak) IBOutlet NSTextField *name;
-@property (weak) IBOutlet NSColorWell *colorWell;
+@property (weak) IBOutlet HuesColorWell *colorWell;
 
 @end

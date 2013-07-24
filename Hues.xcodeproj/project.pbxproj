@@ -65,6 +65,7 @@
 		92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A6694317A032AC00F037DC /* HuesPalettesController.xib */; };
 		92A6698817A0614700F037DC /* HuesPaletteItemCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698717A0614700F037DC /* HuesPaletteItemCellView.m */; };
 		92A6698B17A063D200F037DC /* HuesPalettesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698A17A063D200F037DC /* HuesPalettesManager.m */; };
+		92A6699017A07CC200F037DC /* HuesColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698F17A07CC200F037DC /* HuesColorWell.m */; };
 		92AAF5B61642FEBF00DC09E8 /* HuesApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */; };
 		92C1144C179E26470092E3CB /* copy-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144A179E26470092E3CB /* copy-button.png */; };
 		92C1144D179E26470092E3CB /* copy-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144B179E26470092E3CB /* copy-button@2x.png */; };
@@ -212,6 +213,8 @@
 		92A6698717A0614700F037DC /* HuesPaletteItemCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteItemCellView.m; sourceTree = "<group>"; };
 		92A6698917A063D200F037DC /* HuesPalettesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalettesManager.h; sourceTree = "<group>"; };
 		92A6698A17A063D200F037DC /* HuesPalettesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalettesManager.m; sourceTree = "<group>"; };
+		92A6698E17A07CC100F037DC /* HuesColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorWell.h; sourceTree = "<group>"; };
+		92A6698F17A07CC200F037DC /* HuesColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorWell.m; sourceTree = "<group>"; };
 		92AAF5B41642FEBE00DC09E8 /* HuesApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesApplication.h; sourceTree = "<group>"; };
 		92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesApplication.m; sourceTree = "<group>"; };
 		92C1144A179E26470092E3CB /* copy-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button.png"; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				92314E541797422B0044158A /* HuesTextFieldCell.m */,
 				92A6698617A0614600F037DC /* HuesPaletteItemCellView.h */,
 				92A6698717A0614700F037DC /* HuesPaletteItemCellView.m */,
+				92A6698E17A07CC100F037DC /* HuesColorWell.h */,
+				92A6698F17A07CC200F037DC /* HuesColorWell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				92A6694417A032AC00F037DC /* HuesPalettesController.m in Sources */,
 				92A6698817A0614700F037DC /* HuesPaletteItemCellView.m in Sources */,
 				92A6698B17A063D200F037DC /* HuesPalettesManager.m in Sources */,
+				92A6699017A07CC200F037DC /* HuesColorWell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
