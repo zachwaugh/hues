@@ -48,9 +48,6 @@ static NSString * const HuesShareServerKey = @"12345";
 	NSString *json = [self exportPaletteToJSON:palette];
 	
 	if (json) {
-		
-		NSLog(@"posting JSON: %@", json);
-		
 		NSDictionary *params = @{@"key": HuesShareServerKey};
 		NSString *string = [HuesShareServerURL stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(params, NSUTF8StringEncoding)];
 		
@@ -60,9 +57,7 @@ static NSString * const HuesShareServerKey = @"12345";
 		request.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
 		
 		AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-			if ([JSON[@"status"] isEqualToString:@"ok"]) {
-				NSLog(@"palette shared! %@", JSON);
-				
+			if ([JSON[@"status"] isEqualToString:@"ok"]) {				
 				if (block) block([NSURL URLWithString:JSON[@"url"]], nil);
 			} else {
 				if (block) block(nil, nil);
