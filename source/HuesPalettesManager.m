@@ -64,6 +64,7 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 	NSLog(@"addPalette: %@", palette);
 	[self.palettes addObject:palette];
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesPalettesUpdatedNotification object:self];
+	[self save];
 }
 
 - (void)removePalette:(HuesPalette *)palette
@@ -71,6 +72,7 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 	NSLog(@"removePalette: %@", palette);
 	[self.palettes removeObject:palette];
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesPalettesUpdatedNotification object:self];
+	[self save];
 }
 
 #pragma mark - Importing

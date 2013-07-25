@@ -134,9 +134,9 @@
 		HuesPalettesController *strongSelf = weakSelf;
 		if (complete) {
 			strongSelf.currentPalette.name = name;
-			[strongSelf.nameController.window orderOut:nil];
 		}
 		
+		[strongSelf.nameController.window orderOut:nil];
 		[strongSelf refreshPalettes];
 	};
 	
