@@ -12,6 +12,7 @@
 @interface HuesPalette ()
 
 @property (strong, readwrite) NSMutableArray *colors;
+@property (strong, readwrite) NSString *uuid;
 
 @end
 
@@ -27,6 +28,7 @@
 	self = [super init];
 	if (!self) return nil;
 	
+	_uuid = [[NSUUID UUID] UUIDString];
 	_name = name;
 	_colors = [[NSMutableArray alloc] init];
 	
@@ -38,6 +40,7 @@
 	self = [super init];
 	if (!self) return nil;
 	
+	_uuid = [decoder decodeObjectForKey:@"uuid"];
 	_name = [decoder decodeObjectForKey:@"name"];
 	_colors = [decoder decodeObjectForKey:@"colors"];
 	
@@ -46,6 +49,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
+	[coder encodeObject:self.uuid forKey:@"uuid"];
 	[coder encodeObject:self.name forKey:@"name"];
 	[coder encodeObject:self.colors forKey:@"colors"];
 }
@@ -58,14 +62,20 @@
 + (HuesPalette *)paletteWithDictionary:(NSDictionary *)dict
 {
 	HuesPalette *palette = [[HuesPalette alloc] initWithName:dict[@"name"]];
-	palette.colors = [dict[@"colors"] mutableCopy];
+	
+	for (NSDictionary *color in dict[@"colors"]) {
+		HuesPaletteItem *item = [HuesPaletteItem itemWithDictionary:color];
+		[palette.colors addObject:item];
+	}
+	
+	palette.uuid = dict[@"id"];
 	
 	return palette;
 }
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Palette: %@ - %d colors", self.name, self.colors.count];
+	return [NSString stringWithFormat:@"palette: %@ - %ld colors (%@)", self.name, self.colors.count, self.uuid];
 }
 
 - (void)addItem:(HuesPaletteItem *)item

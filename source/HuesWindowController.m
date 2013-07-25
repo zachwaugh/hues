@@ -42,6 +42,8 @@
 	return self;
 }
 
+#pragma mark - Window delegate
+
 - (void)windowDidLoad
 {
 	[super windowDidLoad];
@@ -79,6 +81,13 @@
 	
 	[self scopeBarDidSelectTabWithTitle:self.scopeBar.titles[[HuesPreferences lastSelectedTabIndex]]];
 	[self updateInterfaceWithColor:self.color];
+}
+
+// Fix sheet having wrong position due to custom title bar
+- (NSRect)window:(NSWindow *)window willPositionSheet:(NSWindow *)sheet usingRect:(NSRect)rect
+{
+	rect.origin.y = NSHeight(window.frame) - 34.0f;
+	return rect;
 }
 
 - (void)hideWindow

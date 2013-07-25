@@ -85,6 +85,10 @@
 		92C1146B179E2D1A0092E3CB /* scope-bar-button-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11465179E2D1A0092E3CB /* scope-bar-button-right.png */; };
 		92C1146C179E2D1A0092E3CB /* scope-bar-button-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11466179E2D1A0092E3CB /* scope-bar-button-right@2x.png */; };
 		92C1147017A09C6A0092E3CB /* HuesPaletteExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */; };
+		92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CF7F17A168550082CE2C /* HuesSyncManager.m */; };
+		92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 92C5CF8117A1717D0082CE2C /* hues_document.iconset */; };
+		92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CF8617A17FA00082CE2C /* HuesPaletteNameController.m */; };
+		92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C5CF8717A17FA00082CE2C /* HuesPaletteNameController.xib */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesDefines.m */; };
@@ -238,6 +242,12 @@
 		92C11466179E2D1A0092E3CB /* scope-bar-button-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scope-bar-button-right@2x.png"; sourceTree = "<group>"; };
 		92C1146E17A09C6A0092E3CB /* HuesPaletteExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteExporter.h; sourceTree = "<group>"; };
 		92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteExporter.m; sourceTree = "<group>"; };
+		92C5CF7E17A168550082CE2C /* HuesSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesSyncManager.h; sourceTree = "<group>"; };
+		92C5CF7F17A168550082CE2C /* HuesSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesSyncManager.m; sourceTree = "<group>"; };
+		92C5CF8117A1717D0082CE2C /* hues_document.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = hues_document.iconset; sourceTree = "<group>"; };
+		92C5CF8517A17FA00082CE2C /* HuesPaletteNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteNameController.h; sourceTree = "<group>"; };
+		92C5CF8617A17FA00082CE2C /* HuesPaletteNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteNameController.m; sourceTree = "<group>"; };
+		92C5CF8717A17FA00082CE2C /* HuesPaletteNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPaletteNameController.xib; sourceTree = "<group>"; };
 		92E7D6781393ED080072C412 /* HuesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesAppDelegate.h; sourceTree = "<group>"; };
 		92E7D6791393ED080072C412 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
 		92E7D67A1393ED080072C412 /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
@@ -488,6 +498,7 @@
 				923098B91680058700F98571 /* HuesColorWheelViewController.xib */,
 				92F13DD2178F4D9400E699E4 /* HuesColorFormattingPreferencesController.xib */,
 				9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */,
+				92C5CF8717A17FA00082CE2C /* HuesPaletteNameController.xib */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -495,6 +506,7 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92C5CF8117A1717D0082CE2C /* hues_document.iconset */,
 				9228C51416F16A7500C57A48 /* magnifier.png */,
 				9228C51516F16A7500C57A48 /* magnifier@2x.png */,
 				9228C51616F16A7500C57A48 /* slider-knob.png */,
@@ -547,6 +559,8 @@
 				926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */,
 				92A6694117A032AC00F037DC /* HuesPalettesController.h */,
 				92A6694217A032AC00F037DC /* HuesPalettesController.m */,
+				92C5CF8517A17FA00082CE2C /* HuesPaletteNameController.h */,
+				92C5CF8617A17FA00082CE2C /* HuesPaletteNameController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -609,6 +623,8 @@
 				92A6698A17A063D200F037DC /* HuesPalettesManager.m */,
 				92C1146E17A09C6A0092E3CB /* HuesPaletteExporter.h */,
 				92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */,
+				92C5CF7E17A168550082CE2C /* HuesSyncManager.h */,
+				92C5CF7F17A168550082CE2C /* HuesSyncManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -734,6 +750,8 @@
 				92C1146B179E2D1A0092E3CB /* scope-bar-button-right.png in Resources */,
 				92C1146C179E2D1A0092E3CB /* scope-bar-button-right@2x.png in Resources */,
 				92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */,
+				92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */,
+				92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +881,8 @@
 				92A6698B17A063D200F037DC /* HuesPalettesManager.m in Sources */,
 				92A6699017A07CC200F037DC /* HuesColorWell.m in Sources */,
 				92C1147017A09C6A0092E3CB /* HuesPaletteExporter.m in Sources */,
+				92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */,
+				92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,7 +1010,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1084,7 +1104,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1107,7 +1127,7 @@
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

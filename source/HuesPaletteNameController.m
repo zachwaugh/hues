@@ -1,0 +1,56 @@
+//
+//  HuesPaletteNameController.m
+//  Hues
+//
+//  Created by Zach Waugh on 7/25/13.
+//  Copyright (c) 2013 Giant Comet. All rights reserved.
+//
+
+#import "HuesPaletteNameController.h"
+
+@interface HuesPaletteNameController ()
+
+@end
+
+@implementation HuesPaletteNameController
+
+- (id)init
+{
+	self = [super initWithWindowNibName:@"HuesPaletteNameController" owner:self];
+	if (!self) return nil;
+  
+	return self;
+}
+
+- (void)windowDidLoad
+{
+	if (self.name) {
+		self.field.stringValue = self.name;
+	}
+}
+
+- (void)setName:(NSString *)name
+{
+	_name = name;
+	self.field.stringValue = name;
+}
+
+- (IBAction)ok:(id)sender
+{
+	if (self.completionBlock) {
+		self.completionBlock(self.field.stringValue, YES);
+	}
+	
+	[NSApp endSheet:self.window];
+}
+
+- (IBAction)cancel:(id)sender
+{
+	if (self.completionBlock) {
+		self.completionBlock(nil, NO);
+	}
+	
+	[NSApp endSheet:self.window];
+}
+
+@end

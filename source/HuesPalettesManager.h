@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const HuesPalettesUpdatedNotification;
+
 @class HuesPalette;
 
 @interface HuesPalettesManager : NSObject
@@ -19,5 +21,6 @@
 - (HuesPalette *)newPalette;
 - (void)addPalette:(HuesPalette *)palette;
 - (void)removePalette:(HuesPalette *)palette;
+- (void)importFiles:(NSArray *)files;
 
 @end

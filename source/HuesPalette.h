@@ -13,6 +13,7 @@
 @interface HuesPalette : NSObject <NSCoding>
 
 @property (strong) NSString *name;
+@property (strong, readonly) NSString *uuid;
 @property (strong, readonly) NSMutableArray *colors;
 
 - (id)initWithName:(NSString *)name;

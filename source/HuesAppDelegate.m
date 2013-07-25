@@ -14,6 +14,7 @@
 #import "HuesPalettesManager.h"
 #import "HuesWindowController.h"
 #import "HuesLoupeController.h"
+#import "HuesSyncManager.h"
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
@@ -47,6 +48,11 @@
 	[self configureApplicationPresentation];
 	[self registerShortcuts];
 	
+	// Init sync stores
+	//[HuesSyncManager sharedManager];
+	
+	[[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+	
 	[[HuesPalettesManager sharedManager] palettes];
 }
 
@@ -59,6 +65,27 @@
 {
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
+
+#pragma mark - Files
+
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
+{
+	if ([filename.pathExtension isEqualToString:@"hues"]) {
+		[[HuesPalettesManager sharedManager] importFiles:@[filename]];
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - Notification Center
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+	// Always deliver notifications, even if Hues is active
+	return YES;
+}
+
 
 #pragma mark - Shortcuts
 

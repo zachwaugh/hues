@@ -7,6 +7,7 @@
 //
 
 #import "HuesPaletteItem.h"
+#import "HuesColorParser.h"
 
 @implementation HuesPaletteItem
 
@@ -22,6 +23,14 @@
 	_color = color;
 	
 	return self;
+}
+
++ (HuesPaletteItem *)itemWithDictionary:(NSDictionary *)dict
+{
+	NSColor *color = [HuesColorParser colorFromHex:dict[@"color"]];
+	HuesPaletteItem *item = [[HuesPaletteItem alloc] initWithName:dict[@"name"] color:color];
+	
+	return item;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder

@@ -14,5 +14,6 @@
 - (void)testAddPaletteItem;
 - (void)testRemovePaletteItem;
 - (void)testUpdateName;
+- (void)testCreateWithDictionary;
 
 @end

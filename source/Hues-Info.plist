@@ -9,8 +9,10 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>.hues</string>
+				<string>hues</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>hues_document</string>
 			<key>CFBundleTypeName</key>
 			<string>Hues</string>
 			<key>CFBundleTypeRole</key>

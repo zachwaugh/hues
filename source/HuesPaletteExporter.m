@@ -17,6 +17,7 @@
 {
 	NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
 	data[@"name"] = palette.name;
+	data[@"id"] = palette.uuid;
 	
 	NSMutableArray *colors = [NSMutableArray array];
 	
@@ -39,7 +40,11 @@
 
 + (void)exportPaletteToWeb:(HuesPalette *)palette completion:(void (^)(NSURL *url, NSError *error))block
 {
+	NSString *json = [self exportPaletteToJSON:palette];
 	
+	if (json) {
+		NSLog(@"upload JSON...");
+	}
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "HuesPalettesManager.h"
 #import "HuesPalette.h"
 
+NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotification";
+
 @interface HuesPalettesManager ()
 
 @property (strong, readwrite) NSMutableArray *palettes;
@@ -61,13 +63,48 @@
 {
 	NSLog(@"addPalette: %@", palette);
 	[self.palettes addObject:palette];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesPalettesUpdatedNotification object:self];
 }
 
 - (void)removePalette:(HuesPalette *)palette
 {
 	NSLog(@"removePalette: %@", palette);
 	[self.palettes removeObject:palette];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HuesPalettesUpdatedNotification object:self];
 }
+
+#pragma mark - Importing
+
+- (void)importFiles:(NSArray *)files
+{
+	for (NSString *file in files) {
+		if ([file.pathExtension isEqualToString:@"hues"]) {
+			NSError *error = nil;
+			NSData *data = [NSData dataWithContentsOfFile:file options:0 error:&error];
+			
+			if (!error) {
+				NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+				
+				if (!error) {
+					HuesPalette *palette = [HuesPalette paletteWithDictionary:dict];
+					NSLog(@"imported palette: %@", palette);
+					[self addPalette:palette];
+					
+					NSUserNotification *notification = [[NSUserNotification alloc] init];
+					notification.title = @"Palette imported";
+					notification.informativeText = [NSString stringWithFormat:@"%@ was imported successfully", file.lastPathComponent];
+					
+					[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+				} else {
+					NSLog(@"error decoding JSON: %@", error);
+				}
+			} else {
+				NSLog(@"error importing palette");
+			}
+		}
+	}
+}
+
 
 #pragma mark - Archiving/Unarchiving
 

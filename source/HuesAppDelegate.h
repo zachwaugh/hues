@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesAppDelegate : NSObject <NSApplicationDelegate>
+@interface HuesAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 - (void)showPreferences:(id)sender;
 

@@ -12,15 +12,22 @@
 #import "HuesPaletteItem.h"
 #import "HuesPalettesManager.h"
 #import "HuesPaletteExporter.h"
+#import "HuesPaletteNameController.h"
 
 @interface HuesPalettesController ()
 
 @property (strong) HuesPalette *currentPalette;
 @property (assign) BOOL awake;
+@property (strong) HuesPaletteNameController *nameController;
 
 @end
 
 @implementation HuesPalettesController
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (id)init
 {
@@ -28,6 +35,7 @@
 	if (!self) return nil;
 	
 	_awake = NO;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(palettesUpdated:) name:HuesPalettesUpdatedNotification object:nil];
 	
 	return self;
 }
@@ -37,6 +45,8 @@
 	if (self.awake) return;
 	self.awake = YES;
 	
+	self.tableView.doubleAction = @selector(addItem:);
+	self.tableView.target = self;
 	[self refreshPalettes];
 }
 
@@ -44,38 +54,93 @@
 
 - (void)refreshPalettes
 {
+	NSInteger selectedIndex = self.paletteSelection.indexOfSelectedItem;
 	[self.paletteSelection removeAllItems];
 	
 	NSArray *palettes = [[HuesPalettesManager sharedManager] palettes];
 	
 	for (HuesPalette *palette in palettes) {
-		[self.paletteSelection addItemWithTitle:palette.name];
+		NSMenuItem *item = [[NSMenuItem alloc] init];
+		item.title = palette.name;
+		
+		[self.paletteSelection.menu addItem:item];
 	}
 	
 	if (palettes.count > 0) {
-		self.currentPalette = palettes[0];
+		// Make sure selection is still valid
+		if (selectedIndex >= palettes.count) {
+			selectedIndex = palettes.count - 1;
+		}
+		
+		self.currentPalette = palettes[selectedIndex];
+		[self.paletteSelection selectItemAtIndex:selectedIndex];
 		[self.tableView reloadData];
 	}
 }
 
+- (void)palettesUpdated:(NSNotification *)notification
+{
+	NSLog(@"palettesUpdated");
+	[self refreshPalettes];
+}
+
 - (void)paletteDidChange:(id)sender
 {
+	NSLog(@"paletteDidChange: %@", self.paletteSelection.titleOfSelectedItem);
 	self.currentPalette = [HuesPalettesManager sharedManager].palettes[self.paletteSelection.indexOfSelectedItem];
 	[self.tableView reloadData];
 }
 
 - (IBAction)addPalette:(id)sender
 {
-	HuesPalette *palette = [[HuesPalettesManager sharedManager] newPalette];
-	[[HuesPalettesManager sharedManager] addPalette:palette];
+	if (!self.nameController) {
+		self.nameController = [[HuesPaletteNameController alloc] init];
+	}
 	
-	self.currentPalette = palette;
-	[self.tableView reloadData];
+	HuesPalettesController __weak *weakSelf = self;
+	self.nameController.name = @"Untitled Palette";
 	
-	[self refreshPalettes];
-	[self.paletteSelection selectItemWithTitle:palette.name];
+	self.nameController.completionBlock = ^(NSString *name, BOOL complete) {
+		HuesPalettesController *strongSelf = weakSelf;
+
+		if (complete) {
+			HuesPalette *palette = [HuesPalette paletteWithName:name];
+			strongSelf.currentPalette = palette;
+			[strongSelf.tableView reloadData];
+			
+			[strongSelf refreshPalettes];
+			[strongSelf.paletteSelection selectItemWithTitle:palette.name];
+			
+			[[HuesPalettesManager sharedManager] addPalette:palette];
+		}
+		
+		[strongSelf.nameController.window orderOut:nil];
+	};
 	
-	[self.tableView editColumn:0 row:self.currentPalette.colors.count - 1 withEvent:nil select:YES];
+	// Show sheet
+	[NSApp beginSheet:self.nameController.window modalForWindow:self.view.window modalDelegate:nil didEndSelector:NULL contextInfo:nil];
+}
+
+- (IBAction)renamePalette:(id)sender
+{
+	if (!self.nameController) {
+		self.nameController = [[HuesPaletteNameController alloc] init];
+	}
+	
+	self.nameController.name = self.currentPalette.name;
+	HuesPalettesController __weak *weakSelf = self;
+	
+	self.nameController.completionBlock = ^(NSString *name, BOOL complete){
+		HuesPalettesController *strongSelf = weakSelf;
+		if (complete) {
+			strongSelf.currentPalette.name = name;
+			[strongSelf.nameController.window orderOut:nil];
+		}
+		
+		[strongSelf refreshPalettes];
+	};
+	
+	[NSApp beginSheet:self.nameController.window modalForWindow:self.view.window modalDelegate:nil didEndSelector:NULL contextInfo:nil];
 }
 
 - (IBAction)removePalette:(id)sender
@@ -95,7 +160,6 @@
 
 - (IBAction)sharePalette:(id)sender
 {
-	
 }
 
 - (IBAction)exportPalette:(id)sender

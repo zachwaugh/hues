@@ -14,5 +14,6 @@
 @property (strong) NSColor *color;
 
 - (id)initWithName:(NSString *)name color:(NSColor *)color;
++ (HuesPaletteItem *)itemWithDictionary:(NSDictionary *)dict;
 
 @end

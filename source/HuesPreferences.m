@@ -17,6 +17,7 @@ NSString * const HuesKeepOnTopKey = @"keepOnTop";
 NSString * const HuesApplicationModeKey = @"applicationMode";
 NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 NSString * const HuesLastSelectedTabIndexKey = @"lastSelectedTabIndex";
+NSString * const HuesUseiCloudKey = @"useiCloud";
 
 @implementation HuesPreferences
 
@@ -32,6 +33,9 @@ NSString * const HuesLastSelectedTabIndexKey = @"lastSelectedTabIndex";
   
   // Hex is default
 	defaults[HuesDefaultColorFormatKey] = @"Hex";
+	
+	// iCloud enabled by default
+	defaults[HuesUseiCloudKey] = @YES;
   
   // Color formats
 	defaults[HuesColorFormatsKey] = @[
@@ -53,6 +57,16 @@ NSString * const HuesLastSelectedTabIndexKey = @"lastSelectedTabIndex";
 	defaults[HuesLastSelectedTabIndexKey] = @0;
 	
   [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
++ (BOOL)useiCloud
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:HuesUseiCloudKey];
+}
+
++ (void)setUseiCloud:(BOOL)use
+{
+	[[NSUserDefaults standardUserDefaults] setBool:use forKey:HuesUseiCloudKey];
 }
 
 + (NSString *)defaultColorFormat
