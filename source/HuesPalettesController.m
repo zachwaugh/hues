@@ -160,6 +160,18 @@
 
 - (IBAction)sharePalette:(id)sender
 {
+	[HuesPaletteExporter exportPaletteToWeb:self.currentPalette completion:^(NSURL *url, NSError *error) {
+		if (url) {
+			[[NSPasteboard generalPasteboard] clearContents];
+			[[NSPasteboard generalPasteboard] writeObjects:@[url]];
+			
+			NSUserNotification *notification = [[NSUserNotification alloc] init];
+			notification.title = @"Palette shared";
+			notification.informativeText = [NSString stringWithFormat:@"Palette shared at: %@", url.absoluteString];
+			[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+		}
+		
+	}];
 }
 
 - (IBAction)exportPalette:(id)sender

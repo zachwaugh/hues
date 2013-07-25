@@ -10,6 +10,11 @@
 #import "HuesPalette.h"
 #import "HuesPaletteItem.h"
 #import "HuesColorFormatter.h"
+#import "AFJSONRequestOperation.h"
+#import "AFHTTPClient.h"
+
+static NSString * const HuesShareServerURL = @"http://hues.cc:3000/";
+static NSString * const HuesShareServerKey = @"12345";
 
 @implementation HuesPaletteExporter
 
@@ -43,7 +48,30 @@
 	NSString *json = [self exportPaletteToJSON:palette];
 	
 	if (json) {
-		NSLog(@"upload JSON...");
+		
+		NSLog(@"posting JSON: %@", json);
+		
+		NSDictionary *params = @{@"key": HuesShareServerKey};
+		NSString *string = [HuesShareServerURL stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(params, NSUTF8StringEncoding)];
+		
+		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:string]];
+		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+		request.HTTPMethod = @"POST";
+		request.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
+		
+		AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+			if ([JSON[@"status"] isEqualToString:@"ok"]) {
+				NSLog(@"palette shared! %@", JSON);
+				
+				if (block) block([NSURL URLWithString:JSON[@"url"]], nil);
+			} else {
+				if (block) block(nil, nil);
+			}
+		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+			if (block) block(nil, error);
+		}];
+		
+		[operation start];		
 	}
 }
 

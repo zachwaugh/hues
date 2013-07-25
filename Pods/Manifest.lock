@@ -1,16 +1,19 @@
 PODS:
+  - AFNetworking (1.3.1)
   - Expecta (0.2.1)
   - INAppStoreWindow (1.1)
   - MASShortcut (1.1)
   - Specta (0.1.10)
 
 DEPENDENCIES:
+  - AFNetworking
   - Expecta
   - INAppStoreWindow
   - MASShortcut
   - Specta
 
 SPEC CHECKSUMS:
+  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
   INAppStoreWindow: 77f15fd07261a79ae443124927c94ad30905d900
   MASShortcut: e9da47253933a4784813d5feb5f5bc5f7da721ca
