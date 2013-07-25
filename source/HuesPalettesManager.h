@@ -16,6 +16,7 @@
 
 + (HuesPalettesManager *)sharedManager;
 - (void)save;
+- (HuesPalette *)newPalette;
 - (void)addPalette:(HuesPalette *)palette;
 - (void)removePalette:(HuesPalette *)palette;
 

@@ -39,6 +39,24 @@
 	return self;
 }
 
+- (HuesPalette *)newPalette
+{
+	NSString *name = @"Untitled Palette";
+	NSInteger index = 0;
+	
+	for (HuesPalette *palette in self.palettes) {
+		if ([palette.name hasPrefix:name]) {
+			index++;
+		}
+	}
+	
+	if (index > 0) {
+		name = [NSString stringWithFormat:@"%@ %ld", name, index];
+	}
+	
+	return [HuesPalette paletteWithName:name];
+}
+
 - (void)addPalette:(HuesPalette *)palette
 {
 	NSLog(@"addPalette: %@", palette);

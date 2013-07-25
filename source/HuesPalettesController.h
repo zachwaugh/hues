@@ -13,14 +13,17 @@
 
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSPopUpButton *paletteSelection;
+@property (weak) IBOutlet NSMenu *paletteMenu;
 
 - (IBAction)paletteDidChange:(id)sender;
 - (IBAction)addPalette:(id)sender;
 - (IBAction)removePalette:(id)sender;
+- (IBAction)exportPalette:(id)sender;
+- (IBAction)sharePalette:(id)sender;
+- (IBAction)paletteSettings:(id)sender;
 - (IBAction)addItem:(id)sender;
 - (IBAction)removeItem:(id)sender;
 - (IBAction)updateItemName:(id)sender;
 - (IBAction)updateItemColor:(id)sender;
-- (IBAction)exportPalette:(id)sender;
 
 @end

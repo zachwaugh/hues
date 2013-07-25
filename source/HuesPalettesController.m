@@ -66,13 +66,34 @@
 
 - (IBAction)addPalette:(id)sender
 {
-	HuesPalette *palette = [HuesPalette paletteWithName:@"Untitled Palette"];
-	self.currentPalette = palette;
+	HuesPalette *palette = [[HuesPalettesManager sharedManager] newPalette];
 	[[HuesPalettesManager sharedManager] addPalette:palette];
+	
+	self.currentPalette = palette;
+	[self.tableView reloadData];
+	
 	[self refreshPalettes];
+	[self.paletteSelection selectItemWithTitle:palette.name];
+	
+	[self.tableView editColumn:0 row:self.currentPalette.colors.count - 1 withEvent:nil select:YES];
 }
 
 - (IBAction)removePalette:(id)sender
+{
+	[[HuesPalettesManager sharedManager] removePalette:self.currentPalette];
+	self.currentPalette = nil;
+	
+	[self refreshPalettes];
+	[self.tableView reloadData];
+}
+
+- (IBAction)paletteSettings:(id)sender
+{
+	NSRect frame = [sender frame];
+	[self.paletteMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(frame.size.width - 5, frame.size.height - 5) inView:sender];
+}
+
+- (IBAction)sharePalette:(id)sender
 {
 	
 }
@@ -81,25 +102,18 @@
 {
 	NSString *json = [HuesPaletteExporter exportPaletteToJSON:self.currentPalette];
 	NSString *filename = [NSString stringWithFormat:@"%@.json", self.currentPalette.name];
-	
-	NSLog(@"saving json: %@", json);
-	
+		
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
 	savePanel.nameFieldStringValue = filename;
 	
 	[savePanel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {
 		if (result == NSFileHandlingPanelOKButton) {
-			NSLog(@"saving file to %@", savePanel.URL);
 			NSError *error = nil;
 			[json writeToURL:savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:&error];
 			
-			if (!error) {
-				NSLog(@"json file saved!");
-			} else {
+			if (error) {
 				NSLog(@"error saving palette as json: %@", error);
 			}
-		} else {
-			NSLog(@"not saving json file, chose: %ld", result);
 		}
 	}];
 }
@@ -163,5 +177,13 @@
 	return view;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+	if (self.tableView.selectedRowIndexes.count == 1) {
+		HuesPaletteItem *item = self.currentPalette.colors[self.tableView.selectedRow];
+		
+		[self updateColor:item.color];
+	}
+}
 
 @end
