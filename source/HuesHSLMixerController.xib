@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -45,7 +45,6 @@
 						<string key="NSFrame">{{316, 23}, {12, 14}}</string>
 						<reference key="NSSuperview" ref="854980028"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="883712196">
@@ -226,7 +225,11 @@
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Alpha</string>
-							<reference key="NSSupport" ref="470367266"/>
+							<object class="NSFont" key="NSSupport" id="623401828">
+								<string key="NSName">HelveticaNeue</string>
+								<double key="NSSize">12</double>
+								<int key="NSfFlags">16</int>
+							</object>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="88529868"/>
 							<reference key="NSBackgroundColor" ref="311267075"/>
@@ -300,7 +303,7 @@
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Saturation</string>
-							<reference key="NSSupport" ref="470367266"/>
+							<reference key="NSSupport" ref="623401828"/>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="761704653"/>
 							<reference key="NSBackgroundColor" ref="311267075"/>
@@ -391,7 +394,7 @@
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Hue</string>
-							<reference key="NSSupport" ref="470367266"/>
+							<reference key="NSSupport" ref="623401828"/>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="373057042"/>
 							<reference key="NSBackgroundColor" ref="311267075"/>
@@ -438,7 +441,7 @@
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Lightness</string>
-							<reference key="NSSupport" ref="470367266"/>
+							<reference key="NSSupport" ref="623401828"/>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="200262613"/>
 							<reference key="NSBackgroundColor" ref="311267075"/>
