@@ -11,6 +11,9 @@
 		437A7AB1DDF84F63B26E795F /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B46F0AE0FF4F7A88958C12 /* libPods-test.a */; };
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
+		920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */; };
+		920BF0EF17A96CC5003534F0 /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0EE17A96CC5003534F0 /* Palette.m */; };
+		920BF0F217A96CC6003534F0 /* PaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0F117A96CC6003534F0 /* PaletteItem.m */; };
 		9218A5721796305800AEF7DE /* HuesGeneralPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */; };
 		9218A5731796305800AEF7DE /* HuesGeneralPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */; };
 		9218A57617963FAC00AEF7DE /* NSMutableArray+Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A57517963FAC00AEF7DE /* NSMutableArray+Move.m */; };
@@ -125,6 +128,11 @@
 		4D389B701E4D4819BA28ED8D /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
+		920BF0EB17A9692D003534F0 /* Hues.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hues.xcdatamodel; sourceTree = "<group>"; };
+		920BF0ED17A96CC4003534F0 /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
+		920BF0EE17A96CC5003534F0 /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
+		920BF0F017A96CC5003534F0 /* PaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteItem.h; sourceTree = "<group>"; };
+		920BF0F117A96CC6003534F0 /* PaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteItem.m; sourceTree = "<group>"; };
 		9218A56F1796305800AEF7DE /* HuesGeneralPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGeneralPreferencesController.h; sourceTree = "<group>"; };
 		9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGeneralPreferencesController.m; sourceTree = "<group>"; };
 		9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesGeneralPreferencesController.xib; sourceTree = "<group>"; };
@@ -625,6 +633,11 @@
 				92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */,
 				92C5CF7E17A168550082CE2C /* HuesSyncManager.h */,
 				92C5CF7F17A168550082CE2C /* HuesSyncManager.m */,
+				920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */,
+				920BF0F017A96CC5003534F0 /* PaletteItem.h */,
+				920BF0F117A96CC6003534F0 /* PaletteItem.m */,
+				920BF0ED17A96CC4003534F0 /* Palette.h */,
+				920BF0EE17A96CC5003534F0 /* Palette.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -883,6 +896,9 @@
 				92C1147017A09C6A0092E3CB /* HuesPaletteExporter.m in Sources */,
 				92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */,
 				92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */,
+				920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */,
+				920BF0EF17A96CC5003534F0 /* Palette.m in Sources */,
+				920BF0F217A96CC6003534F0 /* PaletteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1184,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				920BF0EB17A9692D003534F0 /* Hues.xcdatamodel */,
+			);
+			currentVersion = 920BF0EB17A9692D003534F0 /* Hues.xcdatamodel */;
+			path = Hues.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9264FE541393EC9F00935FAC /* Project object */;
 }

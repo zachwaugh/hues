@@ -39,12 +39,14 @@ NSString * const HuesUseiCloudKey = @"useiCloud";
   
   // Color formats
 	defaults[HuesColorFormatsKey] = @[
-									@{@"name": @"Hex", @"format": @"#{RR}{GG}{BB}"},
-									@{@"name": @"RGB", @"format": @"rgb({R}, {G}, {B})"},
-									@{@"name": @"RGBA", @"format": @"rgba({R}, {G}, {B}, {a})"},
-									@{@"name": @"HSB", @"format": @"hsb({H}, {SS}%, {BR}%)"},
-									@{@"name": @"HSL", @"format": @"hsl({H}, {S}%, {L}%)"},
-									@{@"name": @"NSColor", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"}
+		@{@"name": @"Hex", @"format": @"#{RR}{GG}{BB}"},
+		@{@"name": @"RGB", @"format": @"rgb({R}, {G}, {B})"},
+		@{@"name": @"RGBA", @"format": @"rgba({R}, {G}, {B}, {a})"},
+		@{@"name": @"HSB", @"format": @"hsb({H}, {SS}%, {BR}%)"},
+		@{@"name": @"HSL", @"format": @"hsl({H}, {S}%, {L}%)"},
+		@{@"name": @"UIColor", @"format": @"[UIColor colorWithRed:{r} green:{g} blue:{b} alpha:{a}]"},
+		@{@"name": @"NSColorC", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"},
+		@{@"name": @"NSColorD", @"format": @"[NSColor colorWithDeviceRed:{r} green:{g} blue:{b} alpha:{a}]"}
 	];
 	
 	// Window

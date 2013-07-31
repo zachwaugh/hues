@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Palette" representedClassName="Palette" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PaletteItem" syncable="YES"/>
+    </entity>
+    <entity name="PaletteItem" representedClassName="PaletteItem" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Palette" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="PaletteItem" positionX="160" positionY="192" width="128" height="75"/>
+    </elements>
+</model>
