@@ -2,18 +2,19 @@
 //  HuesPaletteItem.h
 //  Hues
 //
-//  Created by Zach Waugh on 6/6/13.
+//  Created by Zach Waugh on 7/31/13.
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface HuesPaletteItem : NSObject <NSCoding>
+@class HuesPalette;
 
-@property (strong) NSString *name;
-@property (strong) NSColor *color;
+@interface HuesPaletteItem : NSManagedObject
 
-- (id)initWithName:(NSString *)name color:(NSColor *)color;
-+ (HuesPaletteItem *)itemWithDictionary:(NSDictionary *)dict;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * color;
+@property (nonatomic, retain) HuesPalette *palette;
 
 @end

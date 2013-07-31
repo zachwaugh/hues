@@ -21,8 +21,7 @@ extern NSString * const HuesPalettesUpdatedNotification;
 
 + (HuesPalettesManager *)sharedManager;
 - (void)save;
-- (HuesPalette *)newPalette;
-- (void)addPalette:(HuesPalette *)palette;
+- (HuesPalette *)createPaletteWithName:(NSString *)name;
 - (void)removePalette:(HuesPalette *)palette;
 - (void)importFiles:(NSArray *)files;
 

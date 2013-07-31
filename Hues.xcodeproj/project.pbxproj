@@ -12,8 +12,8 @@
 		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
 		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
 		920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */; };
-		920BF0EF17A96CC5003534F0 /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0EE17A96CC5003534F0 /* Palette.m */; };
-		920BF0F217A96CC6003534F0 /* PaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0F117A96CC6003534F0 /* PaletteItem.m */; };
+		920BF0FE17A9A56D003534F0 /* HuesPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */; };
+		920BF10117A9A56E003534F0 /* HuesPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF10017A9A56E003534F0 /* HuesPalette.m */; };
 		9218A5721796305800AEF7DE /* HuesGeneralPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */; };
 		9218A5731796305800AEF7DE /* HuesGeneralPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */; };
 		9218A57617963FAC00AEF7DE /* NSMutableArray+Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A57517963FAC00AEF7DE /* NSMutableArray+Move.m */; };
@@ -54,8 +54,6 @@
 		9234D520167BDE0E00A33702 /* HuesColorSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9234D51F167BDE0E00A33702 /* HuesColorSliderCell.m */; };
 		923CA1531467394E003CC8BB /* HuesLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1501467394E003CC8BB /* HuesLoupeView.m */; };
 		923CA1541467394E003CC8BB /* HuesLoupeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923CA1521467394E003CC8BB /* HuesLoupeWindow.m */; };
-		92513EAF1760DFCD00ED644C /* HuesPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 92513EAE1760DFCC00ED644C /* HuesPalette.m */; };
-		92513EB317612BA000ED644C /* HuesPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92513EB217612B9F00ED644C /* HuesPaletteItem.m */; };
 		9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE6A1393EC9F00935FAC /* InfoPlist.strings */; };
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
@@ -129,10 +127,10 @@
 		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
 		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
 		920BF0EB17A9692D003534F0 /* Hues.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hues.xcdatamodel; sourceTree = "<group>"; };
-		920BF0ED17A96CC4003534F0 /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
-		920BF0EE17A96CC5003534F0 /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
-		920BF0F017A96CC5003534F0 /* PaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteItem.h; sourceTree = "<group>"; };
-		920BF0F117A96CC6003534F0 /* PaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteItem.m; sourceTree = "<group>"; };
+		920BF0FC17A9A56D003534F0 /* HuesPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteItem.h; sourceTree = "<group>"; };
+		920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteItem.m; sourceTree = "<group>"; };
+		920BF0FF17A9A56E003534F0 /* HuesPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalette.h; sourceTree = "<group>"; };
+		920BF10017A9A56E003534F0 /* HuesPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalette.m; sourceTree = "<group>"; };
 		9218A56F1796305800AEF7DE /* HuesGeneralPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGeneralPreferencesController.h; sourceTree = "<group>"; };
 		9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGeneralPreferencesController.m; sourceTree = "<group>"; };
 		9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesGeneralPreferencesController.xib; sourceTree = "<group>"; };
@@ -195,10 +193,6 @@
 		923CA1501467394E003CC8BB /* HuesLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeView.m; sourceTree = "<group>"; };
 		923CA1511467394E003CC8BB /* HuesLoupeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeWindow.h; sourceTree = "<group>"; };
 		923CA1521467394E003CC8BB /* HuesLoupeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeWindow.m; sourceTree = "<group>"; };
-		92513EAD1760DFCC00ED644C /* HuesPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalette.h; sourceTree = "<group>"; };
-		92513EAE1760DFCC00ED644C /* HuesPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalette.m; sourceTree = "<group>"; };
-		92513EB117612B9F00ED644C /* HuesPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteItem.h; sourceTree = "<group>"; };
-		92513EB217612B9F00ED644C /* HuesPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteItem.m; sourceTree = "<group>"; };
 		9264FE5D1393EC9F00935FAC /* Hues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE611393EC9F00935FAC /* Cocoa.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9264FE641393EC9F00935FAC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -623,10 +617,6 @@
 				92E7D67F1393ED080072C412 /* HuesHistoryManager.m */,
 				92E7D6821393ED080072C412 /* HuesPreferences.h */,
 				92E7D6831393ED080072C412 /* HuesPreferences.m */,
-				92513EAD1760DFCC00ED644C /* HuesPalette.h */,
-				92513EAE1760DFCC00ED644C /* HuesPalette.m */,
-				92513EB117612B9F00ED644C /* HuesPaletteItem.h */,
-				92513EB217612B9F00ED644C /* HuesPaletteItem.m */,
 				92A6698917A063D200F037DC /* HuesPalettesManager.h */,
 				92A6698A17A063D200F037DC /* HuesPalettesManager.m */,
 				92C1146E17A09C6A0092E3CB /* HuesPaletteExporter.h */,
@@ -634,10 +624,10 @@
 				92C5CF7E17A168550082CE2C /* HuesSyncManager.h */,
 				92C5CF7F17A168550082CE2C /* HuesSyncManager.m */,
 				920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */,
-				920BF0F017A96CC5003534F0 /* PaletteItem.h */,
-				920BF0F117A96CC6003534F0 /* PaletteItem.m */,
-				920BF0ED17A96CC4003534F0 /* Palette.h */,
-				920BF0EE17A96CC5003534F0 /* Palette.m */,
+				920BF0FC17A9A56D003534F0 /* HuesPaletteItem.h */,
+				920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */,
+				920BF0FF17A9A56E003534F0 /* HuesPalette.h */,
+				920BF10017A9A56E003534F0 /* HuesPalette.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -874,8 +864,6 @@
 				923098BA1680058700F98571 /* HuesColorWheelViewController.m in Sources */,
 				923098BE1680064D00F98571 /* HuesColorWheelView.m in Sources */,
 				923098C116800EBF00F98571 /* HuesColorWheelHueView.m in Sources */,
-				92513EAF1760DFCD00ED644C /* HuesPalette.m in Sources */,
-				92513EB317612BA000ED644C /* HuesPaletteItem.m in Sources */,
 				92F13DC5178EFD0700E699E4 /* HuesColorParser.m in Sources */,
 				92F13DCF178F1F6100E699E4 /* NSScanner+Hues.m in Sources */,
 				92F13DD3178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m in Sources */,
@@ -897,8 +885,8 @@
 				92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */,
 				92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */,
 				920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */,
-				920BF0EF17A96CC5003534F0 /* Palette.m in Sources */,
-				920BF0F217A96CC6003534F0 /* PaletteItem.m in Sources */,
+				920BF0FE17A9A56D003534F0 /* HuesPaletteItem.m in Sources */,
+				920BF10117A9A56E003534F0 /* HuesPalette.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

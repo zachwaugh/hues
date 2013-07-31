@@ -8,8 +8,6 @@
 
 #import "HuesPalettesManager.h"
 #import "HuesPalette.h"
-#import "Palette.h"
-#import "PaletteItem.h"
 #import <CoreData/CoreData.h>
 
 NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotification";
@@ -66,25 +64,31 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 	self.palettes = results;
 }
 
-- (Palette *)newPalette
+- (HuesPalette *)createPaletteWithName:(NSString *)name
 {
-	Palette *palette = (Palette *)[NSEntityDescription insertNewObjectForEntityForName:@"Palette" inManagedObjectContext:self.managedObjectContext];
+	HuesPalette *palette = (HuesPalette *)[NSEntityDescription insertNewObjectForEntityForName:@"Palette" inManagedObjectContext:self.managedObjectContext];
 	palette.uuid = [[NSUUID UUID] UUIDString];
 	
-	NSString *name = @"Untitled Palette";
-	NSInteger index = 0;
-	
-	for (HuesPalette *palette in self.palettes) {
-		if ([palette.name hasPrefix:name]) {
-			index++;
+	if (!name) {
+		NSString *untitledName = @"Untitled Palette";
+		NSInteger index = 0;
+		
+		for (HuesPalette *palette in self.palettes) {
+			if ([palette.name hasPrefix:untitledName]) {
+				index++;
+			}
 		}
+		
+		if (index > 0) {
+			untitledName = [NSString stringWithFormat:@"%@ %ld", untitledName, index];
+		}
+		
+		palette.name = untitledName;
+	} else {
+		palette.name = name;
 	}
 	
-	if (index > 0) {
-		name = [NSString stringWithFormat:@"%@ %ld", name, index];
-	}
-	
-	palette.name = name;
+	[self refreshPalettes];
 	
 	return palette;
 }
@@ -97,15 +101,14 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 //	[self save];
 //}
 
-- (void)removePalette:(Palette *)palette
+- (void)removePalette:(HuesPalette *)palette
 {
+	NSLog(@"removePalette: %@", palette);
 	[self.managedObjectContext deleteObject:palette];
 	[self save];
-	[self fetchPalettes];
-	NSLog(@"removePalette: %@", palette);
-	[self.palettes removeObject:palette];
+	[self refreshPalettes];
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesPalettesUpdatedNotification object:self];
-	[self save];
 }
 
 #pragma mark - Importing
@@ -121,9 +124,10 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 				NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 				
 				if (!error) {
-					HuesPalette *palette = [HuesPalette paletteWithDictionary:dict];
+					HuesPalette *palette = [self createPaletteWithName:dict[@"name"]];
 					NSLog(@"imported palette: %@", palette);
-					[self addPalette:palette];
+					
+					[self save];
 					
 					NSUserNotification *notification = [[NSUserNotification alloc] init];
 					notification.title = @"Palette imported";
@@ -232,7 +236,18 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 // Returns the URL to the application's Documents directory.
 + (NSURL *)applicationSupportDirectory
 {
-	return [[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+	NSURL *directory = [[[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"Hues"];
+	
+	if (![[NSFileManager defaultManager] fileExistsAtPath:directory.path]) {
+		NSError *error = nil;
+		[[NSFileManager defaultManager] createDirectoryAtURL:directory withIntermediateDirectories:YES attributes:nil error:&error];
+		
+		if (error) {
+			NSLog(@"error creating application support directory");
+		}
+	}
+	
+	return directory;
 }
 
 @end

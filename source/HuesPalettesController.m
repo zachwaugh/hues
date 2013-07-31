@@ -104,14 +104,14 @@
 		HuesPalettesController *strongSelf = weakSelf;
 
 		if (complete) {
-			HuesPalette *palette = [HuesPalette paletteWithName:name];
+			HuesPalette *palette = [[HuesPalettesManager sharedManager] createPaletteWithName:name];
+			[[HuesPalettesManager sharedManager] save];
+			
 			strongSelf.currentPalette = palette;
 			[strongSelf.tableView reloadData];
 			
 			[strongSelf refreshPalettes];
 			[strongSelf.paletteSelection selectItemWithTitle:palette.name];
-			
-			[[HuesPalettesManager sharedManager] addPalette:palette];
 		}
 		
 		[strongSelf.nameController.window orderOut:nil];
@@ -198,22 +198,25 @@
 
 - (IBAction)addItem:(id)sender
 {
-	HuesPaletteItem *item = [[HuesPaletteItem alloc] initWithName:@"Color" color:self.color];
+	NSManagedObjectContext *moc = [HuesPalettesManager sharedManager].managedObjectContext;
 	
-	[self.currentPalette addItem:item];
+	HuesPaletteItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PaletteItem" inManagedObjectContext:moc];
+	item.name = @"Color";
+	item.color = @"#FFFFFF";
+
+	// Create a mutable set with the existing objects, add the new object, and set the relationship equal to this new mutable ordered set
+	NSMutableOrderedSet *colors = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.currentPalette.colors];
+	[colors addObject:item];
+	self.currentPalette.colors = colors;
+
 	[self.tableView reloadData];
-	
 	[self.tableView editColumn:0 row:self.currentPalette.colors.count - 1 withEvent:nil select:YES];
 }
 
 - (IBAction)removeItem:(id)sender
 {
 	NSIndexSet *indexes = [self.tableView selectedRowIndexes];
-	
-	[indexes enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
-		[self.currentPalette.colors removeObjectAtIndex:idx];
-	}];
-	
+	[self.currentPalette removeColorsAtIndexes:indexes];	
 	[self.tableView reloadData];
 }
 
@@ -230,7 +233,7 @@
 	NSLog(@"updateItemColor: %@", sender);
 	NSInteger row = [self.tableView rowForView:sender];
 	HuesPaletteItem *item = self.currentPalette.colors[row];
-	item.color = [sender color];
+	//item.color = [sender color];
 	[self.tableView reloadData];
 }
 
@@ -248,7 +251,7 @@
 	
 	HuesPaletteItem *item = self.currentPalette.colors[row];
 	view.name.stringValue = item.name;
-	view.colorWell.color = item.color;
+	//view.colorWell.color = item.color;
 	
 	return view;
 }
@@ -257,8 +260,8 @@
 {
 	if (self.tableView.selectedRowIndexes.count == 1) {
 		HuesPaletteItem *item = self.currentPalette.colors[self.tableView.selectedRow];
-		
-		[self updateColor:item.color];
+
+		//[self updateColor:item.color];
 	}
 }
 
