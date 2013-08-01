@@ -13,7 +13,7 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
-static NSString * const HuesShareServerURL = @"http://hues.cc:3000/";
+static NSString * const HuesShareServerURL = @"http://hues.cc/";
 static NSString * const HuesShareServerKey = @"12345";
 
 @implementation HuesPaletteExporter
@@ -27,7 +27,7 @@ static NSString * const HuesShareServerKey = @"12345";
 	NSMutableArray *colors = [NSMutableArray array];
 	
 	for (HuesPaletteItem *item in palette.colors) {
-		[colors addObject:@{@"name": item.name, @"color": [HuesColorFormatter stringForColor:item.color withFormat:HuesHexFormat]}];
+		[colors addObject:@{@"name": item.name, @"color": item.color}];
 	}
 	
 	data[@"colors"] = colors;
