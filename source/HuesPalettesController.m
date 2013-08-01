@@ -232,7 +232,6 @@
 
 - (IBAction)updateItemColor:(id)sender
 {
-	NSLog(@"updateItemColor: %@", sender);
 	NSInteger row = [self.tableView rowForView:sender];
 	HuesPaletteItem *item = self.currentPalette.colors[row];
 	item.color = [HuesColorFormatter hexForColor:[sender color]];

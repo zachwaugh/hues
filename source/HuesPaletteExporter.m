@@ -13,7 +13,14 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
+#define LOCAL 0
+
+#if LOCAL
+static NSString * const HuesShareServerURL = @"http://localhost:3000/";
+#else
 static NSString * const HuesShareServerURL = @"http://hues.cc/";
+#endif
+
 static NSString * const HuesShareServerKey = @"12345";
 
 @implementation HuesPaletteExporter
