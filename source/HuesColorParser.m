@@ -7,11 +7,12 @@
 //
 
 #import "HuesColorParser.h"
+#import "HuesColor.h"
 #import "NSScanner+Hues.h"
 
 @implementation HuesColorParser
 
-+ (NSColor *)parseColorFromString:(NSString *)string
++ (HuesColor *)parseColorFromString:(NSString *)string
 {
 	// Determine parser to use
 	if ([string hasPrefix:@"rgb"]) {
@@ -23,7 +24,7 @@
 	}
 }
 
-+ (NSColor *)colorFromHex:(NSString *)hex
++ (HuesColor *)colorFromHex:(NSString *)hex
 {
 	// Accepts:
 	// #FFFFFF
@@ -36,7 +37,6 @@
   if (hex == nil || hex.length < 6) return nil;
   if (hex.length > 6) hex = [hex substringToIndex:6]; // chop off any extra characters
   
-	NSColor *result = nil;
 	unsigned int colorCode = 0;
 	unsigned char redByte, greenByte, blueByte;
 	
@@ -48,12 +48,11 @@
 	redByte = (unsigned char) (colorCode >> 16);
 	greenByte	= (unsigned char) (colorCode >> 8);
 	blueByte = (unsigned char) (colorCode);	// masks off high bits
-	result = [NSColor colorWithCalibratedRed:(CGFloat)redByte / 255 green:(CGFloat)greenByte / 255 blue:(CGFloat)blueByte / 255 alpha:1.0];
 	
-	return result;
+	return [HuesColor colorWithRed:(CGFloat)redByte / 255 green:(CGFloat)greenByte / 255 blue:(CGFloat)blueByte / 255 alpha:1.0];
 }
 
-+ (NSColor *)colorFromRGB:(NSString *)rgb
++ (HuesColor *)colorFromRGB:(NSString *)rgb
 {
 	// Accepts:
 	// rgb(255, 255, 255)
@@ -83,12 +82,10 @@
 		[scanner scanFloat:&alpha];
 	}
 
-	NSColor *color = [NSColor colorWithCalibratedRed:red / 255.0f green:green / 255.f blue:blue / 255.f alpha:alpha];
-	
-	return color;
+	return [HuesColor colorWithRed:red / 255.0f green:green / 255.f blue:blue / 255.f alpha:alpha];
 }
 
-+ (NSColor *)colorFromCocoaColor:(NSString *)string
++ (HuesColor *)colorFromCocoaColor:(NSString *)string
 {
 	// Accepts:
 	// [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]
@@ -114,9 +111,7 @@
 	[scanner scanString:@":" intoString:NULL];
 	[scanner scanFloat:&alpha];
 	
-	NSColor *color = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
-	
-	return color;
+	return [HuesColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 @end

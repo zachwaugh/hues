@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColor;
+
 @interface HuesLoupeView : NSView
 
-- (NSColor *)colorAtPoint:(CGPoint)point;
+- (HuesColor *)colorAtPoint:(CGPoint)point;
 
 @end

@@ -9,7 +9,7 @@
 #import "HuesHSLMixerController.h"
 #import "HuesColorSlider.h"
 #import "HuesHueColorSlider.h"
-#import "NSColor+Hues.h"
+#import "HuesColor.h"
 
 @interface HuesHSLMixerController ()
 
@@ -25,46 +25,47 @@
 	return self;
 }
 
-- (void)updateInterfaceWithColor:(NSColor *)color
+- (void)updateInterfaceWithColor:(HuesColor *)color
 {
 	self.color = color;
+	NSColor *deviceColor = color.deviceColor;
 	
-	self.hueField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.hueComponent * 360.0)];
-	self.hueSlider.intValue = color.hueComponent * 360.0f;
-	self.hueSlider.currentColor = color;
-	self.hueSlider.color = color;
+	self.hueField.stringValue = [NSString stringWithFormat:@"%d", color.hues_hue];
+	self.hueSlider.intValue = color.hues_hue;
+	self.hueSlider.currentColor = deviceColor;
+	self.hueSlider.color = deviceColor;
 	
-	self.saturationField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.saturationComponent * 100.0)];
-	self.saturationSlider.intValue = color.saturationComponent * 100.0;
-	self.saturationSlider.currentColor = color;
-	self.saturationSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:0 brightness:color.brightnessComponent alpha:1.0];
-	self.saturationSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:1 brightness:color.brightnessComponent alpha:1.0];
+	self.saturationField.stringValue = [NSString stringWithFormat:@"%d", color.hues_saturation];
+	self.saturationSlider.intValue = color.hues_saturation;
+	self.saturationSlider.currentColor = deviceColor;
+	self.saturationSlider.startColor = [color colorWithSaturation:0].deviceColor;
+	self.saturationSlider.endColor = [color colorWithSaturation:1.0f].deviceColor;
 	
-	self.lightnessField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.brightnessComponent * 100.0)];
-	self.lightnessSlider.intValue = color.brightnessComponent * 100.0;
-	self.lightnessSlider.currentColor = color;
-	self.lightnessSlider.startColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:0 alpha:1.0];
-	self.lightnessSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:1 alpha:1.0];
+	self.lightnessField.stringValue = [NSString stringWithFormat:@"%d", color.hues_lightness];
+	self.lightnessSlider.intValue = color.hues_lightness;
+	self.lightnessSlider.currentColor = deviceColor;
+	self.lightnessSlider.startColor = [color colorWithLightness:0.0f].deviceColor;
+	self.lightnessSlider.endColor = [color colorWithLightness:1.0f].deviceColor;
 	
-	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", (int)(color.alphaComponent * 100.0)];
-	self.alphaSlider.intValue = (int)(color.alphaComponent * 100.0);
-	self.alphaSlider.currentColor = color;
+	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", color.hues_alpha];
+	self.alphaSlider.intValue = color.hues_alpha;
+	self.alphaSlider.currentColor = deviceColor;
 	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = [NSColor colorWithCalibratedHue:color.hueComponent saturation:color.saturationComponent brightness:color.brightnessComponent alpha:1.0];
+	self.alphaSlider.endColor = [color colorWithAlpha:1.0].deviceColor;
 }
 
 - (IBAction)fieldChanged:(id)sender
 {
-	NSColor *newColor = nil;
+	HuesColor *newColor = nil;
 	
 	if (sender == self.hueField) {
-		newColor = [NSColor colorWithCalibratedHue:(self.hueField.integerValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+		newColor = [self.color colorWithHue:(self.hueField.integerValue / 360.0f)];
 	} else if (sender == self.saturationField) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationField.integerValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+		newColor = [self.color colorWithSaturation:(self.saturationField.integerValue / 100.0f)];
 	} else if (sender == self.lightnessField) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessField.integerValue / 100.0f) alpha:self.color.alphaComponent];
+		newColor = [self.color colorWithLightness:(self.lightnessField.integerValue / 100.0f)];
 	} else if (sender == self.alphaField) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaField.integerValue / 100.0f)];
+		newColor = [self.color colorWithAlpha:(self.alphaField.integerValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];
@@ -72,16 +73,20 @@
 
 - (IBAction)sliderChanged:(id)sender
 {
-	NSColor *newColor = nil;
+	HuesColor *newColor = nil;
 	
 	if (sender == self.hueSlider) {
-		newColor = [NSColor colorWithCalibratedHue:(self.hueSlider.floatValue / 360.0f) saturation:self.color.saturationComponent brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+		NSLog(@"hueSlider changed: current color: %@", self.color);
+		newColor = [self.color colorWithHue:(self.hueSlider.integerValue / 360.0f)];
+		NSLog(@"hueSlider changed: %ld - %f, new color: %@", self.hueSlider.integerValue, self.hueSlider.integerValue / 360.0f, newColor);
 	} else if (sender == self.saturationSlider) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:(self.saturationSlider.floatValue / 100.0f) brightness:self.color.brightnessComponent alpha:self.color.alphaComponent];
+		NSLog(@"saturationSlider changed: current color: %@", self.color);
+		newColor = [self.color colorWithSaturation:(self.saturationSlider.integerValue / 100.0f)];
+		NSLog(@"saturationSlider changed: %ld - %f, new color: %@", self.saturationSlider.integerValue, (self.saturationSlider.integerValue / 100.0f), newColor);
 	} else if (sender == self.lightnessSlider) {
-		newColor = [NSColor colorWithCalibratedHue:self.color.hueComponent saturation:self.color.saturationComponent brightness:(self.lightnessSlider.floatValue / 100.0f) alpha:self.color.alphaComponent];
+		newColor = [self.color colorWithLightness:(self.lightnessSlider.integerValue / 100.0f)];
 	} else if (sender == self.alphaSlider) {
-		newColor = [NSColor colorWithCalibratedRed:[self.color redComponent] green:[self.color greenComponent] blue:[self.color blueComponent] alpha:(self.alphaSlider.floatValue / 100.0f)];
+		newColor = [self.color colorWithAlpha:(self.alphaSlider.integerValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];

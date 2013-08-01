@@ -7,6 +7,7 @@
 //
 
 #import "HuesMixerViewController.h"
+#import "HuesColor.h"
 #import "HuesDefines.h"
 
 @implementation HuesMixerViewController
@@ -14,9 +15,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self) {
-		_color = [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1];
-	}
+	if (!self) return nil;
+	
+	_color = [HuesColor colorWithRed:1 green:1 blue:1 alpha:1];
 	
 	return self;
 }
@@ -28,7 +29,7 @@
 	}
 }
 
-- (void)updateColor:(NSColor *)color
+- (void)updateColor:(HuesColor *)color
 {
 	self.color = color;
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];

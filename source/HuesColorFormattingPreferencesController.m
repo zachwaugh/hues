@@ -8,7 +8,6 @@
 
 #import "HuesColorFormattingPreferencesController.h"
 #import "HuesPreferences.h"
-#import "HuesColorFormatter.h"
 #import "NSMutableArray+Move.h"
 
 static NSString * const HuesColorFormatsReorderType = @"HuesColorFormatsReorderType";

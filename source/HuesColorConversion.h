@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
-#import "HuesColor.h"
+#import "HuesColorDefines.h"
 
 HuesHSB HuesRGBToHSB(HuesRGB rgb);
 HuesRGB HuesHSBToRGB(HuesHSB hsb);

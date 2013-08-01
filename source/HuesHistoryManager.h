@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColor;
+
 @interface HuesHistoryManager : NSObject
 
 @property (strong) NSMutableArray *history;
 @property (weak) NSMenu *menu;
 
 + (HuesHistoryManager *)sharedManager;
-- (void)addColor:(NSColor *)color;
+- (void)addColor:(HuesColor *)color;
 
 @end

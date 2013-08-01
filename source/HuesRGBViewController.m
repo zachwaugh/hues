@@ -8,7 +8,7 @@
 
 #import "HuesRGBViewController.h"
 #import "HuesColorSlider.h"
-#import "NSColor+Hues.h"
+#import "HuesColor.h"
 #import "HuesDefines.h"
 
 @implementation HuesRGBViewController
@@ -21,57 +21,50 @@
 	return self;
 }
 
-- (void)updateInterfaceWithColor:(NSColor *)color
+- (void)updateInterfaceWithColor:(HuesColor *)color
 {
 	self.color = color;
-	CGFloat redComponent = color.redComponent;
-	CGFloat greenComponent = color.greenComponent;
-	CGFloat blueComponent = color.blueComponent;
+	NSColor *deviceColor = color.deviceColor;
 	
-	int red = (int)roundf(redComponent * 255.0);
-	int green = (int)roundf(greenComponent * 255.0);
-	int blue = (int)roundf(blueComponent * 255.0);
-	int alpha = (int)roundf(color.alphaComponent * 100.0);
+	self.redField.stringValue = [NSString stringWithFormat:@"%d", color.hues_red];
+	self.redSlider.intValue = color.hues_red;
+	self.redSlider.currentColor = deviceColor;
+	self.redSlider.startColor = [color colorWithRed:0.0f].deviceColor;
+	self.redSlider.endColor = [color colorWithRed:1.0f].deviceColor;
 	
-	self.redField.stringValue = [NSString stringWithFormat:@"%d", red];
-	self.redSlider.intValue = red;
-	self.redSlider.currentColor = color;
-	self.redSlider.startColor = [NSColor colorWithCalibratedRed:0 green:greenComponent blue:blueComponent alpha:1.0];
-	self.redSlider.endColor = [NSColor colorWithCalibratedRed:1 green:greenComponent blue:blueComponent alpha:1.0];
+	self.greenField.stringValue = [NSString stringWithFormat:@"%d", color.hues_green];
+	self.greenSlider.intValue = color.hues_green;
+	self.greenSlider.currentColor = deviceColor;
+	self.greenSlider.startColor = [color colorWithGreen:0.0f].deviceColor;
+	self.greenSlider.endColor = [color colorWithGreen:1.0f].deviceColor;
 	
-	self.greenField.stringValue = [NSString stringWithFormat:@"%d", green];
-	self.greenSlider.intValue = green;
-	self.greenSlider.currentColor = color;
-	self.greenSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:0 blue:blueComponent alpha:1.0];
-	self.greenSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:1 blue:blueComponent alpha:1.0];
+	self.blueField.stringValue = [NSString stringWithFormat:@"%d", color.hues_blue];
+	self.blueSlider.intValue = color.hues_blue;
+	self.blueSlider.currentColor = deviceColor;
+	self.blueSlider.startColor = [color colorWithBlue:0.0f].deviceColor;
+	self.blueSlider.endColor = [color colorWithBlue:1.0f].deviceColor;
 	
-	self.blueField.stringValue = [NSString stringWithFormat:@"%d", blue];
-	self.blueSlider.intValue = blue;
-	self.blueSlider.currentColor = color;
-	self.blueSlider.startColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:0 alpha:1.0];
-	self.blueSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:1 alpha:1.0];
-	
-	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", alpha];
-	self.alphaSlider.intValue = alpha;
-	self.alphaSlider.currentColor = color;
+	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", color.hues_alpha];
+	self.alphaSlider.intValue = color.hues_alpha;
+	self.alphaSlider.currentColor = deviceColor;
 	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = [NSColor colorWithCalibratedRed:redComponent green:greenComponent blue:blueComponent alpha:1.0];
+	self.alphaSlider.endColor = deviceColor;
 }
 
 #pragma mark - Sliders/Fields
 
 - (IBAction)fieldChanged:(id)sender
 {
-	NSColor *newColor = nil;
+	HuesColor *newColor = nil;
 	
 	if (sender == self.redField) {
-		newColor = [self.color hues_colorWithRed:(self.redField.integerValue / 255.0f)];
+		newColor = [self.color colorWithRed:(self.redField.integerValue / 255.0f)];
 	} else if (sender == self.greenField) {
-		newColor = [self.color hues_colorWithGreen:(self.greenField.integerValue / 255.0f)];
+		newColor = [self.color colorWithGreen:(self.greenField.integerValue / 255.0f)];
 	} else if (sender == self.blueField) {
-		newColor = [self.color hues_colorWithBlue:(self.blueField.integerValue / 255.0f)];
+		newColor = [self.color colorWithBlue:(self.blueField.integerValue / 255.0f)];
 	} else if (sender == self.alphaField) {
-		newColor = [self.color hues_colorWithAlpha:(self.alphaField.integerValue / 100.0f)];
+		newColor = [self.color colorWithAlpha:(self.alphaField.integerValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];
@@ -79,16 +72,16 @@
 
 - (IBAction)sliderChanged:(id)sender
 {
-	NSColor *newColor = nil;
+	HuesColor *newColor = nil;
 	
 	if (sender == self.redSlider) {
-		newColor = [self.color hues_colorWithRed:(self.redSlider.floatValue / 255.0f)];
+		newColor = [self.color colorWithRed:(self.redSlider.floatValue / 255.0f)];
 	} else if (sender == self.greenSlider) {
-		newColor = [self.color hues_colorWithGreen:(self.greenSlider.floatValue / 255.0f)];
+		newColor = [self.color colorWithGreen:(self.greenSlider.floatValue / 255.0f)];
 	} else if (sender == self.blueSlider) {
-		newColor = [self.color hues_colorWithBlue:(self.blueSlider.floatValue / 255.0f)];
+		newColor = [self.color colorWithBlue:(self.blueSlider.floatValue / 255.0f)];
 	} else if (sender == self.alphaSlider) {
-		newColor = [self.color hues_colorWithAlpha:(self.alphaSlider.floatValue / 100.0f)];
+		newColor = [self.color colorWithAlpha:(self.alphaSlider.floatValue / 100.0f)];
 	}
 	
 	[self updateColor:newColor];

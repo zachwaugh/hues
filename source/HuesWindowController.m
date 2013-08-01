@@ -8,25 +8,25 @@
 
 #import "HuesWindowController.h"
 #import "HuesLoupeController.h"
-#import "NSColor+Hues.h"
 #import "HuesPreferences.h"
-#import "HuesColorSlider.h"
-#import "INAppStoreWindow.h"
 #import "HuesMixerViewController.h"
 #import "HuesRGBViewController.h"
 #import "HuesHSLMixerController.h"
+#import "HuesColorSlider.h"
 #import "HuesColorWheelViewController.h"
 #import "HuesPalettesController.h"
 #import "HuesScopeBarView.h"
 #import "HuesColorParser.h"
-#import "HuesColorFormatter.h"
+#import "HuesColor.h"
+#import "HuesColor+Formatting.h"
+#import "INAppStoreWindow.h"
 
 @interface HuesWindowController ()
 
-@property (strong) NSColor *color;
+@property (strong) HuesColor *color;
 @property (strong) HuesMixerViewController *mixerController;
 
-- (void)updateInterfaceWithColor:(NSColor *)color;
+- (void)updateInterfaceWithColor:(HuesColor *)color;
 
 @end
 
@@ -37,7 +37,7 @@
 	self = [super initWithWindowNibName:@"HuesWindowController"];
 	if (!self) return nil;
 	
-	_color = [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1];
+	_color = [HuesColor colorWithRed:1 green:1 blue:1 alpha:1];
 	
 	return self;
 }
@@ -106,15 +106,15 @@
 // Called from loupe
 - (void)updateColor:(NSNotification *)notification
 {
-  NSColor *color = notification.object;
+  HuesColor *color = notification.object;
 	self.color = color;
 	[self.mixerController updateInterfaceWithColor:color];
   [self updateInterfaceWithColor:color];
 }
 
-- (void)updateInterfaceWithColor:(NSColor *)color
+- (void)updateInterfaceWithColor:(HuesColor *)color
 {
-	self.colorWell.color = color;
+	self.colorWell.color = color.deviceColor;
 	
   // Setup overlay text attributes
   NSShadow *shadow = [[NSShadow alloc] init];
@@ -123,20 +123,23 @@
   
 	NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue" size:13.0], NSShadowAttributeName: shadow};
 	
-  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithPrimaryFormat:self.color] attributes:attributes];
-  NSAttributedString *secondary = [[NSAttributedString alloc] initWithString:[HuesColorFormatter stringForColorWithSecondaryFormat:self.color] attributes:attributes];
+  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[self stringForPrimaryFormat] attributes:attributes];
+  NSAttributedString *secondary = [[NSAttributedString alloc] initWithString:[self stringForSecondaryFormat]  attributes:attributes];
   
 	self.primaryFormat.attributedStringValue = primary;
 	self.secondaryFormat.attributedStringValue = secondary;
 	
+	NSInteger selectedIndex = [self.alternateFormats indexOfSelectedItem];
 	[self.alternateFormats removeAllItems];
 	
 	NSArray *formats = [HuesPreferences colorFormats];
-	
+
 	for (NSDictionary *format in formats) {
-		NSString *value = [HuesColorFormatter stringForColor:self.color withFormat:format[@"format"]];
+		NSString *value = [self.color stringWithFormat:format[@"format"]];
 		[self.alternateFormats addItemWithTitle:value];
 	}
+	
+	[self.alternateFormats selectItemAtIndex:selectedIndex];
 }
 
 - (void)colorFormatsUpdated:(NSNotification *)notification
@@ -147,30 +150,52 @@
 - (void)updateFormatLabels
 {
 	NSArray *formats = [HuesPreferences colorFormats];
-	self.primaryFormatLabel.stringValue = formats[0][@"name"];
-	self.primaryFormat.stringValue = [HuesColorFormatter stringForColorWithPrimaryFormat:self.color];
+	NSDictionary *primaryFormat = formats[0];
+	NSDictionary *secondaryFormat = formats[1];
 	
-	self.secondaryFormatLabel.stringValue = formats[1][@"name"];
-	self.secondaryFormat.stringValue = [HuesColorFormatter stringForColorWithSecondaryFormat:self.color];
+	self.primaryFormatLabel.stringValue = primaryFormat[@"name"];
+	self.primaryFormat.stringValue = [self.color stringWithFormat:primaryFormat[@"format"]];
 	
+	self.secondaryFormatLabel.stringValue = secondaryFormat[@"name"];
+	self.secondaryFormat.stringValue = [self.color stringWithFormat:secondaryFormat[@"format"]];
+	
+	NSInteger selectedIndex = [self.alternateFormats indexOfSelectedItem];
 	[self.alternateFormats removeAllItems];
 	
 	for (NSDictionary *format in formats) {
-		NSString *value = [HuesColorFormatter stringForColor:self.color withFormat:format[@"format"]];
+		NSString *value = [self.color stringWithFormat:format[@"format"]];
 		[self.alternateFormats addItemWithTitle:value];
 	}
+	
+	[self.alternateFormats selectItemAtIndex:selectedIndex];
+}
+
+- (NSString *)stringForPrimaryFormat
+{
+	NSArray *formats = [HuesPreferences colorFormats];
+	NSString *format = formats[0][@"format"];
+	
+	return [self.color stringWithFormat:format];
+}
+
+- (NSString *)stringForSecondaryFormat
+{
+	NSArray *formats = [HuesPreferences colorFormats];
+	NSString *format = formats[1][@"format"];
+	
+	return [self.color stringWithFormat:format];
 }
 
 #pragma mark - Clipboard
 
 - (void)copyPrimary:(id)sender
 {
-	[self copyToClipboard:[HuesColorFormatter stringForColorWithPrimaryFormat:self.color]];
+	[self copyToClipboard:[self stringForPrimaryFormat]];
 }
 
 - (void)copySecondary:(id)sender
 {
-	[self copyToClipboard:[HuesColorFormatter stringForColorWithSecondaryFormat:self.color]];
+	[self copyToClipboard:[self stringForSecondaryFormat]];
 }
 
 - (void)copyAlternate:(id)sender
@@ -214,7 +239,7 @@
 {
 	NSTextField *field = notification.object;
 	NSString *value = field.stringValue;
-	NSColor *newColor = [HuesColorParser parseColorFromString:value];
+	HuesColor *newColor = [HuesColorParser parseColorFromString:value];
 	
 	if (newColor != nil) {
 		self.color = newColor;
@@ -227,7 +252,7 @@
 {
 	NSTextField *field = sender;
 	NSString *value = field.stringValue;
-	NSColor *newColor = [HuesColorParser parseColorFromString:value];
+	HuesColor *newColor = [HuesColorParser parseColorFromString:value];
 	
 	if (newColor != nil) {
 		self.color = newColor;

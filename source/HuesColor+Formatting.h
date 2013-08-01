@@ -10,6 +10,7 @@
 
 @interface HuesColor (Formatting)
 
+- (NSString *)hex;
 - (NSString *)stringWithFormat:(NSString *)format;
 
 @end

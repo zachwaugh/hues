@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColor;
+
 @interface HuesMixerViewController : NSViewController
 
-@property (strong) NSColor *color;
+@property (strong) HuesColor *color;
 
-- (void)updateInterfaceWithColor:(NSColor *)color;
-- (void)updateColor:(NSColor *)color;
+- (void)updateInterfaceWithColor:(HuesColor *)color;
+- (void)updateColor:(HuesColor *)color;
 
 @end

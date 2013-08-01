@@ -9,99 +9,26 @@
 #import "HuesColor.h"
 #import "HuesColorConversion.h"
 
-#pragma mark - RGB
-
-HuesRGB HuesRGBMake(CGFloat red, CGFloat green, CGFloat blue)
+CGFloat HuesClampedValueForValueWithMinMax(CGFloat value, CGFloat min, CGFloat max)
 {
-	HuesRGB rgb;
-	rgb.red = red;
-	rgb.green = green;
-	rgb.blue = blue;
-	
-	return rgb;
-}
-
-BOOL HuesRGBEqualToRGB(HuesRGB rgb, HuesRGB rgb2)
-{
-	BOOL r = roundf(rgb.red * 255.f) == roundf(rgb2.red * 255.f);
-	BOOL g = roundf(rgb.green * 255.f) == roundf(rgb2.green * 255.f);
-	BOOL b = roundf(rgb.blue * 255.f) == roundf(rgb2.blue * 255.f);
-	
-	return (r && g && b);
-}
-
-NSString * NSStringFromRGB(HuesRGB rgb)
-{
-	return [NSString stringWithFormat:@"{r: %.3f, g: %.3f, b: %.3f}", rgb.red, rgb.green, rgb.blue];
-}
-
-#pragma mark - HSL
-
-HuesHSL HuesHSLMake(CGFloat hue, CGFloat saturation, CGFloat lightness)
-{
-	HuesHSL hsl;
-	hsl.hue = hue;
-	hsl.saturation = saturation;
-	hsl.lightness = lightness;
-	
-	return hsl;
-}
-
-BOOL HuesHSLEqualToHSL(HuesHSL hsl, HuesHSL hsl2)
-{
-	BOOL h = roundf(hsl.hue * 360.0f) == roundf(hsl2.hue * 360.0f);
-	BOOL s = roundf(hsl.saturation * 100.f) == roundf(hsl2.saturation * 100.0f);
-	BOOL l = roundf(hsl.lightness * 100.0f) == roundf(hsl2.lightness * 100.0f);
-	
-	return (h && s && l);
-}
-
-NSString * NSStringFromHSL(HuesHSL hsl)
-{
-	return [NSString stringWithFormat:@"{h: %.3f, s: %.3f, l: %.3f}", hsl.hue, hsl.saturation, hsl.lightness];
-}
-
-#pragma mark - HSB
-
-HuesHSB HuesHSBMake(CGFloat hue, CGFloat saturation, CGFloat brightness)
-{
-	HuesHSB hsb;
-	hsb.hue = hue;
-	hsb.saturation = saturation;
-	hsb.brightness = brightness;
-	
-	return hsb;
-}
-
-BOOL HuesHSBEqualToHSB(HuesHSB hsb, HuesHSB hsb2)
-{
-	BOOL h = roundf(hsb.hue * 360.0f) == roundf(hsb2.hue * 360.0f);
-	BOOL s = roundf(hsb.saturation * 100.f) == roundf(hsb2.saturation * 100.0f);
-	BOOL b = roundf(hsb.brightness * 100.0f) == roundf(hsb2.brightness * 100.0f);
-	
-	return (h && s && b);
-}
-
-CGFloat HuesClampedValueForValue(CGFloat value)
-{
-	if (value > 1) {
-		return 1;
-	} else if (value < 0) {
-		return 0;
+	if (value > max) {
+		return max;
+	} else if (value < min) {
+		return min;
 	} else {
 		return value;
 	}
 }
 
-NSString * NSStringFromHSB(HuesHSB hsb)
+CGFloat HuesClampedValueForValue(CGFloat value)
 {
-	return [NSString stringWithFormat:@"{h: %.10f, s: %.10f, l: %.10f}", hsb.hue, hsb.saturation, hsb.brightness];
+	return HuesClampedValueForValueWithMinMax(value, 0, 1);
 }
 
 @interface HuesColor ()
 
-- (void)updateHSL;
-- (void)updateRGB;
+- (void)updateCache;
+- (NSInteger)relativeBrightness;
 
 @end
 
@@ -117,39 +44,57 @@ NSString * NSStringFromHSB(HuesHSB hsb)
 	_blue = HuesClampedValueForValue(blue);
 	_alpha = HuesClampedValueForValue(alpha);
 	
-	[self updateHSL];
+	[self updateCache];
 	
 	return self;
 }
 
 - (id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
 {
-	self = [super init];
-	if (!self) return nil;
+	HuesHSL hsl = HuesHSLMake(hue, saturation, lightness);
+	HuesRGB rgb = HuesHSLToRGB(hsl);
 	
-	_hue = HuesClampedValueForValue(hue);
-	_saturation = HuesClampedValueForValue(saturation);
-	_lightness = HuesClampedValueForValue(lightness);
-	_alpha = HuesClampedValueForValue(alpha);
-	
-	[self updateRGB];
-	
-	return self;
+	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:alpha];
 }
+
+- (id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha
+{
+	HuesHSB hsb = HuesHSBMake(hue, saturation, brightness);
+	HuesRGB rgb = HuesHSBToRGB(hsb);
+
+	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:alpha];
+}
+
+#if TARGET_OS_IPHONE
+- (id)initWithColor:(UIColor *)color
+{
+	HuesRGB rgb = HuesRGBMake(color.redComponent, color.greenComponent, color.blueComponent);
+	
+	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:color.alphaComponent];
+}
+
+#else
+- (id)initWithColor:(NSColor *)color
+{
+	HuesRGB rgb = HuesRGBMake(color.redComponent, color.greenComponent, color.blueComponent);
+	
+	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:color.alphaComponent];
+}
+#endif
 
 + (HuesColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
-	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
+	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0f];
 }
 
 + (HuesColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
-	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
+	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0f];
 }
 
 + (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness
 {
-	return [[HuesColor alloc] initWithHue:hue saturation:saturation lightness:lightness alpha:1.0];
+	return [[HuesColor alloc] initWithHue:hue saturation:saturation lightness:lightness alpha:1.0f];
 }
 
 + (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
@@ -157,22 +102,37 @@ NSString * NSStringFromHSB(HuesHSB hsb)
 	return [[HuesColor alloc] initWithHue:hue saturation:saturation lightness:lightness alpha:alpha];
 }
 
-- (void)updateRGB
++ (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness
 {
-	HuesRGB rgb = HuesHSLToRGB(HuesHSLMake(self.hue, self.saturation, self.lightness));
-	
-	self.red = rgb.red;
-	self.green = rgb.green;
-	self.blue = rgb.blue;
+	return [[HuesColor alloc] initWithHue:hue saturation:saturation brightness:brightness alpha:1.0f];
 }
 
-- (void)updateHSL
++ (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha
 {
-	HuesHSL hsl = HuesRGBToHSL(HuesRGBMake(self.red, self.green, self.blue));
+	return [[HuesColor alloc] initWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+}
+
+#pragma mark - 
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"color: %p - %@", self, NSStringFromRGB(self.RGB)];
+}
+
+- (void)updateCache
+{
+	HuesHSL hsl = HuesRGBToHSL(self.RGB);
 	
-	self.hue = hsl.hue;
-	self.saturation = hsl.saturation;
-	self.lightness = hsl.lightness;
+	_hue = hsl.hue;
+	_saturation = hsl.saturation;
+	_lightness = hsl.lightness;
+	
+#if TARGET_OS_IPHONE
+	_color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+#else
+	_calibratedColor = [NSColor colorWithCalibratedRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+	_deviceColor = [NSColor colorWithDeviceRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+#endif
 }
 
 #pragma mark - Structs
@@ -250,27 +210,64 @@ NSString * NSStringFromHSB(HuesHSB hsb)
 	return (int)roundf(self.brightness * 100.0f);
 }
 
-#pragma mark - Cocoa colors
+#pragma mark - 
 
-#if TARGET_OS_IPHONE
-
-- (UIColor *)color
+- (BOOL)isDark
 {
-	return [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+	return [self relativeBrightness] < 130;
 }
 
-#else
-
-- (NSColor *)calibratedColor
+// From: http://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
+- (NSInteger)relativeBrightness
 {
-	return [NSColor colorWithCalibratedRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+	return sqrt((.241 * pow(self.hues_red, 2)) + (.691 * pow(self.hues_green, 2)) + (.068 * pow(self.hues_blue, 2)));
 }
 
-- (NSColor *)deviceColor
+#pragma mark - Derived colors
+
+- (HuesColor *)colorWithRed:(CGFloat)red
 {
-	return [NSColor colorWithDeviceRed:self.red green:self.green blue:self.blue alpha:self.alpha];
+	return [self.class colorWithRed:red green:self.green blue:self.blue alpha:self.alpha];
 }
 
-#endif
+- (HuesColor *)colorWithGreen:(CGFloat)green
+{
+	return [self.class colorWithRed:self.red green:green blue:self.blue alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithBlue:(CGFloat)blue
+{
+	return [self.class colorWithRed:self.red green:self.green blue:blue alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithAlpha:(CGFloat)alpha
+{
+	return [self.class colorWithRed:self.red green:self.green blue:self.blue alpha:alpha];
+}
+
+- (HuesColor *)colorWithHue:(CGFloat)hue
+{
+	return [self.class colorWithHue:hue saturation:self.saturation lightness:self.lightness alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithSaturation:(CGFloat)saturation
+{
+	return [self.class colorWithHue:self.hue saturation:saturation lightness:self.lightness alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithLightness:(CGFloat)lightness
+{
+	return [self.class colorWithHue:self.hue saturation:self.saturation lightness:lightness alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithHSBSaturation:(CGFloat)saturation
+{
+	return [self.class colorWithHue:self.hue saturation:saturation brightness:self.brightness alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithBrightness:(CGFloat)brightness
+{
+	return [self.class colorWithHue:self.hue saturation:self.saturation brightness:brightness alpha:self.alpha];
+}
 
 @end

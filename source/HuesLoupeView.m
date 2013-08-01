@@ -9,8 +9,8 @@
 #import "HuesLoupeView.h"
 #import "HuesLoupeWindow.h"
 #import "HuesDefines.h"
-#import "NSColor+Hues.h"
-#import "HuesColorFormatter.h"
+#import "HuesColor.h"
+#import "HuesColor+Formatting.h"
 
 // Zoom level is multiplier of pixel size
 #define GRID_LINES YES
@@ -123,10 +123,10 @@
 	// Turn off anti-aliasing so lines are crisp
 	CGContextSetAllowsAntialiasing(ctx, NO);
 	
-	NSColor *color = [self colorAtCenter];
+	HuesColor *color = [self colorAtCenter];
 
 	// Figure out whether primary pixel is dark or light and change outline
-	if ([color hues_isColorDark]) {
+	if ([color isDark]) {
 		[[NSColor whiteColor] set];
 	} else {
 		[[NSColor blackColor] set];
@@ -147,7 +147,7 @@
 		attrs = @{ NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:12.0], NSForegroundColorAttributeName: [NSColor whiteColor], NSShadowAttributeName: shadow };
 	}
 
-	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[HuesColorFormatter hexForColor:color] attributes:attrs];
+	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[color hex] attributes:attrs];
 	NSSize textSize = hex.size;
 	CGFloat width = textSize.width + 10;
 	NSRect hexRect = NSMakeRect(round((self.bounds.size.width - width) / 2), 10, width, textSize.height);
@@ -161,7 +161,7 @@
 - (void)pickColor
 {
 	// Always pick color from center of loupe
-	NSColor *color = [self colorAtCenter];
+	HuesColor *color = [self colorAtCenter];
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 	[(HuesLoupeWindow *)self.window hide];
@@ -177,13 +177,13 @@
 	return (HuesLoupeZoom / self.window.backingScaleFactor);
 }
 
-- (NSColor *)colorAtCenter
+- (HuesColor *)colorAtCenter
 {
 	NSInteger loupeSize = self.loupeSize;
 	return [self colorAtPoint:NSMakePoint(loupeSize / 2, loupeSize / 2)];
 }
 
-- (NSColor *)colorAtPoint:(CGPoint)point
+- (HuesColor *)colorAtPoint:(CGPoint)point
 {
   // Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
   // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
@@ -211,11 +211,7 @@
 	CGFloat blue = pixelData[2] / 255.0f;
 	CGFloat alpha = pixelData[3] / 255.0f;
 
-	if (USE_CALIBRATED_COLOR) {
-		return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
-	} else {
-		return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
-	}
+	return [HuesColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 #pragma mark - Key events

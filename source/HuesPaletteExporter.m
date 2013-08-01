@@ -9,13 +9,12 @@
 #import "HuesPaletteExporter.h"
 #import "HuesPalette.h"
 #import "HuesPaletteItem.h"
-#import "HuesColorFormatter.h"
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
 #define LOCAL 0
 
-#if LOCAL
+#if LOCAL && defined(DEBUG)
 static NSString * const HuesShareServerURL = @"http://localhost:3000/";
 #else
 static NSString * const HuesShareServerURL = @"http://hues.cc/";

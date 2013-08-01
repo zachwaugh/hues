@@ -9,7 +9,6 @@
 #import "HuesColorWheelView.h"
 #import "HuesColorParser.h"
 #import "HuesColorConversion.h"
-#import "NSColor+Hues.h"
 
 #define CIRCLE_RADIUS 2
 

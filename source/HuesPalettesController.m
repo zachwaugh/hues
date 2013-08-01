@@ -13,8 +13,9 @@
 #import "HuesPalettesManager.h"
 #import "HuesPaletteExporter.h"
 #import "HuesPaletteNameController.h"
-#import "HuesColorFormatter.h"
 #import "HuesColorParser.h"
+#import "HuesColor.h"
+#import "HuesColor+Formatting.h"
 
 @interface HuesPalettesController ()
 
@@ -204,7 +205,7 @@
 	
 	HuesPaletteItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PaletteItem" inManagedObjectContext:moc];
 	item.name = @"Color";
-	item.color = [HuesColorFormatter hexForColor:self.color];
+	item.color = [self.color hex];
 
 	// Create a mutable set with the existing objects, add the new object, and set the relationship equal to this new mutable ordered set
 	NSMutableOrderedSet *colors = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.currentPalette.colors];
@@ -232,9 +233,12 @@
 
 - (IBAction)updateItemColor:(id)sender
 {
+	NSColor *color = [sender color];
+	HuesColor *huesColor = [[HuesColor alloc] initWithColor:color];
+	
 	NSInteger row = [self.tableView rowForView:sender];
 	HuesPaletteItem *item = self.currentPalette.colors[row];
-	item.color = [HuesColorFormatter hexForColor:[sender color]];
+	item.color = [huesColor hex];
 	[self.tableView reloadData];
 }
 
@@ -252,7 +256,7 @@
 	
 	HuesPaletteItem *item = self.currentPalette.colors[row];
 	view.name.stringValue = item.name;
-	view.colorWell.color = [HuesColorParser colorFromHex:item.color];
+	view.colorWell.color = [HuesColorParser colorFromHex:item.color].deviceColor;
 	
 	return view;
 }

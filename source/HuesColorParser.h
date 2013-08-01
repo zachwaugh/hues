@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class HuesColor;
+
 // String -> color
 @interface HuesColorParser : NSObject
 
-+ (NSColor *)parseColorFromString:(NSString *)string;
-+ (NSColor *)colorFromHex:(NSString *)hex;
-+ (NSColor *)colorFromRGB:(NSString *)rgb;
-+ (NSColor *)colorFromCocoaColor:(NSString *)string;
++ (HuesColor *)parseColorFromString:(NSString *)string;
++ (HuesColor *)colorFromHex:(NSString *)hex;
++ (HuesColor *)colorFromRGB:(NSString *)rgb;
++ (HuesColor *)colorFromCocoaColor:(NSString *)string;
 
 @end
