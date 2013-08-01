@@ -13,31 +13,25 @@
 
 - (id)initWithFrame:(NSRect)frameRect
 {
-	if ((self = [super initWithFrame:frameRect])) {
-		_startColor = [NSColor whiteColor];
-		_endColor = [NSColor whiteColor];
-		_currentColor = [NSColor whiteColor];
-	}
+	self = [super initWithFrame:frameRect];
+	if (!self) return nil;
+	
+	_colors = @[[NSColor whiteColor], [NSColor whiteColor]];
+	_currentColor = [NSColor whiteColor];
 	
 	return self;
 }
 
 - (void)awakeFromNib
 {
-	self.startColor = [NSColor whiteColor];
-	self.endColor = [NSColor whiteColor];
+	NSColor *white = [NSColor whiteColor];
+	self.colors = @[white, white];
 	self.currentColor = [NSColor whiteColor];
 }
 
-- (void)setStartColor:(NSColor *)startColor
+- (void)setColors:(NSArray *)colors
 {
-	_startColor = startColor;
-	[self setNeedsDisplay:YES];
-}
-
-- (void)setEndColor:(NSColor *)endColor
-{
-	_endColor = endColor;
+	_colors = colors;
 	[self setNeedsDisplay:YES];
 }
 
@@ -49,7 +43,7 @@
 
 - (NSGradient *)gradient
 {
-	return [[NSGradient alloc] initWithStartingColor:self.startColor endingColor:self.endColor];
+	return [[NSGradient alloc] initWithColors:self.colors];
 }
 
 + (Class)cellClass

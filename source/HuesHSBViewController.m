@@ -34,20 +34,17 @@
 	self.saturationField.stringValue = [NSString stringWithFormat:@"%d", color.hues_HSBSaturation];
 	self.saturationSlider.intValue = color.hues_HSBSaturation;
 	self.saturationSlider.currentColor = deviceColor;
-	self.saturationSlider.startColor = [color colorWithHSBSaturation:0.0f].deviceColor;
-	self.saturationSlider.endColor = [color colorWithHSBSaturation:1.0f].deviceColor;
+	self.saturationSlider.colors = @[[color colorWithHSBSaturation:0.0f].deviceColor, [color colorWithHSBSaturation:1.0f].deviceColor];
 	
 	self.brightnessField.stringValue = [NSString stringWithFormat:@"%d", color.hues_brightness];
 	self.brightnessSlider.intValue = color.hues_brightness;
 	self.brightnessSlider.currentColor = deviceColor;
-	self.brightnessSlider.startColor = [color colorWithBrightness:0.0f].deviceColor;
-	self.brightnessSlider.endColor = [color colorWithBrightness:1.0f].deviceColor;
+	self.brightnessSlider.colors = @[[color colorWithBrightness:0.0f].deviceColor, [color colorWithBrightness:1.0f].deviceColor];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", color.hues_alpha];
 	self.alphaSlider.intValue = color.hues_alpha;
 	self.alphaSlider.currentColor = deviceColor;
-	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = [color colorWithAlpha:1.0f].deviceColor;
+	self.alphaSlider.colors = @[[NSColor whiteColor], [color colorWithAlpha:1.0f].deviceColor];
 }
 
 - (IBAction)fieldChanged:(id)sender

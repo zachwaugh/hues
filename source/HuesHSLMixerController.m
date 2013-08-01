@@ -38,20 +38,17 @@
 	self.saturationField.stringValue = [NSString stringWithFormat:@"%d", color.hues_saturation];
 	self.saturationSlider.intValue = color.hues_saturation;
 	self.saturationSlider.currentColor = deviceColor;
-	self.saturationSlider.startColor = [color colorWithSaturation:0].deviceColor;
-	self.saturationSlider.endColor = [color colorWithSaturation:1.0f].deviceColor;
+	self.saturationSlider.colors = @[[color colorWithSaturation:0].deviceColor, [color colorWithSaturation:1.0f].deviceColor];
 	
 	self.lightnessField.stringValue = [NSString stringWithFormat:@"%d", color.hues_lightness];
 	self.lightnessSlider.intValue = color.hues_lightness;
 	self.lightnessSlider.currentColor = deviceColor;
-	self.lightnessSlider.startColor = [color colorWithLightness:0.0f].deviceColor;
-	self.lightnessSlider.endColor = [color colorWithLightness:1.0f].deviceColor;
+	self.lightnessSlider.colors = @[[color colorWithLightness:0.0f].deviceColor, [color colorWithLightness:0.5f].deviceColor, [color colorWithLightness:1.0f].deviceColor];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", color.hues_alpha];
 	self.alphaSlider.intValue = color.hues_alpha;
 	self.alphaSlider.currentColor = deviceColor;
-	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = [color colorWithAlpha:1.0].deviceColor;
+	self.alphaSlider.colors = @[[NSColor whiteColor], [color colorWithAlpha:1.0].deviceColor];
 }
 
 - (IBAction)fieldChanged:(id)sender
@@ -76,13 +73,9 @@
 	HuesColor *newColor = nil;
 	
 	if (sender == self.hueSlider) {
-		NSLog(@"hueSlider changed: current color: %@", self.color);
 		newColor = [self.color colorWithHue:(self.hueSlider.integerValue / 360.0f)];
-		NSLog(@"hueSlider changed: %ld - %f, new color: %@", self.hueSlider.integerValue, self.hueSlider.integerValue / 360.0f, newColor);
 	} else if (sender == self.saturationSlider) {
-		NSLog(@"saturationSlider changed: current color: %@", self.color);
 		newColor = [self.color colorWithSaturation:(self.saturationSlider.integerValue / 100.0f)];
-		NSLog(@"saturationSlider changed: %ld - %f, new color: %@", self.saturationSlider.integerValue, (self.saturationSlider.integerValue / 100.0f), newColor);
 	} else if (sender == self.lightnessSlider) {
 		newColor = [self.color colorWithLightness:(self.lightnessSlider.integerValue / 100.0f)];
 	} else if (sender == self.alphaSlider) {

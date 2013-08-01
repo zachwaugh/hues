@@ -27,6 +27,8 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 @interface HuesColor ()
 
+@property (assign) BOOL createdWithRGB;
+
 - (void)updateCache;
 - (NSInteger)relativeBrightness;
 
@@ -43,6 +45,7 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 	_green = HuesClampedValueForValue(green);
 	_blue = HuesClampedValueForValue(blue);
 	_alpha = HuesClampedValueForValue(alpha);
+	_createdWithRGB = YES;
 	
 	[self updateCache];
 	
@@ -51,18 +54,26 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 - (id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha
 {
-	HuesHSL hsl = HuesHSLMake(hue, saturation, lightness);
-	HuesRGB rgb = HuesHSLToRGB(hsl);
+	self = [super init];
+	if (!self) return nil;
 	
-	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:alpha];
+	_hue = hue;
+	_saturation = saturation;
+	_lightness = lightness;
+	_alpha = alpha;
+	_createdWithRGB = NO;
+	
+	[self updateCache];
+	
+	return self;
 }
 
 - (id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha
 {
 	HuesHSB hsb = HuesHSBMake(hue, saturation, brightness);
-	HuesRGB rgb = HuesHSBToRGB(hsb);
+	HuesHSL hsl = HuesHSBToHSL(hsb);
 
-	return [self initWithRed:rgb.red green:rgb.green blue:rgb.blue alpha:alpha];
+	return [self initWithHue:hsl.hue saturation:hsl.saturation lightness:hsl.lightness alpha:alpha];
 }
 
 #if TARGET_OS_IPHONE
@@ -121,12 +132,21 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 - (void)updateCache
 {
-	HuesHSL hsl = HuesRGBToHSL(self.RGB);
-	
-	_hue = hsl.hue;
-	_saturation = hsl.saturation;
-	_lightness = hsl.lightness;
-	
+	if (self.createdWithRGB) {
+		HuesHSL hsl = HuesRGBToHSL(self.RGB);
+		
+		_hue = hsl.hue;
+		_saturation = hsl.saturation;
+		_lightness = hsl.lightness;
+
+	} else {
+		HuesRGB rgb = HuesHSLToRGB(self.HSL);
+		
+		_red = rgb.red;
+		_green = rgb.green;
+		_blue = rgb.blue;
+	}
+		
 #if TARGET_OS_IPHONE
 	_color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 #else
@@ -242,7 +262,11 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 - (HuesColor *)colorWithAlpha:(CGFloat)alpha
 {
-	return [self.class colorWithRed:self.red green:self.green blue:self.blue alpha:alpha];
+	if (self.createdWithRGB) {
+		return [self.class colorWithRed:self.red green:self.green blue:self.blue alpha:alpha];
+	} else {
+		return [self.class colorWithHue:self.hue saturation:self.saturation lightness:self.lightness alpha:alpha];
+	}
 }
 
 - (HuesColor *)colorWithHue:(CGFloat)hue

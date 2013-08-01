@@ -29,26 +29,22 @@
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", color.hues_red];
 	self.redSlider.intValue = color.hues_red;
 	self.redSlider.currentColor = deviceColor;
-	self.redSlider.startColor = [color colorWithRed:0.0f].deviceColor;
-	self.redSlider.endColor = [color colorWithRed:1.0f].deviceColor;
+	self.redSlider.colors = @[[color colorWithRed:0.0f].deviceColor, [color colorWithRed:1.0f].deviceColor];
 	
 	self.greenField.stringValue = [NSString stringWithFormat:@"%d", color.hues_green];
 	self.greenSlider.intValue = color.hues_green;
 	self.greenSlider.currentColor = deviceColor;
-	self.greenSlider.startColor = [color colorWithGreen:0.0f].deviceColor;
-	self.greenSlider.endColor = [color colorWithGreen:1.0f].deviceColor;
+	self.greenSlider.colors = @[[color colorWithGreen:0.0f].deviceColor, [color colorWithGreen:1.0f].deviceColor];
 	
 	self.blueField.stringValue = [NSString stringWithFormat:@"%d", color.hues_blue];
 	self.blueSlider.intValue = color.hues_blue;
 	self.blueSlider.currentColor = deviceColor;
-	self.blueSlider.startColor = [color colorWithBlue:0.0f].deviceColor;
-	self.blueSlider.endColor = [color colorWithBlue:1.0f].deviceColor;
+	self.blueSlider.colors = @[[color colorWithBlue:0.0f].deviceColor, [color colorWithBlue:1.0f].deviceColor];
 	
 	self.alphaField.stringValue = [NSString stringWithFormat:@"%d", color.hues_alpha];
 	self.alphaSlider.intValue = color.hues_alpha;
 	self.alphaSlider.currentColor = deviceColor;
-	self.alphaSlider.startColor = [NSColor whiteColor];
-	self.alphaSlider.endColor = deviceColor;
+	self.alphaSlider.colors = @[[NSColor whiteColor], deviceColor];
 }
 
 #pragma mark - Sliders/Fields
