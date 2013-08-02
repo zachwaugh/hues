@@ -19,11 +19,8 @@
 		return [super performKeyEquivalent:event];
 	}
 	
-	unichar key = [keys characterAtIndex:0];
   NSArray *numbers = @[@"1", @"2", @"3", @"4"];
   BOOL commandPressed = (event.modifierFlags & NSCommandKeyMask) == NSCommandKeyMask;
-	BOOL controlPressed = (event.modifierFlags & NSControlKeyMask) == NSControlKeyMask;
-	BOOL optionPressed = (event.modifierFlags & NSAlternateKeyMask) == NSAlternateKeyMask;
 	
   if ([numbers containsObject:keys] && commandPressed) {
     [(HuesWindowController *)self.windowController selectTabAtIndex:[keys integerValue] - 1];

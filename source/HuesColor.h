@@ -63,12 +63,17 @@
 #pragma mark - Derived colors
 
 - (HuesColor *)colorWithRed:(CGFloat)red;
+- (HuesColor *)colorWithRed:(CGFloat)red alpha:(CGFloat)alpha;
 - (HuesColor *)colorWithGreen:(CGFloat)green;
+- (HuesColor *)colorWithGreen:(CGFloat)green alpha:(CGFloat)alpha;
 - (HuesColor *)colorWithBlue:(CGFloat)blue;
+- (HuesColor *)colorWithBlue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (HuesColor *)colorWithAlpha:(CGFloat)alpha;
 - (HuesColor *)colorWithHue:(CGFloat)hue;
 - (HuesColor *)colorWithSaturation:(CGFloat)saturation; // HSL
+- (HuesColor *)colorWithSaturation:(CGFloat)saturation alpha:(CGFloat)alpha;
 - (HuesColor *)colorWithLightness:(CGFloat)lightness;  // HSL
+- (HuesColor *)colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;  // HSL
 - (HuesColor *)colorWithHSBSaturation:(CGFloat)saturation; // HSB
 - (HuesColor *)colorWithBrightness:(CGFloat)brightness;  // HSB
 

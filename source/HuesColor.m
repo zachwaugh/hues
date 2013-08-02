@@ -100,7 +100,7 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 + (HuesColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
-	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:1.0f];
+	return [[HuesColor alloc] initWithRed:red green:green blue:blue alpha:alpha];
 }
 
 + (HuesColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness
@@ -128,6 +128,32 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"color: %p - %@", self, NSStringFromRGB(self.RGB)];
+}
+
+- (BOOL)isEqual:(id)object
+{
+  if (self == object) return YES;
+  if (!object || ![object isKindOfClass:self.class]) return NO;
+  
+  return [self isEqualToColor:object];
+}
+
+- (NSUInteger)hash
+{
+	if (self.createdWithRGB) {
+		return self.hues_red ^ self.hues_green ^ self.hues_blue ^ self.hues_alpha;
+	} else {
+		return self.hues_hue ^ self.hues_saturation ^ self.hues_lightness ^ self.hues_alpha;
+	}
+}
+
+- (BOOL)isEqualToColor:(HuesColor *)color
+{
+	if (self.createdWithRGB) {
+		return (self == color || (self.hues_red == color.hues_red && self.hues_blue == color.hues_blue && self.hues_green == color.hues_green));
+	} else {
+		return (self == color || (self.hues_hue == color.hues_hue && self.hues_saturation == color.hues_saturation && self.hues_lightness == color.hues_lightness));
+	}  
 }
 
 - (void)updateCache
@@ -247,17 +273,32 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 - (HuesColor *)colorWithRed:(CGFloat)red
 {
-	return [self.class colorWithRed:red green:self.green blue:self.blue alpha:self.alpha];
+	return [self colorWithRed:red alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithRed:(CGFloat)red alpha:(CGFloat)alpha
+{
+	return [self.class colorWithRed:red green:self.green blue:self.blue alpha:alpha];
 }
 
 - (HuesColor *)colorWithGreen:(CGFloat)green
 {
-	return [self.class colorWithRed:self.red green:green blue:self.blue alpha:self.alpha];
+	return [self colorWithGreen:green alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithGreen:(CGFloat)green alpha:(CGFloat)alpha
+{
+	return [self.class colorWithRed:self.red green:green blue:self.blue alpha:alpha];
 }
 
 - (HuesColor *)colorWithBlue:(CGFloat)blue
 {
-	return [self.class colorWithRed:self.red green:self.green blue:blue alpha:self.alpha];
+	return [self colorWithBlue:blue alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithBlue:(CGFloat)blue alpha:(CGFloat)alpha
+{
+	return [self.class colorWithRed:self.red green:self.green blue:blue alpha:alpha];
 }
 
 - (HuesColor *)colorWithAlpha:(CGFloat)alpha
@@ -276,12 +317,22 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 
 - (HuesColor *)colorWithSaturation:(CGFloat)saturation
 {
-	return [self.class colorWithHue:self.hue saturation:saturation lightness:self.lightness alpha:self.alpha];
+	return [self colorWithSaturation:saturation alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithSaturation:(CGFloat)saturation alpha:(CGFloat)alpha
+{
+	return [self.class colorWithHue:self.hue saturation:saturation lightness:self.lightness alpha:alpha];
 }
 
 - (HuesColor *)colorWithLightness:(CGFloat)lightness
 {
-	return [self.class colorWithHue:self.hue saturation:self.saturation lightness:lightness alpha:self.alpha];
+	return [self colorWithLightness:lightness alpha:self.alpha];
+}
+
+- (HuesColor *)colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha
+{
+	return [self.class colorWithHue:self.hue saturation:self.saturation lightness:lightness alpha:alpha];
 }
 
 - (HuesColor *)colorWithHSBSaturation:(CGFloat)saturation

@@ -42,6 +42,18 @@
 	expected = HuesRGBMake(0.2, 0.4, 0.6);
 	
 	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+	
+	hsl = HuesHSLMake(300 / 360.0f, 100 / 100.0f, 85 / 100.0f);
+	rgb = HuesHSLToRGB(hsl);
+	expected = HuesRGBMake(255 / 255.0f, 179 / 255.0f, 255 / 255.0f);
+	
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+	
+	hsl = HuesHSLMake(0.8333333f, 1.0f, 0.85f);
+	rgb = HuesHSLToRGB(hsl);
+	expected = HuesRGBMake(1.0f, 0.7019f, 1.0f);
+	
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
 }
 
 - (void)testRGBToHSL
@@ -79,10 +91,13 @@
 	
 	rgb = HuesRGBMake(255 / 255.0f, 0.0f, 4 / 255.0f);
 	hsl = HuesRGBToHSL(rgb);
-	expected = HuesHSLMake(359 / 360.0f, 1.0f, 0.5f);
+	expected = HuesHSLMake(359 / 360.0f, 100 / 100.0f, 50 / 100.0f);
 	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
-	
-	NSLog(@"\nhsl:%@\n---:%@", NSStringFromHSL(hsl), NSStringFromHSL(expected));
+		
+	rgb = HuesRGBMake(255 / 255.0f, 180 / 255.0f, 255 / 255.0f);
+	hsl = HuesRGBToHSL(rgb);
+	expected = HuesHSLMake(300 / 360.0f, 100 / 100.0f, 85 / 100.f);
+	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
 }
 
 - (void)testRGBToHSB
@@ -118,6 +133,11 @@
 	hsb = HuesRGBToHSB(rgb);
 	expected = HuesHSBMake(248.3f / 360.0f, 0.750f, 0.597f);
 	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
+	
+	rgb = HuesRGBMake(255 / 255.0f, 179 / 255.0f, 255 / 255.0f);
+	hsb = HuesRGBToHSB(rgb);
+	expected = HuesHSBMake(300 / 360.0f, 30 / 100.0f, 100 / 100.f);
+	expect(HuesHSBEqualToHSB(hsb, expected)).to.beTruthy();
 }
 
 - (void)testHSBToRGB
@@ -131,6 +151,11 @@
 	hsb = HuesHSBMake(0, 1, 1);
 	rgb = HuesHSBToRGB(hsb);
 	expected = HuesRGBMake(1, 0, 0);
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+	
+	hsb = HuesHSBMake(0, 1, 0);
+	rgb = HuesHSBToRGB(hsb);
+	expected = HuesRGBMake(0, 0, 0);
 	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
 	
 	hsb = HuesHSBMake(120.0f / 360.0f, 1.0, 0.5);
@@ -152,6 +177,26 @@
 	rgb = HuesHSBToRGB(hsb);
 	expected = HuesRGBMake(0.211f, 0.149f, 0.597f);
 	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+	
+	hsb = HuesHSBMake(300 / 360.0f, 30 / 100.0f, 100 / 100.0f);
+	rgb = HuesHSBToRGB(hsb);
+	expected = HuesRGBMake(255 / 255.0f, 179 / 255.0f, 255 / 255.0f);
+	expect(HuesRGBEqualToRGB(rgb, expected)).to.beTruthy();
+}
+
+- (void)testHSBToHSL
+{
+	HuesHSB hsb = HuesHSBMake(0, 1, 0);
+	HuesHSL hsl = HuesHSBToHSL(hsb);
+	HuesHSL expected = HuesHSLMake(0, 0, 0);
+	
+	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
+	
+	hsb = HuesHSBMake(0, 0, 0);
+	hsl = HuesHSBToHSL(hsb);
+	expected = HuesHSLMake(0, 0, 0);
+	
+	expect(HuesHSLEqualToHSL(hsl, expected)).to.beTruthy();
 }
 
 @end

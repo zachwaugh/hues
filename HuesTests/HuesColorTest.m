@@ -7,12 +7,16 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "NSColor+Hues.h"
 #import "HuesColor.h"
+
+@interface HuesColor (private)
+
+- (NSInteger)relativeBrightness;
+
+@end
 
 @interface HuesColorTest : SenTestCase
 
-- (void)testConvertedColor;
 - (void)testIsDark;
 - (void)testRelativeBrightness;
 
@@ -40,23 +44,20 @@
 	expect(color.alpha).to.equal(1.0f);
 }
 
-- (void)testConvertedColor
-{
-	NSColor *color = [NSColor whiteColor];
-	expect([color hues_convertedColor]).toNot.equal(color);
-	
-	color = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-	expect([color hues_convertedColor]).to.equal(color);
-	
-	color = [NSColor colorWithDeviceRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-	expect([color hues_convertedColor]).to.equal(color);
-}
-
 - (void)testIsDark
 {
-	expect([[NSColor whiteColor] hues_isColorDark]).to.beFalsy();
-	expect([[NSColor blackColor] hues_isColorDark]).to.beTruthy();
-	expect([[NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.0 alpha:1.0] hues_isColorDark]).to.beTruthy();
+	HuesColor *color = [HuesColor colorWithRed:1 green:1 blue:1];
+	
+	// White
+	expect([color isDark]).to.beFalsy();
+	
+	// Black
+	color = [HuesColor colorWithRed:0 green:0 blue:0];
+	expect([color isDark]).to.beTruthy();
+	
+	// Red
+	color = [HuesColor colorWithRed:1 green:0 blue:0];
+	expect([color isDark]).to.beTruthy();
 	
 	// This fails - is it actually dark?
 	//expect([[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] hues_isColorDark]).to.beFalsy();
@@ -64,10 +65,19 @@
 
 - (void)testRelativeBrightness
 {
-	expect([[NSColor whiteColor] hues_relativeBrightness]).to.equal(255);
-	expect([[NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.0 alpha:1.0] hues_relativeBrightness]).to.equal(125);
-	expect([[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1.0] hues_relativeBrightness]).to.equal(128);
-	expect([[NSColor blackColor] hues_relativeBrightness]).to.equal(0);
+	HuesColor *color;
+	
+	color = [HuesColor colorWithRed:1 green:1 blue:1];
+	expect([color relativeBrightness]).to.equal(255);
+	
+	color = [HuesColor colorWithRed:1.0 green:0.0 blue:0.0];
+	expect([color relativeBrightness]).to.equal(125);
+	
+	color = [HuesColor colorWithRed:0.5 green:0.5 blue:0.5];
+	expect([color relativeBrightness]).to.equal(128);
+	
+	color = [HuesColor colorWithRed:0 green:0 blue:0];
+	expect([color relativeBrightness]).to.equal(0);
 }
 
 //

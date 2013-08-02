@@ -33,14 +33,8 @@
 #pragma mark - HuesColorWheelViewDelegate
 
 - (void)colorWheelDidChangeSaturation:(CGFloat)saturation brightness:(CGFloat)brightness
-{
-//	if (brightness <= 0) brightness = 0.00001;
-//	if (brightness > 1) brightness = 1;
-//	if (saturation <= 0) saturation = 0.00001;
-//	if (saturation > 1) saturation = 1;
-	
+{	
 	HuesColor *color = [HuesColor colorWithHue:self.color.hue saturation:saturation brightness:brightness alpha:self.color.alpha];
-
 	[self updateColor:color];
 }
 

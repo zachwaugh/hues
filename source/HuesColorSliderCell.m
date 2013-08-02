@@ -9,7 +9,14 @@
 #import "HuesColorSliderCell.h"
 #import "HuesColorSlider.h"
 
+static NSColor *_transparentFill = nil;
+
 @implementation HuesColorSliderCell
+
++ (void)initialize
+{
+	_transparentFill = [NSColor colorWithPatternImage:[NSImage imageNamed:@"transparency"]];
+}
 
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
 {
@@ -19,6 +26,9 @@
 	NSInteger radius = round(trackRect.size.height / 2);
 	
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:trackRect xRadius:radius yRadius:radius];
+	[[NSColor whiteColor] set];
+	[path fill]; // fill background with solid white for transparent sliders
+	
 	[slider.gradient drawInBezierPath:path angle:0];
 	
 	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
@@ -34,16 +44,6 @@
 	rect.size.width = knob.size.width;
 	rect.size.height = knob.size.height;
 	[knob drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
-	
-//  [super drawKnob:knobRect];
-//	
-//	HuesColorSlider *slider = (HuesColorSlider *)[self controlView];
-//	[slider.currentColor set];
-//	NSRect innerRect = NSInsetRect(knobRect, 8, 8);
-//	[[NSBezierPath bezierPathWithOvalInRect:innerRect] fill];
-//	
-//	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
-//	[[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(innerRect, 0.5, 0.5)] stroke];
 }
 
 @end

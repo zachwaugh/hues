@@ -12,8 +12,11 @@
 
 - (void)drawWellInside:(NSRect)insideRect
 {
-	[self.color set];
+	[[NSColor colorWithPatternImage:[NSImage imageNamed:@"transparency"]] set];
 	NSRectFill(self.bounds);
+	
+	[self.color set];
+	NSRectFillUsingOperation(self.bounds, NSCompositeSourceOver);
 	
 	// light gray outer border
 	[[NSColor colorWithCalibratedWhite:0.75 alpha:1.0] set];

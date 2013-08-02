@@ -17,20 +17,18 @@ HuesHSB HuesRGBToHSB(HuesRGB rgb)
 	CGFloat min = MIN(MIN(r, g), b);
 	CGFloat chroma = max - min;
 	
-	CGFloat hue;
+	CGFloat hue = 0.0f;
 	
 	if (chroma == 0.0f) {
 		hue = 0.f;
-	} else if (max == r) {
-		hue = fmodf(((g - b) / chroma), 6.f);
-	} else if (max == g) {
-		hue = ((b - r) / chroma) + 2.0f;
 	} else if (max == b) {
 		hue = ((r - g) / chroma) + 4.f;
-	} else {
-		hue = 0.f;
-	}
-	
+	} else if (max == g) {
+		hue = ((b - r) / chroma) + 2.0f;
+	} else if (max == r) {
+		hue = fmodf(((g - b) / chroma), 6.0f);
+	} 
+		
 	hue = (hue * 60.0f) / 360.0f;
 	
 	CGFloat brightness = max;
@@ -88,19 +86,24 @@ HuesHSL HuesRGBToHSL(HuesRGB rgb)
 	
 	if (chroma != 0) {
 		// hue
-		if (max == r) {
-			hue = fmodf(((g - b) / chroma), 6.0f);
+		if (max == b) {
+			hue = ((r - g) / chroma) + 4.f;
 		} else if (max == g) {
 			hue = ((b - r) / chroma) + 2.0f;
-		} else if (max == b) {
-			hue = ((r - g) / chroma) + 4.0f;
+		} else if (max == r) {
+			hue = fmodf(((g - b) / chroma), 6.0f);
+			
+			// Fix issues with modulo on negative number
+			if (hue < 0) {
+				hue += 6;
+			}
 		}
 		
 		saturation = chroma / (1 - fabsf(2 * lightness - 1));
 	}
-	
+		
 	hue = (hue * 60.0f) / 360.0f;
-
+	
 	return HuesHSLMake(hue, saturation, lightness);
 }
 
@@ -150,6 +153,14 @@ HuesHSL HuesHSBToHSL(HuesHSB hsb)
 	saturation /= (lightness <= 1) ? lightness : 2 - lightness;
 	lightness /= 2;
 	
+	if (isnan(saturation)) {
+		saturation = 0.0f;
+	}
+	
+	if (isnan(lightness)) {
+		lightness = 0.0f;
+	}
+
 	return HuesHSLMake(hue, saturation, lightness);
 }
 

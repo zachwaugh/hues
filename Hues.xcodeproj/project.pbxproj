@@ -35,7 +35,6 @@
 		921DB1EA17971C9F00ADDB2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921DB1E817971C9F00ADDB2D /* InfoPlist.strings */; };
 		921DB1F417971E1900ADDB2D /* HuesColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6B71393F1E70072C412 /* HuesColorTest.m */; };
 		921DB1F617971E1900ADDB2D /* HuesColorParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC7178EFD3400E699E4 /* HuesColorParserTest.m */; };
-		921DB1F817971E1900ADDB2D /* HuesColorFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */; };
 		921DB1FA17971E1900ADDB2D /* HuesNSMutableArray+MoveTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5781796406A00AEF7DE /* HuesNSMutableArray+MoveTest.m */; };
 		9225942917AB25FC00401A7B /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942817AB25FC00401A7B /* HockeySDK.framework */; };
 		9225942B17AB264800401A7B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942A17AB264800401A7B /* Sparkle.framework */; };
@@ -65,9 +64,10 @@
 		9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE6A1393EC9F00935FAC /* InfoPlist.strings */; };
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
 		926ACEF11790A4DF00C8E1BE /* HuesLoupeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */; };
+		9273E51B17AB5A2A00360779 /* transparency.png in Resources */ = {isa = PBXBuildFile; fileRef = 9273E51917AB5A2A00360779 /* transparency.png */; };
+		9273E51C17AB5A2A00360779 /* transparency@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9273E51A17AB5A2A00360779 /* transparency@2x.png */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
-		92A6694017A02C3900F037DC /* HuesPaletteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6693F17A02C3900F037DC /* HuesPaletteTest.m */; };
 		92A6694417A032AC00F037DC /* HuesPalettesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6694217A032AC00F037DC /* HuesPalettesController.m */; };
 		92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A6694317A032AC00F037DC /* HuesPalettesController.xib */; };
 		92A6698817A0614700F037DC /* HuesPaletteItemCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698717A0614700F037DC /* HuesPaletteItemCellView.m */; };
@@ -240,17 +240,15 @@
 		9264FE6B1393EC9F00935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hues-Prefix.pch"; sourceTree = "<group>"; };
 		9264FE6E1393EC9F00935FAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		926ACEEA1790523A00C8E1BE /* HuesColorFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorFormatterTest.h; sourceTree = "<group>"; };
-		926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorFormatterTest.m; sourceTree = "<group>"; };
 		926ACEEF1790A4DF00C8E1BE /* HuesLoupeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesLoupeController.h; sourceTree = "<group>"; };
 		926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeController.m; sourceTree = "<group>"; };
+		9273E51917AB5A2A00360779 /* transparency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparency.png; sourceTree = "<group>"; };
+		9273E51A17AB5A2A00360779 /* transparency@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transparency@2x.png"; sourceTree = "<group>"; };
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
 		9286270516405BF000DA16BE /* HuesGradientLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGradientLine.h; sourceTree = "<group>"; };
 		9286270616405BF000DA16BE /* HuesGradientLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGradientLine.m; sourceTree = "<group>"; };
-		92A6693E17A02C3900F037DC /* HuesPaletteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteTest.h; sourceTree = "<group>"; };
-		92A6693F17A02C3900F037DC /* HuesPaletteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteTest.m; sourceTree = "<group>"; };
 		92A6694117A032AC00F037DC /* HuesPalettesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalettesController.h; sourceTree = "<group>"; };
 		92A6694217A032AC00F037DC /* HuesPalettesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalettesController.m; sourceTree = "<group>"; };
 		92A6694317A032AC00F037DC /* HuesPalettesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPalettesController.xib; sourceTree = "<group>"; };
@@ -409,14 +407,10 @@
 				9218A5C5179B596900AEF7DE /* HuesColor+FormattingTest.m */,
 				92F13DC6178EFD3400E699E4 /* HuesColorParserTest.h */,
 				92F13DC7178EFD3400E699E4 /* HuesColorParserTest.m */,
-				926ACEEA1790523A00C8E1BE /* HuesColorFormatterTest.h */,
-				926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */,
 				9218A5BE179B281100AEF7DE /* HuesColorConversionTest.h */,
 				9218A5BF179B281100AEF7DE /* HuesColorConversionTest.m */,
 				9218A5771796406A00AEF7DE /* HuesNSMutableArray+MoveTest.h */,
 				9218A5781796406A00AEF7DE /* HuesNSMutableArray+MoveTest.m */,
-				92A6693E17A02C3900F037DC /* HuesPaletteTest.h */,
-				92A6693F17A02C3900F037DC /* HuesPaletteTest.m */,
 				921DB1E617971C9F00ADDB2D /* Supporting Files */,
 			);
 			path = HuesTests;
@@ -571,6 +565,8 @@
 				92C1144B179E26470092E3CB /* copy-button@2x.png */,
 				92C1144E179E275D0092E3CB /* copy-button-down.png */,
 				92C1144F179E275D0092E3CB /* copy-button-down@2x.png */,
+				9273E51917AB5A2A00360779 /* transparency.png */,
+				9273E51A17AB5A2A00360779 /* transparency@2x.png */,
 			);
 			name = Resources;
 			path = ../resources;
@@ -796,6 +792,8 @@
 				92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */,
 				92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */,
 				92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */,
+				9273E51B17AB5A2A00360779 /* transparency.png in Resources */,
+				9273E51C17AB5A2A00360779 /* transparency@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,11 +864,9 @@
 			files = (
 				921DB1F417971E1900ADDB2D /* HuesColorTest.m in Sources */,
 				921DB1F617971E1900ADDB2D /* HuesColorParserTest.m in Sources */,
-				921DB1F817971E1900ADDB2D /* HuesColorFormatterTest.m in Sources */,
 				921DB1FA17971E1900ADDB2D /* HuesNSMutableArray+MoveTest.m in Sources */,
 				9218A5C0179B281100AEF7DE /* HuesColorConversionTest.m in Sources */,
 				9218A5C6179B596900AEF7DE /* HuesColor+FormattingTest.m in Sources */,
-				92A6694017A02C3900F037DC /* HuesPaletteTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,7 +1141,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Zachary Waugh (WJQ3EJHJF5)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1173,7 +1169,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Zachary Waugh (WJQ3EJHJF5)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

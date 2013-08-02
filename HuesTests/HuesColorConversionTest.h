@@ -15,5 +15,6 @@
 - (void)testRGBToHSL;
 - (void)testHSBToRGB;
 - (void)testRGBToHSB;
+- (void)testHSBToHSL;
 
 @end

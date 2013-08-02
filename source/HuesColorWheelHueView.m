@@ -57,6 +57,13 @@
 - (void)mouseDragged:(NSEvent *)event
 {
 	NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
+	
+	if (point.y < NSMinY(self.bounds)) {
+		point.y = NSMinY(self.bounds);
+	} else if (point.y > NSMaxY(self.bounds)) {
+		point.y = NSMaxY(self.bounds);
+	}
+	
 	self.lastDrag = point;
 	[self setNeedsDisplay:YES];
 	
