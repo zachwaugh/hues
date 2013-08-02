@@ -139,7 +139,7 @@
 		[self.alternateFormats addItemWithTitle:value];
 	}
 	
-	[self.alternateFormats selectItemAtIndex:selectedIndex];
+	[self.alternateFormats selectItemAtIndex:(selectedIndex != -1) ? selectedIndex : 2];
 }
 
 - (void)colorFormatsUpdated:(NSNotification *)notification
@@ -167,7 +167,7 @@
 		[self.alternateFormats addItemWithTitle:value];
 	}
 	
-	[self.alternateFormats selectItemAtIndex:selectedIndex];
+	[self.alternateFormats selectItemAtIndex:(selectedIndex != -1) ? selectedIndex : 2];
 }
 
 - (NSString *)stringForPrimaryFormat

@@ -37,6 +37,11 @@
 		921DB1F617971E1900ADDB2D /* HuesColorParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC7178EFD3400E699E4 /* HuesColorParserTest.m */; };
 		921DB1F817971E1900ADDB2D /* HuesColorFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 926ACEEB1790523A00C8E1BE /* HuesColorFormatterTest.m */; };
 		921DB1FA17971E1900ADDB2D /* HuesNSMutableArray+MoveTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5781796406A00AEF7DE /* HuesNSMutableArray+MoveTest.m */; };
+		9225942917AB25FC00401A7B /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942817AB25FC00401A7B /* HockeySDK.framework */; };
+		9225942B17AB264800401A7B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942A17AB264800401A7B /* Sparkle.framework */; };
+		9225943617AB26D900401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc in Copy XPC Services */ = {isa = PBXBuildFile; fileRef = 9225943417AB26D300401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc */; };
+		9225943817AB30B400401A7B /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942A17AB264800401A7B /* Sparkle.framework */; };
+		9225943917AB30B400401A7B /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942817AB25FC00401A7B /* HockeySDK.framework */; };
 		9228C51816F16A7500C57A48 /* magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51416F16A7500C57A48 /* magnifier.png */; };
 		9228C51916F16A7500C57A48 /* magnifier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51516F16A7500C57A48 /* magnifier@2x.png */; };
 		9228C51A16F16A7500C57A48 /* slider-knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51616F16A7500C57A48 /* slider-knob.png */; };
@@ -120,6 +125,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9225943317AB267100401A7B /* Copy XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/XPCServices;
+			dstSubfolderSpec = 1;
+			files = (
+				9225943617AB26D900401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc in Copy XPC Services */,
+			);
+			name = "Copy XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9225943717AB30A500401A7B /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9225943817AB30B400401A7B /* Sparkle.framework in Copy Frameworks */,
+				9225943917AB30B400401A7B /* HockeySDK.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		317FB30131B84CCFA90887F2 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
 		4D389B701E4D4819BA28ED8D /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -164,6 +195,9 @@
 		921DB1E717971C9F00ADDB2D /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		921DB1E917971C9F00ADDB2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		921DB1EE17971C9F00ADDB2D /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
+		9225942817AB25FC00401A7B /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
+		9225942A17AB264800401A7B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		9225943417AB26D300401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.andymatuschak.Sparkle.SandboxService.xpc; sourceTree = "<group>"; };
 		9228C51416F16A7500C57A48 /* magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifier.png; sourceTree = "<group>"; };
 		9228C51516F16A7500C57A48 /* magnifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifier@2x.png"; sourceTree = "<group>"; };
 		9228C51616F16A7500C57A48 /* slider-knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob.png"; sourceTree = "<group>"; };
@@ -308,6 +342,8 @@
 			files = (
 				9264FE621393EC9F00935FAC /* Cocoa.framework in Frameworks */,
 				19C657B3150F44E685004A9E /* libPods.a in Frameworks */,
+				9225942917AB25FC00401A7B /* HockeySDK.framework in Frameworks */,
+				9225942B17AB264800401A7B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +455,8 @@
 		9264FE601393EC9F00935FAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9225942A17AB264800401A7B /* Sparkle.framework */,
+				9225942817AB25FC00401A7B /* HockeySDK.framework */,
 				9228C51C16F2B0D800C57A48 /* SenTestingKit.framework */,
 				9264FE611393EC9F00935FAC /* Cocoa.framework */,
 				9264FE631393EC9F00935FAC /* Other Frameworks */,
@@ -461,6 +499,7 @@
 		9264FE681393EC9F00935FAC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9225943417AB26D300401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc */,
 				9264FE6E1393EC9F00935FAC /* main.m */,
 				9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */,
 				9264FE691393EC9F00935FAC /* Hues-Info.plist */,
@@ -659,6 +698,8 @@
 				9264FE5A1393EC9F00935FAC /* Frameworks */,
 				9264FE5B1393EC9F00935FAC /* Resources */,
 				E14492E26FB340F089DF6E69 /* Copy Pods Resources */,
+				9225943317AB267100401A7B /* Copy XPC Services */,
+				9225943717AB30A500401A7B /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1002,12 +1043,17 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1096,12 +1142,17 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1120,11 +1171,16 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

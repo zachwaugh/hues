@@ -19,6 +19,11 @@
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
 
+#ifndef APP_STORE
+#import <Sparkle/Sparkle.h>
+#define SPARKLE_FEED @"https://rink.hockeyapp.net/api/2/apps/6e6b92dcca1dbb0b4eb922bfa9942688"
+#endif
+
 @interface HuesAppDelegate ()
 
 @property (strong) HuesWindowController *windowController;
@@ -36,14 +41,30 @@
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
   [HuesPreferences registerDefaults];
+	
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	BITSystemProfile *bsp = [BITSystemProfile sharedSystemProfile];
+	[nc addObserver:bsp selector:@selector(startUsage) name:NSApplicationDidFinishLaunchingNotification object:nil];
+	[nc addObserver:bsp selector:@selector(stopUsage) name:NSApplicationWillTerminateNotification object:nil];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[self checkForBetaExpiration];
 	
-	self.windowController = [[HuesWindowController alloc] init];
-	[self.windowController showWindow:nil];
+#ifndef APP_STORE
+	SUUpdater *updater = [SUUpdater sharedUpdater];
+  updater.automaticallyChecksForUpdates = YES;
+  updater.feedURL = [NSURL URLWithString:SPARKLE_FEED];
+  updater.sendsSystemProfile = YES;
+#else
+	// Remove Sparkle menu in app store build
+  [self.checkForUpdatesMenuItem.menu removeItem:self.checkForUpdatesMenuItem];
+#endif
+	
+	// HockeyApp
+	[[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"6e6b92dcca1dbb0b4eb922bfa9942688" companyName:@"Giant Comet" crashReportManagerDelegate:self];
+	[[BITHockeyManager sharedHockeyManager] startManager];
 	
 	[self configureApplicationPresentation];
 	[self registerShortcuts];
@@ -52,8 +73,7 @@
 	//[HuesSyncManager sharedManager];
 	
 	[[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
-	
-	[[HuesPalettesManager sharedManager] palettes];
+	[HuesPalettesManager sharedManager];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -127,13 +147,6 @@
 	self.statusItem.image = [NSImage imageNamed:@"hues_menubar_normal"];
 	self.statusItem.alternateImage = [NSImage imageNamed:@"hues_menubar_highlight"];
 	self.statusItem.highlightMode = YES;
-	
-//	HuesStatusItemView *view = [[HuesStatusItemView alloc] initWithFrame:NSZeroRect];
-//	view.target = self;
-//	view.action = @selector(toggleWindow:);
-//	view.menu = self.optionsMenu;
-//	view.statusItem = self.statusItem;
-//	self.statusItem.view = view;
 }
 
 - (void)toggleWindow:(id)sender
@@ -154,6 +167,29 @@
   
   [self.preferencesController showWindow:sender];
 }
+
+#pragma mark - Hockey SDK
+
+- (void)showMainApplicationWindow
+{
+	self.windowController = [[HuesWindowController alloc] init];
+	[self.windowController showWindow:nil];
+}
+
+#pragma mark - Sparkle
+
+#ifndef APP_STORE
+
+- (void)checkForUpdates:(id)sender
+{
+  [[SUUpdater sharedUpdater] checkForUpdates:sender];
+}
+
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile
+{
+	return [[BITSystemProfile sharedSystemProfile] systemUsageData];
+}
+#endif
 
 #pragma mark - Beta
 

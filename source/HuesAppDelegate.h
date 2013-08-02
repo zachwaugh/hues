@@ -7,9 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <HockeySDK/HockeySDK.h>
 
-@interface HuesAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
+@interface HuesAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BITCrashReportManagerDelegate>
+
+@property (weak) IBOutlet NSMenuItem *checkForUpdatesMenuItem;
 
 - (void)showPreferences:(id)sender;
+
+#ifndef APP_STORE
+- (IBAction)checkForUpdates:(id)sender;
+#endif
 
 @end
