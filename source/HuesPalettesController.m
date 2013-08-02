@@ -48,7 +48,7 @@
 	if (self.awake) return;
 	self.awake = YES;
 	
-	self.tableView.doubleAction = @selector(addItem:);
+	self.tableView.doubleAction = @selector(doubleClickPalette:);
 	self.tableView.target = self;
 	[self refreshPalettes];
 }
@@ -199,6 +199,17 @@
 
 #pragma mark - Items
 
+- (void)doubleClickPalette:(id)sender
+{
+	NSInteger clickedRow = self.tableView.clickedRow;
+	
+	if (clickedRow == -1) {
+		[self addItem:nil];
+	} else {
+		[self.tableView editColumn:0 row:clickedRow withEvent:nil select:YES];
+	}
+}
+
 - (IBAction)addItem:(id)sender
 {
 	NSManagedObjectContext *moc = [HuesPalettesManager sharedManager].managedObjectContext;
@@ -219,7 +230,11 @@
 - (IBAction)removeItem:(id)sender
 {
 	NSIndexSet *indexes = [self.tableView selectedRowIndexes];
-	[self.currentPalette removeColorsAtIndexes:indexes];	
+	
+	NSMutableOrderedSet *colors = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.currentPalette.colors];
+	[colors removeObjectsAtIndexes:indexes];
+	self.currentPalette.colors = colors;
+	
 	[self.tableView reloadData];
 }
 
