@@ -5,6 +5,25 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Bump build&#10;&#10;configuration = ENV[&apos;CONFIGURATION&apos;]&#10;plist = ENV[&apos;PROJECT_DIR&apos;] + &apos;/&apos; + ENV[&apos;INFOPLIST_FILE&apos;]&#10;&#10;# Only bump build number for release builds&#10;if configuration == &apos;Release&apos;&#10;current_build = `/usr/libexec/PlistBuddy -c &quot;Print CFBundleVersion&quot; #{plist}`.chomp().to_i&#10;new_build = current_build + 1&#10;`/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion #{new_build}&quot; #{plist}`&#10;end"
+               shellToInvoke = "/usr/bin/env ruby">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "9264FE5C1393EC9F00935FAC"
+                     BuildableName = "Hues.app"
+                     BlueprintName = "Hues"
+                     ReferencedContainer = "container:Hues.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -85,7 +104,16 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "App Store"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "open -a HockeyApp &quot;${ARCHIVE_PATH}&quot;">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>

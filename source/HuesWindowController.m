@@ -226,6 +226,12 @@
 	[self.mixerContainerView addSubview:mixerView];	
 }
 
+- (void)selectTabAtIndex:(NSInteger)index
+{
+	[self.scopeBar selectTabAtIndex:index];
+	[self scopeBarDidSelectTabWithTitle:self.scopeBar.titles[index]];
+}
+
 #pragma mark - Loupe
 
 - (void)showLoupe:(id)sender

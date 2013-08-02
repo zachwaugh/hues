@@ -30,5 +30,6 @@
 //- (void)showWindow:(id)sender;
 - (IBAction)showLoupe:(id)sender;
 - (IBAction)didUpdateColorText:(id)sender;
+- (void)selectTabAtIndex:(NSInteger)index;
 
 @end

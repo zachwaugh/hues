@@ -42,6 +42,7 @@
 		9225943617AB26D900401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc in Copy XPC Services */ = {isa = PBXBuildFile; fileRef = 9225943417AB26D300401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc */; };
 		9225943817AB30B400401A7B /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942A17AB264800401A7B /* Sparkle.framework */; };
 		9225943917AB30B400401A7B /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9225942817AB25FC00401A7B /* HockeySDK.framework */; };
+		9225943C17AB36AA00401A7B /* HuesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9225943B17AB36AA00401A7B /* HuesWindow.m */; };
 		9228C51816F16A7500C57A48 /* magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51416F16A7500C57A48 /* magnifier.png */; };
 		9228C51916F16A7500C57A48 /* magnifier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51516F16A7500C57A48 /* magnifier@2x.png */; };
 		9228C51A16F16A7500C57A48 /* slider-knob.png in Resources */ = {isa = PBXBuildFile; fileRef = 9228C51616F16A7500C57A48 /* slider-knob.png */; };
@@ -198,6 +199,8 @@
 		9225942817AB25FC00401A7B /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		9225942A17AB264800401A7B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		9225943417AB26D300401A7B /* com.andymatuschak.Sparkle.SandboxService.xpc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = com.andymatuschak.Sparkle.SandboxService.xpc; sourceTree = "<group>"; };
+		9225943A17AB36AA00401A7B /* HuesWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesWindow.h; sourceTree = "<group>"; };
+		9225943B17AB36AA00401A7B /* HuesWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesWindow.m; sourceTree = "<group>"; };
 		9228C51416F16A7500C57A48 /* magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifier.png; sourceTree = "<group>"; };
 		9228C51516F16A7500C57A48 /* magnifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifier@2x.png"; sourceTree = "<group>"; };
 		9228C51616F16A7500C57A48 /* slider-knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob.png"; sourceTree = "<group>"; };
@@ -525,8 +528,8 @@
 			isa = PBXGroup;
 			children = (
 				92E7D6A81393EDFA0072C412 /* MainMenu.xib */,
-				92E7D69C1393ED830072C412 /* HuesPreferencesController.xib */,
 				92FBF1121666BFBB00BDC670 /* HuesWindowController.xib */,
+				92E7D69C1393ED830072C412 /* HuesPreferencesController.xib */,
 				92A6694317A032AC00F037DC /* HuesPalettesController.xib */,
 				921A8E7D167FE757002FCC42 /* HuesRGBViewController.xib */,
 				921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */,
@@ -604,10 +607,12 @@
 		92E7D6B41393EFDC0072C412 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				928626FE164031B600DA16BE /* HuesStatusItemView.h */,
-				928626FF164031B600DA16BE /* HuesStatusItemView.m */,
+				9225943A17AB36AA00401A7B /* HuesWindow.h */,
+				9225943B17AB36AA00401A7B /* HuesWindow.m */,
 				92FBF1181667049400BDC670 /* HuesWindowContentView.h */,
 				92FBF1191667049400BDC670 /* HuesWindowContentView.m */,
+				928626FE164031B600DA16BE /* HuesStatusItemView.h */,
+				928626FF164031B600DA16BE /* HuesStatusItemView.m */,
 				92E7D67A1393ED080072C412 /* HuesColorsView.h */,
 				92E7D67B1393ED080072C412 /* HuesColorsView.m */,
 				923CA14F1467394E003CC8BB /* HuesLoupeView.h */,
@@ -922,6 +927,7 @@
 				920BF0FE17A9A56D003534F0 /* HuesPaletteItem.m in Sources */,
 				920BF10117A9A56E003534F0 /* HuesPalette.m in Sources */,
 				920BF10417AADEDF003534F0 /* HuesColorDefines.m in Sources */,
+				9225943C17AB36AA00401A7B /* HuesWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,7 +1034,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1107,7 +1113,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1127,7 +1133,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;

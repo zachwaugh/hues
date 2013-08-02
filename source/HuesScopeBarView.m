@@ -9,7 +9,7 @@
 #import "HuesScopeBarView.h"
 #import "HuesScopeBarButton.h"
 
-#define PADDING 2
+#define PADDING 1
 
 @interface HuesScopeBarView ()
 
@@ -83,13 +83,7 @@
 
 - (void)selectTabAtIndex:(NSInteger)index
 {
-	for (int i = 0; i < self.tabs.count; i++) {
-		if (i == index) {
-			[(HuesScopeBarButton *)self.tabs[i] setSelected:YES];
-		} else {
-			[(HuesScopeBarButton *)self.tabs[i] setSelected:NO];
-		}
-	}
+	[self selectTab:(HuesScopeBarButton *)self.tabs[index]];
 }
 
 - (void)selectTab:(HuesScopeBarButton *)button

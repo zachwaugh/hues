@@ -38,7 +38,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.7.3</string>
+	<string>10.8</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSMainNibFile</key>
