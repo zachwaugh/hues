@@ -1169,7 +1169,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Zachary Waugh (WJQ3EJHJF5)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Giant Comet";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
