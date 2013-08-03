@@ -27,7 +27,8 @@
 - (void)updateInterfaceWithColor:(HuesColor *)color
 {
 	self.color = color;
-	self.colorWheelView.color = color.deviceColor;
+	self.colorWheelView.color = color;
+	[self.hueView updateColor:color];
 }
 
 #pragma mark - HuesColorWheelViewDelegate

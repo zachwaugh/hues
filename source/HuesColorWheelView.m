@@ -9,6 +9,7 @@
 #import "HuesColorWheelView.h"
 #import "HuesColorParser.h"
 #import "HuesColorConversion.h"
+#import "HuesColor.h"
 
 #define CIRCLE_RADIUS 2
 
@@ -18,7 +19,6 @@
 @interface HuesColorWheelView ()
 
 @property (strong) NSImage *image;
-@property (assign) NSRect dragRect;
 
 @end
 
@@ -29,8 +29,7 @@
 	self = [super initWithFrame:frame];
 	if (!self) return nil;
 	
-	_color = [NSColor colorWithCalibratedHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
-	_dragRect = NSZeroRect;
+	_color = [HuesColor colorWithHue:1.0 saturation:1.0 brightness:1.0 alpha:1.0];
 	
 	return self;
 }
@@ -40,20 +39,18 @@
 	return YES;
 }
 
-- (void)setColor:(NSColor *)color
+- (void)setColor:(HuesColor *)color
 {
-	if (_color.hueComponent == color.hueComponent) return;
-
 	_color = color;
 	[self cacheBitmap];
 	[self setNeedsDisplay:YES];
 }
 
 - (void)cacheBitmap
-{	
+{
 	CGFloat width = self.bounds.size.width;
 	CGFloat height = self.bounds.size.height;
-	CGFloat hue = self.color.hueComponent;
+	CGFloat hue = self.color.hue;
 	
 	unsigned char *buffer = calloc(height * width * 4, 4);
 	
@@ -100,8 +97,13 @@
 	NSRect rect = self.bounds;
 	[self.image drawInRect:self.bounds fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
 
+	CGFloat x = self.color.HSBSaturation * self.bounds.size.width;
+	CGFloat y = self.color.brightness * self.bounds.size.height;
+	
+	NSRect circleRect = NSMakeRect(x - CIRCLE_RADIUS, y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
+	
 	[[NSColor whiteColor] set];
-	[[NSBezierPath bezierPathWithOvalInRect:self.dragRect] stroke];
+	[[NSBezierPath bezierPathWithOvalInRect:circleRect] stroke];
 	
 	// Border
 	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
@@ -125,19 +127,6 @@
 	return NO;
 }
 
-- (void)moveDown:(id)sender
-{
-	// current point
-	CGPoint point = self.dragRect.origin;
-	point.x += CIRCLE_RADIUS;
-	point.y += CIRCLE_RADIUS;
-	
-	// Adjust point
-	point.y -= 1;
-	
-	[self updateColorWithPoint:point];
-}
-
 - (void)updateColorWithPoint:(NSPoint)point
 {
 	// Make sure point is constrained
@@ -152,12 +141,11 @@
 	} else if (point.y > NSMaxY(self.bounds)) {
 		point.y = NSMaxY(self.bounds);
 	}
-	
-	self.dragRect = NSMakeRect(point.x - CIRCLE_RADIUS, point.y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
-	[self setNeedsDisplay:YES];
 
 	CGFloat saturation = point.x / self.bounds.size.width;
 	CGFloat brightness = point.y / self.bounds.size.height;
+	
+	self.color = [HuesColor colorWithHue:self.color.hue saturation:saturation brightness:brightness];
 	
 	if (self.delegate) {
 		[self.delegate colorWheelDidChangeSaturation:saturation brightness:brightness];

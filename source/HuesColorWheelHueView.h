@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColor;
+
 @protocol HuesColorWheelHueViewDelegate <NSObject>
 
 - (void)hueChanged:(CGFloat)hue;
@@ -17,5 +19,7 @@
 @interface HuesColorWheelHueView : NSView
 
 @property (unsafe_unretained) IBOutlet id<HuesColorWheelHueViewDelegate> delegate;
+
+- (void)updateColor:(HuesColor *)color;
 
 @end

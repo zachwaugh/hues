@@ -7,10 +7,11 @@
 //
 
 #import "HuesColorWheelHueView.h"
+#import "HuesColor.h"
 
 @interface HuesColorWheelHueView ()
 
-@property (assign) NSPoint lastDrag;
+@property (assign, nonatomic) CGFloat hue;
 
 @end
 
@@ -18,12 +19,24 @@
 
 - (void)awakeFromNib
 {
-	self.lastDrag = NSMakePoint(0, 1);
+	self.hue = 0.0f;
+}
+
+- (void)updateColor:(HuesColor *)color
+{
+	self.hue = color.hue;
+}
+
+- (void)setHue:(CGFloat)hue
+{
+	_hue = hue;
+	[self setNeedsDisplay:YES];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
 	NSRect rect = self.bounds;
+	CGFloat hueY = self.hue * NSHeight(rect);
 	
 	// Loop through each pixel, figure out color, and draw vertical line
 	for (int y = 0; y < NSHeight(rect); y++) {
@@ -35,7 +48,7 @@
 	
 	// Current hue
 	[[NSColor whiteColor] set];
-	[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMinX(rect), round(self.lastDrag.y) - 1.5, NSWidth(rect), 2)] stroke];
+	[[NSBezierPath bezierPathWithRect:NSMakeRect(NSMinX(rect), round(hueY) - 1.5, NSWidth(rect), 2)] stroke];
 	
 	// Stroke border
 	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
@@ -45,12 +58,10 @@
 - (void)mouseDown:(NSEvent *)event
 {
 	NSPoint point = [self convertPoint:event.locationInWindow fromView:nil];
-	self.lastDrag = point;
-	[self setNeedsDisplay:YES];
-	CGFloat hue = point.y / self.bounds.size.height;
+	self.hue = point.y / NSHeight(self.bounds);
 	
 	if (self.delegate) {
-		[self.delegate hueChanged:hue];
+		[self.delegate hueChanged:self.hue];
 	}
 }
 
@@ -64,13 +75,10 @@
 		point.y = NSMaxY(self.bounds);
 	}
 	
-	self.lastDrag = point;
-	[self setNeedsDisplay:YES];
-	
-	CGFloat hue = point.y / self.bounds.size.height;
-	
+	self.hue = point.y / NSHeight(self.bounds);
+
 	if (self.delegate) {
-		[self.delegate hueChanged:hue];
+		[self.delegate hueChanged:self.hue];
 	}
 }
 

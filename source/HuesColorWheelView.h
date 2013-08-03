@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HuesColor;
+
 @protocol HuesColorWheelViewDelegate <NSObject>
 
 - (void)colorWheelDidChangeSaturation:(CGFloat)saturation brightness:(CGFloat)brightness;
@@ -16,7 +18,7 @@
 
 @interface HuesColorWheelView : NSView
 
-@property (strong, nonatomic) NSColor *color;
+@property (strong, nonatomic) HuesColor *color;
 @property (unsafe_unretained) IBOutlet id<HuesColorWheelViewDelegate> delegate;
 
 @end
