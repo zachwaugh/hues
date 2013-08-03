@@ -141,12 +141,14 @@
 
 - (void)addStatusItem
 {
+	HuesStatusItemView *statusView = [[HuesStatusItemView alloc] initWithFrame:NSZeroRect];
+	
 	self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:30];
-	self.statusItem.target = self;
-	self.statusItem.action = @selector(toggleWindow:);
-	self.statusItem.image = [NSImage imageNamed:@"hues_menubar_normal"];
-	self.statusItem.alternateImage = [NSImage imageNamed:@"hues_menubar_highlight"];
-	self.statusItem.highlightMode = YES;
+	self.statusItem.view = statusView;
+	statusView.statusItem = self.statusItem;
+	statusView.target = self;
+	statusView.action = @selector(toggleWindow:);
+	statusView.menu = self.statusMenu;
 }
 
 - (void)toggleWindow:(id)sender
@@ -157,6 +159,13 @@
   } else {
     [NSApp hide:self];
   }
+}
+
+#pragma mark - Actions
+
+- (void)showLoupe:(id)sender
+{
+	[[HuesLoupeController sharedController] showLoupe];
 }
 
 - (void)showPreferences:(id)sender

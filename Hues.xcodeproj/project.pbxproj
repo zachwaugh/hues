@@ -391,10 +391,10 @@
 				92E7D6841393ED080072C412 /* HuesPreferencesController.h */,
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
 				92F13DD8178F651100E699E4 /* HuesPreferencesViewControllerProtocol.h */,
-				92F13DD0178F4D9400E699E4 /* HuesColorFormattingPreferencesController.h */,
-				92F13DD1178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m */,
 				9218A56F1796305800AEF7DE /* HuesGeneralPreferencesController.h */,
 				9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */,
+				92F13DD0178F4D9400E699E4 /* HuesColorFormattingPreferencesController.h */,
+				92F13DD1178F4D9400E699E4 /* HuesColorFormattingPreferencesController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";

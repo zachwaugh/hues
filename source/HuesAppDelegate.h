@@ -12,8 +12,10 @@
 @interface HuesAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, BITCrashReportManagerDelegate>
 
 @property (weak) IBOutlet NSMenuItem *checkForUpdatesMenuItem;
+@property (weak) IBOutlet NSMenu *statusMenu;
 
-- (void)showPreferences:(id)sender;
+- (IBAction)showPreferences:(id)sender;
+- (IBAction)showLoupe:(id)sender;
 
 #ifndef APP_STORE
 - (IBAction)checkForUpdates:(id)sender;

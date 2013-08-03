@@ -10,4 +10,11 @@
 
 @interface HuesStatusItemView : NSView
 
+@property (nonatomic, assign) BOOL highlighted;
+@property (nonatomic, strong) NSImage *image;
+@property (nonatomic, strong) NSImage *alternateImage;
+@property (weak) NSStatusItem *statusItem;
+@property (assign) SEL action;
+@property (assign) id target;
+
 @end

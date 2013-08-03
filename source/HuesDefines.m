@@ -11,7 +11,3 @@
 // Notifications
 NSString * const HuesUpdateColorNotification = @"HuesUpdateColorNotification";
 NSString * const HuesColorFormatsUpdatedNotification = @"HuesColorFormatsUpdated";
-
-// Constants
-NSInteger const HuesLoupeSize = 247;
-NSInteger const HuesLoupeZoom = 13;

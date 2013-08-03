@@ -42,7 +42,8 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 	[self setAcceptsMouseMovedEvents:YES];
 	[self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	[self disableCursorRects];
-	self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, HuesLoupeSize, HuesLoupeSize)];
+	[self setAnimationBehavior:NSWindowAnimationBehaviorUtilityWindow];
+	self.loupeView = [[HuesLoupeView alloc] initWithFrame:NSMakeRect(0, 0, contentRect.size.width, contentRect.size.height)];
 	self.contentView = self.loupeView;
 
 	return self;

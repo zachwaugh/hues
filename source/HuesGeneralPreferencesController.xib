@@ -46,10 +46,9 @@
 					<object class="NSCustomView" id="512145372">
 						<reference key="NSNextResponder" ref="54961190"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{182, 35}, {240, 28}}</string>
+						<string key="NSFrame">{{182, 35}, {157, 28}}</string>
 						<reference key="NSSuperview" ref="54961190"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">MASShortcutView</string>
 					</object>

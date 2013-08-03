@@ -8,7 +8,7 @@
 
 #import "HuesLoupeController.h"
 #import "HuesLoupeWindow.h"
-#import "HuesDefines.h"
+#import "HuesLoupeView.h"
 
 @interface HuesLoupeController ()
 
@@ -42,8 +42,9 @@
 
 - (void)showLoupe
 {
+	NSInteger loupeSize = [HuesLoupeView defaultLoupeSize];
 	NSPoint point = [NSEvent mouseLocation];
-	NSRect loupeRect = NSMakeRect(round(point.x) - round(HuesLoupeSize / 2), round(point.y) - round(HuesLoupeSize / 2), HuesLoupeSize, HuesLoupeSize);
+	NSRect loupeRect = NSMakeRect(round(point.x) - round(loupeSize / 2), round(point.y) - round(loupeSize / 2), loupeSize, loupeSize);
 	
 	//NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
 	

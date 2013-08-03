@@ -12,17 +12,12 @@
 #import "HuesColor.h"
 #import "HuesColor+Formatting.h"
 
-// Zoom level is multiplier of pixel size
-#define GRID_LINES YES
-#define USE_CALIBRATED_COLOR YES
-
 @interface HuesLoupeView ()
 {
 	CGImageRef _image;
 }
 
-- (NSInteger)zoomLevel;
-- (NSInteger)loupeSize;
+@property (assign, nonatomic) BOOL showGridLines;
 
 @end
 
@@ -41,43 +36,65 @@
 	if (!self) return nil;
 	
 	_image = NULL;
+	_loupeSize = [self.class defaultLoupeSize];
+	_zoomLevel = [self.class defaultZoomLevel];
+	_showGridLines = YES;
 	
 	return self;
 }
 
+- (void)setShowGridLines:(BOOL)showGridLines
+{
+	_showGridLines = showGridLines;
+	[self setNeedsDisplay:YES];
+}
+
+- (void)setZoomLevel:(NSInteger)zoomLevel
+{
+	if (zoomLevel < 2) zoomLevel = 2;
+	
+	_zoomLevel = zoomLevel;
+	[self setNeedsDisplay:YES];
+}
+
+- (void)zoomIn
+{
+	self.zoomLevel += 1;
+}
+
+- (void)zoomOut
+{
+	self.zoomLevel -= 1;
+}
+
+- (void)resetZoom
+{
+	self.zoomLevel = [self.class defaultZoomLevel];
+}
+
+#pragma mark - Drawing
+
 - (void)drawRect:(NSRect)dirtyRect
 {
+	[self grabScreenshot];
+	
   NSRect b = self.bounds;
 	CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
 	
+	CGFloat scaleFactor = self.window.backingScaleFactor;
 	NSInteger zoomLevel = self.zoomLevel;
 	NSInteger loupeSize = self.loupeSize;
-		
-	// Grab screenshot from underneath the window
-  NSWindow *window = self.window;
-	NSScreen *screen = [NSScreen screens][0];
-  
-  // Convert rect to screen coordinates
-  NSRect rect = window.frame;
-  rect.origin.y = NSMaxY(screen.frame) - NSMaxY(rect);
-  
-	// Release old image
-	if (_image) {
-		CGImageRelease(_image);
-	}
-  
-	// TODO: limit to minimum area we need
-	// Actual image of screen
-  _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
 
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  float offset = ((zoomLevel * loupeSize) - loupeSize) / 2;
+  CGFloat offset = (((zoomLevel * loupeSize) - loupeSize) / 2);
   
 	// Draw scaled screenshot clipped to loupe path
   CGContextSaveGState(ctx);
-  [loupePath addClip];
+  
+	// Clip to circle
+	[loupePath addClip];
 
 	// Set interpolation to none so pixels are crisp when scaled up
   CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
@@ -90,9 +107,13 @@
   CGContextDrawImage(ctx, b, _image);
   CGContextRestoreGState(ctx);
   
+	CGFloat gridSize = zoomLevel / scaleFactor;
+
+	//NSLog(@"zoom level: %ld, size: %@, grid size: %f,", self.zoomLevel, NSStringFromSize(b.size), gridSize);
+	
 	// Draw grid on top of screenshot
-	if (GRID_LINES) {
-		[[NSColor colorWithDeviceWhite:0.0 alpha:0.15] set];
+	if (self.showGridLines) {
+		[[NSColor colorWithDeviceWhite:0.0 alpha:0.1] set];
 		
 		// Clip to loupe path and disable anti-aliasing for lines
 		CGContextSaveGState(ctx);
@@ -102,17 +123,17 @@
 		
 		int y = 0;
 		int x = 0;
-		
+				
 		// Draw vertical lines
-		for (x = 0; x <= NSWidth(b); x += zoomLevel) {
-			NSRect rect = NSMakeRect(x, y, 1.0, NSHeight(b));
+		for (x = 0; x <= NSWidth(b); x += gridSize) {
+			NSRect rect = NSIntegralRect(NSMakeRect(x, y, 1.0, NSHeight(b)));
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
 		
 		x = 0;
 		
 		// Draw horizontal lines
-		for (y = 0; y <= NSHeight(b); y += zoomLevel) {
+		for (y = 0; y <= NSHeight(b); y += gridSize) {
 			NSRect rect = NSMakeRect(x, y, NSWidth(b), 1.0);
 			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
 		}
@@ -133,7 +154,7 @@
 	}
 	
 	// Square around center pixel that will be used for picking
-	NSRect centerRect = NSMakeRect(NSMidX(b) - (zoomLevel / 2), NSMidY(b)  - (zoomLevel / 2), zoomLevel, zoomLevel);
+	NSRect centerRect = NSMakeRect(NSMidX(b) - (gridSize / 2), NSMidY(b)  - (gridSize / 2), gridSize, gridSize);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
 
 	// Need to turn this back on
@@ -158,6 +179,26 @@
 	[hex drawInRect:hexTextRect];
 }
 
+- (void)grabScreenshot
+{
+	// Grab screenshot from underneath the window
+  NSWindow *window = self.window;
+	NSScreen *screen = [NSScreen screens][0];
+  
+  // Convert rect to screen coordinates
+  NSRect rect = window.frame;
+  rect.origin.y = NSMaxY(screen.frame) - NSMaxY(rect);
+  
+	// Release old image
+	if (_image) {
+		CGImageRelease(_image);
+	}
+  
+	// TODO: limit to minimum area we need
+	// Actual image of screen
+  _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
+}
+
 - (void)pickColor
 {
 	// Always pick color from center of loupe
@@ -165,16 +206,6 @@
   
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 	[(HuesLoupeWindow *)self.window hide];
-}
-
-- (NSInteger)loupeSize
-{
-	return (HuesLoupeSize / self.window.backingScaleFactor);
-}
-
-- (NSInteger)zoomLevel
-{
-	return (HuesLoupeZoom / self.window.backingScaleFactor);
 }
 
 - (HuesColor *)colorAtCenter
@@ -197,7 +228,6 @@
   NSUInteger bitsPerComponent = 8;
   unsigned char pixelData[4] = { 0, 0, 0, 0 };
   CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, CGImageGetColorSpace(_image), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-  //CGColorSpaceRelease(colorSpace);
   CGContextSetBlendMode(context, kCGBlendModeCopy);
   
   // Draw the pixel we are interested in onto the bitmap context
@@ -222,6 +252,14 @@
 	
 	if (character == NSCarriageReturnCharacter || character == NSEnterCharacter || [event.characters isEqualToString:@" "]) {
 		[self pickColor];
+	} else if ([event.characters isEqualToString:@"g"]) {
+		self.showGridLines = !self.showGridLines;
+	} else if ([event.characters isEqualToString:@"+"] || [event.characters isEqualToString:@"="]) {
+		[self zoomIn];
+	} else if ([event.characters isEqualToString:@"-"] || [event.characters isEqualToString:@"_"]) {
+		[self zoomOut];
+	} else if ([event.characters isEqualToString:@"0"]) {
+		[self resetZoom];
 	} else {
 		[super keyDown:event];
 	}
@@ -239,6 +277,18 @@
 {
 	//NSLog(@"[loupe view] mouseDown");
   [self pickColor];
+}
+
+#pragma mark - Constants
+
++ (NSInteger)defaultZoomLevel
+{
+	return 13;
+}
+
++ (NSInteger)defaultLoupeSize
+{
+	return 247;
 }
 
 @end

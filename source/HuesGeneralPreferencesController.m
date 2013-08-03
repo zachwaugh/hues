@@ -59,6 +59,7 @@
 
 - (IBAction)updateApplicationMode:(id)sender
 {
+	//HuesApplicationMode previousMode = [HuesPreferences applicationMode];
 	HuesApplicationMode mode = (HuesApplicationMode)[self.applicationMode indexOfSelectedItem];
 	[HuesPreferences setApplicationMode:mode];
 }
