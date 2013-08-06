@@ -16,8 +16,6 @@ typedef enum {
 	HuesMenuBarOnlyMode
 } HuesApplicationMode;
 
-//typedef NSInteger HuesColorRepresentation;
-
 // Notifications
 extern NSString * const HuesUpdateColorNotification;
 extern NSString * const HuesColorFormatsUpdatedNotification;

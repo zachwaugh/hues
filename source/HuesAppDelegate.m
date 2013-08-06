@@ -50,7 +50,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+#if BETA
+#warning Beta is enabled
 	[self checkForBetaExpiration];
+#endif
 	
 #ifndef APP_STORE
 	SUUpdater *updater = [SUUpdater sharedUpdater];
@@ -203,11 +206,7 @@
 #pragma mark - Beta
 
 - (void)checkForBetaExpiration
-{
-#ifdef DEBUG
-  NSLog(@"*** WARNING!!! Beta is enabled ***");
-#endif
-  
+{  
   NSDate *expiration = [NSDate dateWithNaturalLanguageString:BETA_EXPIRATION];
   
   if ([expiration earlierDate:[NSDate date]] == expiration) {
