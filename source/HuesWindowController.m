@@ -108,6 +108,8 @@
 {
   HuesColor *color = notification.object;
 	self.color = color;
+	[self copyPrimary:nil];
+	
 	[self.mixerController updateInterfaceWithColor:color];
   [self updateInterfaceWithColor:color];
 }
