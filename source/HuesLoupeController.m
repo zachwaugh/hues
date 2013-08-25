@@ -40,7 +40,7 @@
 	return self;
 }
 
-- (void)showLoupe
+- (void)showLoupe:(id)sender
 {
 	NSInteger loupeSize = [HuesLoupeView defaultLoupeSize];
 	NSPoint point = [NSEvent mouseLocation];

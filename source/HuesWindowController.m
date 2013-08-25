@@ -238,7 +238,7 @@
 
 - (void)showLoupe:(id)sender
 {
-	[[HuesLoupeController sharedController] showLoupe];
+	[[HuesLoupeController sharedController] showLoupe:sender];
 }
 
 #pragma mark - Color input

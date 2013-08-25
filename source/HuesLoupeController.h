@@ -11,6 +11,6 @@
 @interface HuesLoupeController : NSObject <NSWindowDelegate>
 
 + (HuesLoupeController *)sharedController;
-- (void)showLoupe;
+- (void)showLoupe:(id)sender;
 
 @end

@@ -53,18 +53,21 @@
 	BOOL control = (event.modifierFlags & NSControlKeyMask) == NSControlKeyMask;
 	BOOL option = (event.modifierFlags & NSAlternateKeyMask) == NSAlternateKeyMask;
 	
-	if (control || option) {
+	if (control) {
 		self.highlighted = YES;
 		[self.statusItem popUpStatusItemMenu:self.menu];
 		self.highlighted = NO;
-		return;
+	} else if (option) {
+		if (self.altTarget && [self.altTarget respondsToSelector:self.altAction]) {
+			[self.altTarget performSelector:self.altAction withObject:self];
+		}
+	} else {
+		self.highlighted = YES;
+		
+		if (self.target && [self.target respondsToSelector:self.action]) {
+			[self.target performSelector:self.action withObject:self];
+		}
 	}
-	
-  self.highlighted = YES;
-	
-	if (self.target && [self.target respondsToSelector:self.action]) {
-    [self.target performSelector:self.action withObject:self];
-  }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent

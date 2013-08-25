@@ -16,5 +16,7 @@
 @property (weak) NSStatusItem *statusItem;
 @property (assign) SEL action;
 @property (assign) id target;
+@property (assign) SEL altAction;
+@property (assign) id altTarget;
 
 @end

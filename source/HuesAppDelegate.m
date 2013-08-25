@@ -116,7 +116,7 @@
 {
 	// Global shortcut
 	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
-		[[HuesLoupeController sharedController] showLoupe];
+		[[HuesLoupeController sharedController] showLoupe:self];
 	}];
 }
 
@@ -151,6 +151,8 @@
 	statusView.statusItem = self.statusItem;
 	statusView.target = self;
 	statusView.action = @selector(toggleWindow:);
+	statusView.altTarget = [HuesLoupeController sharedController];
+	statusView.altAction = @selector(showLoupe:);
 	statusView.menu = self.statusMenu;
 }
 
@@ -168,7 +170,7 @@
 
 - (void)showLoupe:(id)sender
 {
-	[[HuesLoupeController sharedController] showLoupe];
+	[[HuesLoupeController sharedController] showLoupe:sender];
 }
 
 - (void)showPreferences:(id)sender
