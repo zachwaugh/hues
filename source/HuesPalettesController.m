@@ -173,7 +173,6 @@
 			notification.informativeText = [NSString stringWithFormat:@"Palette shared at: %@", url.absoluteString];
 			[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 		}
-		
 	}];
 }
 
@@ -218,13 +217,24 @@
 	item.name = @"Color";
 	item.color = [self.color hex];
 
+	if (!self.currentPalette) {
+		HuesPalette *palette = [[HuesPalettesManager sharedManager] createPaletteWithName:@"Untitled Palette"];
+		[[HuesPalettesManager sharedManager] save];
+		
+		self.currentPalette = palette;
+		[self refreshPalettes];
+		[self.paletteSelection selectItemWithTitle:palette.name];
+	}
+	
 	// Create a mutable set with the existing objects, add the new object, and set the relationship equal to this new mutable ordered set
 	NSMutableOrderedSet *colors = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.currentPalette.colors];
 	[colors addObject:item];
 	self.currentPalette.colors = colors;
 
+	NSInteger index = self.currentPalette.colors.count - 1;
 	[self.tableView reloadData];
-	[self.tableView editColumn:0 row:self.currentPalette.colors.count - 1 withEvent:nil select:YES];
+	[self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+	[self.tableView editColumn:0 row:index withEvent:nil select:YES];
 }
 
 - (IBAction)removeItem:(id)sender
