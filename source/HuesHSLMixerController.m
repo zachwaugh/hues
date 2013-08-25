@@ -94,11 +94,13 @@
 	if (commandSelector == @selector(moveUp:)) {
 		textView.string = [NSString stringWithFormat:@"%ld", value + 1];
 		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		[self fieldChanged:control];
 		
 		return YES;
 	} else if (commandSelector == @selector(moveDown:)) {
 		textView.string = [NSString stringWithFormat:@"%ld", value - 1];
 		textView.selectedRange = NSMakeRange(0, textView.string.length);
+		[self fieldChanged:control];
 		
 		return YES;
 	}

@@ -20,7 +20,7 @@ CGFloat HuesClampedValueForValueWithMinMax(CGFloat value, CGFloat min, CGFloat m
 	}
 }
 
-CGFloat HuesClampedValueForValue(CGFloat value)
+CGFloat HuesClampedValue(CGFloat value)
 {
 	return HuesClampedValueForValueWithMinMax(value, 0, 1);
 }
@@ -41,10 +41,10 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 	self = [super init];
 	if (!self) return nil;
 	
-	_red = HuesClampedValueForValue(red);
-	_green = HuesClampedValueForValue(green);
-	_blue = HuesClampedValueForValue(blue);
-	_alpha = HuesClampedValueForValue(alpha);
+	_red = HuesClampedValue(red);
+	_green = HuesClampedValue(green);
+	_blue = HuesClampedValue(blue);
+	_alpha = HuesClampedValue(alpha);
 	_createdWithRGB = YES;
 	
 	[self updateCache];
@@ -57,10 +57,10 @@ CGFloat HuesClampedValueForValue(CGFloat value)
 	self = [super init];
 	if (!self) return nil;
 	
-	_hue = hue;
-	_saturation = saturation;
-	_lightness = lightness;
-	_alpha = alpha;
+	_hue = HuesClampedValue(hue);
+	_saturation = HuesClampedValue(saturation);
+	_lightness = HuesClampedValue(lightness);
+	_alpha = HuesClampedValue(alpha);
 	_createdWithRGB = NO;
 	
 	[self updateCache];
