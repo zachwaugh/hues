@@ -12,7 +12,7 @@
 #import "AFJSONRequestOperation.h"
 #import "AFHTTPClient.h"
 
-#define LOCAL 0
+#define LOCAL 1
 
 #if LOCAL && defined(DEBUG)
 static NSString * const HuesShareServerURL = @"http://localhost:3000/";

@@ -8,6 +8,7 @@
 
 #import "HuesPalettesManager.h"
 #import "HuesPalette.h"
+#import "HuesPaletteItem.h"
 #import <CoreData/CoreData.h>
 
 NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotification";
@@ -125,8 +126,18 @@ NSString * const HuesPalettesUpdatedNotification = @"HuesPalettesUpdatedNotifica
 				
 				if (!error) {
 					HuesPalette *palette = [self createPaletteWithName:dict[@"name"]];
-					NSLog(@"imported palette: %@", palette);
 					
+					palette.uuid = dict[@"id"];
+					NSMutableOrderedSet *set = [[NSMutableOrderedSet alloc] init];
+
+					for (NSDictionary *color in dict[@"colors"]) {
+						HuesPaletteItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PaletteItem" inManagedObjectContext:self.managedObjectContext];
+						item.name = color[@"name"];
+						item.color = color[@"color"];
+						[set addObject:item];
+					}
+					
+					palette.colors = set;
 					[self save];
 					
 					NSUserNotification *notification = [[NSUserNotification alloc] init];

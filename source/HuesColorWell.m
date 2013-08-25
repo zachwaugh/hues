@@ -19,12 +19,12 @@
 	NSRectFillUsingOperation(self.bounds, NSCompositeSourceOver);
 	
 	// light gray outer border
-	[[NSColor colorWithCalibratedWhite:0.75 alpha:1.0] set];
-	[[NSBezierPath bezierPathWithRect:NSInsetRect(self.bounds, 0.5, 0.5)] stroke];
+//	[[NSColor colorWithCalibratedWhite:0.75 alpha:1.0] set];
+//	[[NSBezierPath bezierPathWithRect:NSInsetRect(self.bounds, 0.5, 0.5)] stroke];
 	
 	// white inner border
-	[[NSColor whiteColor] set];
-	[[NSBezierPath bezierPathWithRect:NSInsetRect(self.bounds, 1.5, 1.5)] stroke];
+	[[NSColor colorWithCalibratedWhite:0.0 alpha:0.25] set];
+	[[NSBezierPath bezierPathWithRect:NSInsetRect(self.bounds, 0.5, 0.5)] stroke];
 }
 
 @end
