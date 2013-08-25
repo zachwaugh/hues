@@ -17,6 +17,8 @@
 		920BF10417AADEDF003534F0 /* HuesColorDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF10317AADEDD003534F0 /* HuesColorDefines.m */; };
 		920E5DA617CA81F700F8FE05 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E5DA517CA81F700F8FE05 /* HockeySDK.framework */; };
 		920E5DA717CA820C00F8FE05 /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 920E5DA517CA81F700F8FE05 /* HockeySDK.framework */; };
+		920E5DAA17CA8EB000F8FE05 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 920E5DA817CA8EB000F8FE05 /* gear.png */; };
+		920E5DAB17CA8EB000F8FE05 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 920E5DA917CA8EB000F8FE05 /* gear@2x.png */; };
 		9218A5721796305800AEF7DE /* HuesGeneralPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */; };
 		9218A5731796305800AEF7DE /* HuesGeneralPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */; };
 		9218A57617963FAC00AEF7DE /* NSMutableArray+Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218A57517963FAC00AEF7DE /* NSMutableArray+Move.m */; };
@@ -165,6 +167,8 @@
 		920BF10217AADEDC003534F0 /* HuesColorDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorDefines.h; sourceTree = "<group>"; };
 		920BF10317AADEDD003534F0 /* HuesColorDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorDefines.m; sourceTree = "<group>"; };
 		920E5DA517CA81F700F8FE05 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = vendor/HockeySDK.framework; sourceTree = "<group>"; };
+		920E5DA817CA8EB000F8FE05 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		920E5DA917CA8EB000F8FE05 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
 		9218A56F1796305800AEF7DE /* HuesGeneralPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGeneralPreferencesController.h; sourceTree = "<group>"; };
 		9218A5701796305800AEF7DE /* HuesGeneralPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGeneralPreferencesController.m; sourceTree = "<group>"; };
 		9218A5711796305800AEF7DE /* HuesGeneralPreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesGeneralPreferencesController.xib; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 				92C1144B179E26470092E3CB /* copy-button@2x.png */,
 				92C1144E179E275D0092E3CB /* copy-button-down.png */,
 				92C1144F179E275D0092E3CB /* copy-button-down@2x.png */,
+				920E5DA817CA8EB000F8FE05 /* gear.png */,
+				920E5DA917CA8EB000F8FE05 /* gear@2x.png */,
 				9273E51917AB5A2A00360779 /* transparency.png */,
 				9273E51A17AB5A2A00360779 /* transparency@2x.png */,
 			);
@@ -794,6 +800,8 @@
 				92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */,
 				9273E51B17AB5A2A00360779 /* transparency.png in Resources */,
 				9273E51C17AB5A2A00360779 /* transparency@2x.png in Resources */,
+				920E5DAA17CA8EB000F8FE05 /* gear.png in Resources */,
+				920E5DAB17CA8EB000F8FE05 /* gear@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
