@@ -179,7 +179,7 @@
 - (IBAction)exportPalette:(id)sender
 {
 	NSString *json = [HuesPaletteExporter exportPaletteToJSON:self.currentPalette];
-	NSString *filename = [NSString stringWithFormat:@"%@.json", self.currentPalette.name];
+	NSString *filename = [NSString stringWithFormat:@"%@.hues", self.currentPalette.name];
 		
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
 	savePanel.nameFieldStringValue = filename;

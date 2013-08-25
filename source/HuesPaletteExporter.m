@@ -27,7 +27,7 @@ static NSString * const HuesShareServerKey = @"12345";
 + (NSString *)exportPaletteToJSON:(HuesPalette *)palette
 {
 	NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-	data[@"name"] = palette.name;
+	data[@"name"] = palette.name ?: @"Untitled Palette";
 	data[@"id"] = palette.uuid;
 	
 	NSMutableArray *colors = [NSMutableArray array];

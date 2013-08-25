@@ -10,11 +10,12 @@
 
 typedef void(^HuesPaletteNameBlock)(NSString *name, BOOL complete);
 
-@interface HuesPaletteNameController : NSWindowController <NSWindowDelegate>
+@interface HuesPaletteNameController : NSWindowController <NSWindowDelegate, NSTextFieldDelegate>
 
 @property (weak) IBOutlet NSTextField *field;
 @property (strong, nonatomic) NSString *name;
 @property (strong) HuesPaletteNameBlock completionBlock;
+@property (assign) BOOL nameValid;
 
 - (IBAction)ok:(id)sender;
 - (IBAction)cancel:(id)sender;

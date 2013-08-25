@@ -26,6 +26,7 @@
 {
 	if (self.name) {
 		self.field.stringValue = self.name;
+		[self validateName];
 	}
 }
 
@@ -36,7 +37,7 @@
 }
 
 - (IBAction)ok:(id)sender
-{
+{	
 	if (self.completionBlock) {
 		self.completionBlock(self.field.stringValue, YES);
 	}
@@ -51,6 +52,16 @@
 	}
 	
 	[NSApp endSheet:self.window];
+}
+
+- (void)validateName
+{
+	self.nameValid = (self.field.stringValue.length > 0);
+}
+
+- (void)controlTextDidChange:(NSNotification *)obj
+{
+	[self validateName];
 }
 
 @end
