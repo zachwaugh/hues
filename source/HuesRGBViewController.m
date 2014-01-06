@@ -24,7 +24,7 @@
 - (void)updateInterfaceWithColor:(HuesColor *)color
 {
 	self.color = color;
-	NSColor *deviceColor = color.deviceColor;
+	NSColor *deviceColor = color.color;
 	
 	self.redField.stringValue = [NSString stringWithFormat:@"%d", color.hues_red];
 	self.redSlider.intValue = color.hues_red;

@@ -31,10 +31,11 @@
 @property (assign, nonatomic, readonly) int hues_brightness; // HSB
 
 #if TARGET_OS_IPHONE
-@property (strong) UIColor *color;
+@property (nonatomic, strong) UIColor *color;
 #else
-@property (strong) NSColor *deviceColor;
-@property (strong) NSColor *calibratedColor;
+@property (nonatomic, strong) NSColor *color;
+@property (nonatomic, strong) NSColor *deviceColor;
+@property (nonatomic, strong) NSColor *calibratedColor;
 #endif
 
 #pragma mark - Constructors

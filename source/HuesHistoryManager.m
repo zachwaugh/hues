@@ -65,7 +65,7 @@
 	
 	NSString *value = [color stringWithFormat:format];
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:value action:@selector(colorChosen:) keyEquivalent:@""];
-  [item setImage:[NSImage imageWithColor:color.deviceColor]];
+  [item setImage:[NSImage imageWithColor:color.color]];
   [item setTarget:self];
   [self.menu insertItem:item atIndex:0];
 }

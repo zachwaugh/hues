@@ -176,6 +176,7 @@ CGFloat HuesClampedValue(CGFloat value)
 #if TARGET_OS_IPHONE
 	_color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 #else
+	_color = [NSColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 	_calibratedColor = [NSColor colorWithCalibratedRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 	_deviceColor = [NSColor colorWithDeviceRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 #endif

@@ -52,7 +52,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 #if BETA
-#warning Beta is enabled
+	#warning Beta is enabled
 	[self checkForBetaExpiration];
 #endif
 	

@@ -116,7 +116,7 @@
 
 - (void)updateInterfaceWithColor:(HuesColor *)color
 {
-	self.colorWell.color = color.deviceColor;
+	self.colorWell.color = color.color;
 	
   // Setup overlay text attributes
   NSShadow *shadow = [[NSShadow alloc] init];

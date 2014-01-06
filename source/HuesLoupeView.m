@@ -17,7 +17,7 @@
 	CGImageRef _image;
 }
 
-@property (assign, nonatomic) BOOL showGridLines;
+@property (nonatomic, assign) BOOL showGridLines;
 
 @end
 
@@ -183,7 +183,7 @@
 {
 	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
-	NSScreen *screen = [NSScreen screens][0];
+	NSScreen *screen = self.window.screen;
   
   // Convert rect to screen coordinates
   NSRect rect = window.frame;
@@ -195,7 +195,7 @@
 	}
   
 	// TODO: limit to minimum area we need
-	// Actual image of screen
+	// Get actual image of screen
   _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
 }
 
