@@ -70,6 +70,7 @@
 		927F10B1187B1951005018F8 /* hues_menubar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */; };
 		927F10B2187B1951005018F8 /* hues_menubar.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AE187B1951005018F8 /* hues_menubar.png */; };
 		927F10B3187B1951005018F8 /* hues_menubar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AF187B1951005018F8 /* hues_menubar@2x.png */; };
+		927F10B5187B1B47005018F8 /* Hues 2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 927F10B4187B1B47005018F8 /* Hues 2.icns */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
 		92A6694417A032AC00F037DC /* HuesPalettesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6694217A032AC00F037DC /* HuesPalettesController.m */; };
@@ -108,7 +109,6 @@
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
 		92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6891393ED080072C412 /* NSImage+Hues.m */; };
 		92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6951393ED1B0072C412 /* CHANGELOG.md */; };
-		92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6991393ED2E0072C412 /* hues_app_icon.icns */; };
 		92E7D69E1393ED830072C412 /* HuesPreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69C1393ED830072C412 /* HuesPreferencesController.xib */; };
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
 		92F13DC5178EFD0700E699E4 /* HuesColorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F13DC4178EFD0700E699E4 /* HuesColorParser.m */; };
@@ -252,6 +252,7 @@
 		927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues_menubar_selected@2x.png"; sourceTree = "<group>"; };
 		927F10AE187B1951005018F8 /* hues_menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar.png; sourceTree = "<group>"; };
 		927F10AF187B1951005018F8 /* hues_menubar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues_menubar@2x.png"; sourceTree = "<group>"; };
+		927F10B4187B1B47005018F8 /* Hues 2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Hues 2.icns"; sourceTree = "<group>"; };
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
@@ -309,7 +310,6 @@
 		92E7D6881393ED080072C412 /* NSImage+Hues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Hues.h"; sourceTree = "<group>"; };
 		92E7D6891393ED080072C412 /* NSImage+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Hues.m"; sourceTree = "<group>"; };
 		92E7D6951393ED1B0072C412 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		92E7D6991393ED2E0072C412 /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = hues_app_icon.icns; sourceTree = "<group>"; };
 		92E7D69C1393ED830072C412 /* HuesPreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPreferencesController.xib; sourceTree = "<group>"; };
 		92E7D6A81393EDFA0072C412 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		92E7D6B71393F1E70072C412 /* HuesColorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorTest.m; sourceTree = "<group>"; };
@@ -547,12 +547,12 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				927F10B4187B1B47005018F8 /* Hues 2.icns */,
 				92C5CF8117A1717D0082CE2C /* hues_document.iconset */,
 				9228C51416F16A7500C57A48 /* magnifier.png */,
 				9228C51516F16A7500C57A48 /* magnifier@2x.png */,
 				9228C51616F16A7500C57A48 /* slider-knob.png */,
 				9228C51716F16A7500C57A48 /* slider-knob@2x.png */,
-				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
 				927F10AC187B1951005018F8 /* hues_menubar_selected.png */,
 				927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */,
 				927F10AE187B1951005018F8 /* hues_menubar.png */,
@@ -768,9 +768,9 @@
 			files = (
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
 				92E7D6981393ED1B0072C412 /* CHANGELOG.md in Resources */,
-				92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferencesController.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
+				927F10B5187B1B47005018F8 /* Hues 2.icns in Resources */,
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
 				927F10B0187B1951005018F8 /* hues_menubar_selected.png in Resources */,
 				921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */,
