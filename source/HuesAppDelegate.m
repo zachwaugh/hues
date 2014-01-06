@@ -85,6 +85,15 @@
 	[[HuesPalettesManager sharedManager] save];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+{	
+	if (!flag) {
+		[self.windowController showWindow:nil];
+	}
+	
+	return YES;
+}
+
 - (void)awakeFromNib
 {
   [HuesHistoryManager sharedManager].menu = self.historyMenu;
