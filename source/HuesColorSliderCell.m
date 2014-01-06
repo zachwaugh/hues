@@ -22,9 +22,7 @@ static NSColor *_transparentFill = nil;
 {
 	HuesColorSlider *slider = (HuesColorSlider *)[self controlView];
 	
-	NSLog(@"drawBarInside: aRect: %@", NSStringFromRect(aRect));
-	
-	NSRect trackRect = NSInsetRect(aRect, 2, 6);
+	NSRect trackRect = NSInsetRect(slider.bounds, 2, 6);
 	NSInteger radius = round(trackRect.size.height / 2);
 	
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:trackRect xRadius:radius yRadius:radius];

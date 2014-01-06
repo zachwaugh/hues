@@ -15,8 +15,8 @@
 	self = [super initWithFrame:frameRect];
 	if (!self) return nil;
 	
-	_image = [NSImage imageNamed:@"hues_menubar_normal"];
-	_alternateImage = [NSImage imageNamed:@"hues_menubar_highlight"];
+	_image = [NSImage imageNamed:@"hues_menubar"];
+	_alternateImage = [NSImage imageNamed:@"hues_menubar_selected"];
 	
 	return self;
 }

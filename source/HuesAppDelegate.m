@@ -146,7 +146,7 @@
 {
 	HuesStatusItemView *statusView = [[HuesStatusItemView alloc] initWithFrame:NSZeroRect];
 	
-	self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:30];
+	self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:25];
 	self.statusItem.view = statusView;
 	statusView.statusItem = self.statusItem;
 	statusView.target = self;

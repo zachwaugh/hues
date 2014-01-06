@@ -13,10 +13,10 @@
 @property (nonatomic, assign) BOOL highlighted;
 @property (nonatomic, strong) NSImage *image;
 @property (nonatomic, strong) NSImage *alternateImage;
-@property (weak) NSStatusItem *statusItem;
-@property (assign) SEL action;
-@property (assign) id target;
-@property (assign) SEL altAction;
-@property (assign) id altTarget;
+@property (nonatomic, weak) NSStatusItem *statusItem;
+@property (nonatomic, assign) SEL action;
+@property (nonatomic, assign) id target;
+@property (nonatomic, assign) SEL altAction;
+@property (nonatomic, assign) id altTarget;
 
 @end

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		19C657B3150F44E685004A9E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A84020242F57497396E19593 /* libPods.a */; };
 		437A7AB1DDF84F63B26E795F /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B46F0AE0FF4F7A88958C12 /* libPods-test.a */; };
-		9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B089147448C5001201EA /* hues_menubar_highlight.png */; };
-		9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9202B08A147448C5001201EA /* hues_menubar_normal.png */; };
 		920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */; };
 		920BF0FE17A9A56D003534F0 /* HuesPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */; };
 		920BF10117A9A56E003534F0 /* HuesPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 920BF10017A9A56E003534F0 /* HuesPalette.m */; };
@@ -68,6 +66,10 @@
 		926ACEF11790A4DF00C8E1BE /* HuesLoupeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */; };
 		9273E51B17AB5A2A00360779 /* transparency.png in Resources */ = {isa = PBXBuildFile; fileRef = 9273E51917AB5A2A00360779 /* transparency.png */; };
 		9273E51C17AB5A2A00360779 /* transparency@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9273E51A17AB5A2A00360779 /* transparency@2x.png */; };
+		927F10B0187B1951005018F8 /* hues_menubar_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AC187B1951005018F8 /* hues_menubar_selected.png */; };
+		927F10B1187B1951005018F8 /* hues_menubar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */; };
+		927F10B2187B1951005018F8 /* hues_menubar.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AE187B1951005018F8 /* hues_menubar.png */; };
+		927F10B3187B1951005018F8 /* hues_menubar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927F10AF187B1951005018F8 /* hues_menubar@2x.png */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
 		92A6694417A032AC00F037DC /* HuesPalettesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6694217A032AC00F037DC /* HuesPalettesController.m */; };
@@ -157,8 +159,6 @@
 /* Begin PBXFileReference section */
 		317FB30131B84CCFA90887F2 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
 		4D389B701E4D4819BA28ED8D /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
-		9202B089147448C5001201EA /* hues_menubar_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_highlight.png; sourceTree = "<group>"; };
-		9202B08A147448C5001201EA /* hues_menubar_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_normal.png; sourceTree = "<group>"; };
 		920BF0EB17A9692D003534F0 /* Hues.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hues.xcdatamodel; sourceTree = "<group>"; };
 		920BF0FC17A9A56D003534F0 /* HuesPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteItem.h; sourceTree = "<group>"; };
 		920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteItem.m; sourceTree = "<group>"; };
@@ -248,6 +248,10 @@
 		926ACEF01790A4DF00C8E1BE /* HuesLoupeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesLoupeController.m; sourceTree = "<group>"; };
 		9273E51917AB5A2A00360779 /* transparency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparency.png; sourceTree = "<group>"; };
 		9273E51A17AB5A2A00360779 /* transparency@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transparency@2x.png"; sourceTree = "<group>"; };
+		927F10AC187B1951005018F8 /* hues_menubar_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar_selected.png; sourceTree = "<group>"; };
+		927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues_menubar_selected@2x.png"; sourceTree = "<group>"; };
+		927F10AE187B1951005018F8 /* hues_menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hues_menubar.png; sourceTree = "<group>"; };
+		927F10AF187B1951005018F8 /* hues_menubar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hues_menubar@2x.png"; sourceTree = "<group>"; };
 		928626A81640262200DA16BE /* Hues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hues.entitlements; sourceTree = SOURCE_ROOT; };
 		928626FE164031B600DA16BE /* HuesStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesStatusItemView.h; sourceTree = "<group>"; };
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
@@ -548,9 +552,11 @@
 				9228C51516F16A7500C57A48 /* magnifier@2x.png */,
 				9228C51616F16A7500C57A48 /* slider-knob.png */,
 				9228C51716F16A7500C57A48 /* slider-knob@2x.png */,
-				9202B089147448C5001201EA /* hues_menubar_highlight.png */,
-				9202B08A147448C5001201EA /* hues_menubar_normal.png */,
 				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
+				927F10AC187B1951005018F8 /* hues_menubar_selected.png */,
+				927F10AD187B1951005018F8 /* hues_menubar_selected@2x.png */,
+				927F10AE187B1951005018F8 /* hues_menubar.png */,
+				927F10AF187B1951005018F8 /* hues_menubar@2x.png */,
 				92C11461179E2D1A0092E3CB /* scope-bar-button-fill.png */,
 				92C11462179E2D1A0092E3CB /* scope-bar-button-fill@2x.png */,
 				92C11463179E2D1A0092E3CB /* scope-bar-button-left.png */,
@@ -765,9 +771,8 @@
 				92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferencesController.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
-				9202B08B147448C5001201EA /* hues_menubar_highlight.png in Resources */,
-				9202B08C147448C5001201EA /* hues_menubar_normal.png in Resources */,
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
+				927F10B0187B1951005018F8 /* hues_menubar_selected.png in Resources */,
 				921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */,
 				921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */,
 				923098BB1680058700F98571 /* HuesColorWheelViewController.xib in Resources */,
@@ -786,6 +791,7 @@
 				92C11451179E275D0092E3CB /* copy-button-down@2x.png in Resources */,
 				92C11458179E28D40092E3CB /* text-field-fill.png in Resources */,
 				92C11459179E28D40092E3CB /* text-field-fill@2x.png in Resources */,
+				927F10B1187B1951005018F8 /* hues_menubar_selected@2x.png in Resources */,
 				92C1145A179E28D40092E3CB /* text-field-left.png in Resources */,
 				92C1145B179E28D40092E3CB /* text-field-left@2x.png in Resources */,
 				92C1145C179E28D40092E3CB /* text-field-right.png in Resources */,
@@ -793,10 +799,12 @@
 				92C11467179E2D1A0092E3CB /* scope-bar-button-fill.png in Resources */,
 				92C11468179E2D1A0092E3CB /* scope-bar-button-fill@2x.png in Resources */,
 				92C11469179E2D1A0092E3CB /* scope-bar-button-left.png in Resources */,
+				927F10B3187B1951005018F8 /* hues_menubar@2x.png in Resources */,
 				92C1146A179E2D1A0092E3CB /* scope-bar-button-left@2x.png in Resources */,
 				92C1146B179E2D1A0092E3CB /* scope-bar-button-right.png in Resources */,
 				92C1146C179E2D1A0092E3CB /* scope-bar-button-right@2x.png in Resources */,
 				92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */,
+				927F10B2187B1951005018F8 /* hues_menubar.png in Resources */,
 				92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */,
 				92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */,
 				9273E51B17AB5A2A00360779 /* transparency.png in Resources */,
@@ -862,7 +870,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Need to force all frameworks to be signed to fix 10.9 issues - http://furbo.org/2013/10/17/code-signing-and-mavericks/\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\nexit 0\nfi\n\nFRAMEWORKS=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nSERVICES=\"${BUILT_PRODUCTS_DIR}\"/\"${XPCSERVICES_FOLDER_PATH}\"\nHELPERS=\"${BUILT_PRODUCTS_DIR}\"/\"${CONTENTS_FOLDER_PATH}\"/\"Library/LoginItems\"\n\nif [ \"${CONFIGURATION}\" == \"Beta\" ]; then\nIDENTITY=\"Developer ID Application: Giant Comet\"\nelse\nIDENTITY=\"3rd Party Mac Developer Application: Giant Comet\"\nfi\n\n# Sparkle\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A/Resources/finish_installation.app\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A\"\n\n# HockeyApp\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/HockeySDK.framework/Versions/A\"\n\ncodesign --verbose --force --sign \"$IDENTITY\" \"$SERVICES/com.andymatuschak.Sparkle.SandboxService.xpc/\"\n\n# Login helper\n#codesign --verbose --force --sign \"$IDENTITY\" \"$HELPERS/CloudLoginHelper.app\"\n";
+			shellScript = "# Need to force all frameworks to be signed to fix 10.9 issues - http://furbo.org/2013/10/17/code-signing-and-mavericks/\n\nFRAMEWORKS=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nSERVICES=\"${BUILT_PRODUCTS_DIR}\"/\"${XPCSERVICES_FOLDER_PATH}\"\nHELPERS=\"${BUILT_PRODUCTS_DIR}\"/\"${CONTENTS_FOLDER_PATH}\"/\"Library/LoginItems\"\n\nif [ \"${CONFIGURATION}\" == \"Beta\" ]; then\nIDENTITY=\"Developer ID Application: Giant Comet\"\nelse\nIDENTITY=\"3rd Party Mac Developer Application: Giant Comet\"\nfi\n\n# Sparkle\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A/Resources/finish_installation.app\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A\"\n\n# HockeyApp\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/HockeySDK.framework/Versions/A\"\n\ncodesign --verbose --force --sign \"$IDENTITY\" \"$SERVICES/com.andymatuschak.Sparkle.SandboxService.xpc/\"\n\n# Login helper\n#codesign --verbose --force --sign \"$IDENTITY\" \"$HELPERS/CloudLoginHelper.app\"\n";
 		};
 		E14492E26FB340F089DF6E69 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
