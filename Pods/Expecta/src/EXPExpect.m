@@ -4,6 +4,7 @@
 #import "EXPUnsupportedObject.h"
 #import "EXPMatcher.h"
 #import "EXPBlockDefinedMatcher.h"
+#import <libkern/OSAtomic.h>
 
 @implementation EXPExpect
 
@@ -23,7 +24,7 @@
   lineNumber=_lineNumber,
   fileName=_fileName;
 
-- (id)initWithActualBlock:(id)actualBlock testCase:(id)testCase lineNumber:(int)lineNumber fileName:(char *)fileName {
+- (id)initWithActualBlock:(id)actualBlock testCase:(id)testCase lineNumber:(int)lineNumber fileName:(const char *)fileName {
   self = [super init];
   if(self) {
     self.actualBlock = actualBlock;
@@ -36,7 +37,13 @@
   return self;
 }
 
-+ (EXPExpect *)expectWithActualBlock:(id)actualBlock testCase:(id)testCase lineNumber:(int)lineNumber fileName:(char *)fileName {
+- (void)dealloc
+{
+  self.actualBlock = nil;
+  [super dealloc];
+}
+
++ (EXPExpect *)expectWithActualBlock:(id)actualBlock testCase:(id)testCase lineNumber:(int)lineNumber fileName:(const char *)fileName {
   return [[[EXPExpect alloc] initWithActualBlock:actualBlock testCase:(id)testCase lineNumber:lineNumber fileName:fileName] autorelease];
 }
 
@@ -100,6 +107,7 @@
             break;
           }
           [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+          OSMemoryBarrier();
           *actual = self.actual;
         }
       } else {
@@ -184,9 +192,9 @@
 {
   __block id blockExpectation = _expectation;
 
-  return [^{
+  return [[^{
     [blockExpectation applyMatcher:self];
-  } copy];
+  } copy] autorelease];
 }
 
 @end

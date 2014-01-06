@@ -13,13 +13,24 @@
 
 @end
 
-id _EXPObjectify(char *type, ...) {
+@interface NSObject (ExpectaXCTestRecordFailure)
+
+// suppress warning
+- (void)recordFailureWithDescription:(NSString *)description inFile:(NSString *)filename atLine:(NSUInteger)lineNumber expected:(BOOL)expected;
+
+@end
+
+id _EXPObjectify(const char *type, ...) {
   va_list v;
   va_start(v, type);
   id obj = nil;
   if(strcmp(type, @encode(char)) == 0) {
     char actual = (char)va_arg(v, int);
     obj = [NSNumber numberWithChar:actual];
+  } else if(strcmp(type, @encode(_Bool)) == 0) {
+    _Static_assert(sizeof(_Bool) <= sizeof(int), "Expected _Bool to be subject to vararg type promotion");
+    _Bool actual = (_Bool)va_arg(v, int);
+    obj = [NSNumber numberWithBool:actual];
   } else if(strcmp(type, @encode(double)) == 0) {
     double actual = (double)va_arg(v, double);
     obj = [NSNumber numberWithDouble:actual];
@@ -93,11 +104,11 @@ id _EXPObjectify(char *type, ...) {
   return obj;
 }
 
-EXPExpect *_EXP_expect(id testCase, int lineNumber, char *fileName, EXPIdBlock actualBlock) {
+EXPExpect *_EXP_expect(id testCase, int lineNumber, const char *fileName, EXPIdBlock actualBlock) {
   return [EXPExpect expectWithActualBlock:actualBlock testCase:testCase lineNumber:lineNumber fileName:fileName];
 }
 
-void EXPFail(id testCase, int lineNumber, char *fileName, NSString *message) {
+void EXPFail(id testCase, int lineNumber, const char *fileName, NSString *message) {
   NSLog(@"%s:%d %@", fileName, lineNumber, message);
   NSString *reason = [NSString stringWithFormat:@"%s:%d %@", fileName, lineNumber, message];
   NSException *exception = [NSException exceptionWithName:@"Expecta Error" reason:reason userInfo:nil];
@@ -107,6 +118,11 @@ void EXPFail(id testCase, int lineNumber, char *fileName, NSString *message) {
       exception = [NSException failureInFile:[NSString stringWithUTF8String:fileName] atLine:lineNumber withDescription:message];
     }
     [testCase failWithException:exception];
+  } else if(testCase && [testCase respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]){
+      [testCase recordFailureWithDescription:message
+                                      inFile:[NSString stringWithUTF8String:fileName]
+                                      atLine:lineNumber
+                                    expected:NO];
   } else {
     [exception raise];
   }
@@ -135,7 +151,7 @@ NSString *EXPDescribeObject(id obj) {
       [arr addObject:EXPDescribeObject(o)];
     }
     description = [NSString stringWithFormat:@"(%@)", [arr componentsJoinedByString:@", "]];
-  } else if([obj isKindOfClass:[NSSet class]]) {
+  } else if([obj isKindOfClass:[NSSet class]] || [obj isKindOfClass:[NSOrderedSet class]]) {
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:[obj count]];
     for(id o in obj) {
       [arr addObject:EXPDescribeObject(o)];

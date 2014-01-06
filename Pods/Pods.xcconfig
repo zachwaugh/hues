@@ -1,8 +1,5 @@
-ALWAYS_SEARCH_USER_PATHS = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Expecta" "${PODS_ROOT}/Headers/INAppStoreWindow" "${PODS_ROOT}/Headers/MASShortcut" "${PODS_ROOT}/Headers/Specta"
+OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/AFNetworking" "-isystem${PODS_ROOT}/Headers/Expecta" "-isystem${PODS_ROOT}/Headers/INAppStoreWindow" "-isystem${PODS_ROOT}/Headers/MASShortcut" "-isystem${PODS_ROOT}/Headers/Specta"
 OTHER_LDFLAGS = -ObjC -framework Carbon -framework CoreServices -framework Security -framework SystemConfiguration
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/Expecta" "${PODS_ROOT}/BuildHeaders/INAppStoreWindow" "${PODS_ROOT}/BuildHeaders/MASShortcut" "${PODS_ROOT}/BuildHeaders/Specta"
-PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Expecta" "${PODS_ROOT}/Headers/INAppStoreWindow" "${PODS_ROOT}/Headers/MASShortcut" "${PODS_ROOT}/Headers/Specta"
 PODS_ROOT = ${SRCROOT}/Pods

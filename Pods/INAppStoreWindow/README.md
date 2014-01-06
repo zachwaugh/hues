@@ -9,6 +9,8 @@ INAppStoreWindow is an NSWindow subclass that mimics the appearance of the main 
 * No use of private APIs, so it's App Store friendly!
 * The title bar view is entirely customizable -- you can add subviews (toolbars, buttons, etc.) as well as customize the title bar itself to give it a different appearance
 * The height of the title bar is easily adjustable
+* Default `NSWindow` traffic light buttons appearance customization
+* Window's title appearance customization
 * Compiles and runs perfectly under ARC and non-ARC setups (thanks to [@kgn](https://github.com/kgn))
 * Support's Lion's full screen mode
 
@@ -26,20 +28,6 @@ Some people seem to be having an issue where the title bar height property is no
 INAppStoreWindow *aWindow = (INAppStoreWindow*)[windowController window];
 aWindow.titleBarHeight = 60.0;
 ```
-
-### Sheet Windows
-
-Because of the enlarged title bar, sheet windows may not appear properly (it'll look like they're popping out of the center of the title bar). To fix this, override this `NSWindow` delegate method and return an appropriate rect for where you want the sheet window to be positioned:
-
-``` obj-c
-- (NSRect)window:(INAppStoreWindow *)window willPositionSheet:(NSWindow *)sheet usingRect:(NSRect)rect
-{
-    rect.origin.y = NSHeight(window.frame)-window.titleBarHeight;
-    return rect;
-}
-```
-
-There is an example of how to get this working in the sample app.
 
 ### Adding buttons and other controls to the title bar
 
@@ -82,23 +70,58 @@ You can tell INAppStoreWindow to hide when entering fullscreen mode, and reappea
 
 The left padding of the traffic lights can be adjusted with `trafficLightButtonsLeftMargin` and the right padding of the fullscreen button can be adjusted with `fullScreenButtonRightMargin`.
 
-### Hiding the baseline(divider line between the titlebar and the content view)
+### Hiding the baseline (divider line between the titlebar and the content view)
 
 The baseline divider can be hidden by setting `showsBaselineSeparator` to `NO`, the default value is `YES`.
 
-## Who am I?
+### Customizing traffic lights buttons
 
-I'm Indragie Karunaratne, a 16 year old Mac OS X and iOS Developer from Edmonton AB, Canada. Visit [my website](http://indragie.com) to check out my work, or to get in touch with me.
+In order to customize these buttons, you would use `INWindowButton` class. You must create a separate instance for each button and provide your graphics for each state of the button. Currently the following states are supported:
 
-## Special Thanks To
+* Active
+* Active in not main window
+* Inactive (disabled)
+* Rollover
+* Pressed
 
-- Alex Rozanski ([@Perspx](https://github.com/perspx))
-- David Keegan ([@kgn](https://github.com/kgn))
-- Victor Pimentel ([@victorpimentel](https://github.com/victorpimentel))
-- Wade Cosgrove ([@wadeco](https://github.com/wadeco))
-- Levi Nunnink ([@levinunnink](https://github.com/levinunnink))
-- Georg C. Brückmann ([@gcbrueckmann](https://github.com/gcbrueckmann))
-- nonamelive ([@nonamelive](https://github.com/nonamelive))
+Please refer to `INWindowButton.h` header documentation for more details.
+
+### Customizing window's title appearance
+
+You can enable title drawing by setting `showsTitle` property to `YES`. You can adjust appearance using `titleTextColor`, `inactiveTitleTextColor`, `titleTextShadow`, and `inactiveTitleTextShadow` properties. Also, you can enable title drawing in fullscreen by setting `showsTitleInFullscreen` property to `YES`.
+
+### Using your own drawing code
+
+A lot of time and effort has gone into making the custom titlebar in INAppStoreWindow function just right, it would be a shame to have to re-implement all this work just to draw your own custom title bar. So INAppStoreWindow has a `titleBarDrawingBlock` property that can be set to a block containing your own drawing code!
+
+[![](http://dribbble.s3.amazonaws.com/users/7253/screenshots/541256/notepad.png)](http://dribbble.com/shots/541256-Notepad-App-Mockup)
+
+```obj-c
+[self.window setTitleBarDrawingBlock:^(BOOL drawsAsMainWindow, CGRect drawingRect, CGPathRef clippingPath){
+    // Custom drawing code!    
+}];
+```
+
+This block gets passed some useful parameters like if the window is the main one(`drawsAsMainWindow`), the drawing rect of the title bar(`drawingRect`), and a pre-made clipping path with rounded corners at the top(`clippingPath`).
+
+### Setting the title bar colors
+
+If you just want to adjust the color of the title bar without drawing the whole thing yourself, there are a few properties to help you do so:
+
+```obj-c
+self.window.titleBarStartColor     = [NSColor colorWithCalibratedWhite: 0.6 alpha: 1.0];
+self.window.titleBarEndColor       = [NSColor colorWithCalibratedWhite: 0.9 alpha: 1.0];
+self.window.baselineSeparatorColor = [NSColor colorWithCalibratedWhite: 0.2 alpha: 1.0];
+
+self.window.inactiveTitleBarEndColor       = [NSColor colorWithCalibratedWhite: 0.95 alpha: 1.0];
+self.window.inactiveTitleBarStartColor     = [NSColor colorWithCalibratedWhite: 0.8  alpha: 1.0];
+self.window.inactiveBaselineSeparatorColor = [NSColor colorWithCalibratedWhite: 0.4  alpha: 1.0];
+```
+
+
+## Authors
+
+INAppStoreWindow is maintained by [Indragie Karunaratne](http://indragie.com) and [David Keegan](http://inscopeapps.com). Special thanks to [everyone else](https://github.com/indragiek/INAppStoreWindow/contributors) who contributed various fixes and improvements to the code.
 
 ## Licensing
 

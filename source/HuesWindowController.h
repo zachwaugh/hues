@@ -11,14 +11,14 @@
 
 @interface HuesWindowController : NSWindowController <NSWindowDelegate, HuesScopeBarViewDelegate>
 
-@property (weak) IBOutlet NSColorWell *colorWell;
-@property (weak) IBOutlet NSTextField *primaryFormatLabel;
-@property (weak) IBOutlet NSTextField *primaryFormat;
-@property (weak) IBOutlet NSTextField *secondaryFormatLabel;
-@property (weak) IBOutlet NSTextField *secondaryFormat;
-@property (weak) IBOutlet NSPopUpButton *alternateFormats;
-@property (weak) IBOutlet NSView *mixerContainerView;
-@property (weak) IBOutlet HuesScopeBarView *scopeBar;
+@property (nonatomic, weak) IBOutlet NSColorWell *colorWell;
+@property (nonatomic, weak) IBOutlet NSTextField *primaryFormatLabel;
+@property (nonatomic, weak) IBOutlet NSTextField *primaryFormat;
+@property (nonatomic, weak) IBOutlet NSTextField *secondaryFormatLabel;
+@property (nonatomic, weak) IBOutlet NSTextField *secondaryFormat;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *alternateFormats;
+@property (nonatomic, weak) IBOutlet NSView *mixerContainerView;
+@property (nonatomic, weak) IBOutlet HuesScopeBarView *scopeBar;
 
 - (IBAction)copyPrimary:(id)sender;
 - (IBAction)copySecondary:(id)sender;

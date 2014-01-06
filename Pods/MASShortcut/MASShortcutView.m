@@ -29,14 +29,20 @@
 @synthesize shortcutPlaceholder = _shortcutPlaceholder;
 @synthesize shortcutValueChange = _shortcutValueChange;
 @synthesize recording = _recording;
+@synthesize appearance = _appearance;
 
 #pragma mark -
+
++ (Class)shortcutCellClass
+{
+    return [NSButtonCell class];
+}
 
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        _shortcutCell = [[NSButtonCell alloc] init];
+        _shortcutCell = [[[self.class shortcutCellClass] alloc] init];
         _shortcutCell.buttonType = NSPushOnPushOffButton;
         _shortcutCell.font = [[NSFontManager sharedFontManager] convertFont:_shortcutCell.font toSize:BUTTON_FONT_SIZE];
         _enabled = YES;
@@ -169,7 +175,7 @@
         [self getShortcutRect:&shortcutRect hintRect:NULL];
         NSString *title = (self.recording
                            ? (_hinting
-                              ? NSLocalizedString(@"Use Old Shortuct", @"Cancel action button for non-empty shortcut in recording state")
+                              ? NSLocalizedString(@"Use Old Shortcut", @"Cancel action button for non-empty shortcut in recording state")
                               : (self.shortcutPlaceholder.length > 0
                                  ? self.shortcutPlaceholder
                                  : NSLocalizedString(@"Type New Shortcut", @"Non-empty shortcut button in recording state")))

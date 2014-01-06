@@ -9,8 +9,7 @@
 #import "HuesPaletteExporter.h"
 #import "HuesPalette.h"
 #import "HuesPaletteItem.h"
-#import "AFJSONRequestOperation.h"
-#import "AFHTTPClient.h"
+#import "AFHTTPRequestOperation.h"
 
 #define LOCAL 0
 
@@ -54,25 +53,25 @@ static NSString * const HuesShareServerKey = @"12345";
 	NSString *json = [self exportPaletteToJSON:palette];
 	
 	if (json) {
-		NSDictionary *params = @{@"key": HuesShareServerKey};
-		NSString *string = [HuesShareServerURL stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(params, NSUTF8StringEncoding)];
-		
-		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:string]];
-		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-		request.HTTPMethod = @"POST";
-		request.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
-		
-		AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-			if ([JSON[@"status"] isEqualToString:@"ok"]) {				
-				if (block) block([NSURL URLWithString:JSON[@"url"]], nil);
-			} else {
-				if (block) block(nil, nil);
-			}
-		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-			if (block) block(nil, error);
-		}];
-		
-		[operation start];		
+//		NSDictionary *params = @{ @"key": HuesShareServerKey };
+//		NSString *string = [HuesShareServerURL stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(params, NSUTF8StringEncoding)];
+//		
+//		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:string]];
+//		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//		request.HTTPMethod = @"POST";
+//		request.HTTPBody = [json dataUsingEncoding:NSUTF8StringEncoding];
+//		
+//		AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//			if ([JSON[@"status"] isEqualToString:@"ok"]) {				
+//				if (block) block([NSURL URLWithString:JSON[@"url"]], nil);
+//			} else {
+//				if (block) block(nil, nil);
+//			}
+//		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+//			if (block) block(nil, error);
+//		}];
+//		
+//		[operation start];		
 	}
 }
 

@@ -15,22 +15,24 @@
 
 @implementation MASShortcutView (UserDefaults)
 
-void *kDefaultsObserver = &kDefaultsObserver;
+void *MASAssociatedDefaultsObserver = &MASAssociatedDefaultsObserver;
 
 - (NSString *)associatedUserDefaultsKey
 {
-    MASShortcutDefaultsObserver *defaultsObserver = objc_getAssociatedObject(self, kDefaultsObserver);
+    MASShortcutDefaultsObserver *defaultsObserver = objc_getAssociatedObject(self, MASAssociatedDefaultsObserver);
     return defaultsObserver.userDefaultsKey;
 }
 
 - (void)setAssociatedUserDefaultsKey:(NSString *)associatedUserDefaultsKey
 {
     // First, stop observing previous shortcut view
-    objc_setAssociatedObject(self, kDefaultsObserver, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, MASAssociatedDefaultsObserver, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    if (associatedUserDefaultsKey.length == 0) return;
 
     // Next, start observing current shortcut view
     MASShortcutDefaultsObserver *defaultsObserver = [[MASShortcutDefaultsObserver alloc] initWithShortcutView:self userDefaultsKey:associatedUserDefaultsKey];
-    objc_setAssociatedObject(self, kDefaultsObserver, defaultsObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, MASAssociatedDefaultsObserver, defaultsObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

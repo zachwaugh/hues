@@ -707,6 +707,7 @@
 				E14492E26FB340F089DF6E69 /* Copy Pods Resources */,
 				9225943317AB267100401A7B /* Copy XPC Services */,
 				9225943717AB30A500401A7B /* Copy Frameworks */,
+				927F10AB187B07BC005018F8 /* Codesign Frameworks */,
 			);
 			buildRules = (
 			);
@@ -848,6 +849,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		927F10AB187B07BC005018F8 /* Codesign Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Codesign Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Need to force all frameworks to be signed to fix 10.9 issues - http://furbo.org/2013/10/17/code-signing-and-mavericks/\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\nexit 0\nfi\n\nFRAMEWORKS=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nSERVICES=\"${BUILT_PRODUCTS_DIR}\"/\"${XPCSERVICES_FOLDER_PATH}\"\nHELPERS=\"${BUILT_PRODUCTS_DIR}\"/\"${CONTENTS_FOLDER_PATH}\"/\"Library/LoginItems\"\n\nif [ \"${CONFIGURATION}\" == \"Beta\" ]; then\nIDENTITY=\"Developer ID Application: Giant Comet\"\nelse\nIDENTITY=\"3rd Party Mac Developer Application: Giant Comet\"\nfi\n\n# Sparkle\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A/Resources/finish_installation.app\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/Sparkle.framework/Versions/A\"\n\n# HockeyApp\ncodesign --verbose --force --sign \"$IDENTITY\" \"$FRAMEWORKS/HockeySDK.framework/Versions/A\"\n\ncodesign --verbose --force --sign \"$IDENTITY\" \"$SERVICES/com.andymatuschak.Sparkle.SandboxService.xpc/\"\n\n# Login helper\n#codesign --verbose --force --sign \"$IDENTITY\" \"$HELPERS/CloudLoginHelper.app\"\n";
 		};
 		E14492E26FB340F089DF6E69 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1065,7 +1080,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1165,7 +1180,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1194,7 +1209,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "source/Hues-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

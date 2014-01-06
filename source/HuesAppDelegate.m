@@ -18,13 +18,14 @@
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
+#import <HockeySDK/HockeySDK.h>
 
 #ifndef APP_STORE
 #import <Sparkle/Sparkle.h>
 #define SPARKLE_FEED @"https://rink.hockeyapp.net/api/2/apps/6e6b92dcca1dbb0b4eb922bfa9942688"
 #endif
 
-@interface HuesAppDelegate ()
+@interface HuesAppDelegate () <BITHockeyManagerDelegate>
 
 @property (strong) HuesWindowController *windowController;
 @property (strong) HuesPreferencesController *preferencesController;
@@ -57,16 +58,16 @@
 	
 #ifndef APP_STORE
 	SUUpdater *updater = [SUUpdater sharedUpdater];
-  updater.automaticallyChecksForUpdates = YES;
-  updater.feedURL = [NSURL URLWithString:SPARKLE_FEED];
-  updater.sendsSystemProfile = YES;
+	updater.automaticallyChecksForUpdates = YES;
+	updater.feedURL = [NSURL URLWithString:SPARKLE_FEED];
+	updater.sendsSystemProfile = YES;
 #else
 	// Remove Sparkle menu in app store build
-  [self.checkForUpdatesMenuItem.menu removeItem:self.checkForUpdatesMenuItem];
+	[self.checkForUpdatesMenuItem.menu removeItem:self.checkForUpdatesMenuItem];
 #endif
 	
 	// HockeyApp
-	[[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"6e6b92dcca1dbb0b4eb922bfa9942688" companyName:@"Giant Comet" crashReportManagerDelegate:self];
+	[[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"6e6b92dcca1dbb0b4eb922bfa9942688" companyName:@"Giant comet" delegate:self];
 	[[BITHockeyManager sharedHockeyManager] startManager];
 	
 	[self configureApplicationPresentation];
@@ -109,12 +110,11 @@
 	return YES;
 }
 
-
 #pragma mark - Shortcuts
 
 - (void)registerShortcuts
 {
-	// Global shortcut
+	// Global shortcut to show loupe
 	[MASShortcut registerGlobalShortcutWithUserDefaultsKey:HuesLoupeShortcutKey handler:^{
 		[[HuesLoupeController sharedController] showLoupe:self];
 	}];
@@ -184,7 +184,7 @@
 
 #pragma mark - Hockey SDK
 
-- (void)showMainApplicationWindow
+- (void)showMainApplicationWindowForCrashManager:(BITCrashManager *)crashManager
 {
 	self.windowController = [[HuesWindowController alloc] init];
 	[self.windowController showWindow:nil];
@@ -203,6 +203,7 @@
 {
 	return [[BITSystemProfile sharedSystemProfile] systemUsageData];
 }
+
 #endif
 
 #pragma mark - Beta

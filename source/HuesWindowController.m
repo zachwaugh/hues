@@ -23,8 +23,8 @@
 
 @interface HuesWindowController ()
 
-@property (strong) HuesColor *color;
-@property (strong) HuesMixerViewController *mixerController;
+@property (nonatomic, strong) HuesColor *color;
+@property (nonatomic, strong) HuesMixerViewController *mixerController;
 
 - (void)updateInterfaceWithColor:(HuesColor *)color;
 
@@ -98,9 +98,9 @@
 - (IBAction)toggleKeepOnTop:(id)sender
 {
 	BOOL keepOnTop = ![HuesPreferences keepOnTop];
+	[HuesPreferences setKeepOnTop:keepOnTop];
 	
 	[self.window setLevel:(keepOnTop) ? NSFloatingWindowLevel : NSNormalWindowLevel];
-	[HuesPreferences setKeepOnTop:keepOnTop];
 }
 
 // Called from loupe

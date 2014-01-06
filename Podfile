@@ -1,6 +1,7 @@
-platform :osx, '10.7'
+platform :osx, '10.9'
+
 pod 'INAppStoreWindow'
-pod 'MASShortcut'
+pod 'MASShortcut', :head
 pod 'AFNetworking'
 
 target :test do

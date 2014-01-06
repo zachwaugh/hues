@@ -22,6 +22,8 @@ static NSColor *_transparentFill = nil;
 {
 	HuesColorSlider *slider = (HuesColorSlider *)[self controlView];
 	
+	NSLog(@"drawBarInside: aRect: %@", NSStringFromRect(aRect));
+	
 	NSRect trackRect = NSInsetRect(aRect, 2, 6);
 	NSInteger radius = round(trackRect.size.height / 2);
 	

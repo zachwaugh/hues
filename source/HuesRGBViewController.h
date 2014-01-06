@@ -13,14 +13,14 @@
 
 @interface HuesRGBViewController : HuesMixerViewController <NSTextFieldDelegate>
 
-@property (weak) IBOutlet HuesColorSlider *redSlider;
-@property (weak) IBOutlet HuesColorSlider *greenSlider;
-@property (weak) IBOutlet HuesColorSlider *blueSlider;
-@property (weak) IBOutlet HuesColorSlider *alphaSlider;
-@property (weak) IBOutlet NSTextField *redField;
-@property (weak) IBOutlet NSTextField *greenField;
-@property (weak) IBOutlet NSTextField *blueField;
-@property (weak) IBOutlet NSTextField *alphaField;
+@property (nonatomic, weak) IBOutlet HuesColorSlider *redSlider;
+@property (nonatomic, weak) IBOutlet HuesColorSlider *greenSlider;
+@property (nonatomic, weak) IBOutlet HuesColorSlider *blueSlider;
+@property (nonatomic, weak) IBOutlet HuesColorSlider *alphaSlider;
+@property (nonatomic, weak) IBOutlet NSTextField *redField;
+@property (nonatomic, weak) IBOutlet NSTextField *greenField;
+@property (nonatomic, weak) IBOutlet NSTextField *blueField;
+@property (nonatomic, weak) IBOutlet NSTextField *alphaField;
 
 - (IBAction)sliderChanged:(id)sender;
 - (IBAction)fieldChanged:(id)sender;
