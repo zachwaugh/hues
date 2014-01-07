@@ -88,7 +88,7 @@
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  CGFloat offset = (((zoomLevel * loupeSize) - loupeSize) / 2);
+  CGFloat offset = ((zoomLevel * loupeSize) - loupeSize) / 2;
 	
 	if (scaleFactor > 1) {
 		offset += floor(self.zoomLevel / 2.0);

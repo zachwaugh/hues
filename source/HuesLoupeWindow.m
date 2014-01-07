@@ -93,32 +93,32 @@ NSString * const HuesLoupeWindowDidCloseNotification = @"HuesLoupeWindowDidClose
 - (void)moveUp:(id)sender
 {
 	NSPoint origin = self.frame.origin;
-	
 	origin.y += ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
+	
 	[self adjustLoupeWithOrigin:origin];
 }
 
 - (void)moveDown:(id)sender
 {
 	NSPoint origin = self.frame.origin;
-	
 	origin.y -= ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
+	
 	[self adjustLoupeWithOrigin:origin];
 }
 
 - (void)moveLeft:(id)sender
 {
 	NSPoint origin = self.frame.origin;
-	
 	origin.x -= ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
+	
 	[self adjustLoupeWithOrigin:origin];
 }
 
 - (void)moveRight:(id)sender
 {
 	NSPoint origin = self.frame.origin;
-	
 	origin.x += ([NSEvent modifierFlags] & NSShiftKeyMask) ? 10 : 1;
+	
 	[self adjustLoupeWithOrigin:origin];
 }
 

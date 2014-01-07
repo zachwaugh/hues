@@ -12,8 +12,8 @@
 
 @interface HuesLoupeController ()
 
-@property (strong) HuesLoupeWindow *loupeWindow;
-@property (assign) id monitor;
+@property (nonatomic, strong) HuesLoupeWindow *loupeWindow;
+@property (nonatomic, assign) id monitor;
 
 @end
 
@@ -45,9 +45,7 @@
 	NSInteger loupeSize = [HuesLoupeView defaultLoupeSize];
 	NSPoint point = [NSEvent mouseLocation];
 	NSRect loupeRect = NSMakeRect(round(point.x) - round(loupeSize / 2), round(point.y) - round(loupeSize / 2), loupeSize, loupeSize);
-	
-	//NSLog(@"showLoupe: %@, active: %d", NSStringFromRect(loupeRect), [NSApp isActive]);
-	
+		
 	if (!self.loupeWindow) {
 		self.loupeWindow = [[HuesLoupeWindow alloc] initWithFrame:loupeRect];
 		self.loupeWindow.delegate = self;
