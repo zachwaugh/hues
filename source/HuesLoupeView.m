@@ -82,13 +82,17 @@
 	CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
 	
 	CGFloat scaleFactor = self.window.backingScaleFactor;
-	NSInteger zoomLevel = self.zoomLevel;
+	NSInteger zoomLevel = self.zoomLevel * scaleFactor;
 	NSInteger loupeSize = self.loupeSize;
 
 	// Main loupe path
   NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
   CGFloat offset = (((zoomLevel * loupeSize) - loupeSize) / 2);
+	
+	if (scaleFactor > 1) {
+		offset += floor(self.zoomLevel / 2.0);
+	}
   
 	// Draw scaled screenshot clipped to loupe path
   CGContextSaveGState(ctx);
@@ -113,7 +117,7 @@
 	
 	// Draw grid on top of screenshot
 	if (self.showGridLines) {
-		[[NSColor colorWithDeviceWhite:0.0 alpha:0.1] set];
+		NSBezierPath *grid = [NSBezierPath bezierPath];
 		
 		// Clip to loupe path and disable anti-aliasing for lines
 		CGContextSaveGState(ctx);
@@ -121,22 +125,29 @@
 		[loupePath addClip];
 		CGContextSetAllowsAntialiasing(ctx, NO);
 		
-		int y = 0;
-		int x = 0;
-				
+		CGFloat step = 0.5;
+		CGFloat y = step;
+		CGFloat x = step;
+		CGFloat height = NSHeight(b);
+		CGFloat width = NSWidth(b);
+
 		// Draw vertical lines
-		for (x = 0; x <= NSWidth(b); x += gridSize) {
-			NSRect rect = NSIntegralRect(NSMakeRect(x, y, 1.0, NSHeight(b)));
-			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
+		for (x = step; x <= NSWidth(b); x += gridSize) {
+			[grid moveToPoint:NSMakePoint(x, y)];
+			[grid lineToPoint:NSMakePoint(x, height)];
 		}
 		
-		x = 0;
+		x = step;
 		
 		// Draw horizontal lines
-		for (y = 0; y <= NSHeight(b); y += gridSize) {
-			NSRect rect = NSMakeRect(x, y, NSWidth(b), 1.0);
-			NSRectFillUsingOperation(rect, NSCompositeSourceOver);
+		for (y = step; y <= NSHeight(b); y += gridSize) {
+			[grid moveToPoint:NSMakePoint(x, y)];
+			[grid lineToPoint:NSMakePoint(width, y)];
 		}
+		
+		[[NSColor colorWithDeviceWhite:0.0 alpha:0.1] setStroke];
+		[grid setLineWidth:0];
+		[grid stroke];
 		
 		CGContextRestoreGState(ctx);
 	}
@@ -154,7 +165,7 @@
 	}
 	
 	// Square around center pixel that will be used for picking
-	NSRect centerRect = NSMakeRect(NSMidX(b) - (gridSize / 2), NSMidY(b)  - (gridSize / 2), gridSize, gridSize);
+	NSRect centerRect = NSMakeRect(NSMidX(b) - (gridSize / 2.0) + 0.5, NSMidY(b)  - (gridSize / 2.0) + 0.5, gridSize, gridSize);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
 
 	// Need to turn this back on
@@ -183,11 +194,10 @@
 {
 	// Grab screenshot from underneath the window
   NSWindow *window = self.window;
-	NSScreen *screen = self.window.screen;
   
   // Convert rect to screen coordinates
   NSRect rect = window.frame;
-  rect.origin.y = NSMaxY(screen.frame) - NSMaxY(rect);
+  rect.origin.y = NSMaxY(window.screen.frame) - NSMaxY(rect);
   
 	// Release old image
 	if (_image) {
@@ -210,7 +220,7 @@
 
 - (HuesColor *)colorAtCenter
 {
-	NSInteger loupeSize = self.loupeSize;
+	NSInteger loupeSize = self.loupeSize * self.window.backingScaleFactor;
 	return [self colorAtPoint:NSMakePoint(loupeSize / 2, loupeSize / 2)];
 }
 
@@ -218,10 +228,10 @@
 {
   // Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
   // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
-  NSInteger pointX = trunc(point.x);
-  NSInteger pointY = trunc(point.y);
-  NSUInteger width = CGImageGetWidth(_image);
-  NSUInteger height = CGImageGetHeight(_image);
+  CGFloat pointX = floor(point.x);
+  CGFloat pointY = floor(point.y);
+  CGFloat width = CGImageGetWidth(_image);
+  CGFloat height = CGImageGetHeight(_image);
 	
   int bytesPerPixel = 4;
   int bytesPerRow = bytesPerPixel * 1;
@@ -232,7 +242,7 @@
   
   // Draw the pixel we are interested in onto the bitmap context
   CGContextTranslateCTM(context, -pointX, -pointY);
-  CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), _image);
+  CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), _image);
   CGContextRelease(context);
   
   // Convert color values [0..255] to floats [0.0..1.0]
@@ -269,13 +279,11 @@
 
 - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
 {
-	//NSLog(@"[loupe view] acceptsFirstMouse");
 	return YES;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-	//NSLog(@"[loupe view] mouseDown");
   [self pickColor];
 }
 
