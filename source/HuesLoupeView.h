@@ -12,8 +12,8 @@
 
 @interface HuesLoupeView : NSView
 
-@property (assign, nonatomic) NSInteger loupeSize;
-@property (assign, nonatomic) NSInteger zoomLevel;
+@property (nonatomic, assign) NSInteger loupeSize;
+@property (nonatomic, assign) NSInteger zoomLevel;
 
 - (HuesColor *)colorAtPoint:(CGPoint)point;
 + (NSInteger)defaultLoupeSize;

@@ -17,8 +17,8 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 
 @interface HuesPreferencesController ()
 
-@property (strong) NSMutableDictionary *viewControllers;
-@property (strong) NSViewController<HuesPreferencesViewControllerProtocol> *activeViewController;
+@property (nonatomic, strong) NSMutableDictionary *viewControllers;
+@property (nonatomic, strong) NSViewController<HuesPreferencesViewControllerProtocol> *activeViewController;
 
 @end
 
@@ -42,17 +42,17 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 	self.viewControllers[HuesGeneralToolbarIdentifier] = generalController;
 	self.activeViewController = generalController;
 	self.currentView = generalController.view;
-  [self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
+	[self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
 }
 
 - (void)toolbarItemSelected:(id)sender
 {
-  NSString *identifier = [sender itemIdentifier];
-  
-  if ([self.activeViewController.identifier isEqualToString:identifier]) return;
-  
-  [self.toolbar setSelectedItemIdentifier:identifier];
-  
+	NSString *identifier = [sender itemIdentifier];
+	
+	if ([self.activeViewController.identifier isEqualToString:identifier]) return;
+	
+	[self.toolbar setSelectedItemIdentifier:identifier];
+	
 	NSViewController<HuesPreferencesViewControllerProtocol> *viewController = self.viewControllers[identifier];
 	
 	if (!viewController) {
@@ -64,7 +64,7 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 		
 		self.viewControllers[identifier] = viewController;
 	}
-  
+	
 	self.currentView = viewController.view;
 	self.activeViewController = viewController;
 	self.window.title = viewController.title;
@@ -72,14 +72,14 @@ NSString * const HuesColorFormatsToolbarIdentifier = @"formats";
 
 - (void)setCurrentView:(NSView *)view
 {
-  NSRect newFrame = self.window.frame;
-  newFrame.size.height = view.frame.size.height + (self.window.frame.size.height - self.view.frame.size.height);
+	NSRect newFrame = self.window.frame;
+	newFrame.size.height = view.frame.size.height + (self.window.frame.size.height - self.view.frame.size.height);
 	newFrame.size.width = view.frame.size.width;
-  newFrame.origin.y += (self.view.frame.size.height - view.frame.size.height);
-  
-  [self.activeViewController.view removeFromSuperview];
-  [self.window setFrame:newFrame display:YES animate:YES];
-  [self.view addSubview:view];
+	newFrame.origin.y += (self.view.frame.size.height - view.frame.size.height);
+	
+	[self.activeViewController.view removeFromSuperview];
+	[self.window setFrame:newFrame display:YES animate:YES];
+	[self.view addSubview:view];
 }
 
 @end

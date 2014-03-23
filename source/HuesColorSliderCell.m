@@ -9,14 +9,7 @@
 #import "HuesColorSliderCell.h"
 #import "HuesColorSlider.h"
 
-static NSColor *_transparentFill = nil;
-
 @implementation HuesColorSliderCell
-
-+ (void)initialize
-{
-	_transparentFill = [NSColor colorWithPatternImage:[NSImage imageNamed:@"transparency"]];
-}
 
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
 {

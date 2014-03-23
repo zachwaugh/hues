@@ -10,9 +10,9 @@
 
 @interface HuesPreferencesController : NSWindowController <NSToolbarDelegate>
 
-@property (weak, nonatomic) NSView *currentView;
-@property (strong) NSToolbar *toolbar;
-@property (strong) NSView *view;
+@property (nonatomic, weak) NSView *currentView;
+@property (nonatomic, strong) NSToolbar *toolbar;
+@property (nonatomic, strong) NSView *view;
 
 - (void)toolbarItemSelected:(id)sender;
 

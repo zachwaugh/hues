@@ -19,9 +19,9 @@
 
 @interface HuesPalettesController ()
 
-@property (strong) HuesPalette *currentPalette;
-@property (assign) BOOL awake;
-@property (strong) HuesPaletteNameController *nameController;
+@property (nonatomic, strong) HuesPalette *currentPalette;
+@property (nonatomic, assign) BOOL awake;
+@property (nonatomic, strong) HuesPaletteNameController *nameController;
 
 @end
 
@@ -102,10 +102,10 @@
 	
 	HuesPalettesController __weak *weakSelf = self;
 	self.nameController.name = @"Untitled Palette";
-	
 	self.nameController.completionBlock = ^(NSString *name, BOOL complete) {
 		HuesPalettesController *strongSelf = weakSelf;
-
+		if (!strongSelf) return;
+		
 		if (complete) {
 			HuesPalette *palette = [[HuesPalettesManager sharedManager] createPaletteWithName:name];
 			[[HuesPalettesManager sharedManager] save];
@@ -121,7 +121,7 @@
 	};
 	
 	// Show sheet
-	[NSApp beginSheet:self.nameController.window modalForWindow:self.view.window modalDelegate:nil didEndSelector:NULL contextInfo:nil];
+	[self.view.window beginSheet:self.nameController.window completionHandler:nil];
 }
 
 - (IBAction)renamePalette:(id)sender
@@ -143,7 +143,7 @@
 		[strongSelf refreshPalettes];
 	};
 	
-	[NSApp beginSheet:self.nameController.window modalForWindow:self.view.window modalDelegate:nil didEndSelector:NULL contextInfo:nil];
+	[self.view.window beginSheet:self.nameController.window completionHandler:nil];
 }
 
 - (IBAction)removePalette:(id)sender
@@ -180,7 +180,7 @@
 {
 	NSString *json = [HuesPaletteExporter exportPaletteToJSON:self.currentPalette];
 	NSString *filename = [NSString stringWithFormat:@"%@.hues", self.currentPalette.name];
-		
+	
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
 	savePanel.nameFieldStringValue = filename;
 	
@@ -216,7 +216,7 @@
 	HuesPaletteItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PaletteItem" inManagedObjectContext:moc];
 	item.name = @"Color";
 	item.color = [self.color hex];
-
+	
 	if (!self.currentPalette) {
 		HuesPalette *palette = [[HuesPalettesManager sharedManager] createPaletteWithName:@"Untitled Palette"];
 		[[HuesPalettesManager sharedManager] save];
@@ -230,7 +230,7 @@
 	NSMutableOrderedSet *colors = [[NSMutableOrderedSet alloc] initWithOrderedSet:self.currentPalette.colors];
 	[colors addObject:item];
 	self.currentPalette.colors = colors;
-
+	
 	NSInteger index = self.currentPalette.colors.count - 1;
 	[self.tableView reloadData];
 	[self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
@@ -290,7 +290,6 @@
 {
 	if (self.tableView.selectedRowIndexes.count == 1) {
 		HuesPaletteItem *item = self.currentPalette.colors[self.tableView.selectedRow];
-
 		[self updateColor:[HuesColorParser colorFromHex:item.color]];
 	}
 }

@@ -11,7 +11,7 @@
 
 @interface HuesColorWheelHueView ()
 
-@property (assign, nonatomic) CGFloat hue;
+@property (nonatomic, assign) CGFloat hue;
 
 @end
 

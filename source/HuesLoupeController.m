@@ -24,7 +24,7 @@
 	static HuesLoupeController *_sharedController = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-    _sharedController = [[HuesLoupeController alloc] init];
+		_sharedController = [[HuesLoupeController alloc] init];
 	});
 	
 	return _sharedController;
@@ -45,7 +45,7 @@
 	NSInteger loupeSize = [HuesLoupeView defaultLoupeSize];
 	NSPoint point = [NSEvent mouseLocation];
 	NSRect loupeRect = NSMakeRect(round(point.x) - round(loupeSize / 2), round(point.y) - round(loupeSize / 2), loupeSize, loupeSize);
-		
+	
 	if (!self.loupeWindow) {
 		self.loupeWindow = [[HuesLoupeWindow alloc] initWithFrame:loupeRect];
 		self.loupeWindow.delegate = self;
@@ -53,7 +53,7 @@
 		[self.loupeWindow adjustLoupeWithOrigin:loupeRect.origin];
 	}
 	
-  [self.loupeWindow show];
+	[self.loupeWindow show];
 }
 
 - (void)startEventMonitor

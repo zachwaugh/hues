@@ -10,7 +10,7 @@
 
 @interface HuesScopeBarButton : NSControl
 
-@property (strong, nonatomic) NSString *title;
-@property (assign, nonatomic) BOOL selected;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) BOOL selected;
 
 @end

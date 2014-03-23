@@ -17,7 +17,7 @@
 
 @interface HuesColorWheelView ()
 
-@property (strong) NSImage *image;
+@property (nonatomic, strong) NSImage *image;
 
 @end
 

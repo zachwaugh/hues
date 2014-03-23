@@ -48,13 +48,28 @@
 {
 	[super windowDidLoad];
 	
+	[self customizeWindowTitlebar];
+
 	if ([HuesPreferences keepOnTop]) {
 		[self.window setLevel:NSFloatingWindowLevel];
 	}
 	
 	// Show window on all spaces
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+		
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorFormatsUpdated:) name:HuesColorFormatsUpdatedNotification object:nil];
 	
+	self.scopeBar.delegate = self;
+	self.scopeBar.titles = @[ @"RGB", @"HSL", @"Color Wheel", @"Palettes" ];
+	
+	[self updateFormatLabels];
+	[self scopeBarDidSelectTabWithTitle:self.scopeBar.titles[[HuesPreferences lastSelectedTabIndex]]];
+	[self updateInterfaceWithColor:self.color];
+}
+
+- (void)customizeWindowTitlebar
+{
 	// Setup custom window titlebar
 	INAppStoreWindow *window = (INAppStoreWindow *)self.window;
 	window.titleBarHeight = 34.0;
@@ -70,17 +85,6 @@
 	[button setAction:@selector(showLoupe:)];
 	button.autoresizingMask = (NSViewMinXMargin | NSViewMinYMargin);
 	[titleBarView addSubview:button];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorFormatsUpdated:) name:HuesColorFormatsUpdatedNotification object:nil];
-	
-	self.scopeBar.delegate = self;
-	self.scopeBar.titles = @[@"RGB", @"HSL", @"Color Wheel", @"Palettes"];
-	
-	[self updateFormatLabels];
-	
-	[self scopeBarDidSelectTabWithTitle:self.scopeBar.titles[[HuesPreferences lastSelectedTabIndex]]];
-	[self updateInterfaceWithColor:self.color];
 }
 
 // Fix sheet having wrong position due to custom title bar
@@ -106,36 +110,34 @@
 // Called from loupe
 - (void)updateColor:(NSNotification *)notification
 {
-  HuesColor *color = notification.object;
+	HuesColor *color = notification.object;
 	self.color = color;
 	[self copyPrimary:nil];
 	
 	[self.mixerController updateInterfaceWithColor:color];
-  [self updateInterfaceWithColor:color];
+	[self updateInterfaceWithColor:color];
 }
 
 - (void)updateInterfaceWithColor:(HuesColor *)color
 {
 	self.colorWell.color = color.color;
 	
-  // Setup overlay text attributes
-  NSShadow *shadow = [[NSShadow alloc] init];
-  [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
-  [shadow setShadowOffset:NSMakeSize(0, -1)];
-  
+	// Setup overlay text attributes
+	NSShadow *shadow = [[NSShadow alloc] init];
+	[shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
+	[shadow setShadowOffset:NSMakeSize(0, -1)];
+	
 	NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue" size:13.0], NSShadowAttributeName: shadow};
 	
-  NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[self stringForPrimaryFormat] attributes:attributes];
-  NSAttributedString *secondary = [[NSAttributedString alloc] initWithString:[self stringForSecondaryFormat]  attributes:attributes];
-  
-	self.primaryFormat.attributedStringValue = primary;
-	self.secondaryFormat.attributedStringValue = secondary;
+	NSAttributedString *primary = [[NSAttributedString alloc] initWithString:[self stringForPrimaryFormat] attributes:attributes];
+	
+	self.formatField.attributedStringValue = primary;
 	
 	NSInteger selectedIndex = [self.alternateFormats indexOfSelectedItem];
 	[self.alternateFormats removeAllItems];
 	
 	NSArray *formats = [HuesPreferences colorFormats];
-
+	
 	for (NSDictionary *format in formats) {
 		NSString *value = [self.color stringWithFormat:format[@"format"]];
 		[self.alternateFormats addItemWithTitle:value];
@@ -153,14 +155,10 @@
 {
 	NSArray *formats = [HuesPreferences colorFormats];
 	NSDictionary *primaryFormat = formats[0];
-	NSDictionary *secondaryFormat = formats[1];
 	
-	self.primaryFormatLabel.stringValue = primaryFormat[@"name"];
-	self.primaryFormat.stringValue = [self.color stringWithFormat:primaryFormat[@"format"]];
-	
-	self.secondaryFormatLabel.stringValue = secondaryFormat[@"name"];
-	self.secondaryFormat.stringValue = [self.color stringWithFormat:secondaryFormat[@"format"]];
-	
+	self.formatLabel.stringValue = primaryFormat[@"name"];
+	self.formatField.stringValue = [self.color stringWithFormat:primaryFormat[@"format"]];
+
 	NSInteger selectedIndex = [self.alternateFormats indexOfSelectedItem];
 	[self.alternateFormats removeAllItems];
 	
@@ -180,24 +178,11 @@
 	return [self.color stringWithFormat:format];
 }
 
-- (NSString *)stringForSecondaryFormat
-{
-	NSArray *formats = [HuesPreferences colorFormats];
-	NSString *format = formats[1][@"format"];
-	
-	return [self.color stringWithFormat:format];
-}
-
 #pragma mark - Clipboard
 
 - (void)copyPrimary:(id)sender
 {
 	[self copyToClipboard:[self stringForPrimaryFormat]];
-}
-
-- (void)copySecondary:(id)sender
-{
-	[self copyToClipboard:[self stringForSecondaryFormat]];
 }
 
 - (void)copyAlternate:(id)sender
@@ -225,7 +210,7 @@
 	self.mixerController.color = self.color;
 	NSView *mixerView = self.mixerController.view;
 	mixerView.frame = self.mixerContainerView.bounds;
-	[self.mixerContainerView addSubview:mixerView];	
+	[self.mixerContainerView addSubview:mixerView];
 }
 
 - (void)selectTabAtIndex:(NSInteger)index
@@ -247,20 +232,19 @@
 {
 	NSTextField *field = notification.object;
 	NSString *value = field.stringValue;
-	HuesColor *newColor = [HuesColorParser parseColorFromString:value];
-	
-	if (newColor != nil) {
-		self.color = newColor;
-		[self updateInterfaceWithColor:newColor];
-		[self.mixerController updateInterfaceWithColor:newColor];
-	}
+	[self parseColor:value];
 }
 
 - (void)didUpdateColorText:(id)sender
 {
 	NSTextField *field = sender;
 	NSString *value = field.stringValue;
-	HuesColor *newColor = [HuesColorParser parseColorFromString:value];
+	[self parseColor:value];
+}
+
+- (void)parseColor:(NSString *)string
+{
+	HuesColor *newColor = [HuesColorParser parseColorFromString:string];
 	
 	if (newColor != nil) {
 		self.color = newColor;

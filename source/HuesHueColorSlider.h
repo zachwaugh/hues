@@ -10,6 +10,6 @@
 
 @interface HuesHueColorSlider : HuesColorSlider
 
-@property (strong, nonatomic) NSColor *color;
+@property (nonatomic, strong) NSColor *color;
 
 @end

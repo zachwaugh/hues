@@ -14,10 +14,10 @@ extern NSString * const HuesPalettesUpdatedNotification;
 
 @interface HuesPalettesManager : NSObject
 
-@property (strong, readonly) NSArray *palettes;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong, readonly) NSArray *palettes;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (HuesPalettesManager *)sharedManager;
 - (void)save;

@@ -10,8 +10,8 @@
 
 @interface HuesColorSlider : NSSlider
 
-@property (strong, nonatomic) NSColor *currentColor;
-@property (strong, nonatomic) NSArray *colors;
+@property (nonatomic, strong) NSColor *currentColor;
+@property (nonatomic, strong) NSArray *colors;
 
 - (NSGradient *)gradient;
 

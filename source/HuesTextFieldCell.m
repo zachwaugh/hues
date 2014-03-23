@@ -8,20 +8,14 @@
 
 #import "HuesTextFieldCell.h"
 
-static NSImage *_textFieldLeft = nil, *_textFieldFill = nil, *_textFieldRight = nil;
-
 @implementation HuesTextFieldCell
-
-+ (void)initialize
-{
-	_textFieldLeft = [NSImage imageNamed:@"text-field-left"];
-	_textFieldFill = [NSImage imageNamed:@"text-field-fill"];
-	_textFieldRight = [NSImage imageNamed:@"text-field-right"];
-}
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-	NSDrawThreePartImage(cellFrame, _textFieldLeft, _textFieldFill, _textFieldRight, NO, NSCompositeSourceOver, 1.0, YES);
+	NSImage *textFieldLeft = [NSImage imageNamed:@"text-field-left"];
+	NSImage *textFieldFill = [NSImage imageNamed:@"text-field-fill"];
+	NSImage *textFieldRight = [NSImage imageNamed:@"text-field-right"];
+	NSDrawThreePartImage(cellFrame, textFieldLeft, textFieldFill, textFieldRight, NO, NSCompositeSourceOver, 1.0, YES);
 	
 	cellFrame.origin.x += 5;
 	cellFrame.origin.y += 2;

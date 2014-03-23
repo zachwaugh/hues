@@ -16,7 +16,7 @@
 
 - (id)init
 {
-	self = [super initWithWindowNibName:@"HuesPaletteNameController" owner:self];
+	self = [super initWithWindowNibName:@"HuesPaletteNameController"];
 	if (!self) return nil;
   
 	return self;
@@ -42,7 +42,7 @@
 		self.completionBlock(self.field.stringValue, YES);
 	}
 	
-	[NSApp endSheet:self.window];
+	[self.window.sheetParent endSheet:self.window];
 }
 
 - (IBAction)cancel:(id)sender
@@ -51,7 +51,7 @@
 		self.completionBlock(nil, NO);
 	}
 	
-	[NSApp endSheet:self.window];
+	[self.window.sheetParent endSheet:self.window];
 }
 
 - (void)validateName

@@ -11,9 +11,9 @@
 
 @interface HuesPalettesController : HuesMixerViewController <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (weak) IBOutlet NSTableView *tableView;
-@property (weak) IBOutlet NSPopUpButton *paletteSelection;
-@property (weak) IBOutlet NSMenu *paletteMenu;
+@property (nonatomic, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *paletteSelection;
+@property (nonatomic, weak) IBOutlet NSMenu *paletteMenu;
 
 - (IBAction)paletteDidChange:(id)sender;
 - (IBAction)addPalette:(id)sender;
