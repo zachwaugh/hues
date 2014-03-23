@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 @class HuesColor;
 
-@interface HuesColor_FormattingTest : SenTestCase
+@interface HuesColor_FormattingTest : XCTestCase
 
 @property (strong) HuesColor *white;
 @property (strong) HuesColor *black;

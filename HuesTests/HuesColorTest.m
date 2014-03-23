@@ -6,7 +6,7 @@
 //  Copyright 2011 Giant Comet. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "HuesColor.h"
 
 @interface HuesColor (private)
@@ -15,7 +15,7 @@
 
 @end
 
-@interface HuesColorTest : SenTestCase
+@interface HuesColorTest : XCTestCase
 
 - (void)testIsDark;
 - (void)testRelativeBrightness;

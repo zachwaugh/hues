@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface HuesColorConversionTest : SenTestCase
+@interface HuesColorConversionTest : XCTestCase
 
 // Conversion
 - (void)testHSLToRGB;

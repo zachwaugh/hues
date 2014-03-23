@@ -32,7 +32,6 @@
 		921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921A8E83167FE8E2002FCC42 /* HuesHSBViewController.xib */; };
 		921DB1C81796E7C300ADDB2D /* HuesHSLMixerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DB1C61796E7C200ADDB2D /* HuesHSLMixerController.m */; };
 		921DB1C91796E7C300ADDB2D /* HuesHSLMixerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921DB1C71796E7C200ADDB2D /* HuesHSLMixerController.xib */; };
-		921DB1E317971C9E00ADDB2D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9228C51C16F2B0D800C57A48 /* SenTestingKit.framework */; };
 		921DB1E417971C9E00ADDB2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		921DB1EA17971C9F00ADDB2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921DB1E817971C9F00ADDB2D /* InfoPlist.strings */; };
 		921DB1F417971E1900ADDB2D /* HuesColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6B71393F1E70072C412 /* HuesColorTest.m */; };
@@ -197,7 +196,7 @@
 		921DB1C51796E7C200ADDB2D /* HuesHSLMixerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHSLMixerController.h; sourceTree = "<group>"; };
 		921DB1C61796E7C200ADDB2D /* HuesHSLMixerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHSLMixerController.m; sourceTree = "<group>"; };
 		921DB1C71796E7C200ADDB2D /* HuesHSLMixerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesHSLMixerController.xib; sourceTree = "<group>"; };
-		921DB1E217971C9E00ADDB2D /* HuesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		921DB1E217971C9E00ADDB2D /* HuesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		921DB1E717971C9F00ADDB2D /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		921DB1E917971C9F00ADDB2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		921DB1EE17971C9F00ADDB2D /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -209,7 +208,6 @@
 		9228C51516F16A7500C57A48 /* magnifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnifier@2x.png"; sourceTree = "<group>"; };
 		9228C51616F16A7500C57A48 /* slider-knob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob.png"; sourceTree = "<group>"; };
 		9228C51716F16A7500C57A48 /* slider-knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob@2x.png"; sourceTree = "<group>"; };
-		9228C51C16F2B0D800C57A48 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		923098AD167FF2E700F98571 /* HuesMixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMixerViewController.h; sourceTree = "<group>"; };
 		923098AE167FF2E700F98571 /* HuesMixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesMixerViewController.m; sourceTree = "<group>"; };
 		923098B11680012C00F98571 /* HuesHueColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHueColorSlider.h; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				921DB1E317971C9E00ADDB2D /* SenTestingKit.framework in Frameworks */,
 				921DB1E417971C9E00ADDB2D /* Cocoa.framework in Frameworks */,
 				437A7AB1DDF84F63B26E795F /* libPods-test.a in Frameworks */,
 			);
@@ -452,7 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				9264FE5D1393EC9F00935FAC /* Hues.app */,
-				921DB1E217971C9E00ADDB2D /* HuesTests.octest */,
+				921DB1E217971C9E00ADDB2D /* HuesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -462,7 +459,6 @@
 			children = (
 				920E5DA517CA81F700F8FE05 /* HockeySDK.framework */,
 				9225942A17AB264800401A7B /* Sparkle.framework */,
-				9228C51C16F2B0D800C57A48 /* SenTestingKit.framework */,
 				9264FE611393EC9F00935FAC /* Cocoa.framework */,
 				9264FE631393EC9F00935FAC /* Other Frameworks */,
 				A84020242F57497396E19593 /* libPods.a */,
@@ -700,8 +696,8 @@
 			);
 			name = HuesTests;
 			productName = HuesTests;
-			productReference = 921DB1E217971C9E00ADDB2D /* HuesTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 921DB1E217971C9E00ADDB2D /* HuesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9264FE5C1393EC9F00935FAC /* Hues */ = {
 			isa = PBXNativeTarget;
@@ -731,7 +727,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Hues;
-				LastUpgradeCheck = 0460;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Giant Comet";
 			};
 			buildConfigurationList = 9264FE571393EC9F00935FAC /* Build configuration list for PBXProject "Hues" */;
@@ -993,7 +990,6 @@
 			baseConfigurationReference = 317FB30131B84CCFA90887F2 /* Pods-test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1001,7 +997,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(inherited)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1014,7 +1013,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1023,7 +1021,6 @@
 			baseConfigurationReference = 317FB30131B84CCFA90887F2 /* Pods-test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1032,7 +1029,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(inherited)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
@@ -1040,15 +1040,15 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
 		92314E471797209B0044158A /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1059,7 +1059,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1071,7 +1073,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1099,7 +1100,6 @@
 			baseConfigurationReference = 317FB30131B84CCFA90887F2 /* Pods-test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hues.app/Contents/MacOS/Hues";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1107,7 +1107,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(inherited)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1120,15 +1123,15 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Test;
 		};
 		9264FE8D1393ECA000935FAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1139,7 +1142,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1150,8 +1155,9 @@
 		9264FE8E1393ECA000935FAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1159,7 +1165,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -1170,7 +1178,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Zachary Waugh (WJQ3EJHJF5)";
@@ -1199,7 +1206,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8F6F48A4C034FEC92A3C4C7 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Hues.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Giant Comet";
