@@ -13,9 +13,9 @@
 #import "HuesPalettesManager.h"
 #import "HuesPaletteExporter.h"
 #import "HuesPaletteNameController.h"
-#import "HuesColorParser.h"
 #import "HuesColor.h"
-#import "HuesColor+Formatting.h"
+#import "HuesColorParser.h"
+#import "HuesColorFormatter.h"
 
 @interface HuesPalettesController ()
 
@@ -215,7 +215,7 @@
 	
 	HuesPaletteItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PaletteItem" inManagedObjectContext:moc];
 	item.name = @"Color";
-	item.color = [self.color hex];
+	item.color = [HuesColorFormatter hexForColor:self.color];
 	
 	if (!self.currentPalette) {
 		HuesPalette *palette = [[HuesPalettesManager sharedManager] createPaletteWithName:@"Untitled Palette"];
@@ -263,7 +263,7 @@
 	
 	NSInteger row = [self.tableView rowForView:sender];
 	HuesPaletteItem *item = self.currentPalette.colors[row];
-	item.color = [huesColor hex];
+	item.color = [HuesColorFormatter hexForColor:huesColor];
 	[self.tableView reloadData];
 }
 

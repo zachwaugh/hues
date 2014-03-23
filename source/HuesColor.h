@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface HuesColor : NSObject
 
-// Default properties: 0-1
+// Default properties: 0.0 - 1.0
 @property (nonatomic, assign, readonly) CGFloat red;
 @property (nonatomic, assign, readonly) CGFloat green;
 @property (nonatomic, assign, readonly) CGFloat blue;
@@ -20,15 +22,15 @@
 @property (nonatomic, assign, readonly) CGFloat brightness;
 
 // Integer properties - 0-255, 0-100, 0-360 (depending on type)
-@property (nonatomic, assign, readonly) int hues_red;
-@property (nonatomic, assign, readonly) int hues_green;
-@property (nonatomic, assign, readonly) int hues_blue;
-@property (nonatomic, assign, readonly) int hues_hue;
-@property (nonatomic, assign, readonly) int hues_alpha;
-@property (nonatomic, assign, readonly) int hues_saturation; // HSL saturation
-@property (nonatomic, assign, readonly) int hues_lightness; // HSL
-@property (nonatomic, assign, readonly) int hues_HSBSaturation;
-@property (nonatomic, assign, readonly) int hues_brightness; // HSB
+@property (nonatomic, assign, readonly) NSInteger hues_red;
+@property (nonatomic, assign, readonly) NSInteger hues_green;
+@property (nonatomic, assign, readonly) NSInteger hues_blue;
+@property (nonatomic, assign, readonly) NSInteger hues_hue;
+@property (nonatomic, assign, readonly) NSInteger hues_alpha;
+@property (nonatomic, assign, readonly) NSInteger hues_saturation; // HSL saturation
+@property (nonatomic, assign, readonly) NSInteger hues_lightness; // HSL
+@property (nonatomic, assign, readonly) NSInteger hues_HSBSaturation;
+@property (nonatomic, assign, readonly) NSInteger hues_brightness; // HSB
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, strong) UIColor *color;

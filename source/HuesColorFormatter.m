@@ -6,11 +6,12 @@
 //  Copyright (c) 2013 Giant Comet. All rights reserved.
 //
 
-#import "HuesColor+Formatting.h"
+#import "HuesColorFormatter.h"
+#import "HuesColor.h"
 
-#define HEX_FORMAT @"#{RR}{GG}{BB}"
+NSString * const HuesHexFormat = @"#{RR}{GG}{BB}";
 
-@implementation HuesColor (Formatting)
+@implementation HuesColorFormatter
 
 + (NSArray *)validTokens
 {
@@ -23,18 +24,18 @@
 	return _tokens;
 }
 
-- (NSString *)hex
++ (NSString *)hexForColor:(HuesColor *)color
 {
-	return [self stringWithFormat:HEX_FORMAT];
+	return [self stringWithColor:color format:HuesHexFormat];
 }
 
-- (NSString *)stringWithFormat:(NSString *)format
++ (NSString *)stringWithColor:(HuesColor *)color format:(NSString *)format
 {
 	NSMutableString *result = [format mutableCopy];
-	NSArray *tokens = [self.class validTokens];
+	NSArray *tokens = [self validTokens];
 	
 	for (NSString *token in tokens) {
-		NSString *value = [self replacementForToken:token];
+		NSString *value = [self replacementForToken:token usingColor:color];
 		
 		if (value) {
 			[result replaceOccurrencesOfString:token withString:value options:0 range:NSMakeRange(0, result.length)];
@@ -44,64 +45,64 @@
 	return result;
 }
 
-- (NSString *)replacementForToken:(NSString *)token
++ (NSString *)replacementForToken:(NSString *)token usingColor:(HuesColor *)color
 {
 	if ([token isEqualToString:@"{r}"]) {
-		return [NSString stringWithFormat:@"%.3f", self.red];
+		return [NSString stringWithFormat:@"%.3f", color.red];
 	} else if ([token isEqualToString:@"{g}"]) {
-		return [NSString stringWithFormat:@"%.3f", self.green];
+		return [NSString stringWithFormat:@"%.3f", color.green];
 	} else if ([token isEqualToString:@"{b}"]) {
-		return [NSString stringWithFormat:@"%.3f", self.blue];
+		return [NSString stringWithFormat:@"%.3f", color.blue];
 	} else if ([token isEqualToString:@"{R}"]) {
-		return [NSString stringWithFormat:@"%d", self.hues_red];
+		return [NSString stringWithFormat:@"%ld", color.hues_red];
 	} else if ([token isEqualToString:@"{G}"]) {
-		return [NSString stringWithFormat:@"%d", self.hues_green];
+		return [NSString stringWithFormat:@"%ld", color.hues_green];
 	} else if ([token isEqualToString:@"{B}"]) {
-		return [NSString stringWithFormat:@"%d", self.hues_blue];
+		return [NSString stringWithFormat:@"%ld", color.hues_blue];
 	} else if ([token isEqualToString:@"{RR}"]) {
-		return [[NSString stringWithFormat:@"%02x", self.hues_red] uppercaseString];
+		return [[NSString stringWithFormat:@"%02lx", (long)color.hues_red] uppercaseString];
 	} else if ([token isEqualToString:@"{GG}"]) {
-		return [[NSString stringWithFormat:@"%02x", self.hues_green] uppercaseString];
+		return [[NSString stringWithFormat:@"%02lx", (long)color.hues_green] uppercaseString];
 	} else if ([token isEqualToString:@"{BB}"]) {
-		return [[NSString stringWithFormat:@"%02x", self.hues_blue] uppercaseString];
+		return [[NSString stringWithFormat:@"%02lx", (long)color.hues_blue] uppercaseString];
 	} else if ([token isEqualToString:@"{rr}"]) {
-		return [NSString stringWithFormat:@"%02x", self.hues_red];
+		return [NSString stringWithFormat:@"%02lx", (long)color.hues_red];
 	} else if ([token isEqualToString:@"{gg}"]) {
-		return [NSString stringWithFormat:@"%02x", self.hues_green];
+		return [NSString stringWithFormat:@"%02lx", (long)color.hues_green];
 	} else if ([token isEqualToString:@"{bb}"]) {
-		return [NSString stringWithFormat:@"%02x", self.hues_blue];
+		return [NSString stringWithFormat:@"%02lx", (long)color.hues_blue];
 	} else if ([token isEqualToString:@"{h}"]) {
 		// Hue 0-1 (HSL)
-		return [NSString stringWithFormat:@"%.3f", self.hue];
+		return [NSString stringWithFormat:@"%.3f", color.hue];
 	} else if ([token isEqualToString:@"{s}"]) {
 		// Saturation 0-1 (HSL)
-		return [NSString stringWithFormat:@"%.3f", self.saturation];
+		return [NSString stringWithFormat:@"%.3f", color.saturation];
 	} else if ([token isEqualToString:@"{l}"]) {
 		// Lightness 0-1 (HSL)
-		return [NSString stringWithFormat:@"%.3f", self.lightness];
+		return [NSString stringWithFormat:@"%.3f", color.lightness];
 	} else if ([token isEqualToString:@"{ss}"]) {
 		// Saturation 0-1 (HSB)
-		return [NSString stringWithFormat:@"%.3f", self.HSBSaturation];
+		return [NSString stringWithFormat:@"%.3f", color.HSBSaturation];
 	} else if ([token isEqualToString:@"{br}"]) {
 		// Brightness 0-1 (HSB)
-		return [NSString stringWithFormat:@"%.3f", self.brightness];
+		return [NSString stringWithFormat:@"%.3f", color.brightness];
 	} else if ([token isEqualToString:@"{H}"]) {
 		// Hue 0-360 (HSL)
-		return [NSString stringWithFormat:@"%d", self.hues_hue];
+		return [NSString stringWithFormat:@"%ld", color.hues_hue];
 	} else if ([token isEqualToString:@"{S}"]) {
 		// Saturation 0-100 (HSL)
-		return [NSString stringWithFormat:@"%d", self.hues_saturation];
+		return [NSString stringWithFormat:@"%ld", color.hues_saturation];
 	} else if ([token isEqualToString:@"{L}"]) {
 		// Lightness 0-100 (HSL)
-		return [NSString stringWithFormat:@"%d", self.hues_lightness];
+		return [NSString stringWithFormat:@"%ld", color.hues_lightness];
 	} else if ([token isEqualToString:@"{SS}"]) {
 		// Saturation 0-100 (HSB)
-		return [NSString stringWithFormat:@"%d", self.hues_HSBSaturation];
+		return [NSString stringWithFormat:@"%ld", color.hues_HSBSaturation];
 	} else if ([token isEqualToString:@"{BR}"]) {
 		// Brightness 0-100 (HSB)
-		return [NSString stringWithFormat:@"%d", self.hues_brightness];
+		return [NSString stringWithFormat:@"%ld", color.hues_brightness];
 	} else if ([token isEqualToString:@"{a}"]) {
-		return [NSString stringWithFormat:@"%0.3f", self.alpha];
+		return [NSString stringWithFormat:@"%0.3f", color.alpha];
 	} else {
 		// Invalid or unsupported token
 		return nil;

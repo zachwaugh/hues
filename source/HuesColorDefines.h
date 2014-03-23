@@ -7,19 +7,19 @@
 //
 
 typedef struct {
-  CGFloat red;
+	CGFloat red;
 	CGFloat green;
 	CGFloat blue;
 } HuesRGB;
 
 typedef struct {
-  CGFloat hue;
+	CGFloat hue;
 	CGFloat saturation;
 	CGFloat lightness;
 } HuesHSL;
 
 typedef struct {
-  CGFloat hue;
+	CGFloat hue;
 	CGFloat saturation;
 	CGFloat brightness;
 } HuesHSB;

@@ -18,7 +18,7 @@
 #import "HuesScopeBarView.h"
 #import "HuesColorParser.h"
 #import "HuesColor.h"
-#import "HuesColor+Formatting.h"
+#import "HuesColorFormatter.h"
 #import "INAppStoreWindow.h"
 
 @interface HuesWindowController ()
@@ -139,7 +139,7 @@
 	NSArray *formats = [HuesPreferences colorFormats];
 	
 	for (NSDictionary *format in formats) {
-		NSString *value = [self.color stringWithFormat:format[@"format"]];
+		NSString *value = [HuesColorFormatter stringWithColor:self.color format:format[@"format"]];
 		[self.alternateFormats addItemWithTitle:value];
 	}
 	
@@ -157,13 +157,13 @@
 	NSDictionary *primaryFormat = formats[0];
 	
 	self.formatLabel.stringValue = primaryFormat[@"name"];
-	self.formatField.stringValue = [self.color stringWithFormat:primaryFormat[@"format"]];
+	self.formatField.stringValue = [HuesColorFormatter stringWithColor:self.color format:primaryFormat[@"format"]];
 
 	NSInteger selectedIndex = [self.alternateFormats indexOfSelectedItem];
 	[self.alternateFormats removeAllItems];
 	
 	for (NSDictionary *format in formats) {
-		NSString *value = [self.color stringWithFormat:format[@"format"]];
+		NSString *value = [HuesColorFormatter stringWithColor:self.color format:format[@"format"]];
 		[self.alternateFormats addItemWithTitle:value];
 	}
 	
@@ -175,7 +175,7 @@
 	NSArray *formats = [HuesPreferences colorFormats];
 	NSString *format = formats[0][@"format"];
 	
-	return [self.color stringWithFormat:format];
+	return [HuesColorFormatter stringWithColor:self.color format:format];
 }
 
 #pragma mark - Clipboard

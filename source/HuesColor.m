@@ -197,40 +197,40 @@ CGFloat HuesClampedValue(CGFloat value)
 #pragma mark - Components
 
 // RGB
-- (int)hues_red
+- (NSInteger)hues_red
 {
 	return roundf(self.red * 255.0f);
 }
 
-- (int)hues_green
+- (NSInteger)hues_green
 {
 	return roundf(self.green * 255.0f);
 }
 
-- (int)hues_blue
+- (NSInteger)hues_blue
 {
 	return roundf(self.blue * 255.0f);
 }
 
-- (int)hues_alpha
+- (NSInteger)hues_alpha
 {
 	return roundf(self.alpha * 100.0f);
 }
 
 // HSL
-- (int)hues_hue
+- (NSInteger)hues_hue
 {
 	return roundf(self.hue * 360.0f);
 }
 
-- (int)hues_saturation
+- (NSInteger)hues_saturation
 {
-	return (int)roundf(self.saturation * 100.0f);
+	return roundf(self.saturation * 100.0f);
 }
 
-- (int)hues_lightness
+- (NSInteger)hues_lightness
 {
-	return (int)roundf(self.lightness * 100.0f);
+	return roundf(self.lightness * 100.0f);
 }
 
 // HSB
@@ -241,9 +241,9 @@ CGFloat HuesClampedValue(CGFloat value)
 	return hsb.saturation;
 }
 
-- (int)hues_HSBSaturation
+- (NSInteger)hues_HSBSaturation
 {
-	return (int)roundf(self.HSBSaturation * 100.0f);
+	return roundf(self.HSBSaturation * 100.0f);
 }
 
 - (CGFloat)brightness
@@ -252,9 +252,9 @@ CGFloat HuesClampedValue(CGFloat value)
 	return hsb.brightness;
 }
 
-- (int)hues_brightness
+- (NSInteger)hues_brightness
 {
-	return (int)roundf(self.brightness * 100.0f);
+	return roundf(self.brightness * 100.0f);
 }
 
 #pragma mark - 

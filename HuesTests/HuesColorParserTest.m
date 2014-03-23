@@ -15,21 +15,21 @@
 - (void)testColorFromHexWithShortInput
 {
 	expect([HuesColorParser colorFromHex:@""]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"f"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"ff"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"fff"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"ffff"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"fffff"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"#fffff"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"f"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"ff"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"fff"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"ffff"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"fffff"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"#fffff"]).to.beNil();
 }
 
 - (void)testParseColorFromHexWithInvalidInput
 {
 	// Invalid input should return nil
 	expect([HuesColorParser colorFromHex:@"ZZZZZZ"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"tyuytutytuytytuyt"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@";^&><?**&&'"]).to.beNil();
-  expect([HuesColorParser colorFromHex:@"!@#$\"\"\\"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"tyuytutytuytytuyt"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@";^&><?**&&'"]).to.beNil();
+	expect([HuesColorParser colorFromHex:@"!@#$\"\"\\"]).to.beNil();
 }
 
 - (void)testParseColorFromHexWithValidInput
@@ -53,11 +53,11 @@
 - (void)testParseColorFromHexWithExtraCharacters
 {
 	// test extra input still works
-  expect([HuesColorParser colorFromHex:@"#FFFFFF"]).to.equal([HuesColor colorWithRed:1 green:1 blue:1]);
-  expect([HuesColorParser colorFromHex:@"#FFFFFFFFFFFFF"]).to.equal([HuesColor colorWithRed:1 green:1 blue:1]);
-  expect([HuesColorParser colorFromHex:@"#CCCCCCfjfyefuf"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.8]);
-  expect([HuesColorParser colorFromHex:@"#CCCCCCFFFFFF"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.8]);
-  expect([HuesColorParser colorFromHex:@"#CCCCCFFFFFF"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.811764706]);
+	expect([HuesColorParser colorFromHex:@"#FFFFFF"]).to.equal([HuesColor colorWithRed:1 green:1 blue:1]);
+	expect([HuesColorParser colorFromHex:@"#FFFFFFFFFFFFF"]).to.equal([HuesColor colorWithRed:1 green:1 blue:1]);
+	expect([HuesColorParser colorFromHex:@"#CCCCCCfjfyefuf"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.8]);
+	expect([HuesColorParser colorFromHex:@"#CCCCCCFFFFFF"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.8]);
+	expect([HuesColorParser colorFromHex:@"#CCCCCFFFFFF"]).to.equal([HuesColor colorWithRed:0.8 green:0.8 blue:0.811764706]);
 }
 
 - (void)testParseColorFromRGBWithValidInput

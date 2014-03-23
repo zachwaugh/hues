@@ -94,13 +94,14 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
 	NSRect rect = self.bounds;
-	[self.image drawInRect:self.bounds fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
+	[self.image drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
 	
-	CGFloat x = self.color.HSBSaturation * self.bounds.size.width;
-	CGFloat y = self.color.brightness * self.bounds.size.height;
+	CGFloat x = self.color.HSBSaturation * rect.size.width;
+	CGFloat y = self.color.brightness * rect.size.height;
 	
 	NSRect circleRect = NSMakeRect(x - CIRCLE_RADIUS, y - CIRCLE_RADIUS, CIRCLE_RADIUS * 2, CIRCLE_RADIUS * 2);
 	
+	// Current color
 	[[NSColor whiteColor] set];
 	[[NSBezierPath bezierPathWithOvalInRect:circleRect] stroke];
 	
