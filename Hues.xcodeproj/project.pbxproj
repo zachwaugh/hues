@@ -96,7 +96,6 @@
 		92C1146B179E2D1A0092E3CB /* scope-bar-button-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11465179E2D1A0092E3CB /* scope-bar-button-right.png */; };
 		92C1146C179E2D1A0092E3CB /* scope-bar-button-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11466179E2D1A0092E3CB /* scope-bar-button-right@2x.png */; };
 		92C1147017A09C6A0092E3CB /* HuesPaletteExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */; };
-		92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CF7F17A168550082CE2C /* HuesSyncManager.m */; };
 		92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 92C5CF8117A1717D0082CE2C /* hues_document.iconset */; };
 		92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CF8617A17FA00082CE2C /* HuesPaletteNameController.m */; };
 		92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C5CF8717A17FA00082CE2C /* HuesPaletteNameController.xib */; };
@@ -287,8 +286,6 @@
 		92C11466179E2D1A0092E3CB /* scope-bar-button-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scope-bar-button-right@2x.png"; sourceTree = "<group>"; };
 		92C1146E17A09C6A0092E3CB /* HuesPaletteExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteExporter.h; sourceTree = "<group>"; };
 		92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteExporter.m; sourceTree = "<group>"; };
-		92C5CF7E17A168550082CE2C /* HuesSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesSyncManager.h; sourceTree = "<group>"; };
-		92C5CF7F17A168550082CE2C /* HuesSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesSyncManager.m; sourceTree = "<group>"; };
 		92C5CF8117A1717D0082CE2C /* hues_document.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = hues_document.iconset; sourceTree = "<group>"; };
 		92C5CF8517A17FA00082CE2C /* HuesPaletteNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPaletteNameController.h; sourceTree = "<group>"; };
 		92C5CF8617A17FA00082CE2C /* HuesPaletteNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPaletteNameController.m; sourceTree = "<group>"; };
@@ -543,8 +540,8 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				927F10B4187B1B47005018F8 /* Hues 2.icns */,
 				92C5CF8117A1717D0082CE2C /* hues_document.iconset */,
+				927F10B4187B1B47005018F8 /* Hues 2.icns */,
 				9228C51416F16A7500C57A48 /* magnifier.png */,
 				9228C51516F16A7500C57A48 /* magnifier@2x.png */,
 				9228C51616F16A7500C57A48 /* slider-knob.png */,
@@ -664,13 +661,11 @@
 				92A6698A17A063D200F037DC /* HuesPalettesManager.m */,
 				92C1146E17A09C6A0092E3CB /* HuesPaletteExporter.h */,
 				92C1146F17A09C6A0092E3CB /* HuesPaletteExporter.m */,
-				92C5CF7E17A168550082CE2C /* HuesSyncManager.h */,
-				92C5CF7F17A168550082CE2C /* HuesSyncManager.m */,
 				920BF0EA17A9692D003534F0 /* Hues.xcdatamodeld */,
-				920BF0FC17A9A56D003534F0 /* HuesPaletteItem.h */,
-				920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */,
 				920BF0FF17A9A56E003534F0 /* HuesPalette.h */,
 				920BF10017A9A56E003534F0 /* HuesPalette.m */,
+				920BF0FC17A9A56D003534F0 /* HuesPaletteItem.h */,
+				920BF0FD17A9A56D003534F0 /* HuesPaletteItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -945,7 +940,6 @@
 				92A6698B17A063D200F037DC /* HuesPalettesManager.m in Sources */,
 				92A6699017A07CC200F037DC /* HuesColorWell.m in Sources */,
 				92C1147017A09C6A0092E3CB /* HuesPaletteExporter.m in Sources */,
-				92C5CF8017A168550082CE2C /* HuesSyncManager.m in Sources */,
 				92C5CF8817A17FA00082CE2C /* HuesPaletteNameController.m in Sources */,
 				920BF0EC17A9692D003534F0 /* Hues.xcdatamodeld in Sources */,
 				920BF0FE17A9A56D003534F0 /* HuesPaletteItem.m in Sources */,
@@ -1063,7 +1057,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1146,7 +1140,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1169,7 +1163,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;

@@ -17,58 +17,44 @@ NSString * const HuesKeepOnTopKey = @"keepOnTop";
 NSString * const HuesApplicationModeKey = @"applicationMode";
 NSString * const HuesLoupeShortcutKey = @"loupeShortcut";
 NSString * const HuesLastSelectedTabIndexKey = @"lastSelectedTabIndex";
-NSString * const HuesUseiCloudKey = @"useiCloud";
 
 @implementation HuesPreferences
 
 + (void)registerDefaults
 {
-  NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
-  
+	NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+	
 	// Default to Menu bar only
 	defaults[HuesApplicationModeKey] = @(HuesMenuBarOnlyMode);
 	
-  // Auto copy to clipboard on
-  defaults[HuesCopyToClipboardKey] = @YES;
-  
-  // Hex is default
+	// Auto copy to clipboard on
+	defaults[HuesCopyToClipboardKey] = @YES;
+	
+	// Hex is default
 	defaults[HuesDefaultColorFormatKey] = @"Hex";
 	
-	// iCloud enabled by default
-	defaults[HuesUseiCloudKey] = @YES;
-  
-  // Color formats
+	// Color formats
 	defaults[HuesColorFormatsKey] = @[
-		@{@"name": @"Hex", @"format": @"#{RR}{GG}{BB}"},
-		@{@"name": @"RGB", @"format": @"rgb({R}, {G}, {B})"},
-		@{@"name": @"RGBA", @"format": @"rgba({R}, {G}, {B}, {a})"},
-		@{@"name": @"HSB", @"format": @"hsb({H}, {SS}%, {BR}%)"},
-		@{@"name": @"HSL", @"format": @"hsl({H}, {S}%, {L}%)"},
-		@{@"name": @"UIColor", @"format": @"[UIColor colorWithRed:{r} green:{g} blue:{b} alpha:{a}]"},
-		@{@"name": @"NSColorC", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"},
-		@{@"name": @"NSColorD", @"format": @"[NSColor colorWithDeviceRed:{r} green:{g} blue:{b} alpha:{a}]"}
-	];
+									  @{@"name": @"Hex", @"format": @"#{RR}{GG}{BB}"},
+									  @{@"name": @"RGB", @"format": @"rgb({R}, {G}, {B})"},
+									  @{@"name": @"RGBA", @"format": @"rgba({R}, {G}, {B}, {a})"},
+									  @{@"name": @"HSB", @"format": @"hsb({H}, {SS}%, {BR}%)"},
+									  @{@"name": @"HSL", @"format": @"hsl({H}, {S}%, {L}%)"},
+									  @{@"name": @"UIColor", @"format": @"[UIColor colorWithRed:{r} green:{g} blue:{b} alpha:{a}]"},
+									  @{@"name": @"NSColorC", @"format": @"[NSColor colorWithCalibratedRed:{r} green:{g} blue:{b} alpha:{a}]"},
+									  @{@"name": @"NSColorD", @"format": @"[NSColor colorWithDeviceRed:{r} green:{g} blue:{b} alpha:{a}]"}
+									  ];
 	
 	// Window
 	defaults[HuesKeepOnTopKey] = @NO;
 	
 	// Shortcut
 	defaults[HuesLoupeShortcutKey] = [[MASShortcut shortcutWithKeyCode:kVK_ANSI_C modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)] data];
-  
+	
 	// Tab
 	defaults[HuesLastSelectedTabIndexKey] = @0;
 	
-  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
-}
-
-+ (BOOL)useiCloud
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:HuesUseiCloudKey];
-}
-
-+ (void)setUseiCloud:(BOOL)use
-{
-	[[NSUserDefaults standardUserDefaults] setBool:use forKey:HuesUseiCloudKey];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 + (NSString *)defaultColorFormat
@@ -83,7 +69,7 @@ NSString * const HuesUseiCloudKey = @"useiCloud";
 
 + (NSArray *)colorFormats
 {
-  return [[NSUserDefaults standardUserDefaults] arrayForKey:HuesColorFormatsKey];
+	return [[NSUserDefaults standardUserDefaults] arrayForKey:HuesColorFormatsKey];
 }
 
 + (void)setColorFormats:(NSArray *)formats
@@ -94,26 +80,14 @@ NSString * const HuesUseiCloudKey = @"useiCloud";
 
 + (BOOL)copyToClipboard
 {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:HuesCopyToClipboardKey];  
+	return [[NSUserDefaults standardUserDefaults] boolForKey:HuesCopyToClipboardKey];
 }
 
 + (void)setCopyToClipboard:(BOOL)copy
 {
-  [[NSUserDefaults standardUserDefaults] setBool:copy forKey:HuesCopyToClipboardKey];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+	[[NSUserDefaults standardUserDefaults] setBool:copy forKey:HuesCopyToClipboardKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-//+ (BOOL)useCalibratedColors
-//{
-//  return [[NSUserDefaults standardUserDefaults] boolForKey:HuesUseCalibratedColorsKey]; 
-//}
-//
-//
-//+ (void)setCalibratedColors:(BOOL)calibrated
-//{
-//  [[NSUserDefaults standardUserDefaults] setBool:calibrated forKey:HuesUseCalibratedColorsKey];
-//  [[NSUserDefaults standardUserDefaults] synchronize];
-//}
 
 + (HuesApplicationMode)applicationMode
 {

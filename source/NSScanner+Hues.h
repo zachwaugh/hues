@@ -10,6 +10,6 @@
 
 @interface NSScanner (Hues)
 
-- (void)skipToString:(NSString *)string;
+- (void)hues_skipToString:(NSString *)string;
 
 @end

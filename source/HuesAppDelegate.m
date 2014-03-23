@@ -14,7 +14,6 @@
 #import "HuesPalettesManager.h"
 #import "HuesWindowController.h"
 #import "HuesLoupeController.h"
-#import "HuesSyncManager.h"
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
@@ -27,10 +26,10 @@
 
 @interface HuesAppDelegate () <BITHockeyManagerDelegate>
 
-@property (strong) HuesWindowController *windowController;
-@property (strong) HuesPreferencesController *preferencesController;
-@property (strong) NSMenu *historyMenu;
-@property (strong) NSStatusItem *statusItem;
+@property (nonatomic, strong) HuesWindowController *windowController;
+@property (nonatomic, strong) HuesPreferencesController *preferencesController;
+@property (nonatomic, strong) NSMenu *historyMenu;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 
 - (void)configureApplicationPresentation;
 - (void)registerShortcuts;
@@ -41,7 +40,7 @@
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
-  [HuesPreferences registerDefaults];
+	[HuesPreferences registerDefaults];
 	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	BITSystemProfile *bsp = [BITSystemProfile sharedSystemProfile];
@@ -52,7 +51,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 #if BETA
-	#warning Beta is enabled
+#warning Beta is enabled
 	[self checkForBetaExpiration];
 #endif
 	
@@ -86,7 +85,7 @@
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
-{	
+{
 	if (!flag) {
 		[self.windowController showWindow:nil];
 	}
@@ -96,7 +95,7 @@
 
 - (void)awakeFromNib
 {
-  [HuesHistoryManager sharedManager].menu = self.historyMenu;
+	[HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
 
 #pragma mark - Files
@@ -168,11 +167,11 @@
 - (void)toggleWindow:(id)sender
 {
 	if (![NSApp isActive] || [NSApp isHidden] || [self.windowController.window isMiniaturized] || ![self.windowController.window isVisible]) {
-    [NSApp activateIgnoringOtherApps:YES];
-    [self.windowController showWindow:nil];
-  } else {
-    [NSApp hide:self];
-  }
+		[NSApp activateIgnoringOtherApps:YES];
+		[self.windowController showWindow:nil];
+	} else {
+		[NSApp hide:self];
+	}
 }
 
 #pragma mark - Actions
@@ -184,11 +183,11 @@
 
 - (void)showPreferences:(id)sender
 {
-  if (!self.preferencesController) {
-    self.preferencesController = [[HuesPreferencesController alloc] init];
-  }
-  
-  [self.preferencesController showWindow:sender];
+	if (!self.preferencesController) {
+		self.preferencesController = [[HuesPreferencesController alloc] init];
+	}
+	
+	[self.preferencesController showWindow:sender];
 }
 
 #pragma mark - Hockey SDK
@@ -205,7 +204,7 @@
 
 - (void)checkForUpdates:(id)sender
 {
-  [[SUUpdater sharedUpdater] checkForUpdates:sender];
+	[[SUUpdater sharedUpdater] checkForUpdates:sender];
 }
 
 - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile
@@ -218,22 +217,22 @@
 #pragma mark - Beta
 
 - (void)checkForBetaExpiration
-{  
-  NSDate *expiration = [NSDate dateWithNaturalLanguageString:BETA_EXPIRATION];
-  
-  if ([expiration earlierDate:[NSDate date]] == expiration) {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"This beta has expired. Thank you for being a tester." defaultButton:@"Cancel" alternateButton:@"Mac App Store" otherButton:@"Check for Updated Beta" informativeTextWithFormat:@"Check for an updated beta or visit the Mac App Store to download the release version."];
-    
-    NSInteger returnCode = [alert runModal];
-    
-    if (returnCode == NSAlertAlternateReturn) {
-      [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:HUES_MAS_URL]];
-    } else if (returnCode == NSAlertOtherReturn) {
-      [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://giantcomet.com/hues/beta"]];
-    }
-    
-    [NSApp terminate:self];
-  }
+{
+	NSDate *expiration = [NSDate dateWithNaturalLanguageString:BETA_EXPIRATION];
+	
+	if ([expiration earlierDate:[NSDate date]] == expiration) {
+		NSAlert *alert = [NSAlert alertWithMessageText:@"This beta has expired. Thank you for being a tester." defaultButton:@"Cancel" alternateButton:@"Mac App Store" otherButton:@"Check for Updated Beta" informativeTextWithFormat:@"Check for an updated beta or visit the Mac App Store to download the release version."];
+		
+		NSInteger returnCode = [alert runModal];
+		
+		if (returnCode == NSAlertAlternateReturn) {
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:HUES_MAS_URL]];
+		} else if (returnCode == NSAlertOtherReturn) {
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://giantcomet.com/hues/beta"]];
+		}
+		
+		[NSApp terminate:self];
+	}
 }
 
 @end

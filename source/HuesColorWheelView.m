@@ -12,7 +12,6 @@
 #import "HuesColor.h"
 
 #define CIRCLE_RADIUS 2
-
 #define COMPONENTS_PER_PIXEL 4
 #define BITS_PER_COMPONENT 8
 
@@ -72,7 +71,7 @@
 			buffer[byte + 1] = rgb.green * 255;
 			buffer[byte + 2] = rgb.blue * 255;
 			buffer[byte + 3] = 255;
-
+			
 			pixel += 4;
 		}
 	}
@@ -82,11 +81,11 @@
 	
 	// Create and cache image
 	CGImageRef image = CGBitmapContextCreateImage(context);
-  NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage:image];
+	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage:image];
 	self.image = [[NSImage alloc] initWithSize:self.bounds.size];
 	[self.image setFlipped:YES];
 	[self.image addRepresentation:imageRep];
-
+	
 	free(buffer);
 	CGImageRelease(image);
 	CGContextRelease(context);
@@ -96,7 +95,7 @@
 {
 	NSRect rect = self.bounds;
 	[self.image drawInRect:self.bounds fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
-
+	
 	CGFloat x = self.color.HSBSaturation * self.bounds.size.width;
 	CGFloat y = self.color.brightness * self.bounds.size.height;
 	
@@ -141,7 +140,7 @@
 	} else if (point.y > NSMaxY(self.bounds)) {
 		point.y = NSMaxY(self.bounds);
 	}
-
+	
 	CGFloat saturation = point.x / self.bounds.size.width;
 	CGFloat brightness = point.y / self.bounds.size.height;
 	

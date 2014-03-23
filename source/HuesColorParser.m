@@ -31,12 +31,12 @@
 	// FFFFFF
 	// ffffff
 	
-  // remove any # signs
-  hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
-  
-  if (hex == nil || hex.length < 6) return nil;
-  if (hex.length > 6) hex = [hex substringToIndex:6]; // chop off any extra characters
-  
+	// remove any # signs
+	hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
+	
+	if (hex == nil || hex.length < 6) return nil;
+	if (hex.length > 6) hex = [hex substringToIndex:6]; // chop off any extra characters
+	
 	unsigned int colorCode = 0;
 	unsigned char redByte, greenByte, blueByte;
 	
@@ -44,7 +44,7 @@
 	if (![scanner scanHexInt:&colorCode]) {
 		return nil;
 	}
-  
+	
 	redByte = (unsigned char) (colorCode >> 16);
 	greenByte	= (unsigned char) (colorCode >> 8);
 	blueByte = (unsigned char) (colorCode);	// masks off high bits
@@ -74,14 +74,14 @@
 	[scanner scanUpToString:@"," intoString:NULL];
 	[scanner scanString:@"," intoString:NULL];
 	[scanner scanInt:&blue];
-
+	
 	// Check for alpha channel with presence of additional comma
 	BOOL hasAlpha = [[rgb substringWithRange:NSMakeRange(scanner.scanLocation, 1)] isEqualToString:@","];
 	if (hasAlpha) {
 		[scanner scanString:@"," intoString:NULL];
 		[scanner scanFloat:&alpha];
 	}
-
+	
 	return [HuesColor colorWithRed:red / 255.0f green:green / 255.f blue:blue / 255.f alpha:alpha];
 }
 

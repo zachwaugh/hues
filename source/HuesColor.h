@@ -9,26 +9,26 @@
 @interface HuesColor : NSObject
 
 // Default properties: 0-1
-@property (assign, nonatomic, readonly) CGFloat red;
-@property (assign, nonatomic, readonly) CGFloat green;
-@property (assign, nonatomic, readonly) CGFloat blue;
-@property (assign, nonatomic, readonly) CGFloat hue;
-@property (assign, nonatomic, readonly) CGFloat saturation;
-@property (assign, nonatomic, readonly) CGFloat lightness;
-@property (assign, nonatomic, readonly) CGFloat alpha;
-@property (assign, nonatomic, readonly) CGFloat HSBSaturation;
-@property (assign, nonatomic, readonly) CGFloat brightness;
+@property (nonatomic, assign, readonly) CGFloat red;
+@property (nonatomic, assign, readonly) CGFloat green;
+@property (nonatomic, assign, readonly) CGFloat blue;
+@property (nonatomic, assign, readonly) CGFloat hue;
+@property (nonatomic, assign, readonly) CGFloat saturation;
+@property (nonatomic, assign, readonly) CGFloat lightness;
+@property (nonatomic, assign, readonly) CGFloat alpha;
+@property (nonatomic, assign, readonly) CGFloat HSBSaturation;
+@property (nonatomic, assign, readonly) CGFloat brightness;
 
 // Integer properties - 0-255, 0-100, 0-360 (depending on type)
-@property (assign, nonatomic, readonly) int hues_red;
-@property (assign, nonatomic, readonly) int hues_green;
-@property (assign, nonatomic, readonly) int hues_blue;
-@property (assign, nonatomic, readonly) int hues_hue;
-@property (assign, nonatomic, readonly) int hues_alpha;
-@property (assign, nonatomic, readonly) int hues_saturation; // HSL saturation
-@property (assign, nonatomic, readonly) int hues_lightness; // HSL
-@property (assign, nonatomic, readonly) int hues_HSBSaturation;
-@property (assign, nonatomic, readonly) int hues_brightness; // HSB
+@property (nonatomic, assign, readonly) int hues_red;
+@property (nonatomic, assign, readonly) int hues_green;
+@property (nonatomic, assign, readonly) int hues_blue;
+@property (nonatomic, assign, readonly) int hues_hue;
+@property (nonatomic, assign, readonly) int hues_alpha;
+@property (nonatomic, assign, readonly) int hues_saturation; // HSL saturation
+@property (nonatomic, assign, readonly) int hues_lightness; // HSL
+@property (nonatomic, assign, readonly) int hues_HSBSaturation;
+@property (nonatomic, assign, readonly) int hues_brightness; // HSB
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, strong) UIColor *color;

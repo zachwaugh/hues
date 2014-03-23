@@ -23,24 +23,24 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-  [self.statusItem drawStatusBarBackgroundInRect:self.bounds withHighlight:self.highlighted];
-  
-  NSImage *image = (self.highlighted) ? self.alternateImage : self.image;
-  NSRect imageRect = NSMakeRect(ceil((self.bounds.size.width - image.size.width) / 2.0f), ceil((self.bounds.size.height - image.size.height) / 2.0f), image.size.width, image.size.height);
-	  
-  [image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	[self.statusItem drawStatusBarBackgroundInRect:self.bounds withHighlight:self.highlighted];
+	
+	NSImage *image = (self.highlighted) ? self.alternateImage : self.image;
+	NSRect imageRect = NSMakeRect(ceil((self.bounds.size.width - image.size.width) / 2.0f), ceil((self.bounds.size.height - image.size.height) / 2.0f), image.size.width, image.size.height);
+	
+	[image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
 - (void)setImage:(NSImage *)image
 {
-  _image = image;
-  [self setNeedsDisplay:YES];
+	_image = image;
+	[self setNeedsDisplay:YES];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-  _highlighted = highlighted;
-  [self setNeedsDisplay:YES];
+	_highlighted = highlighted;
+	[self setNeedsDisplay:YES];
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)event
@@ -72,12 +72,12 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-  self.highlighted = NO;
+	self.highlighted = NO;
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent
 {
-  self.highlighted = YES;
+	self.highlighted = YES;
 	[self.statusItem popUpStatusItemMenu:self.menu];
 	self.highlighted = NO;
 }

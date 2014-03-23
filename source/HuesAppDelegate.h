@@ -10,8 +10,8 @@
 
 @interface HuesAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
-@property (weak) IBOutlet NSMenuItem *checkForUpdatesMenuItem;
-@property (weak) IBOutlet NSMenu *statusMenu;
+@property (nonatomic, weak) IBOutlet NSMenuItem *checkForUpdatesMenuItem;
+@property (nonatomic, weak) IBOutlet NSMenu *statusMenu;
 
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)showLoupe:(id)sender;

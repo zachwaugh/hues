@@ -27,7 +27,7 @@ CGFloat HuesClampedValue(CGFloat value)
 
 @interface HuesColor ()
 
-@property (assign) BOOL createdWithRGB;
+@property (nonatomic, assign) BOOL createdWithRGB;
 
 - (void)updateCache;
 - (NSInteger)relativeBrightness;

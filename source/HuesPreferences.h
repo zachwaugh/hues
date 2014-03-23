@@ -17,14 +17,10 @@ extern NSString * const HuesKeepOnTopKey;
 extern NSString * const HuesApplicationModeKey;
 extern NSString * const HuesLoupeShortcutKey;
 extern NSString * const HuesLastSelectedTabIndexKey;
-extern NSString * const HuesUseiCloudKey;
 
 @interface HuesPreferences : NSObject
 
 + (void)registerDefaults;
-
-+ (BOOL)useiCloud;
-+ (void)setUseiCloud:(BOOL)use;
 
 + (BOOL)copyToClipboard;
 + (void)setCopyToClipboard:(BOOL)copy;
@@ -34,9 +30,6 @@ extern NSString * const HuesUseiCloudKey;
 
 + (NSArray *)colorFormats;
 + (void)setColorFormats:(NSArray *)formats;
-
-//+ (BOOL)useCalibratedColors;
-//+ (void)setCalibratedColors:(BOOL)calibrated;
 
 + (HuesApplicationMode)applicationMode;
 + (void)setApplicationMode:(HuesApplicationMode)mode;

@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * uuid;
 @property (nonatomic, retain) NSOrderedSet *colors;
+
 @end
 
 @interface HuesPalette (CoreDataGeneratedAccessors)

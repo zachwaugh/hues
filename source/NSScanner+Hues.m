@@ -10,7 +10,7 @@
 
 @implementation NSScanner (Hues)
 
-- (void)skipToString:(NSString *)string
+- (void)hues_skipToString:(NSString *)string
 {
 	[self scanUpToString:string intoString:NULL];
 	[self scanString:string intoString:NULL];
