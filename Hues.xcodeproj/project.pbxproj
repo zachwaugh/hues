@@ -72,16 +72,16 @@
 		927F10B5187B1B47005018F8 /* Hues 2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 927F10B4187B1B47005018F8 /* Hues 2.icns */; };
 		92862700164031B600DA16BE /* HuesStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928626FF164031B600DA16BE /* HuesStatusItemView.m */; };
 		9286270716405BF100DA16BE /* HuesGradientLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286270616405BF000DA16BE /* HuesGradientLine.m */; };
+		92A535F518FF50540009E9D8 /* copy-button-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A535F118FF50540009E9D8 /* copy-button-down.png */; };
+		92A535F618FF50540009E9D8 /* copy-button-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A535F218FF50540009E9D8 /* copy-button-down@2x.png */; };
+		92A535F718FF50540009E9D8 /* copy-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A535F318FF50540009E9D8 /* copy-button.png */; };
+		92A535F818FF50540009E9D8 /* copy-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A535F418FF50540009E9D8 /* copy-button@2x.png */; };
 		92A6694417A032AC00F037DC /* HuesPalettesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6694217A032AC00F037DC /* HuesPalettesController.m */; };
 		92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A6694317A032AC00F037DC /* HuesPalettesController.xib */; };
 		92A6698817A0614700F037DC /* HuesPaletteItemCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698717A0614700F037DC /* HuesPaletteItemCellView.m */; };
 		92A6698B17A063D200F037DC /* HuesPalettesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698A17A063D200F037DC /* HuesPalettesManager.m */; };
 		92A6699017A07CC200F037DC /* HuesColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6698F17A07CC200F037DC /* HuesColorWell.m */; };
 		92AAF5B61642FEBF00DC09E8 /* HuesApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */; };
-		92C1144C179E26470092E3CB /* copy-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144A179E26470092E3CB /* copy-button.png */; };
-		92C1144D179E26470092E3CB /* copy-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144B179E26470092E3CB /* copy-button@2x.png */; };
-		92C11450179E275D0092E3CB /* copy-button-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144E179E275D0092E3CB /* copy-button-down.png */; };
-		92C11451179E275D0092E3CB /* copy-button-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C1144F179E275D0092E3CB /* copy-button-down@2x.png */; };
 		92C11458179E28D40092E3CB /* text-field-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11452179E28D40092E3CB /* text-field-fill.png */; };
 		92C11459179E28D40092E3CB /* text-field-fill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11453179E28D40092E3CB /* text-field-fill@2x.png */; };
 		92C1145A179E28D40092E3CB /* text-field-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C11454179E28D40092E3CB /* text-field-left.png */; };
@@ -254,6 +254,10 @@
 		928626FF164031B600DA16BE /* HuesStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesStatusItemView.m; sourceTree = "<group>"; };
 		9286270516405BF000DA16BE /* HuesGradientLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesGradientLine.h; sourceTree = "<group>"; };
 		9286270616405BF000DA16BE /* HuesGradientLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGradientLine.m; sourceTree = "<group>"; };
+		92A535F118FF50540009E9D8 /* copy-button-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button-down.png"; sourceTree = "<group>"; };
+		92A535F218FF50540009E9D8 /* copy-button-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button-down@2x.png"; sourceTree = "<group>"; };
+		92A535F318FF50540009E9D8 /* copy-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button.png"; sourceTree = "<group>"; };
+		92A535F418FF50540009E9D8 /* copy-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button@2x.png"; sourceTree = "<group>"; };
 		92A6694117A032AC00F037DC /* HuesPalettesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPalettesController.h; sourceTree = "<group>"; };
 		92A6694217A032AC00F037DC /* HuesPalettesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPalettesController.m; sourceTree = "<group>"; };
 		92A6694317A032AC00F037DC /* HuesPalettesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPalettesController.xib; sourceTree = "<group>"; };
@@ -265,10 +269,6 @@
 		92A6698F17A07CC200F037DC /* HuesColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesColorWell.m; sourceTree = "<group>"; };
 		92AAF5B41642FEBE00DC09E8 /* HuesApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesApplication.h; sourceTree = "<group>"; };
 		92AAF5B51642FEBE00DC09E8 /* HuesApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesApplication.m; sourceTree = "<group>"; };
-		92C1144A179E26470092E3CB /* copy-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button.png"; sourceTree = "<group>"; };
-		92C1144B179E26470092E3CB /* copy-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button@2x.png"; sourceTree = "<group>"; };
-		92C1144E179E275D0092E3CB /* copy-button-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button-down.png"; sourceTree = "<group>"; };
-		92C1144F179E275D0092E3CB /* copy-button-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy-button-down@2x.png"; sourceTree = "<group>"; };
 		92C11452179E28D40092E3CB /* text-field-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-field-fill.png"; sourceTree = "<group>"; };
 		92C11453179E28D40092E3CB /* text-field-fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-field-fill@2x.png"; sourceTree = "<group>"; };
 		92C11454179E28D40092E3CB /* text-field-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-field-left.png"; sourceTree = "<group>"; };
@@ -554,6 +554,10 @@
 				92C11464179E2D1A0092E3CB /* scope-bar-button-left@2x.png */,
 				92C11465179E2D1A0092E3CB /* scope-bar-button-right.png */,
 				92C11466179E2D1A0092E3CB /* scope-bar-button-right@2x.png */,
+				92A535F118FF50540009E9D8 /* copy-button-down.png */,
+				92A535F218FF50540009E9D8 /* copy-button-down@2x.png */,
+				92A535F318FF50540009E9D8 /* copy-button.png */,
+				92A535F418FF50540009E9D8 /* copy-button@2x.png */,
 				92C11452179E28D40092E3CB /* text-field-fill.png */,
 				92C11453179E28D40092E3CB /* text-field-fill@2x.png */,
 				92C11454179E28D40092E3CB /* text-field-left.png */,
@@ -562,10 +566,6 @@
 				92C11457179E28D40092E3CB /* text-field-right@2x.png */,
 				92314E4F179741D90044158A /* text-field-background.png */,
 				92314E50179741D90044158A /* text-field-background@2x.png */,
-				92C1144A179E26470092E3CB /* copy-button.png */,
-				92C1144B179E26470092E3CB /* copy-button@2x.png */,
-				92C1144E179E275D0092E3CB /* copy-button-down.png */,
-				92C1144F179E275D0092E3CB /* copy-button-down@2x.png */,
 				920E5DA817CA8EB000F8FE05 /* gear.png */,
 				920E5DA917CA8EB000F8FE05 /* gear@2x.png */,
 				9273E51917AB5A2A00360779 /* transparency.png */,
@@ -763,6 +763,7 @@
 				927F10B5187B1B47005018F8 /* Hues 2.icns in Resources */,
 				92FBF1131666BFBB00BDC670 /* HuesWindowController.xib in Resources */,
 				927F10B0187B1951005018F8 /* hues_menubar_selected.png in Resources */,
+				92A535F818FF50540009E9D8 /* copy-button@2x.png in Resources */,
 				921A8E7F167FE757002FCC42 /* HuesRGBViewController.xib in Resources */,
 				921A8E85167FE8E2002FCC42 /* HuesHSBViewController.xib in Resources */,
 				923098BB1680058700F98571 /* HuesColorWheelViewController.xib in Resources */,
@@ -772,13 +773,10 @@
 				9228C51B16F16A7500C57A48 /* slider-knob@2x.png in Resources */,
 				92F13DD4178F4D9400E699E4 /* HuesColorFormattingPreferencesController.xib in Resources */,
 				9218A5731796305800AEF7DE /* HuesGeneralPreferencesController.xib in Resources */,
+				92A535F518FF50540009E9D8 /* copy-button-down.png in Resources */,
 				921DB1C91796E7C300ADDB2D /* HuesHSLMixerController.xib in Resources */,
 				92314E51179741D90044158A /* text-field-background.png in Resources */,
 				92314E52179741D90044158A /* text-field-background@2x.png in Resources */,
-				92C1144C179E26470092E3CB /* copy-button.png in Resources */,
-				92C1144D179E26470092E3CB /* copy-button@2x.png in Resources */,
-				92C11450179E275D0092E3CB /* copy-button-down.png in Resources */,
-				92C11451179E275D0092E3CB /* copy-button-down@2x.png in Resources */,
 				92C11458179E28D40092E3CB /* text-field-fill.png in Resources */,
 				92C11459179E28D40092E3CB /* text-field-fill@2x.png in Resources */,
 				927F10B1187B1951005018F8 /* hues_menubar_selected@2x.png in Resources */,
@@ -788,6 +786,7 @@
 				92C1145D179E28D40092E3CB /* text-field-right@2x.png in Resources */,
 				92C11467179E2D1A0092E3CB /* scope-bar-button-fill.png in Resources */,
 				92C11468179E2D1A0092E3CB /* scope-bar-button-fill@2x.png in Resources */,
+				92A535F618FF50540009E9D8 /* copy-button-down@2x.png in Resources */,
 				92C11469179E2D1A0092E3CB /* scope-bar-button-left.png in Resources */,
 				927F10B3187B1951005018F8 /* hues_menubar@2x.png in Resources */,
 				92C1146A179E2D1A0092E3CB /* scope-bar-button-left@2x.png in Resources */,
@@ -796,6 +795,7 @@
 				92A6694517A032AC00F037DC /* HuesPalettesController.xib in Resources */,
 				927F10B2187B1951005018F8 /* hues_menubar.png in Resources */,
 				92C5CF8217A1717D0082CE2C /* hues_document.iconset in Resources */,
+				92A535F718FF50540009E9D8 /* copy-button.png in Resources */,
 				92C5CF8917A17FA00082CE2C /* HuesPaletteNameController.xib in Resources */,
 				9273E51B17AB5A2A00360779 /* transparency.png in Resources */,
 				9273E51C17AB5A2A00360779 /* transparency@2x.png in Resources */,
