@@ -25,7 +25,7 @@
 
 - (void)dealloc
 {
-  if (_image) {
+	if (_image) {
 		CGImageRelease(_image);
 	}
 }
@@ -78,41 +78,41 @@
 {
 	[self grabScreenshot];
 	
-  NSRect b = self.bounds;
+	NSRect b = self.bounds;
 	CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
 	
 	CGFloat scaleFactor = self.window.backingScaleFactor;
 	NSInteger zoomLevel = self.zoomLevel * scaleFactor;
 	NSInteger loupeSize = self.loupeSize;
-
-	// Main loupe path
-  NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
 	
-  CGFloat offset = ((zoomLevel * loupeSize) - loupeSize) / 2;
+	// Main loupe path
+	NSBezierPath *loupePath = [NSBezierPath bezierPathWithOvalInRect:b];
+	
+	CGFloat offset = ((zoomLevel * loupeSize) - loupeSize) / 2;
 	
 	if (scaleFactor > 1) {
 		offset += floor(self.zoomLevel / 2.0);
 	}
-  
+	
 	// Draw scaled screenshot clipped to loupe path
-  CGContextSaveGState(ctx);
-  
+	CGContextSaveGState(ctx);
+	
 	// Clip to circle
 	[loupePath addClip];
-
+	
 	// Set interpolation to none so pixels are crisp when scaled up
-  CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
+	CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
 	
 	// Translate and scale context so image is drawn correctly
-  CGContextTranslateCTM(ctx, -offset, -offset);
-  CGContextScaleCTM(ctx, zoomLevel, zoomLevel);
+	CGContextTranslateCTM(ctx, -offset, -offset);
+	CGContextScaleCTM(ctx, zoomLevel, zoomLevel);
 	
 	// Draw screenshot into context
-  CGContextDrawImage(ctx, b, _image);
-  CGContextRestoreGState(ctx);
-  
+	CGContextDrawImage(ctx, b, _image);
+	CGContextRestoreGState(ctx);
+	
 	CGFloat gridSize = zoomLevel / scaleFactor;
-
+	
 	//NSLog(@"zoom level: %ld, size: %@, grid size: %f,", self.zoomLevel, NSStringFromSize(b.size), gridSize);
 	
 	// Draw grid on top of screenshot
@@ -130,7 +130,7 @@
 		CGFloat x = step;
 		CGFloat height = NSHeight(b);
 		CGFloat width = NSWidth(b);
-
+		
 		// Draw vertical lines
 		for (x = step; x <= NSWidth(b); x += gridSize) {
 			[grid moveToPoint:NSMakePoint(x, y)];
@@ -151,12 +151,12 @@
 		
 		CGContextRestoreGState(ctx);
 	}
-		
+	
 	// Turn off anti-aliasing so lines are crisp
 	CGContextSetAllowsAntialiasing(ctx, NO);
 	
 	HuesColor *color = [self colorAtCenter];
-
+	
 	// Figure out whether primary pixel is dark or light and change outline
 	if ([color isDark]) {
 		[[NSColor whiteColor] set];
@@ -167,7 +167,7 @@
 	// Square around center pixel that will be used for picking
 	NSRect centerRect = NSMakeRect(NSMidX(b) - (gridSize / 2.0) + 0.5, NSMidY(b)  - (gridSize / 2.0) + 0.5, gridSize, gridSize);
 	[[NSBezierPath bezierPathWithRect:centerRect] stroke];
-
+	
 	// Need to turn this back on
 	CGContextSetAllowsAntialiasing(ctx, YES);
 	
@@ -178,7 +178,7 @@
 		shadow.shadowOffset = NSMakeSize(0, -1);
 		attrs = @{ NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:12.0], NSForegroundColorAttributeName: [NSColor whiteColor], NSShadowAttributeName: shadow };
 	}
-
+	
 	NSAttributedString *hex = [[NSAttributedString alloc] initWithString:[HuesColorFormatter hexForColor:color] attributes:attrs];
 	NSSize textSize = hex.size;
 	CGFloat width = textSize.width + 10;
@@ -193,27 +193,27 @@
 - (void)grabScreenshot
 {
 	// Grab screenshot from underneath the window
-  NSWindow *window = self.window;
-  
-  // Convert rect to screen coordinates
-  NSRect rect = window.frame;
-  rect.origin.y = NSMaxY(window.screen.frame) - NSMaxY(rect);
-  
+	NSWindow *window = self.window;
+	
+	// Convert rect to screen coordinates
+	NSRect rect = window.frame;
+	rect.origin.y = NSMaxY(window.screen.frame) - NSMaxY(rect);
+	
 	// Release old image
 	if (_image) {
 		CGImageRelease(_image);
 	}
-  
+	
 	// TODO: limit to minimum area we need
 	// Get actual image of screen
-  _image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
+	_image = CGWindowListCreateImage(rect, kCGWindowListOptionOnScreenBelowWindow, (unsigned int)window.windowNumber, kCGWindowImageDefault);
 }
 
 - (void)pickColor
 {
 	// Always pick color from center of loupe
 	HuesColor *color = [self colorAtCenter];
-  
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:HuesUpdateColorNotification object:color];
 	[(HuesLoupeWindow *)self.window hide];
 }
@@ -226,31 +226,31 @@
 
 - (HuesColor *)colorAtPoint:(CGPoint)point
 {
-  // Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
-  // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
-  CGFloat pointX = floor(point.x);
-  CGFloat pointY = floor(point.y);
-  CGFloat width = CGImageGetWidth(_image);
-  CGFloat height = CGImageGetHeight(_image);
+	// Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
+	// Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
+	CGFloat pointX = floor(point.x);
+	CGFloat pointY = floor(point.y);
+	CGFloat width = CGImageGetWidth(_image);
+	CGFloat height = CGImageGetHeight(_image);
 	
-  int bytesPerPixel = 4;
-  int bytesPerRow = bytesPerPixel * 1;
-  NSUInteger bitsPerComponent = 8;
-  unsigned char pixelData[4] = { 0, 0, 0, 0 };
-  CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, CGImageGetColorSpace(_image), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-  CGContextSetBlendMode(context, kCGBlendModeCopy);
-  
-  // Draw the pixel we are interested in onto the bitmap context
-  CGContextTranslateCTM(context, -pointX, -pointY);
-  CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), _image);
-  CGContextRelease(context);
-  
-  // Convert color values [0..255] to floats [0.0..1.0]
+	int bytesPerPixel = 4;
+	int bytesPerRow = bytesPerPixel * 1;
+	NSUInteger bitsPerComponent = 8;
+	unsigned char pixelData[4] = { 0, 0, 0, 0 };
+	CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, CGImageGetColorSpace(_image), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+	CGContextSetBlendMode(context, kCGBlendModeCopy);
+	
+	// Draw the pixel we are interested in onto the bitmap context
+	CGContextTranslateCTM(context, -pointX, -pointY);
+	CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), _image);
+	CGContextRelease(context);
+	
+	// Convert color values [0..255] to floats [0.0..1.0]
 	CGFloat red = pixelData[0] / 255.0f;
 	CGFloat green = pixelData[1] / 255.0f;
 	CGFloat blue = pixelData[2] / 255.0f;
 	CGFloat alpha = pixelData[3] / 255.0f;
-
+	
 	return [HuesColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
@@ -284,7 +284,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-  [self pickColor];
+	[self pickColor];
 }
 
 #pragma mark - Constants

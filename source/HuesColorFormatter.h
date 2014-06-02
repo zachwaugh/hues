@@ -10,7 +10,7 @@
 
 @class HuesColor;
 
-@interface HuesColorFormatter
+@interface HuesColorFormatter : NSObject
 
 + (NSString *)hexForColor:(HuesColor *)color;
 + (NSString *)stringWithColor:(HuesColor *)color format:(NSString *)format;

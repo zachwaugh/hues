@@ -7,7 +7,7 @@
 //
 
 #define BETA 1
-#define BETA_EXPIRATION @"2014-06-01 23:59:00" // June 1, 2014
+#define BETA_EXPIRATION @"2014-12-31 23:59:00" // December 31, 2014
 #define HUES_MAS_URL @"https://itunes.apple.com/us/app/hues/id411811718?mt=12"
 
 typedef enum {
