@@ -27,15 +27,11 @@
 @class HuesPreferencesController;
 @class HuesMainController;
 
-@interface HuesAppDelegate : NSObject {
-  HuesMainController *mainController;
-  HuesPreferencesController *preferencesController;
-  IBOutlet NSMenu *historyMenu;
-}
+@interface HuesAppDelegate : NSObject
 
-@property (retain) HuesMainController *mainController;
-@property (retain) HuesPreferencesController *preferencesController;
-@property (retain) NSMenu *historyMenu;
+@property (nonatomic, strong) HuesMainController *mainController;
+@property (nonatomic, strong) HuesPreferencesController *preferencesController;
+@property (nonatomic, strong) IBOutlet NSMenu *historyMenu;
 
 - (void)showPreferences:(id)sender;
 

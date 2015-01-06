@@ -25,10 +25,10 @@
 #import "HuesColorsView.h"
 
 #define BACKGROUND_GRAY_VALUE 220
-#define BORDER_GRAY_VALUE 200
+#define BORDER_GRAY_VALUE 202
 #define BORDER_INSET 20
-#define TOP_SEPARATOR_OFFSET 125
-#define BOTTOM_SEPARATOR_OFFSET 72
+#define TOP_SEPARATOR_OFFSET 130
+#define BOTTOM_SEPARATOR_OFFSET 68
 
 @implementation HuesColorsView
 
@@ -38,10 +38,8 @@
     NSRectFill(self.bounds);
     
     [[NSColor colorWithWhite:BORDER_GRAY_VALUE / 255.0 alpha:1.0] set];
-    // Bottom border
-    NSRectFill(NSMakeRect(0, 0, self.bounds.size.width, 1));
-    // Top border (not sure why this is 7px off)
-    NSRectFill(NSMakeRect(0, self.bounds.size.height - 7, self.bounds.size.width, 1));
+    // Top border
+    NSRectFill(NSMakeRect(0, self.bounds.size.height - 1, self.bounds.size.width, 1));
     
     // Separator lines - this is a crappy way to do this, but currently the view doesn't resize vertically
     NSRectFill(NSMakeRect(BORDER_INSET, TOP_SEPARATOR_OFFSET, self.bounds.size.width - (BORDER_INSET * 2), 1));

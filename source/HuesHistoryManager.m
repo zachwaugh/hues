@@ -29,7 +29,6 @@
 
 #define HUES_MAX_HISTORY_SIZE 25
 
-// Private methods
 @interface HuesHistoryManager ()
 
 - (void)colorChosen:(id)sender;
@@ -37,8 +36,6 @@
 @end
 
 @implementation HuesHistoryManager
-
-@synthesize history, menu;
 
 - (id)init {
     if ((self = [super init])) {
@@ -48,13 +45,7 @@
     return self;
 }
 
-- (void)dealloc {
-    self.history = nil;
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Singleton methods
+#pragma mark - Singleton
 
 + (HuesHistoryManager *)sharedManager {
     static HuesHistoryManager *_sharedManager = nil;
@@ -81,7 +72,7 @@
         [self.menu removeItemAtIndex:HUES_MAX_HISTORY_SIZE - 1];
     }
     
-    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[color hues_hex] action:@selector(colorChosen:) keyEquivalent:@""] autorelease];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[color hues_hex] action:@selector(colorChosen:) keyEquivalent:@""];
     [item setImage:[NSImage imageWithColor:color]];
     [item setTarget:self];
     [self.menu insertItem:item atIndex:0];

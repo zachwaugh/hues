@@ -25,13 +25,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface HuesHistoryManager : NSObject
-{
-  NSMutableArray *history;
-  NSMenu *menu;
-}
 
-@property (retain) NSMutableArray *history;
-@property (assign) NSMenu *menu;
+@property (nonatomic, strong) NSMutableArray *history;
+@property (nonatomic, weak) NSMenu *menu;
 
 + (HuesHistoryManager *)sharedManager;
 - (void)addColor:(NSColor *)color;

@@ -26,20 +26,13 @@
 
 @class HuesColorsView;
 
-@interface HuesMainController : NSObject <NSWindowDelegate> {
-    IBOutlet HuesColorsView *colorsView;
-    IBOutlet NSTextField *hexField;
-    IBOutlet NSTextField *rgbLabel;
-    IBOutlet NSTextField *hslLabel;
-    
-    NSColorPanel *colorPanel;
-}
+@interface HuesMainController : NSObject <NSWindowDelegate>
 
-@property (retain) NSColorPanel *colorPanel;
-@property (retain) NSView *colorsView;
-@property (retain) NSTextField *hexField;
-@property (retain) NSTextField *rgbLabel;
-@property (retain) NSTextField *hslLabel;
+@property (nonatomic, strong) NSColorPanel *colorPanel;
+@property (nonatomic, strong) IBOutlet NSView *colorsView;
+@property (nonatomic, weak) IBOutlet NSTextField *hexField;
+@property (nonatomic, weak) IBOutlet NSTextField *rgbLabel;
+@property (nonatomic, weak) IBOutlet NSTextField *hslLabel;
 
 - (IBAction)copyHex:(id)sender;
 - (IBAction)copyRGB:(id)sender;

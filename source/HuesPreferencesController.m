@@ -24,35 +24,22 @@
 
 #import "HuesPreferencesController.h"
 
-NSString * const HuesGeneralToolbarIdentifier = @"general";
-NSString * const HuesColorPickersToolbarIdentifier = @"colorpickers";
-NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
+static NSString * const HuesGeneralToolbarIdentifier = @"general";
+static NSString * const HuesColorPickersToolbarIdentifier = @"colorpickers";
+static NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
 
 @implementation HuesPreferencesController
-
-@synthesize currentToolbarIdentifier, currentView, toolbar, view, generalView, colorPickersView, advancedView;
-
-- (void)dealloc {
-    self.currentToolbarIdentifier = nil;
-    self.toolbar = nil;
-    self.view = nil;
-    self.generalView = nil;
-    self.colorPickersView = nil;
-    self.advancedView = nil;
-    
-    [super dealloc];
-}
 
 - (void)awakeFromNib {
     self.currentToolbarIdentifier = HuesGeneralToolbarIdentifier;
     [self.toolbar setSelectedItemIdentifier:HuesGeneralToolbarIdentifier];
-    [[self window] setTitle:@"General"];
+    self.window.title = @"General";
     self.currentView = self.generalView;
 }
 
 - (void)toolbarItemSelected:(id)sender {
     NSString *identifier = [sender itemIdentifier];
-    if ([identifier isEqualToString:currentToolbarIdentifier]) return;
+    if ([identifier isEqualToString:self.currentToolbarIdentifier]) return;
     
     self.currentToolbarIdentifier = identifier;
     [self.toolbar setSelectedItemIdentifier:identifier];
@@ -74,11 +61,11 @@ NSString * const HuesAdvancedToolbarIdentifier = @"advanced";
     newFrame.size.height = aView.frame.size.height + (self.window.frame.size.height - self.view.frame.size.height);
     newFrame.origin.y += (self.view.frame.size.height - aView.frame.size.height);
     
-    [currentView removeFromSuperview];
+    [_currentView removeFromSuperview];
     [[self window] setFrame:newFrame display:YES animate:YES];
     [self.view addSubview:aView];
     
-    currentView = aView;
+    _currentView = aView;
 }
 
 @end

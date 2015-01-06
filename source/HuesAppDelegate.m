@@ -30,32 +30,22 @@
 
 @implementation HuesAppDelegate
 
-@synthesize mainController, preferencesController, historyMenu;
-
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
     [HuesPreferences registerDefaults];
     [NSColorPanel setPickerMask:[HuesPreferences pickerMask]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.mainController = [[[HuesMainController alloc] init] autorelease];
+    self.mainController = [[HuesMainController alloc] init];
 }
 
 - (void)awakeFromNib {
     [HuesHistoryManager sharedManager].menu = self.historyMenu;
 }
 
-- (void)dealloc {
-    self.mainController = nil;
-    self.preferencesController = nil;
-    self.historyMenu = nil;
-    
-    [super dealloc];
-}
-
 - (void)showPreferences:(id)sender {
-    if (self.preferencesController == nil) {
-        self.preferencesController = [[[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"] autorelease];
+    if (!self.preferencesController) {
+        self.preferencesController = [[HuesPreferencesController alloc] initWithWindowNibName:@"HuesPreferences"];
     }
     
     [self.preferencesController showWindow:sender];

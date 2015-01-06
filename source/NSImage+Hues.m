@@ -27,7 +27,7 @@
 @implementation NSImage (Hues)
 
 + (NSImage *)imageWithColor:(NSColor *)color {
-    NSImage *image = [[[NSImage alloc] initWithSize:NSMakeSize(10, 10)] autorelease];
+    NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(10, 10)];
     [image lockFocus];
     [color set];
     NSRectFill(NSMakeRect(0, 0, 10, 10));
