@@ -24,6 +24,16 @@
 
 #import "HuesPreferences.h"
 
+NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
+NSString * const HuesUseLowercaseKey = @"HuesUseLowercase";
+NSString * const HuesDefaultColorRepresentationKey = @"HuesDefaultColorRepresentation";
+NSString * const HuesHexFormatKey = @"HuesHexFormat";
+NSString * const HuesRGBFormatKey = @"HuesRGBFormat";
+NSString * const HuesRGBAFormatKey = @"HuesRGBAFormat";
+NSString * const HuesHSBFormatKey = @"HuesHSBFormat";
+NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
+NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
+
 @implementation HuesPreferences
 
 + (void)registerDefaults {

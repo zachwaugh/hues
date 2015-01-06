@@ -8,8 +8,6 @@
 	<array/>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>hues_app_icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>me.zachwaugh.hues</string>
 	<key>CFBundleInfoDictionaryVersion</key>

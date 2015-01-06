@@ -12,6 +12,7 @@
 		9264FE6F1393EC9F00935FAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264FE6E1393EC9F00935FAC /* main.m */; };
 		9264FE7F1393ECA000935FAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9264FE611393EC9F00935FAC /* Cocoa.framework */; };
 		9264FE871393ECA000935FAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9264FE851393ECA000935FAC /* InfoPlist.strings */; };
+		92D7267A1A5B85FB00314A12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D726791A5B85FB00314A12 /* Images.xcassets */; };
 		92E7D68A1393ED080072C412 /* HuesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6791393ED080072C412 /* HuesAppDelegate.m */; };
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
@@ -23,7 +24,6 @@
 		92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6891393ED080072C412 /* NSImage+Hues.m */; };
 		92E7D6961393ED1B0072C412 /* background_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6931393ED1B0072C412 /* background_left.png */; };
 		92E7D6971393ED1B0072C412 /* background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6941393ED1B0072C412 /* background_middle.png */; };
-		92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6991393ED2E0072C412 /* hues_app_icon.icns */; };
 		92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69B1393ED830072C412 /* HuesColorsView.xib */; };
 		92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69C1393ED830072C412 /* HuesPreferences.xib */; };
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
@@ -50,10 +50,11 @@
 		9264FE6B1393EC9F00935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE6D1393EC9F00935FAC /* Hues-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hues-Prefix.pch"; sourceTree = "<group>"; };
 		9264FE6E1393EC9F00935FAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9264FE7E1393ECA000935FAC /* HuesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9264FE7E1393ECA000935FAC /* HuesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264FE841393ECA000935FAC /* HuesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HuesTests-Info.plist"; sourceTree = "<group>"; };
 		9264FE861393ECA000935FAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9264FE881393ECA000935FAC /* HuesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HuesTests-Prefix.pch"; sourceTree = "<group>"; };
+		92D726791A5B85FB00314A12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = resources/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		92E7D6781393ED080072C412 /* HuesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesAppDelegate.h; sourceTree = "<group>"; };
 		92E7D6791393ED080072C412 /* HuesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesAppDelegate.m; sourceTree = "<group>"; };
 		92E7D67A1393ED080072C412 /* HuesColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesColorsView.h; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		92E7D6891393ED080072C412 /* NSImage+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Hues.m"; sourceTree = "<group>"; };
 		92E7D6931393ED1B0072C412 /* background_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_left.png; sourceTree = "<group>"; };
 		92E7D6941393ED1B0072C412 /* background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_middle.png; sourceTree = "<group>"; };
-		92E7D6991393ED2E0072C412 /* hues_app_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = hues_app_icon.icns; path = resources/hues_app_icon.icns; sourceTree = "<group>"; };
 		92E7D69B1393ED830072C412 /* HuesColorsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesColorsView.xib; sourceTree = "<group>"; };
 		92E7D69C1393ED830072C412 /* HuesPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPreferences.xib; sourceTree = "<group>"; };
 		92E7D6A81393EDFA0072C412 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				9264FE5D1393EC9F00935FAC /* Hues.app */,
-				9264FE7E1393ECA000935FAC /* HuesTests.octest */,
+				9264FE7E1393ECA000935FAC /* HuesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,11 +198,12 @@
 		92E7D6771393ECDA0072C412 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				92E7D6991393ED2E0072C412 /* hues_app_icon.icns */,
+				92D726791A5B85FB00314A12 /* Images.xcassets */,
 				92E7D6931393ED1B0072C412 /* background_left.png */,
 				92E7D6941393ED1B0072C412 /* background_middle.png */,
 			);
 			name = Resources;
+			path = ../resources;
 			sourceTree = "<group>";
 		};
 		92E7D6B21393EFB70072C412 /* Categories */ = {
@@ -288,7 +289,7 @@
 			);
 			name = HuesTests;
 			productName = HuesTests;
-			productReference = 9264FE7E1393ECA000935FAC /* HuesTests.octest */;
+			productReference = 9264FE7E1393ECA000935FAC /* HuesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -325,9 +326,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
+				92D7267A1A5B85FB00314A12 /* Images.xcassets in Resources */,
 				92E7D6961393ED1B0072C412 /* background_left.png in Resources */,
 				92E7D6971393ED1B0072C412 /* background_middle.png in Resources */,
-				92E7D69A1393ED2E0072C412 /* hues_app_icon.icns in Resources */,
 				92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
@@ -486,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -503,6 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

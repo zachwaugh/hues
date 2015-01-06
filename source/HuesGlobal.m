@@ -24,16 +24,8 @@
 
 #import "HuesGlobal.h"
 
-// Preferences
-NSString * const HuesCopyToClipboardKey = @"HuesCopyToClipboard";
-NSString * const HuesUseLowercaseKey = @"HuesUseLowercase";
-NSString * const HuesDefaultColorRepresentationKey = @"HuesDefaultColorRepresentation";
-NSString * const HuesHexFormatKey = @"HuesHexFormat";
-NSString * const HuesRGBFormatKey = @"HuesRGBFormat";
-NSString * const HuesRGBAFormatKey = @"HuesRGBAFormat";
-NSString * const HuesHSBFormatKey = @"HuesHSBFormat";
-NSString * const HuesHSLFormatKey = @"HuesHSLFormat";
-NSString * const HuesHSLAFormatKey = @"HuesHSLAFormat";
+// Notifications
+NSString * const HuesUpdateColorNotification = @"HuesUpdateColorNotification";
 
 NSString * const HuesShowColorWheelPickerKey = @"HuesShowColorWheelPicker";
 NSString * const HuesShowColorSlidersGrayPickerKey = @"HuesShowColorSlidersGrayPicker";
@@ -43,7 +35,3 @@ NSString * const HuesShowColorSlidersHSBPickerKey = @"HuesShowColorSlidersHSBPic
 NSString * const HuesShowColorPalettesPickerKey = @"HuesShowColorPalettesPicker";
 NSString * const HuesShowImagePalettesPickerKey = @"HuesShowImagePalettesPicker";
 NSString * const HuesShowCrayonsPickerKey = @"HuesShowCrayonsPicker";
-
-
-// Notifications
-NSString * const HuesUpdateColorNotification = @"HuesUpdateColorNotification";
