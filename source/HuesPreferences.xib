@@ -218,7 +218,7 @@
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
 								<string key="NSColorName">controlTextColor</string>
-								<object class="NSColor" key="NSColor" id="31255649">
+								<object class="NSColor" key="NSColor" id="442068603">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
@@ -520,7 +520,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="425677263">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="741003564">
@@ -528,7 +528,6 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{67, 21}, {371, 14}}</string>
 						<reference key="NSSuperview" ref="425677263"/>
-						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="501100026">
 							<int key="NSCellFlags">68157504</int>
@@ -567,7 +566,6 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{45, 29}, {260, 142}}</string>
 										<reference key="NSSuperview" ref="163344094"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="741003564"/>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -682,13 +680,11 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 								</array>
 								<string key="NSFrame">{{1, 1}, {419, 193}}</string>
 								<reference key="NSSuperview" ref="573658717"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="809364147"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{17, 39}, {421, 209}}</string>
 						<reference key="NSSuperview" ref="425677263"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="163344094"/>
 						<string key="NSOffsets">{0, 0}</string>
 						<object class="NSTextFieldCell" key="NSTitleCell">
@@ -702,11 +698,11 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 								<string key="NSColorName">textBackgroundColor</string>
 								<reference key="NSColor" ref="580182587"/>
 							</object>
-							<object class="NSColor" key="NSTextColor" id="813946948">
+							<object class="NSColor" key="NSTextColor" id="902514836">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
 								<string key="NSColorName">labelColor</string>
-								<reference key="NSColor" ref="31255649"/>
+								<reference key="NSColor" ref="442068603"/>
 							</object>
 						</object>
 						<reference key="NSContentView" ref="163344094"/>
@@ -717,8 +713,6 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 					</object>
 				</array>
 				<string key="NSFrameSize">{455, 268}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="403464696">
@@ -978,7 +972,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 							<string key="NSContents">Active Color Pickers</string>
 							<reference key="NSSupport" ref="26"/>
 							<reference key="NSBackgroundColor" ref="801802289"/>
-							<reference key="NSTextColor" ref="813946948"/>
+							<reference key="NSTextColor" ref="902514836"/>
 						</object>
 						<reference key="NSContentView" ref="580092687"/>
 						<int key="NSBorderType">1</int>

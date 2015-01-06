@@ -62,15 +62,14 @@
     [self.colorPanel setShowsAlpha:YES];
     [self.colorPanel setTarget:self];
     [self.colorPanel setAction:@selector(colorChanged:)];
-    [self.colorPanel makeKeyAndOrderFront:nil];
     [self.colorPanel setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     
     [NSBundle.mainBundle loadNibNamed:@"HuesColorsView" owner:self topLevelObjects:nil];
-    
     [self updateLabelsWithColor:[self.colorPanel color]];
-    
     [self.colorPanel setAccessoryView:self.colorsView];
-    //[self.colorsView setFrame:NSMakeRect(0, self.colorsView.frame.origin.y + 6, self.colorPanel.frame.size.width, self.colorsView.bounds.size.height)];
+    
+    [self.colorPanel center];
+    [self.colorPanel makeKeyAndOrderFront:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateColor:) name:HuesUpdateColorNotification object:nil];
     
