@@ -21,16 +21,15 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+
 #import <Cocoa/Cocoa.h>
 #import "HuesGlobal.h"
 
 @interface HuesPreferences : NSObject
 
 + (void)registerDefaults;
-
 + (BOOL)copyToClipboard;
 + (void)setCopyToClipboard:(BOOL)copy;
-
 
 + (HuesColorRepresentation)defaultRepresentation;
 + (NSString *)hexFormat;
@@ -43,7 +42,5 @@
 
 + (BOOL)useLowercase;
 + (void)setUseLowercase:(BOOL)lowercase;
-//+ (BOOL)useCalibratedColors;
-//+ (void)setCalibratedColors:(BOOL)calibrated;
 
 @end

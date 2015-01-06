@@ -28,7 +28,7 @@
 @implementation NSColor (Extras)
 
 - (NSString *)hues_hex {
-    return [self hues_hexWithFormat:[HuesPreferences hexFormat] useLowercase:[HuesPreferences useLowercase]];
+    return [self hues_hexWithFormat:HuesPreferences.hexFormat useLowercase:HuesPreferences.useLowercase];
 }
 
 - (NSString *)hues_hexWithLowercase:(BOOL)lowercase {
@@ -40,7 +40,7 @@
 }
 
 - (NSString *)hues_hexWithFormat:(NSString *)format useLowercase:(BOOL)lowercase {
-    int red, green, blue;
+    NSInteger red, green, blue;
     NSString *redHexValue, *greenHexValue, *blueHexValue;
     
     NSColor *color = [self hues_convertedColor];
@@ -50,9 +50,9 @@
         green = roundf([color greenComponent] * 255.0f);
         blue = roundf([color blueComponent] * 255.0f);
         
-        redHexValue = [[NSString stringWithFormat:@"%02x", red] uppercaseString];
-        greenHexValue = [[NSString stringWithFormat:@"%02x", green] uppercaseString];
-        blueHexValue = [[NSString stringWithFormat:@"%02x", blue] uppercaseString];
+        redHexValue = [NSString stringWithFormat:@"%02x", (int)red].uppercaseString;
+        greenHexValue = [NSString stringWithFormat:@"%02x", (int)green].uppercaseString;
+        blueHexValue = [NSString stringWithFormat:@"%02x", (int)blue].uppercaseString;
         
         NSString *output = [format stringByReplacingOccurrencesOfString:@"{r}" withString:redHexValue];
         output = [output stringByReplacingOccurrencesOfString:@"{g}" withString:greenHexValue];
@@ -66,27 +66,26 @@
 
 - (NSString *)hues_rgb
 {
-    return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:[HuesPreferences rgbaFormat]] : [self hues_rgbWithFormat:[HuesPreferences rgbFormat]];
+    return (self.alphaComponent < 1) ? [self hues_rgbaWithFormat:[HuesPreferences rgbaFormat]] : [self hues_rgbWithFormat:[HuesPreferences rgbFormat]];
 }
 
 - (NSString *)hues_rgbWithDefaultFormat {
-    return ([self alphaComponent] < 1) ? [self hues_rgbaWithFormat:@"rgba({r}, {g}, {b}, {a})"] : [self hues_rgbWithFormat:@"rgb({r}, {g}, {b})"];
+    return (self.alphaComponent < 1) ? [self hues_rgbaWithFormat:@"rgba({r}, {g}, {b}, {a})"] : [self hues_rgbWithFormat:@"rgb({r}, {g}, {b})"];
 }
 
 - (NSString *)hues_rgbWithFormat:(NSString *)format {
-    int red, green, blue;
-    
+    NSInteger red, green, blue;
     NSColor *color = [self hues_convertedColor];
     
     if (color) {
-        red = roundf([color redComponent] * 255.0f);
-        green = roundf([color greenComponent] * 255.0f);
-        blue = roundf([color blueComponent] * 255.0f);
+        red = round(color.redComponent * 255.0f);
+        green = round(color.greenComponent * 255.0f);
+        blue = round(color.blueComponent * 255.0f);
         
         NSString *output;
-        output = [format stringByReplacingOccurrencesOfString:@"{r}" withString:[NSString stringWithFormat:@"%d", red]];
-        output = [output stringByReplacingOccurrencesOfString:@"{g}" withString:[NSString stringWithFormat:@"%d", green]];
-        output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", blue]];
+        output = [format stringByReplacingOccurrencesOfString:@"{r}" withString:[NSString stringWithFormat:@"%d", (int)red]];
+        output = [output stringByReplacingOccurrencesOfString:@"{g}" withString:[NSString stringWithFormat:@"%d", (int)green]];
+        output = [output stringByReplacingOccurrencesOfString:@"{b}" withString:[NSString stringWithFormat:@"%d", (int)blue]];
         
         return output;
     }
@@ -190,21 +189,21 @@
 }
 
 - (NSString *)hues_hslaWithFormat:(NSString *)format {
-    int hue;
-    float red, green, blue, alpha, saturation, lightness, max, min, delta;
+    NSInteger hue;
+    CGFloat red, green, blue, alpha, saturation, lightness, max, min, delta;
     
     NSColor *color = [self hues_convertedColor];
     
     if (color) {
-        red = [color redComponent];
-        green = [color greenComponent];
-        blue = [color blueComponent];
-        alpha = [color alphaComponent];
+        red = color.redComponent;
+        green = color.greenComponent;
+        blue = color.blueComponent;
+        alpha = color.alphaComponent;
         
         max = MAX(red, MAX(green, blue));
         min = MIN(red, MIN(green, blue));
         
-        hue = roundf([color hueComponent] * 360.0f);
+        hue = roundf(color.hueComponent * 360.0f);
         lightness = (max + min) / 2;
         
         if (max == min) {
@@ -216,7 +215,7 @@
         }
         
         NSString *output;
-        output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", hue]];
+        output = [format stringByReplacingOccurrencesOfString:@"{h}" withString:[NSString stringWithFormat:@"%d", (int)hue]];
         output = [output stringByReplacingOccurrencesOfString:@"{s}" withString:[NSString stringWithFormat:@"%d", (int)roundf(saturation * 100.0f)]];
         output = [output stringByReplacingOccurrencesOfString:@"{l}" withString:[NSString stringWithFormat:@"%d", (int)roundf(lightness * 100.0f)]];
         output = [output stringByReplacingOccurrencesOfString:@"{a}" withString:[NSString stringWithFormat:@"%.2f", alpha]];
@@ -228,7 +227,7 @@
 }
 
 - (NSColor *)hues_convertedColor {
-    if ([self colorSpaceName] != NSCalibratedRGBColorSpace && [self colorSpaceName] != NSDeviceRGBColorSpace) {
+    if (self.colorSpaceName != NSCalibratedRGBColorSpace && self.colorSpaceName != NSDeviceRGBColorSpace) {
         return [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     } else {
         return self;
@@ -239,26 +238,22 @@
     // remove any # signs
     hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
     
-    if ([hex length] < 6) return nil;
-    if ([hex length] > 6) hex = [hex substringToIndex:6];
+    if (hex.length < 6) return nil;
+    if (hex.length > 6) hex = [hex substringToIndex:6];
     
     NSColor *result = nil;
     unsigned int colorCode = 0;
     unsigned char redByte, greenByte, blueByte;
     
-    if (hex != nil) {
+    if (hex) {
         NSScanner *scanner = [NSScanner scannerWithString:hex];
         (void) [scanner scanHexInt:&colorCode];	// ignore error
     }
     
-    redByte		= (unsigned char) (colorCode >> 16);
-    greenByte	= (unsigned char) (colorCode >> 8);
-    blueByte	= (unsigned char) (colorCode);	// masks off high bits
-    result = [NSColor
-              colorWithCalibratedRed:(float)redByte / 0xff
-              green:(float)greenByte / 0xff
-              blue:(float)blueByte / 0xff
-              alpha:1.0];
+    redByte	= (unsigned char) (colorCode >> 16);
+    greenByte = (unsigned char) (colorCode >> 8);
+    blueByte = (unsigned char) (colorCode);	// masks off high bits
+    result = [NSColor colorWithCalibratedRed:(float)redByte / 0xff green:(float)greenByte / 0xff blue:(float)blueByte / 0xff alpha:1.0];
     
     return result;
 }

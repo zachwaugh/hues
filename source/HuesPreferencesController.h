@@ -24,17 +24,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-
-@interface HuesPreferencesController : NSWindowController <NSToolbarDelegate>
-{
-  IBOutlet NSToolbar *toolbar;
-  IBOutlet NSView *view;
-  IBOutlet NSView *generalView;
-  IBOutlet NSView *colorPickersView;
-  IBOutlet NSView *advancedView;
-  
-  NSView *currentView;
-  NSString *currentToolbarIdentifier;
+@interface HuesPreferencesController : NSWindowController <NSToolbarDelegate> {
+    IBOutlet NSToolbar *toolbar;
+    IBOutlet NSView *view;
+    IBOutlet NSView *generalView;
+    IBOutlet NSView *colorPickersView;
+    IBOutlet NSView *advancedView;
+    
+    NSView *currentView;
+    NSString *currentToolbarIdentifier;
 }
 
 @property (retain) NSString *currentToolbarIdentifier;

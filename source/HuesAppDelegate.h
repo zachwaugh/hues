@@ -27,8 +27,7 @@
 @class HuesPreferencesController;
 @class HuesMainController;
 
-@interface HuesAppDelegate : NSObject
-{
+@interface HuesAppDelegate : NSObject {
   HuesMainController *mainController;
   HuesPreferencesController *preferencesController;
   IBOutlet NSMenu *historyMenu;
