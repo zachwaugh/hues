@@ -25,7 +25,7 @@
 #import "HuesAppDelegate.h"
 #import "HuesPreferences.h"
 #import "HuesPreferencesController.h"
-#import "HuesMainController.h"
+#import "HuesWindowController.h"
 #import "HuesHistoryManager.h"
 
 @implementation HuesAppDelegate
@@ -36,7 +36,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.mainController = [[HuesMainController alloc] init];
+    self.mainController = [[HuesWindowController alloc] init];
 }
 
 - (void)awakeFromNib {

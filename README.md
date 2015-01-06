@@ -25,7 +25,7 @@ Hues hasn't been worked on since late 2011. Besides needing some updating and mo
 - [ ] Add Sparkle auto-updating
 
 ### Modernization/updating
-- [ ] Update to ARC (yes, it's that old)
+- [x] Update to ARC (yes, it's that old)
 
 ## License
 

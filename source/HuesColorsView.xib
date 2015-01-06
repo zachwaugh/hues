@@ -24,7 +24,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.Metadata"/>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">HuesMainController</string>
+				<string key="NSClassName">HuesWindowController</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -33,7 +33,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="1005">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">290</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="763992327">
@@ -41,7 +41,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 24}, {186, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="630630050"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="123561772">
@@ -76,7 +75,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 87}, {186, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="993813271"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="60702335">
@@ -100,7 +98,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 144}, {186, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="709422244"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="336155542">
@@ -124,7 +121,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 104}, {38, 13}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="831465738"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="801796264">
@@ -151,7 +147,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 42}, {38, 13}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="763992327"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="968715207">
@@ -175,7 +170,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 163}, {38, 13}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="639285635"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="787582846">
@@ -199,7 +193,6 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{206, 28}, {41, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="961877478">
 							<int key="NSCellFlags">-2080374784</int>
@@ -225,7 +218,6 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{206, 91}, {41, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="364248158"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="416858994">
@@ -248,7 +240,6 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{206, 148}, {41, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="272415679"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="692707629">
@@ -268,8 +259,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{265, 200}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1067838121"/>
 				<string key="NSClassName">HuesColorsView</string>
 			</object>
@@ -541,57 +530,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../source/HuesColorsView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">HuesMainController</string>
-					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="copyHSL:">id</string>
-						<string key="copyHex:">id</string>
-						<string key="copyRGB:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="copyHSL:">
-							<string key="name">copyHSL:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="copyHex:">
-							<string key="name">copyHex:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="copyRGB:">
-							<string key="name">copyRGB:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="colorsView">NSView</string>
-						<string key="hexField">NSTextField</string>
-						<string key="hslLabel">NSTextField</string>
-						<string key="rgbLabel">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="colorsView">
-							<string key="name">colorsView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="hexField">
-							<string key="name">hexField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="hslLabel">
-							<string key="name">hslLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="rgbLabel">
-							<string key="name">rgbLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../source/HuesMainController.h</string>
 					</object>
 				</object>
 			</array>

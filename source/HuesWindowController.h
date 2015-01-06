@@ -26,7 +26,7 @@
 
 @class HuesColorsView;
 
-@interface HuesMainController : NSObject <NSWindowDelegate>
+@interface HuesWindowController : NSObject <NSWindowDelegate>
 
 @property (nonatomic, strong) NSColorPanel *colorPanel;
 @property (nonatomic, strong) IBOutlet NSView *colorsView;

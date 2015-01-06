@@ -32,21 +32,21 @@
 // NSColorPanelCrayonModeMask           - Crayons
 // NSColorPanelAllModesMask             - All
 
-#import "HuesMainController.h"
+#import "HuesWindowController.h"
 #import "HuesColorsView.h"
 #import "HuesPreferences.h"
 #import "HuesHistoryManager.h"
 #import "HuesGlobal.h"
 #import "NSColor+Extras.h"
 
-@interface HuesMainController ()
+@interface HuesWindowController ()
 
 - (void)copyToClipboard:(NSString *)value;
 - (void)updateLabelsWithColor:(NSColor *)color;
 
 @end
 
-@implementation HuesMainController
+@implementation HuesWindowController
 
 - (id)init {
     self = [super init];

@@ -25,11 +25,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class HuesPreferencesController;
-@class HuesMainController;
+@class HuesWindowController;
 
 @interface HuesAppDelegate : NSObject
 
-@property (nonatomic, strong) HuesMainController *mainController;
+@property (nonatomic, strong) HuesWindowController *mainController;
 @property (nonatomic, strong) HuesPreferencesController *preferencesController;
 @property (nonatomic, strong) IBOutlet NSMenu *historyMenu;
 

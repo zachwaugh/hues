@@ -17,7 +17,7 @@
 		92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67B1393ED080072C412 /* HuesColorsView.m */; };
 		92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67D1393ED080072C412 /* HuesGlobal.m */; };
 		92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D67F1393ED080072C412 /* HuesHistoryManager.m */; };
-		92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6811393ED080072C412 /* HuesMainController.m */; };
+		92E7D68E1393ED080072C412 /* HuesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6811393ED080072C412 /* HuesWindowController.m */; };
 		92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6831393ED080072C412 /* HuesPreferences.m */; };
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
 		92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Extras.m */; };
@@ -61,8 +61,8 @@
 		92E7D67D1393ED080072C412 /* HuesGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesGlobal.m; sourceTree = "<group>"; };
 		92E7D67E1393ED080072C412 /* HuesHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesHistoryManager.h; sourceTree = "<group>"; };
 		92E7D67F1393ED080072C412 /* HuesHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesHistoryManager.m; sourceTree = "<group>"; };
-		92E7D6801393ED080072C412 /* HuesMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesMainController.h; sourceTree = "<group>"; };
-		92E7D6811393ED080072C412 /* HuesMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesMainController.m; sourceTree = "<group>"; };
+		92E7D6801393ED080072C412 /* HuesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesWindowController.h; sourceTree = "<group>"; };
+		92E7D6811393ED080072C412 /* HuesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesWindowController.m; sourceTree = "<group>"; };
 		92E7D6821393ED080072C412 /* HuesPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferences.h; sourceTree = "<group>"; };
 		92E7D6831393ED080072C412 /* HuesPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuesPreferences.m; sourceTree = "<group>"; };
 		92E7D6841393ED080072C412 /* HuesPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuesPreferencesController.h; sourceTree = "<group>"; };
@@ -216,8 +216,8 @@
 			children = (
 				92E7D6781393ED080072C412 /* HuesAppDelegate.h */,
 				92E7D6791393ED080072C412 /* HuesAppDelegate.m */,
-				92E7D6801393ED080072C412 /* HuesMainController.h */,
-				92E7D6811393ED080072C412 /* HuesMainController.m */,
+				92E7D6801393ED080072C412 /* HuesWindowController.h */,
+				92E7D6811393ED080072C412 /* HuesWindowController.m */,
 				92E7D6841393ED080072C412 /* HuesPreferencesController.h */,
 				92E7D6851393ED080072C412 /* HuesPreferencesController.m */,
 			);
@@ -377,7 +377,7 @@
 				92E7D68B1393ED080072C412 /* HuesColorsView.m in Sources */,
 				92E7D68C1393ED080072C412 /* HuesGlobal.m in Sources */,
 				92E7D68D1393ED080072C412 /* HuesHistoryManager.m in Sources */,
-				92E7D68E1393ED080072C412 /* HuesMainController.m in Sources */,
+				92E7D68E1393ED080072C412 /* HuesWindowController.m in Sources */,
 				92E7D68F1393ED080072C412 /* HuesPreferences.m in Sources */,
 				92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */,
 				92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */,
