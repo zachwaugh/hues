@@ -24,7 +24,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HuesColorsView : NSView {
-}
-
+@interface HuesColorsView : NSView
 @end

@@ -10,7 +10,6 @@ Hues is a simple app that provides some basic features on top of the built-in OS
 - [Sip](https://itunes.apple.com/us/app/sip/id507257563?mt=12)
 - [xScope](http://xscopeapp.com/)
 
-
 ## License
 
 Hues is released under the MIT license

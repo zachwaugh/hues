@@ -22,8 +22,6 @@
 		92E7D6901393ED080072C412 /* HuesPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6851393ED080072C412 /* HuesPreferencesController.m */; };
 		92E7D6911393ED080072C412 /* NSColor+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6871393ED080072C412 /* NSColor+Extras.m */; };
 		92E7D6921393ED080072C412 /* NSImage+Hues.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D6891393ED080072C412 /* NSImage+Hues.m */; };
-		92E7D6961393ED1B0072C412 /* background_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6931393ED1B0072C412 /* background_left.png */; };
-		92E7D6971393ED1B0072C412 /* background_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6941393ED1B0072C412 /* background_middle.png */; };
 		92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69B1393ED830072C412 /* HuesColorsView.xib */; };
 		92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D69C1393ED830072C412 /* HuesPreferences.xib */; };
 		92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7D6A81393EDFA0072C412 /* MainMenu.xib */; };
@@ -73,8 +71,6 @@
 		92E7D6871393ED080072C412 /* NSColor+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extras.m"; sourceTree = "<group>"; };
 		92E7D6881393ED080072C412 /* NSImage+Hues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Hues.h"; sourceTree = "<group>"; };
 		92E7D6891393ED080072C412 /* NSImage+Hues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Hues.m"; sourceTree = "<group>"; };
-		92E7D6931393ED1B0072C412 /* background_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_left.png; sourceTree = "<group>"; };
-		92E7D6941393ED1B0072C412 /* background_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_middle.png; sourceTree = "<group>"; };
 		92E7D69B1393ED830072C412 /* HuesColorsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesColorsView.xib; sourceTree = "<group>"; };
 		92E7D69C1393ED830072C412 /* HuesPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuesPreferences.xib; sourceTree = "<group>"; };
 		92E7D6A81393EDFA0072C412 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -199,8 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				92D726791A5B85FB00314A12 /* Images.xcassets */,
-				92E7D6931393ED1B0072C412 /* background_left.png */,
-				92E7D6941393ED1B0072C412 /* background_middle.png */,
 			);
 			name = Resources;
 			path = ../resources;
@@ -327,8 +321,6 @@
 			files = (
 				9264FE6C1393EC9F00935FAC /* InfoPlist.strings in Resources */,
 				92D7267A1A5B85FB00314A12 /* Images.xcassets in Resources */,
-				92E7D6961393ED1B0072C412 /* background_left.png in Resources */,
-				92E7D6971393ED1B0072C412 /* background_middle.png in Resources */,
 				92E7D69D1393ED830072C412 /* HuesColorsView.xib in Resources */,
 				92E7D69E1393ED830072C412 /* HuesPreferences.xib in Resources */,
 				92E7D6A91393EDFA0072C412 /* MainMenu.xib in Resources */,
