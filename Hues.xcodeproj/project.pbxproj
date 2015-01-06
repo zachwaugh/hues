@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				9264FE671393EC9F00935FAC /* Hues */,
-				9264FE821393ECA000935FAC /* HuesTests */,
+				9264FE821393ECA000935FAC /* Tests */,
 				9264FE601393EC9F00935FAC /* Frameworks */,
 				9264FE5E1393EC9F00935FAC /* Products */,
 			);
@@ -152,7 +152,8 @@
 				92E7D6771393ECDA0072C412 /* Resources */,
 				9264FE681393EC9F00935FAC /* Supporting Files */,
 			);
-			path = Hues;
+			name = Hues;
+			path = source;
 			sourceTree = "<group>";
 		};
 		9264FE681393EC9F00935FAC /* Supporting Files */ = {
@@ -166,13 +167,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9264FE821393ECA000935FAC /* HuesTests */ = {
+		9264FE821393ECA000935FAC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				9264FE831393ECA000935FAC /* Supporting Files */,
 				92E7D6B71393F1E70072C412 /* HuesColorTest.m */,
 			);
-			path = HuesTests;
+			name = Tests;
+			path = tests;
 			sourceTree = "<group>";
 		};
 		9264FE831393ECA000935FAC /* Supporting Files */ = {
@@ -493,9 +495,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hues/Hues-Prefix.pch";
+				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Hues/Hues-Info.plist";
+				INFOPLIST_FILE = "source/Hues-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -510,9 +512,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hues/Hues-Prefix.pch";
+				GCC_PREFIX_HEADER = "source/Hues-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Hues/Hues-Info.plist";
+				INFOPLIST_FILE = "source/Hues-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -530,7 +532,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
-				INFOPLIST_FILE = "HuesTests/HuesTests-Info.plist";
+				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -553,7 +555,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HuesTests/HuesTests-Prefix.pch";
-				INFOPLIST_FILE = "HuesTests/HuesTests-Info.plist";
+				INFOPLIST_FILE = "tests/HuesTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
