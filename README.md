@@ -20,6 +20,9 @@ Hues hasn't been worked on since late 2011. Besides needing some updating and mo
 - [ ] Rework color formatter and support more formats, including custom formats
 - [ ] Add a menubar icon
 
+## 2.0
+I had started on a Hues 2.0 that didn't rely on the system color picker, and re-implemented most of the features myself, with some improvements. This was in [beta](http://giantcomet.com/hues/beta/) when I shut the company down. There was a lot of custom code in there for color picking and conversion, and may be useful to some. That code is in the [2.0 branch](https://github.com/zachwaugh/hues/tree/2.0) wh
+
 ### Distribution
 - [ ] Sign with Developer ID
 - [ ] Add Sparkle auto-updating
