@@ -2,7 +2,7 @@
 
 Hues is a color picker for Mac OS X 10.10 and later, previously released by my now defunct company [Giant Comet](http://giantcomet.com/hues), now provided as free, open-source app. It is built on top of the OS X color picker, and adds some extra features like automatically copying the color to the clipboard and seeing different color formats.
 
-![hues screenshot](http://zdw.me/images/hues-github-screenshot.png)
+![hues screenshot](http://cloud.zachwaugh.com/images/hues-github-screenshot.png)
 
 ## Alternatives
 
